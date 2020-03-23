@@ -71,6 +71,7 @@ public class CoursController implements Initializable {
 
     @FXML
     private void ajouter(ActionEvent event) {
+        int a ;
     }
 
     @FXML
