@@ -17,70 +17,70 @@
         <URL value="@eventt.css" />
     </stylesheets>
    <children>
-      <AnchorPane id="AnchorPane" prefHeight="810.0" prefWidth="1277.0" styleClass="mainFxmlClass">
+      <AnchorPane id="AnchorPane" prefHeight="692.0" prefWidth="1000.0" styleClass="mainFxmlClass">
          <stylesheets>
             <URL value="@../../../coccinelleJAVA/src/coccinelleGui/event.css" />
          </stylesheets>
          <children>
-            <Label layoutX="24.0" layoutY="250.0" text="Date Debut">
+            <Label layoutX="8.0" layoutY="227.0" text="Date Debut">
                <font>
                   <Font name="Arial Bold" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="27.0" layoutY="295.0" prefHeight="20.0" prefWidth="87.0" text="Date Fin">
+            <Label layoutX="10.0" layoutY="273.0" prefHeight="20.0" prefWidth="87.0" text="Date Fin">
                <font>
                   <Font name="Arial Bold" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="10.0" layoutY="367.0" text="nombre de participant">
+            <Label layoutX="13.0" layoutY="320.0" text="nombre de participant">
                <font>
                   <Font name="Arial Bold" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="27.0" layoutY="453.0" text="image">
+            <Label layoutX="17.0" layoutY="395.0" text="image">
                <font>
                   <Font name="Arial Bold" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="383.0" layoutY="23.0" prefHeight="46.0" prefWidth="277.0" text="Gestion Evenement" textFill="#f27735">
+            <Label layoutX="429.0" layoutY="21.0" prefHeight="46.0" prefWidth="277.0" text="Gestion Evenement" textFill="#f27735">
                <font>
                   <Font name="Arial Bold Italic" size="22.0" />
                </font>
             </Label>
-            <Label layoutX="26.0" layoutY="90.0" text="nom Event">
+            <Label layoutX="10.0" layoutY="78.0" text="nom Event">
                <font>
                   <Font name="Arial Bold" size="17.0" />
                </font>
             </Label>
-            <Button fx:id="Eajouter" layoutX="42.0" layoutY="747.0" mnemonicParsing="false" onAction="#ajouter" style="-fx-background-color: #eda678; -fx-background-radius: 5em;" text="ajouter" />
-            <Button fx:id="Emodifier" layoutX="157.0" layoutY="747.0" mnemonicParsing="false" onAction="#modifier" style="-fx-background-radius: 5em; -fx-background-color: #eda678;" text="modifier" />
-            <Button fx:id="Esupprimer" layoutX="292.0" layoutY="747.0" mnemonicParsing="false" onAction="#supprimer" style="-fx-background-color: #eda678; -fx-background-radius: 5em;" text="supprimer" />
-            <DatePicker fx:id="Edate_deb" layoutX="190.0" layoutY="247.0" />
-            <DatePicker fx:id="Edate_fin" layoutX="190.0" layoutY="292.0" />
-            <TextField fx:id="Enom" layoutX="204.0" layoutY="87.0" prefHeight="31.0" prefWidth="195.0" />
-            <TextField fx:id="Enbpart" layoutX="204.0" layoutY="387.0" />
-            <Button fx:id="Eimage" layoutX="292.0" layoutY="608.0" mnemonicParsing="false" onAction="#importer" text="import" />
-            <Label layoutX="26.0" layoutY="170.0" prefHeight="20.0" prefWidth="109.0" text="decription">
+            <Button fx:id="Eajouter" layoutX="20.0" layoutY="642.0" mnemonicParsing="false" onAction="#ajouter" style="-fx-background-color: #eda678; -fx-background-radius: 5em;" text="ajouter" />
+            <Button fx:id="Emodifier" layoutX="122.0" layoutY="642.0" mnemonicParsing="false" onAction="#modifier" style="-fx-background-radius: 5em; -fx-background-color: #eda678;" text="modifier" />
+            <Button fx:id="Esupprimer" layoutX="224.0" layoutY="642.0" mnemonicParsing="false" onAction="#supprimer" style="-fx-background-color: #eda678; -fx-background-radius: 5em;" text="supprimer" />
+            <DatePicker fx:id="Edate_deb" layoutX="109.0" layoutY="222.0" />
+            <DatePicker fx:id="Edate_fin" layoutX="109.0" layoutY="267.0" />
+            <TextField fx:id="Enom" layoutX="141.0" layoutY="73.0" prefHeight="31.0" prefWidth="195.0" />
+            <TextField fx:id="Enbpart" layoutX="111.0" layoutY="347.0" />
+            <Button fx:id="Eimage" layoutX="186.0" layoutY="528.0" mnemonicParsing="false" onAction="#importer" text="import" />
+            <Label layoutX="13.0" layoutY="152.0" prefHeight="20.0" prefWidth="109.0" text="decription">
                <font>
                   <Font name="Arial Bold" size="17.0" />
                </font>
             </Label>
-            <TextArea fx:id="Edescription" layoutX="202.0" layoutY="128.0" prefHeight="104.0" prefWidth="195.0" />
-            <Label layoutX="26.0" layoutY="700.0" prefHeight="20.0" prefWidth="109.0" text="adresse">
+            <TextArea fx:id="Edescription" layoutX="141.0" layoutY="110.0" prefHeight="104.0" prefWidth="195.0" />
+            <Label layoutX="26.0" layoutY="596.0" prefHeight="20.0" prefWidth="109.0" text="adresse">
                <font>
                   <Font name="Arial Bold" size="17.0" />
                </font>
             </Label>
-            <TextField fx:id="Eadresse" layoutX="157.0" layoutY="685.0" />
-            <ImageView fx:id="imageview" fitHeight="150.0" fitWidth="200.0" layoutX="157.0" layoutY="436.0" pickOnBounds="true" preserveRatio="true" />
-            <TableView fx:id="table_event" layoutX="443.0" layoutY="137.0" prefHeight="532.0" prefWidth="796.0">
+            <TextField fx:id="Eadresse" layoutX="135.0" layoutY="591.0" prefHeight="31.0" prefWidth="169.0" />
+            <ImageView fx:id="imageview" fitHeight="112.0" fitWidth="179.0" layoutX="89.0" layoutY="405.0" pickOnBounds="true" preserveRatio="true" />
+            <TableView fx:id="table_event" layoutX="354.0" layoutY="121.0" prefHeight="521.0" prefWidth="632.0">
                <columns>
-                  <TableColumn fx:id="nom" prefWidth="100.0" text="nom" />
-                  <TableColumn fx:id="timage" prefWidth="114.0" text="image" />
-                  <TableColumn fx:id="dat_d" minWidth="7.0" prefWidth="128.0" text="date debut" />
-                  <TableColumn fx:id="date_f" prefWidth="105.0" text="date fin" />
-                  <TableColumn fx:id="nb_part" prefWidth="153.0" text="nb participant" />
-                  <TableColumn fx:id="descrip" prefWidth="195.0" text="description" />
+                  <TableColumn fx:id="nom" prefWidth="91.0" text="nom" />
+                  <TableColumn fx:id="timage" prefWidth="123.0" text="image" />
+                  <TableColumn fx:id="dat_d" minWidth="7.0" prefWidth="115.0" text="date debut" />
+                  <TableColumn fx:id="date_f" minWidth="0.0" prefWidth="118.0" text="date fin" />
+                  <TableColumn fx:id="nb_part" prefWidth="102.0" text="nb participant" />
+                  <TableColumn fx:id="descrip" prefWidth="196.0" text="description" />
                </columns>
             </TableView>
          </children>
