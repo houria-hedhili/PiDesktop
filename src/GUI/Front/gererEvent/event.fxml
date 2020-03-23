@@ -9,29 +9,30 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="GUI.Front.gererEvent.EventController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Front.gererEvent.EventController">
     <stylesheets>
         <URL value="@event.css" />
     </stylesheets>
    <children>
       <AnchorPane layoutX="6.0" layoutY="10.0" prefHeight="691.0" prefWidth="1003.0">
          <children>
-            <TabPane fx:id="tabpane" layoutX="-26.0" prefHeight="691.0" prefWidth="1017.0" side="LEFT" styleClass="tabpane" stylesheets="@../gererCantine/abonnement/aboncantine.css" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="tabpane" layoutX="-2.0" prefHeight="691.0" prefWidth="1003.0" side="LEFT" styleClass="tabpane" stylesheets="@../gererCantine/abonnement/aboncantine.css" tabClosingPolicy="UNAVAILABLE">
                <tabs>
                   <Tab>
                      <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane fx:id="prochEvent" prefHeight="637.0" prefWidth="755.0">
                            <children>
                               <Pane layoutX="602.0" layoutY="623.0" prefHeight="54.0" prefWidth="200.0">
                                  <children>
                                     <Button fx:id="retour1" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour1" styleClass="retour" stylesheets="@../gererCantine/abonnement/aboncantine.css" text="Retour" />
                                  </children>
                               </Pane>
+                              <Button layoutX="376.0" layoutY="188.0" mnemonicParsing="false" text="consulter1" />
                            </children>
                         </AnchorPane>
                      </content>
                      <graphic>
-                        <Label text="Consulter" textFill="#f2f2f2">
+                        <Label text="prochain evenement" textFill="#f2f2f2">
                            <font>
                               <Font name="Cooper Black" size="14.0" />
                            </font>
@@ -51,14 +52,14 @@
                         </AnchorPane>
                      </content>
                      <graphic>
-                        <Label text="Inscription" textFill="#f2f2f2">
+                        <Label fx:id="precEvent" text="evenement passé" textFill="#f2f2f2">
                            <font>
                               <Font name="Cooper Black" size="14.0" />
                            </font>
                         </Label>
                      </graphic>
                   </Tab>
-                  <Tab>
+                  <Tab fx:id="partcip">
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
@@ -71,27 +72,7 @@
                         </AnchorPane>
                      </content>
                      <graphic>
-                        <Label text="Plats de jour" textFill="#f2f2f2">
-                           <font>
-                              <Font name="Cooper Black" size="14.0" />
-                           </font>
-                        </Label>
-                     </graphic>
-                  </Tab>
-                  <Tab>
-                     <content>
-                        <AnchorPane prefHeight="691.0" prefWidth="1017.0">
-                           <children>
-                              <Pane layoutX="602.0" layoutY="623.0" prefHeight="54.0" prefWidth="200.0">
-                                 <children>
-                                    <Button fx:id="retour4" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour4" styleClass="retour" stylesheets="@../gererCantine/abonnement/aboncantine.css" text="Retour" />
-                                 </children>
-                              </Pane>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                     <graphic>
-                        <Label text="Votre menu" textFill="#f2f2f2">
+                        <Label text="mes participation" textFill="#f2f2f2">
                            <font>
                               <Font name="Cooper Black" size="14.0" />
                            </font>

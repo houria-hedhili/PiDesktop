@@ -15,7 +15,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -33,7 +36,11 @@ public class EventController implements Initializable {
     @FXML
     private Button retour3;
     @FXML
-    private Button retour4;
+    private AnchorPane prochEvent;
+    @FXML
+    private Label precEvent;
+    @FXML
+    private Tab partcip;
 
     /**
      * Initializes the controller class.
@@ -81,7 +88,6 @@ public class EventController implements Initializable {
        stage.close();
     }
 
-    @FXML
     private void retour4(ActionEvent event) throws IOException {
    Stage stage = (Stage) retour1.getScene().getWindow();
     Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front/Acceuilfront/acceuilFront.fxml"));
