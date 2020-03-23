@@ -7,7 +7,10 @@ package GUI.Front.gererEnfant;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +19,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import service.wifek.CrudEnfantService;
 
 /**
  * FXML Controller class
@@ -34,15 +41,49 @@ public class EnfantController implements Initializable {
     private Button retour3;
     @FXML
     private Button retour4;
+    @FXML
+    private TableView<?> tabAffiche;
+    @FXML
+    private TableColumn<?, ?> colid;
+    @FXML
+    private TableColumn<?, ?> colsexe;
+    @FXML
+    private TableColumn<?, ?> colnom;
+    @FXML
+    private TableColumn<?, ?> colpre;
+    @FXML
+    private TableColumn<?, ?> colage;
+    @FXML
+    private TableColumn<?, ?> colidbus;
+    @FXML
+    private TableColumn<?, ?> colidp;
 //hethi khedmtik linaa
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        // TODO               
+        afficher();
 
+    }    
+    
+            private void afficher() {
+    CrudEnfantService sp = new CrudEnfantService();
+      List buss=sp.afficherEnfant();
+       ObservableList et=FXCollections.observableArrayList(buss);
+       tabAffiche.setItems(et);
+     ObservableList observableList = FXCollections.observableArrayList(buss);
+        colid.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colsexe.setCellValueFactory(new PropertyValueFactory<>("sexe"));
+        colnom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        colpre.setCellValueFactory(new PropertyValueFactory<>("prenom")); 
+        colage.setCellValueFactory(new PropertyValueFactory<>("age")); 
+        colidbus.setCellValueFactory(new PropertyValueFactory<>("id_Bus"));
+        colidp.setCellValueFactory(new PropertyValueFactory<>("idParent"));
+
+
+}
 
     @FXML
     private void retour1(ActionEvent event) throws IOException {
