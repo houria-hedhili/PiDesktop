@@ -7,6 +7,7 @@ package service.wifek;
 
 import ConnexionBd.connexionBd;
 import Entity.wifek.Bus;
+import Entity.wifek.enfant;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -88,9 +89,55 @@ private Connection cnx;
                 } catch (SQLException ex) {
                     Logger.getLogger(CrudBusService.class.getName()).log(Level.SEVERE, null, ex);
                 }
+      return list ;   //hedhi enfant  oss xD hhh bich net2aked men haja wkhalini nrrakez
+       }
+           public  ArrayList<enfant>  getLigneBus(){
+         ArrayList<enfant> list = new ArrayList<>() ;
+             try {
+                Statement st=cnx.createStatement();
+                String req="Select s.id,b.ligne,s.sexe, s.nom,s.prenom,s.age from bus b INNER JOIN enfant s on b.id=s.id_bus";//stana nkhamemb sayeeleeb na3rafha la requete ena manich bich nnselecti ken ligne bich naffichi tbaleau keml ok
+                ResultSet rs = st.executeQuery(req);
+                while(rs.next()){//hezni lil
+                   //stana nkhamem
+                  enfant e= new enfant(rs.getInt(1),rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(2)); //yakhra matmesesch
+                    list.add(e);            
+                   }
+                } catch (SQLException ex) {
+                    Logger.getLogger(CrudBusService.class.getName()).log(Level.SEVERE, null, ex);
+                }
       return list ;   
        }
+      public ArrayList<String> getAllLigne()
+      {
+       ArrayList<String> list = new ArrayList<>() ;
+             try {
+                Statement st=cnx.createStatement();
+                String req="Select ligne from bus";
+                ResultSet rs = st.executeQuery(req);
+                while(rs.next()){
+                  //  Bus p = new Bus(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4));
+                    list.add(rs.getString(1));            
+                   }
+                } catch (SQLException ex) {
+                    Logger.getLogger(CrudBusService.class.getName()).log(Level.SEVERE, null, ex);
+                }
+      return list ;  
+      }
+      public int getIdLigne(String ligne)
+      {   int x=0;
+             try {
+                Statement st=cnx.createStatement();
+                String req="Select id from bus where ligne = '"+ligne+"'";
+                ResultSet rs = st.executeQuery(req);
+             while(rs.next())
+                x= rs.getInt(1);
+                } catch (SQLException ex) {
+                    Logger.getLogger(CrudBusService.class.getName()).log(Level.SEVERE, null, ex);
+                }
+     
+      return x;
       
+      }
       
         public  ArrayList<Bus> rechercheBus(String motClef){
      ArrayList<Bus> list =new ArrayList<>();
