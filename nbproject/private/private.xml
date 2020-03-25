@@ -3,20 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/integrationJava/src/pifinal/FXMLDocumentController.java</file>
-            <file>file:/D:/integrationJava/src/GUI/MenuController.java</file>
-            <file>file:/D:/integrationJava/src/GUI/Back/Acceuilback/MenuuController.java</file>
-            <file>file:/D:/integrationJava/src/GUI/Back/gererEvent/event.fxml</file>
-            <file>file:/D:/integrationJava/src/pifinal/PiFinal.java</file>
-            <file>file:/D:/integrationJava/src/GUI/Back/Acceuilback/menuu.css</file>
-            <file>file:/D:/integrationJava/src/GUI/Back/gererEvent/EventController.java</file>
-            <file>file:/D:/integrationJava/src/GUI/login/login.css</file>
-            <file>file:/D:/integrationJava/src/GUI/Front/Acceuilfront/AcceuilFrontController.java</file>
-            <file>file:/D:/integrationJava/src/GUI/Back/gererEvent/event.css</file>
-            <file>file:/D:/integrationJava/src/GUI/Back/Acceuilback/menuu.fxml</file>
-            <file>file:/D:/integrationJava/src/GUI/login/login.fxml</file>
-            <file>file:/D:/integrationJava/src/GUI/login/LoginController.java</file>
-            <file>file:/D:/integrationJava/src/GUI/Front/Acceuilfront/acceuilfront.css</file>
+            <file>file:/D:/integrationJava/src/service/houria/EventCRUD.java</file>
+            <file>file:/D:/integrationJava/src/service/houria/CoursCRUD.java</file>
+            <file>file:/D:/integrationJava/src/Entity/houria/Evenement.java</file>
+            <file>file:/D:/integrationJava/src/GUI/Back/gererEvent/eventt.css</file>
+            <file>file:/D:/integrationJava/src/GUI/Back/gererCours/CoursController.java</file>
+            <file>file:/D:/integrationJava/src/GUI/Front/gererEvent/EventController.java</file>
+            <file>file:/D:/integrationJava/src/Entity/houria/Cours.java</file>
+            <file>file:/D:/integrationJava/src/GUI/Back/gererEvent/EventtController.java</file>
         </group>
     </open-files>
 </project-private>
