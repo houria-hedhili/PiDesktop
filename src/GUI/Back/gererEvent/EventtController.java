@@ -11,7 +11,12 @@ import service.houria.EventCRUD;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -80,6 +85,8 @@ public class EventtController implements Initializable {
     @FXML
     private TableColumn<?, ?> descrip;
         private Evenement evenn=null;
+    @FXML
+    private TableColumn<?, ?> adress;
 
 
     /**
@@ -96,15 +103,24 @@ public class EventtController implements Initializable {
            public void handle(MouseEvent event) {
                 evenn = (Evenement)table_event.getSelectionModel().getSelectedItem();
                 System.out.println(evenn);
+                 System.out.println("wsol lena");
+
                 Enom.setText(evenn.getNom());
                 imageview.setImage(new Image(evenn.getImage()));
-                
-                
-               // LocalDate d1=evenn.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-               // LocalDate d2=evenn.getDate_fin().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-               // Edate_deb.setValue(d1);
-                //Edate_fin.setValue(d2);
-                
+                    System.out.println("hedhiiii");
+                    //Getting the default zone i
+	 System.out.println("wish");	
+	//Converting the date to Instant
+	System.out.println("instant cv");
+
+	//Converting the Date to LocalDate
+	LocalDate d1 = evenn.getDate().toLocalDate();
+	System.out.println("Local Date is: "+d1);
+                LocalDate d2=evenn.getDate_fin().toLocalDate();
+                  System.out.println("lena za3ma 1");
+                Edate_deb.setValue(d1);
+               Edate_fin.setValue(d2);
+                 System.out.println("lena mela za3ma 2");  
                 
                 int place=evenn.getNbpart();
                 String nb_PPP=String.valueOf(place);
@@ -121,20 +137,20 @@ public class EventtController implements Initializable {
           String titreE = Enom.getText();
         String adresseE=Eadresse.getText();
         String descriptionE=Edescription.getText();
-       // LocalDate dd =Edate_deb.getValue();
-       // LocalDate df =Edate_fin.getValue();
-       // Date date_debutE = java.sql.Date.valueOf(dd);
-        //Date date_finE = java.sql.Date.valueOf(df);
+        LocalDate dd =Edate_deb.getValue();
+        LocalDate df =Edate_fin.getValue();
+        Date date_debutE = java.sql.Date.valueOf(dd);
+        Date date_finE = java.sql.Date.valueOf(df);
         int nb_place= Integer.parseInt(Enbpart.getText());
         EventCRUD sp = new EventCRUD();
-        Evenement e = new Evenement(descriptionE,nb_place,titreE,adresseE,img);
+        Evenement e = new Evenement(descriptionE,date_debutE,date_finE,nb_place,titreE,adresseE,img);
         sp.addEvent(e); 
          JOptionPane.showMessageDialog(null, "ajout avec succes");
          Enom.clear();
          imageview.setImage(null);
             Edescription.clear();
           Eadresse.clear();
-        //Edate_deb.setValue(null);
+        Edate_deb.setValue(null);
         Edate_fin.setValue(null);
         Enbpart.clear();
         afficher();
@@ -149,18 +165,16 @@ public class EventtController implements Initializable {
             JOptionPane.showMessageDialog(null, "choisir event");
                    
         }else{
-
-                   // LocalDate dd=Edatedebut.getValue();
-       // LocalDate df=Edatefin.getValue();
-        //java.util.Date d1=java.sql.Date.valueOf(dd);
-        //java.util.Date d2=java.sql.Date.valueOf(df);
-       //int nb_place= Integer.parseInt(nb_part.getText());
+        LocalDate dd =Edate_deb.getValue();
+        LocalDate df =Edate_fin.getValue();
+        Date date_debutE = java.sql.Date.valueOf(dd);
+        Date date_finE = java.sql.Date.valueOf(df);
        if(img!=""){
-           Evenement e = new Evenement(Edescription.getText(),Integer.parseInt(Enbpart.getText()),Enom.getText(),Eadresse.getText(),img);
+           Evenement e = new Evenement(Edescription.getText(),date_debutE,date_finE,Integer.parseInt(Enbpart.getText()),Enom.getText(),Eadresse.getText(),img);
         cs.updateEvent(e,evenn.getIdEvent());
 
        }else
-           cs.updateEvent(new Evenement(Edescription.getText(),Integer.parseInt(Enbpart.getText()),Enom.getText(),Eadresse.getText(),evenn.getImage()),evenn.getIdEvent());
+           cs.updateEvent(new Evenement(Edescription.getText(),date_debutE,date_finE,Integer.parseInt(Enbpart.getText()),Enom.getText(),Eadresse.getText(),evenn.getImage()),evenn.getIdEvent());
            
        afficher();
         JOptionPane.showMessageDialog(null, "event modifier");
@@ -172,6 +186,8 @@ public class EventtController implements Initializable {
         Enbpart.clear(); 
         Edescription.clear();
         Eadresse.clear();
+                Edate_deb.setValue(null);
+        Edate_fin.setValue(null);
         evenn=null;
         }
     }
@@ -194,7 +210,7 @@ public class EventtController implements Initializable {
          imageview.setImage(null);
             Edescription.clear();
           Eadresse.clear();
-        //Edate_deb.setValue(null);
+        Edate_deb.setValue(null);
         Edate_fin.setValue(null);
         Enbpart.clear();
         cc=null;
@@ -226,8 +242,8 @@ public class EventtController implements Initializable {
        date_f.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
        nb_part.setCellValueFactory(new PropertyValueFactory<>("nbpart"));
        descrip.setCellValueFactory(new PropertyValueFactory<>("description"));
-      /* adress.setCellValueFactory(new PropertyValueFactory<>("local"));
-       Id_event.setCellValueFactory(new PropertyValueFactory<>("idEvent"));*/
+       adress.setCellValueFactory(new PropertyValueFactory<>("local"));
+       /*Id_event.setCellValueFactory(new PropertyValueFactory<>("idEvent"));*/
 
 }
     

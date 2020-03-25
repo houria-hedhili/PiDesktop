@@ -5,9 +5,19 @@
  */
 package GUI.Back.gererCours;
 
+import Entity.houria.Cours;
 import com.jfoenix.controls.JFXTimePicker;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.sql.Time;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,7 +27,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javax.swing.JOptionPane;
+import service.houria.CoursCRUD;
 
 /**
  * FXML Controller class
@@ -60,30 +75,97 @@ public class CoursController implements Initializable {
     private ComboBox<?> Cmatiere;
     @FXML
     private JFXTimePicker Cduree;
-
+    
+            String img="";
+    List<String> type;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+       afficher();
+        type =new ArrayList();
+        type.add("*.jpg");
+         type.add("*.png");
     }    
 
     @FXML
-    private void ajouter(ActionEvent event) {
-        int a ;
+    private void ajouter(ActionEvent event) throws IOException {
+        
+          String descC = Cdescr.getText();
+        
+        LocalTime dur =Cduree.getValue();
+        Time dureeC = java.sql.Time.valueOf(dur);
+       
+        int seats= Integer.parseInt(Cnbplace.getText());
+        int age= Integer.parseInt(Cage.getText());
+        
+        CoursCRUD sp = new CoursCRUD();
+        Cours e = new Cours(4,descC,dureeC,seats,age,img);
+        sp.addCours(e); 
+         JOptionPane.showMessageDialog(null, "ajout avec succes");
+         Cdescr.clear();
+         imageview.setImage(null);
+            Cduree.setValue(null);
+          Cnbplace.clear();
+        Cage.clear();
+        afficher();
     }
 
     @FXML
     private void importer(ActionEvent event) {
+                FileChooser f=new FileChooser();
+        f.getExtensionFilters().add(new FileChooser.ExtensionFilter("jpeg,png",type));
+        File fc=f.showOpenDialog(null);
+        if(f!= null)
+        {
+            System.out.println(fc.getName());
+            img=fc.getAbsoluteFile().toURI().toString();
+            Image i = new Image(img);
+           imageview.setImage(i);
+        }
     }
 
     @FXML
-    private void supprimer(ActionEvent event) {
+    private void supprimer(ActionEvent event) throws SQLException {
+                CoursCRUD cs = new CoursCRUD();
+         Cours cc = (Cours)table_cours.getSelectionModel().getSelectedItem();
+        System.out.println(cc);
+        if(cc== null){
+            JOptionPane.showMessageDialog(null, "choisir event");
+                   
+        }else{
+            cs.deleteCours(cc.getId());
+    
+           afficher();
+           
+           JOptionPane.showMessageDialog(null, "event supprimer");
+
+         imageview.setImage(null);
+            Cdescr.clear();
+         imageview.setImage(null);
+            Cduree.setValue(null);
+          Cnbplace.clear();
+        Cage.clear();
+        cc=null;
+    }
     }
 
     @FXML
     private void modifier(ActionEvent event) {
     }
+         private void afficher() {
     
+     CoursCRUD sp = new CoursCRUD();
+      List events=sp.displayALLCours();
+       ObservableList et=FXCollections.observableArrayList(events);
+       table_cours.setItems(et);
+       colmatiere.setCellValueFactory(new PropertyValueFactory<>("id_mat"));
+       colimage.setCellValueFactory(new PropertyValueFactory<>("photo"));
+       colplace.setCellValueFactory(new PropertyValueFactory<>("seats"));
+       colduree.setCellValueFactory(new PropertyValueFactory<>("duree"));
+       coldescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+       colage.setCellValueFactory(new PropertyValueFactory<>("age"));
+
+}
 }
