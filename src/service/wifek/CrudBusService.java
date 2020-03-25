@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -89,4 +90,33 @@ private Connection cnx;
                 }
       return list ;   
        }
+      
+      
+        public  ArrayList<Bus> rechercheBus(String motClef){
+     ArrayList<Bus> list =new ArrayList<>();
+
+         try {
+            
+            Statement st=cnx.createStatement();
+            String req="Select * from bus WHERE `ligne` LIKE '%"+motClef+"%'  ";
+            ResultSet rs = st.executeQuery(req);
+             int i = 0;
+            while(rs.next()){
+                   i++;
+            Bus p = new Bus(rs.getInt(1),
+                    rs.getString(2),
+                    rs.getInt(3),
+                    rs.getString(4));
+
+            list.add(p);            
+               
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CrudBusService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       return list ;
+   }
+      
+
+
 }

@@ -60,10 +60,25 @@ public class CrudEnfantService {
          ArrayList<enfant> list = new ArrayList<>() ;
              try {
                 Statement st=cnx.createStatement();
-                String req="Select * from enfant e INNER JOIN Bus b on b.id=e.id_Bus  ";
+                String req="Select id,sexe,nom,prenom,age,id_Bus from enfant ";
                 ResultSet rs = st.executeQuery(req);
                 while(rs.next()){
-                    enfant p = new enfant(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getInt(6),rs.getInt(7));
+                    enfant p = new enfant(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getInt(6));
+                    list.add(p);            
+                   }
+                } catch (SQLException ex) {
+                    Logger.getLogger(CrudBusService.class.getName()).log(Level.SEVERE, null, ex);
+                }
+      return list ;   
+       }
+                public ArrayList<enfant> afficherEnfant1(){
+         ArrayList<enfant> list = new ArrayList<>() ;
+             try {
+                Statement st=cnx.createStatement();
+                String req="Select * from enfant ";
+                ResultSet rs = st.executeQuery(req);
+                while(rs.next()){
+                    enfant p = new enfant(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getInt(6));
                     list.add(p);            
                    }
                 } catch (SQLException ex) {
@@ -73,18 +88,17 @@ public class CrudEnfantService {
        }
         
              
-     public void modifierEnfant(int id,String sexe,String nom,String prenom,int age,int id_Bus,int idParent){
+     public void modifierEnfant(String sexe,String nom,String prenom,int age,int id_Bus,int id){
       
         try {
         
-            PreparedStatement pt=cnx.prepareStatement("Update enfant set sexe= ?, nom=?, prenom=?, age=?, id_Bus=?, idParent=?  where id=? ");
+            PreparedStatement pt=cnx.prepareStatement("Update enfant set sexe= ?, nom=?, prenom=?, age=?, id_Bus=? where id=? ");
             pt.setString(1,sexe);
             pt.setString(2, nom);
             pt.setString(3,prenom);
             pt.setInt(4, age);
             pt.setInt(5, id_Bus);
-            pt.setInt(6, idParent);
-            
+            pt.setInt(6, id);
             pt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CrudEnfantService.class.getName()).log(Level.SEVERE, null, ex);
