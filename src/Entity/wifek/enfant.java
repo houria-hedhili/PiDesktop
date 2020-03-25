@@ -18,14 +18,23 @@ public class enfant {
     private int id_Bus;
     private int idParent;
 
-    public enfant(String sexe, String nom, String prenom, int age, int id_Bus, int idParent) {
+        public enfant(String sexe, String nom, String prenom, int age, int id_Bus) {
         this.sexe = sexe;
         this.nom = nom;
         this.prenom = prenom;
         this.age = age;
         this.id_Bus = id_Bus;
-        this.idParent = idParent;
     }
+        public enfant(int id,String sexe, String nom, String prenom, int age, int id_Bus ) {
+        this.id=id;
+        this.sexe = sexe;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.age = age;
+        this.id_Bus = id_Bus;
+    }
+        
+
 
  
     public enfant(int id, String sexe, String nom, String prenom, int age, int id_Bus, int idParent) {
