@@ -10,7 +10,9 @@
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
     <jar href="lib\jfoenix-8.0.8.jar" size="2708772" download="eager" />
     <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="834126" download="eager" />
-    <jar href="piFinal.jar" size="1963512" download="eager" />
+    <jar href="lib\recurrence-8.5.0.jar" size="159938" download="eager" />
+    <jar href="lib\view-8.5.0.jar" size="759043" download="eager" />
+    <jar href="piFinal.jar" size="2029144" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="piFinal" >
     <param name="requiredFXVersion" value="8.0+"/>
