@@ -19,6 +19,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -102,13 +103,13 @@ public class EnfantController implements Initializable {
     private TextField nom;
     @FXML
     private TextField prenom;
-    @FXML
-    private TextField trajet;
+    
     @FXML
     private ComboBox<String> sexecombo;
     @FXML
     private TextField age;
-
+    @FXML
+    private ComboBox<String> trajet1;
     
     /**
      * Initializes the controller class.
@@ -122,38 +123,45 @@ public class EnfantController implements Initializable {
         ObservableList<String> sexe=FXCollections.observableArrayList("Garcon","Fille");
         sexecombo.setValue("sexe");
        sexecombo.setItems(sexe);
-       //combo age
-       
+        CrudBusService c=new CrudBusService();
+        List<String> listeTrajete= c.getAllLigne();
+       ObservableList<String> listetrajet =FXCollections.observableArrayList(listeTrajete);
+trajet1.setValue("ligne");
+trajet1.setItems(listetrajet);
        
 
     }    
     
            private void afficher1() {
-    CrudEnfantService sp = new CrudEnfantService();
-      List buss=sp.afficherEnfant();
-       ObservableList et=FXCollections.observableArrayList(buss);
+   /* CrudEnfantService sp = new CrudEnfantService();
+      List buss=sp.afficherEnfant();*/
+                 CrudBusService c=new CrudBusService();
+          List<enfant> liste=c.getLigneBus();
+          System.out.println(liste.get(0).getNomLigne());
+       ObservableList et=FXCollections.observableArrayList(liste);
        tabAffiche.setItems(et);
-     ObservableList observableList = FXCollections.observableArrayList(buss);
+   //  ObservableList observableList = FXCollections.observableArrayList(buss);
         colid.setCellValueFactory(new PropertyValueFactory<>("id"));
         colsexe.setCellValueFactory(new PropertyValueFactory<>("sexe"));
         colnom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         colpre.setCellValueFactory(new PropertyValueFactory<>("prenom")); 
         colage.setCellValueFactory(new PropertyValueFactory<>("age")); 
-        colidbus.setCellValueFactory(new PropertyValueFactory<>("id_Bus"));
-
+        colidbus.setCellValueFactory(new PropertyValueFactory<>("nomLigne"));
+//jareb badel fi constructeur wala fi re
 }
       private void afficher2() {
-    CrudEnfantService sp = new CrudEnfantService();
-      List buss=sp.afficherEnfant();
-       ObservableList et=FXCollections.observableArrayList(buss);
+     CrudBusService c=new CrudBusService();
+          List<enfant> liste=c.getLigneBus();
+      //ya benti 5demneha fil crudBusSer vice normalemnt fel enfant  etyy et de typoe enfant 
+       ObservableList et=FXCollections.observableArrayList(liste);
        tabAffiche1.setItems(et);
-     ObservableList observableList = FXCollections.observableArrayList(buss);
+     ObservableList observableList = FXCollections.observableArrayList(liste);
         colid1.setCellValueFactory(new PropertyValueFactory<>("id"));
         colsexe1.setCellValueFactory(new PropertyValueFactory<>("sexe"));
         colnom1.setCellValueFactory(new PropertyValueFactory<>("nom"));
         colpre1.setCellValueFactory(new PropertyValueFactory<>("prenom")); 
         colage1.setCellValueFactory(new PropertyValueFactory<>("age")); 
-       colidbus1.setCellValueFactory(new PropertyValueFactory<>("id_Bus"));
+       colidbus1.setCellValueFactory(new PropertyValueFactory<>("nomLigne"));
 }
 
     @FXML
@@ -209,9 +217,9 @@ public class EnfantController implements Initializable {
 
     @FXML
     private void ajoutB(ActionEvent event)  throws SQLException {
-
+CrudBusService b1= new CrudBusService();
         CrudEnfantService b= new CrudEnfantService();
-    if( sexecombo.getValue().isEmpty() || nom.getText().isEmpty() || prenom.getText().isEmpty() || age.getText().isEmpty() || trajet.getText().isEmpty() ){
+    if( sexecombo.getValue().isEmpty() || nom.getText().isEmpty() || prenom.getText().isEmpty() || age.getText().isEmpty() || trajet1.getValue().isEmpty() ){
     Alert alertt=new Alert(Alert.AlertType.ERROR);
     alertt.setTitle("WARNING!");
     alertt.setHeaderText(null);
@@ -224,7 +232,6 @@ public class EnfantController implements Initializable {
             alert1.setHeaderText(null);
             alert1.setContentText("L'âge doit être entre 3 ans et 6 ans");
             alert1.showAndWait();
-    
     }else if(!nom.getText().matches("^[a-zA-Z\\s]*$")){
             Alert alert11 = new Alert(Alert.AlertType.ERROR);
             alert11.setTitle("Verifier");
@@ -239,14 +246,16 @@ public class EnfantController implements Initializable {
             alert1.showAndWait();
          
          }else{ 
+             
         enfant bus=new enfant(sexecombo.getValue(),
             nom.getText(),
             prenom.getText(),
             Integer.parseInt(age.getText()),
-            Integer.parseInt(trajet.getText())
+       b1.getIdLigne(trajet1.getValue())
     );   
     b.ajouterEnfant(bus);
-        
+
+        System.out.println( b1.getIdLigne(trajet1.getValue()));
     
     Notifications notif=Notifications.create()
             .title("Bus ajouté")
@@ -260,17 +269,21 @@ public class EnfantController implements Initializable {
                 });
     notif.showConfirm();
     }
-    refreshB(event);
+             afficher2();
+             afficher1();
+
   // clearEnfant(event);
     }
 
     @FXML
     private void modifB(ActionEvent event) throws SQLException{
        // Bus cc = (Bus)tabAffiche.getSelectionModel().getSelectedItem();
+        CrudBusService b1= new CrudBusService();
     CrudEnfantService cs = new CrudEnfantService();
       enfant b=tabAffiche1.getSelectionModel().getSelectedItem();
-      cs.modifierEnfant(sexecombo.getValue(),nom.getText(),prenom.getText(),Integer.parseInt(age.getText()),Integer.parseInt(trajet.getText()),b.getId());
-      refreshB(event);
+      cs.modifierEnfant(sexecombo.getValue(),nom.getText(),prenom.getText(),Integer.parseInt(age.getText()),b1.getIdLigne(trajet1.getValue()),b.getId());
+       afficher2();
+       afficher1();
       clearEnfant(event);
     }
       /*  Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -295,16 +308,19 @@ public class EnfantController implements Initializable {
         CrudEnfantService rs = new CrudEnfantService();
          enfant cc = (enfant)tabAffiche1.getSelectionModel().getSelectedItem();
         System.out.println(cc);
-        if(button == ButtonType.OK){
+       /* if(button == ButtonType.OK){
             JOptionPane.showMessageDialog(null, "choisir Enfant");
         }else{
             rs.supprimerEnfant(cc.getId());
-            refreshB(event);
+            //refreshB(event);
+            afficher2();
             clearEnfant(event);
            JOptionPane.showMessageDialog(null, "Enfant supprimer");
          
         cc=null;
-    }
+    }*/ rs.supprimerEnfant(cc.getId());
+        afficher2();
+        afficher1();
     }
     
 
@@ -315,7 +331,7 @@ public class EnfantController implements Initializable {
     nom.setText(b.getNom());
     prenom.setText(b.getPrenom());
     age.setText(String.valueOf(b.getAge()));
-    trajet.setText(String.valueOf(b.getId_Bus()));
+    trajet1.setValue(b.getNomLigne());
     
     }
     
@@ -331,6 +347,10 @@ public class EnfantController implements Initializable {
     nom.clear();
     prenom.clear();   
     age.clear();
-    trajet.clear();
+    }
+
+    @FXML
+    private void refreshAff(Event event) {
+        afficher2();
     }
 }
