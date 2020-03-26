@@ -28,12 +28,7 @@ public class PersonnelController implements Initializable {
     private TabPane tabpane;
     @FXML
     private Button retour1;
-    @FXML
     private Button retour2;
-    @FXML
-    private Button retour3;
-    @FXML
-    private Button retour4;
 
     /**
      * Initializes the controller class.
@@ -56,7 +51,6 @@ public class PersonnelController implements Initializable {
         stage1.show();
     }
 
-    @FXML
     private void retour2(ActionEvent event) throws IOException {
               Stage stage = (Stage) retour2.getScene().getWindow();
                Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front/Acceuilfront/acceuilFront.fxml"));
@@ -69,7 +63,6 @@ public class PersonnelController implements Initializable {
      
     }
 
-    @FXML
     private void retour3(ActionEvent event) throws IOException {
        Stage stage = (Stage) retour1.getScene().getWindow();
       Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front/Acceuilfront/acceuilFront.fxml"));
@@ -81,7 +74,6 @@ public class PersonnelController implements Initializable {
        stage.close();
     }
 
-    @FXML
     private void retour4(ActionEvent event) throws IOException {
    Stage stage = (Stage) retour1.getScene().getWindow();
     Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front/Acceuilfront/acceuilFront.fxml"));

@@ -1,14 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="GUI.Back.gererPersonnels.PersonnelController">
+<AnchorPane id="AnchorPane" prefHeight="691.0" prefWidth="1041.0" style="-fx-background-color: #FAF0E6;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Back.gererPersonnels.PersonnelController">
     <stylesheets>
         <URL value="@personnel.css" />
     </stylesheets>
    <children>
-      <Label fx:id="azii" layoutX="308.0" layoutY="179.0" text="batrounetna" />
+      <Label fx:id="azii" layoutX="308.0" layoutY="179.0" />
+      <TableView fx:id="tab" layoutX="496.0" layoutY="96.0" prefHeight="525.0" prefWidth="519.0">
+        <columns>
+          <TableColumn fx:id="NomColonne" prefWidth="75.0" text="Nom" />
+          <TableColumn fx:id="PrenomColonne" prefWidth="75.0" text="Prénom" />
+            <TableColumn fx:id="AgeColonne" prefWidth="47.0" text="Age" />
+            <TableColumn fx:id="Nb" prefWidth="65.0" text="Nombre heures" />
+            <TableColumn fx:id="Prix" prefWidth="83.0" text="Prix heure" />
+            <TableColumn fx:id="CategorieColonne" prefWidth="71.0" text="Categorie" />
+            <TableColumn fx:id="ImageColonne" prefWidth="109.0" text="Image" />
+        </columns>
+      </TableView>
+      <Text fontSmoothingType="LCD" layoutX="61.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" />
+      <Text fontSmoothingType="LCD" layoutX="53.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prénom" />
+      <TextArea fx:id="nom" layoutX="135.0" layoutY="96.0" prefHeight="39.0" prefWidth="173.0" />
+      <TextArea fx:id="prenom" layoutX="135.0" layoutY="151.0" prefHeight="26.0" prefWidth="173.0" />
+      <Text fontSmoothingType="LCD" layoutX="53.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age" />
+      <Text fontSmoothingType="LCD" layoutX="32.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre Heures" />
+      <Text fontSmoothingType="LCD" layoutX="37.0" layoutY="324.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prix heure" />
+      <TextArea fx:id="prixheure" layoutX="135.0" layoutY="300.0" prefHeight="38.0" prefWidth="173.0" />
+      <TextArea fx:id="aagee" layoutX="135.0" layoutY="202.0" prefHeight="38.0" prefWidth="173.0" />
+      <TextArea fx:id="nombreheure" layoutX="135.0" layoutY="251.0" prefHeight="38.0" prefWidth="173.0" />
+      <Text fontSmoothingType="LCD" layoutX="52.0" layoutY="451.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Image" />
+      <ImageView fx:id="imageview" fitHeight="113.0" fitWidth="173.0" layoutX="133.0" layoutY="418.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="Eimage" layoutX="318.0" layoutY="541.0" mnemonicParsing="false" onAction="#importer" text="Import" />
+      <Text fontSmoothingType="LCD" layoutX="37.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categorie" />
+      <Button fx:id="btn" layoutX="52.0" layoutY="610.0" mnemonicParsing="false" onAction="#AjouterPersonnel" prefHeight="38.0" prefWidth="84.0" text="Ajouter" wrapText="true" />
+      <Button fx:id="btnmod" layoutX="147.0" layoutY="609.0" mnemonicParsing="false" onAction="#ModifierPersonnel" prefHeight="39.0" prefWidth="84.0" text="Modifier" wrapText="true" />
+      <Button fx:id="btnsupp" layoutX="241.0" layoutY="610.0" mnemonicParsing="false" onAction="#SuppPersonnet" prefHeight="38.0" prefWidth="84.0" text="Supprimer" wrapText="true" />
+      <ComboBox fx:id="cat" layoutX="135.0" layoutY="363.0" prefHeight="38.0" prefWidth="173.0" />
+      <Text fill="#ff005ebc" fontSmoothingType="LCD" layoutX="269.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion Personnels" underline="true">
+         <font>
+            <Font name="Bodoni MT Black" size="36.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
