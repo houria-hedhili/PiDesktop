@@ -108,7 +108,7 @@ public class PlatService {
     public List<String> afficherPlat()
     {  List<String> listP = new ArrayList<>();
 
-        try {
+        try{ 
 
             String req = "SELECT nom FROM plat";
 
@@ -130,6 +130,41 @@ public class PlatService {
         return listP;
     
     }
+        public Plat PlatId(int id)
+    {  
+              Plat p = new Plat();
+    
+    try {
+
+            String req = "SELECT id,nom,description,image,type FROM plat where id = '"+id+"'";
+
+            st = cnx.createStatement();
+            ResultSet res = st.executeQuery(req);
+      
+  while (res.next()) {
+              
+                p.setId(res.getInt(1));
+
+                p.setNom(res.getString(2));
+                p.setDescription(res.getString(3));
+ p.setImage(res.getString(4));
+ p.setType(res.getString(5));
+
+           
+            
+
+            }
+            
+           
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        return p;
+    
+    }
+    
     public List<Plat> PlatUnique(String nom)
     {  List<Plat> listP = new ArrayList<>();
 
@@ -208,4 +243,159 @@ public class PlatService {
         }
 
       }
+    /*****tebe3 menu*////////
+    public String getTypePlat(int id) {
+String s="";
+        try {
+
+            String req = "SELECT type FROM plat where id = '"+id+"'";
+
+            st = cnx.createStatement();
+            ResultSet res = st.executeQuery(req);
+      
+  while (res.next()) {
+              
+        s=res.getString(1);
+
+               
+
+            }
+            
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        return s;
+
+    }
+    
+      public List<String> getListeEnfant(int id) {
+
+  List<String> listE = new ArrayList<>();
+String s="";
+        try {
+
+            String req = "SELECT nom FROM enfant where idParent = '"+id+"'";
+
+            st = cnx.createStatement();
+            ResultSet res = st.executeQuery(req);
+      
+  while (res.next()) {
+              
+        s=res.getString(1);
+listE.add(s);
+               
+
+            }
+            
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        return listE;
+
+    }
+          public List<String> getNomPlat(int id) {
+
+  List<String> listE = new ArrayList<>();
+String s="";
+        try {
+
+            String req = "SELECT nom FROM plat where id = '"+id+"'";
+
+            st = cnx.createStatement();
+            ResultSet res = st.executeQuery(req);
+      
+  while (res.next()) {
+              
+        s=res.getString(1);
+listE.add(s);
+               
+
+            }
+            
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        return listE;
+
+    }
+                   public String getNomPlat1(int id) {
+
+String s="";
+        try {
+
+            String req = "SELECT nom FROM plat where id = '"+id+"'";
+
+            st = cnx.createStatement();
+            ResultSet res = st.executeQuery(req);
+      
+  while (res.next()) {
+              
+        s=res.getString(1);
+
+               
+
+            }
+            
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        return s;
+
+    }
+                   
+                          public List<String> platType(String type) {
+
+  List<String> listE = new ArrayList<>();
+String s="";
+        try {
+
+            String req = "SELECT nom FROM plat where type = '"+type+"'";
+
+            st = cnx.createStatement();
+            ResultSet res = st.executeQuery(req);
+      
+  while (res.next()) {
+              
+        s=res.getString(1);
+listE.add(s);}
+               
+
+            }  catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        return listE;}
+    
+    public int PlatUnique2(String nom)
+    {  
+int x=0;
+        try {
+
+            String req = "SELECT id FROM plat where nom = '"+nom+"'";
+
+            st = cnx.createStatement();
+            ResultSet res = st.executeQuery(req);
+      
+  while (res.next()) {
+              
+       x=res.getInt(1);
+
+            }
+            
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+return x;
+    
+    } 
+    
 }

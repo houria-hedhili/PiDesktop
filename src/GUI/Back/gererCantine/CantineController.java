@@ -120,7 +120,12 @@ PlatService ps = new PlatService();
 
     @FXML
     private void ajout(ActionEvent event) {
-           Plat plat=new Plat(titre.getText(), description.getText(),img, type.getValue().toString(), 0, 0);
+
+    Plat plat=new Plat(titre.getText(), description.getText(),img, type.getValue().toString(), 0, 0);
+if(img=="")
+{img="plat.png";
+plat.setImage(img);
+} 
 
     Boolean test= ps.ajouterPlat(plat);
         if(test)
@@ -184,7 +189,7 @@ ObservableList<Plat> platListe=FXCollections.observableArrayList(listP);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Ajouter un plat");
  
-        // Header Text: null
+        // Header Text: nullCla
         alert.setHeaderText(null);
         alert.setContentText(msg);
  
