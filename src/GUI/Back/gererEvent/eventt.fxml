@@ -37,7 +37,7 @@
                   <Font name="Arial Bold" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="17.0" layoutY="395.0" text="image">
+            <Label layoutX="43.0" layoutY="415.0" text="image">
                <font>
                   <Font name="Arial Bold" size="17.0" />
                </font>
@@ -47,7 +47,7 @@
                   <Font name="Arial Bold Italic" size="22.0" />
                </font>
             </Label>
-            <Label layoutX="10.0" layoutY="78.0" text="nom Event">
+            <Label layoutX="10.0" layoutY="58.0" text="nom Event">
                <font>
                   <Font name="Arial Bold" size="17.0" />
                </font>
@@ -55,22 +55,22 @@
             <Button fx:id="Eajouter" layoutX="20.0" layoutY="642.0" mnemonicParsing="false" onAction="#ajouter" style="-fx-background-color: #eda678; -fx-background-radius: 5em;" text="ajouter" />
             <Button fx:id="Emodifier" layoutX="122.0" layoutY="642.0" mnemonicParsing="false" onAction="#modifier" style="-fx-background-radius: 5em; -fx-background-color: #eda678;" text="modifier" />
             <Button fx:id="Esupprimer" layoutX="224.0" layoutY="642.0" mnemonicParsing="false" onAction="#supprimer" style="-fx-background-color: #eda678; -fx-background-radius: 5em;" text="supprimer" />
-            <TextField fx:id="Enom" layoutX="141.0" layoutY="73.0" prefHeight="31.0" prefWidth="195.0" />
-            <TextField fx:id="Enbpart" layoutX="111.0" layoutY="347.0" />
-            <Button fx:id="Eimage" layoutX="186.0" layoutY="528.0" mnemonicParsing="false" onAction="#importer" text="import" />
+            <TextField fx:id="Enom" layoutX="141.0" layoutY="52.0" prefHeight="31.0" prefWidth="195.0" />
+            <TextField fx:id="Enbpart" layoutX="122.0" layoutY="340.0" />
+            <Button fx:id="Eimage" layoutX="236.0" layoutY="514.0" mnemonicParsing="false" onAction="#importer" text="import" />
             <Label layoutX="13.0" layoutY="152.0" prefHeight="20.0" prefWidth="109.0" text="decription">
                <font>
                   <Font name="Arial Bold" size="17.0" />
                </font>
             </Label>
-            <TextArea fx:id="Edescription" layoutX="141.0" layoutY="110.0" prefHeight="104.0" prefWidth="195.0" />
-            <Label layoutX="26.0" layoutY="596.0" prefHeight="20.0" prefWidth="109.0" text="adresse">
+            <TextArea fx:id="Edescription" layoutX="141.0" layoutY="110.0" prefHeight="80.0" prefWidth="195.0" />
+            <Label layoutX="20.0" layoutY="571.0" prefHeight="20.0" prefWidth="109.0" text="adresse">
                <font>
                   <Font name="Arial Bold" size="17.0" />
                </font>
             </Label>
-            <TextField fx:id="Eadresse" layoutX="135.0" layoutY="591.0" prefHeight="31.0" prefWidth="169.0" />
-            <ImageView fx:id="imageview" fitHeight="112.0" fitWidth="179.0" layoutX="89.0" layoutY="405.0" pickOnBounds="true" preserveRatio="true" />
+            <TextField fx:id="Eadresse" layoutX="136.0" layoutY="565.0" prefHeight="31.0" prefWidth="169.0" />
+            <ImageView fx:id="imageview" fitHeight="88.0" fitWidth="149.0" layoutX="150.0" layoutY="415.0" pickOnBounds="true" preserveRatio="true" />
             <TableView fx:id="table_event" layoutX="354.0" layoutY="121.0" prefHeight="521.0" prefWidth="734.0">
                <columns>
                   <TableColumn fx:id="nom" prefWidth="91.0" text="nom" />
@@ -84,6 +84,13 @@
             </TableView>
             <DatePicker fx:id="Edate_deb" layoutX="109.0" layoutY="222.0" promptText="date_debut" />
             <DatePicker fx:id="Edate_fin" layoutX="111.0" layoutY="268.0" promptText="date_debut" />
+            <Label fx:id="labelnom" layoutX="47.0" layoutY="89.0" prefHeight="21.0" prefWidth="356.0" textFill="RED" />
+            <Label fx:id="labeldescription" layoutX="38.0" layoutY="183.0" prefHeight="21.0" prefWidth="310.0" textFill="RED" />
+            <Label fx:id="labeldatedebut" layoutX="8.0" layoutY="250.0" prefHeight="21.0" prefWidth="349.0" textFill="RED" />
+            <Label fx:id="labeldatefin" layoutX="38.0" layoutY="295.0" prefHeight="21.0" prefWidth="310.0" textFill="RED" />
+            <Label fx:id="labelimage" layoutX="64.0" layoutY="498.0" prefHeight="21.0" prefWidth="225.0" textFill="RED" />
+            <Label fx:id="labeladresse" layoutX="41.0" layoutY="591.0" prefHeight="21.0" prefWidth="277.0" textFill="RED" />
+            <Label fx:id="labelnbpart" layoutX="37.0" layoutY="379.0" prefHeight="21.0" prefWidth="292.0" textFill="RED" />
          </children>
       </AnchorPane>
    </children>

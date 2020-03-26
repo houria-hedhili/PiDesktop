@@ -33,7 +33,14 @@ public class Cours {
         this.image = image;
         
     }
-
+    public Cours(int id_mat, String description, Time duree, int seats, int age) {
+        this.id_mat = id_mat;
+        this.description = description;
+        this.seats = seats;
+        this.duree = duree;
+        this.age = age;
+        
+    }
 
     public int getId_mat() {
         return id_mat;

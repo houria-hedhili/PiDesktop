@@ -162,18 +162,11 @@ public class EventController implements Initializable {
           ste=cnx.createStatement();
           ResultSet rs = ste.executeQuery(req);
           while(rs.next()){
-             //  java.util.Date d1 = new java.util.Date(rs.getDate(4).getTime());
-              // java.util.Date d2 = new java.util.Date(rs.getDate(5).getTime());
              Evenement e= new Evenement(rs.getInt(1), rs.getString(2),rs.getInt(5),rs.getString(6),rs.getString(7));
               ImageView va=new ImageView(new Image(rs.getString(8)));
                va.setFitHeight(200);
                 va.setFitWidth(743);
               Button bt1=new Button("participer");
-
-          /*    participation pp= new participation(new user(s1),e.getId_event());
-              if(pa.chercher_ajout_participation(pp)){
-                  bt1.setDisable(true);
-              }*/
           
 
              Label nomm=new Label("le nom de cette evenement est : "+e.getNom());
