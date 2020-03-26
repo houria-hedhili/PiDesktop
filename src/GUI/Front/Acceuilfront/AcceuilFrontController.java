@@ -76,7 +76,7 @@ public class AcceuilFrontController implements Initializable {
     @FXML
     private void gererPersonnel(ActionEvent event) throws IOException {
          Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front/gererEvent/event.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front/gererPersonnel/personnel.fxml"));
         
         Scene scene = new Scene(root);
         

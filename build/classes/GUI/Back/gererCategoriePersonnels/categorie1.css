@@ -1,0 +1,17 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {}
+    #btn
+    {
+     -fx-background-color:#FE7A79;
+    -fx-background-radius:30%;   
+    }
+    
+#btn_supp
+    {
+     -fx-background-color:#FE7A79;
+    -fx-background-radius:30%;   
+    }
+
