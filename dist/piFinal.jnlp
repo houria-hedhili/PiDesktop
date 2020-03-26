@@ -13,8 +13,7 @@
     <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="834126" download="eager" />
     <jar href="lib\recurrence-8.5.0.jar" size="159938" download="eager" />
     <jar href="lib\view-8.5.0.jar" size="759043" download="eager" />
-    <jar href="piFinal.jar" size="2029144" download="eager" />
-    <jar href="piFinal.jar" size="1996812" download="eager" />
+    <jar href="piFinal.jar" size="2047081" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="piFinal" >
     <param name="requiredFXVersion" value="8.0+"/>
