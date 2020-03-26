@@ -5,7 +5,7 @@
  */
 package GUI.Back.gererCours;
 
-import com.jfoenix.controls.JFXTimePicker;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -58,8 +58,7 @@ public class CoursController implements Initializable {
     private TextField Cage;
     @FXML
     private ComboBox<?> Cmatiere;
-    @FXML
-    private JFXTimePicker Cduree;
+   
 
     /**
      * Initializes the controller class.

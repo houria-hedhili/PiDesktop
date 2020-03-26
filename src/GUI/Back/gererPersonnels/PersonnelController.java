@@ -7,6 +7,7 @@ package GUI.Back.gererPersonnels;
 
 import Entity.aziza.Personnel;
 import Entity.houria.Evenement;
+import Entity.wifek.enfant;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,6 +22,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -32,9 +35,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
+import javafx.util.Duration;
 import javax.swing.JOptionPane;
+import org.controlsfx.control.Notifications;
+import service.aziza.CategorieDao;
 import service.aziza.PersonnelDao;
 import service.houria.EventCRUD;
+import service.wifek.CrudBusService;
+import service.wifek.CrudEnfantService;
 
 /**
  * FXML Controller class
@@ -84,7 +92,7 @@ public class PersonnelController implements Initializable {
     @FXML
     private Button btnsupp;
     @FXML
-    private ComboBox<?> cat;
+    private ComboBox<String> cat;
 private Personnel evenn=null;
     /**
      * Initializes the controller class.
@@ -131,30 +139,56 @@ private Personnel evenn=null;
 
     @FXML
     private void AjouterPersonnel(ActionEvent event) throws IOException, SQLException {
-        String titreE = nom.getText();
-        String prenomm=prenom.getText();
-        
-        float prix= Float.parseFloat(prixheure.getText());
-        float nb=Float.parseFloat(nombreheure.getText());
-        
-       // LocalDate dd =Edate_deb.getValue();
-       // LocalDate df =Edate_fin.getValue();
-       // Date date_debutE = java.sql.Date.valueOf(dd);
-        //Date date_finE = java.sql.Date.valueOf(df);
-        int age= Integer.parseInt(aagee.getText());
-        PersonnelDao sp = new PersonnelDao();
-        Personnel e = new Personnel(titreE,prenomm,age,prix,nb,img);
-        sp.addPersonnel(e);
-         JOptionPane.showMessageDialog(null, "ajout avec succes");
-         nom.clear();
-         imageview.setImage(null);
-            prenom.clear();
-          aagee.clear();
-        //Edate_deb.setValue(null);
-       prixheure.clear();
-       nombreheure.clear();
-         afficherPer();
+CategorieDao b1= new CategorieDao();
+        PersonnelDao b= new PersonnelDao();
+    if (!aagee.getText().matches("[3-6]")){
+          Alert alert1 = new Alert(Alert.AlertType.ERROR);
+        alert1.setTitle("Valider Age");
+            alert1.setHeaderText(null);
+            alert1.setContentText("L'âge doit être entre 3 ans et 6 ans");
+            alert1.showAndWait();
+    }else if(!nom.getText().matches("^[a-zA-Z\\s]*$")){
+            Alert alert11 = new Alert(Alert.AlertType.ERROR);
+            alert11.setTitle("Verifier");
+            alert11.setHeaderText(null);
+            alert11.setContentText("Le champ NOM accepte que les lettres ");
+            alert11.showAndWait();
+         }else if( !prenom.getText().matches("^[a-zA-Z\\s]*$")){
+         Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setTitle("Verifier");
+            alert1.setHeaderText(null);
+            alert1.setContentText("Le champ PRENOM accepte que les lettres ");
+            alert1.showAndWait();
+         
+         }else{ 
+             
+        Personnel categorie=new Personnel(nom.getText(),
+            prenom.getText(),
+            
+            Integer.parseInt(aagee.getText()),Float.parseFloat(prixheure.getText()),Float.parseFloat(nombreheure.getText()),
+       b1.getIdCategorie(cat.getValue()),img);   
+    b.addPersonnel(categorie);
+
+        System.out.println( b1.getIdCategorie(cat.getValue()));
+    
+    Notifications notif=Notifications.create()
+            .title("Bus ajouté")
+            .text("Un nouveau Bus vient d'être ajoutée !")
+            .darkStyle().graphic(null).hideAfter(Duration.seconds(5))
+            .position(Pos.TOP_LEFT)
+            .onAction(new EventHandler<ActionEvent>() {
+                    public void handle(ActionEvent event) {
+                        System.out.println("Clicked ont notif");
+                    }
+                });
+    notif.showConfirm();
     }
+            
+             afficherPer();
+
+  // clearEnfant(event);
+    }
+    
 
     @FXML
     private void ModifierPersonnel(ActionEvent event) throws IOException {
@@ -219,9 +253,10 @@ private Personnel evenn=null;
     }
        private void afficherPer()  {
     
-     PersonnelDao sp = new PersonnelDao();
-      List events=sp.displayALLPersonnel();
-       ObservableList et=FXCollections.observableArrayList(events);
+    CategorieDao sp = new CategorieDao();
+     
+          List<Personnel> liste=sp.getCategorie();
+       ObservableList et=FXCollections.observableArrayList(liste);
        tab.setItems(et);//  ouiii chnouwa 5orm hedha ???  
        NomColonne.setCellValueFactory(new PropertyValueFactory<>("nom"));
        ImageColonne.setCellValueFactory(new PropertyValueFactory<>("photo"));
@@ -229,6 +264,7 @@ private Personnel evenn=null;
        AgeColonne.setCellValueFactory(new PropertyValueFactory<>("age"));
        Nb.setCellValueFactory(new PropertyValueFactory<>("nb_h"));
        Prix.setCellValueFactory(new PropertyValueFactory<>("prix_h"));
+       CategorieColonne.setCellValueFactory(new PropertyValueFactory<>("categorie"));
       /* adress.setCellValueFactory(new PropertyValueFactory<>("local"));
        Id_event.setCellValueFactory(new PropertyValueFactory<>("idEvent"));*/
 

@@ -12,10 +12,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane id="AnchorPane" prefHeight="691.0" prefWidth="1041.0" style="-fx-background-color: #FAF0E6;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Back.gererPersonnels.PersonnelController">
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Back.gererPersonnels.PersonnelController">
+
 
     <stylesheets>
         <URL value="@personnel.css" />
@@ -50,7 +49,7 @@
       <Button fx:id="btn" layoutX="52.0" layoutY="610.0" mnemonicParsing="false" onAction="#AjouterPersonnel" prefHeight="38.0" prefWidth="84.0" text="Ajouter" wrapText="true" />
       <Button fx:id="btnmod" layoutX="147.0" layoutY="609.0" mnemonicParsing="false" onAction="#ModifierPersonnel" prefHeight="39.0" prefWidth="84.0" text="Modifier" wrapText="true" />
       <Button fx:id="btnsupp" layoutX="241.0" layoutY="610.0" mnemonicParsing="false" onAction="#SuppPersonnet" prefHeight="38.0" prefWidth="84.0" text="Supprimer" wrapText="true" />
-      <ComboBox fx:id="cat" layoutX="135.0" layoutY="363.0" prefHeight="38.0" prefWidth="173.0" />
+      <ComboBox fx:id="cat" layoutX="135.0" layoutY="363.0" prefHeight="38.0" prefWidth="173.0" promptText="Categorie" />
       <Text fill="#ff005ebc" fontSmoothingType="LCD" layoutX="269.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion Personnels" underline="true">
          <font>
             <Font name="Bodoni MT Black" size="36.0" />

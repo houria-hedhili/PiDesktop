@@ -39,15 +39,15 @@ public class PersonnelDao {
         try {
 
             String requete
-                    = "INSERT INTO personnel (nom,prenom,age,prix_h,nb_h,image) VALUES (?,?,?,?,?,?)";
+                    = "INSERT INTO personnel (nom,prenom,age,prix_h,nb_h,categorie,image) VALUES (?,?,?,?,?,?,?)";
             PreparedStatement st = cnx.prepareStatement(requete);
         st.setString(1, personnel.getNom());
         st.setString(2, personnel.getPrenom());
         st.setInt(3, personnel.getAge());
         st.setFloat(5, (float) personnel.getNb_h());
         st.setFloat(4, (float) personnel.getPrix_h());
-      //  st.setString(6, personnel.getCategorie());
-        st.setString(6, personnel.getImage());
+      st.setString(6, personnel.getCategorie());
+        st.setString(7, personnel.getImage());
             st.executeUpdate();
             System.out.println("personnel ajoutée");
         } catch (SQLException ex) {
