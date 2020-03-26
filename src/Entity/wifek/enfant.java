@@ -17,16 +17,42 @@ public class enfant {
     private int age;
     private int id_Bus;
     private int idParent;
+private String nomLigne;
 
-    public enfant(String sexe, String nom, String prenom, int age, int id_Bus, int idParent) {
+    public String getNomLigne() {
+        return nomLigne;
+    }
+
+    public void setNomLigne(String nomLigne) {
+        this.nomLigne = nomLigne;
+    }
+
+    public enfant(int id, String sexe, String nom, String prenom, int age, String nomLigne) {
+        this.id = id;
+        this.sexe = sexe;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.age = age;
+        this.nomLigne = nomLigne;
+    }
+
+        public enfant(String sexe, String nom, String prenom, int age, int id_Bus) {
         this.sexe = sexe;
         this.nom = nom;
         this.prenom = prenom;
         this.age = age;
         this.id_Bus = id_Bus;
-        this.idParent = idParent;
+        this.idParent=1;
     }
-
+        public enfant(int id,String sexe, String nom, String prenom, int age, int id_Bus ) {
+        this.id=id;
+        this.sexe = sexe;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.age = age;
+        this.id_Bus = id_Bus;
+    }
+        
  
     public enfant(int id, String sexe, String nom, String prenom, int age, int id_Bus, int idParent) {
         this.id = id;

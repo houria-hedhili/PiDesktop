@@ -27,7 +27,6 @@
                                     <Button fx:id="retour1" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour1" styleClass="retour" stylesheets="@../gererCantine/abonnement/aboncantine.css" text="Retour" />
                                  </children>
                               </Pane>
-                              <Button layoutX="376.0" layoutY="188.0" mnemonicParsing="false" text="consulter1" />
                            </children>
                         </AnchorPane>
                      </content>

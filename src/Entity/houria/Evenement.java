@@ -32,6 +32,14 @@ public class Evenement {
     public void setPhoto(ImageView photo) {
         this.photo = photo;
     }
+
+    public Evenement(int idEvent, String description, int nbpart, String nom, String local) {
+        this.idEvent = idEvent;
+        this.description = description;
+        this.nbpart = nbpart;
+        this.nom = nom;
+        this.local = local;
+    }
     
     public Evenement(String description, Date date, Date date_fin, int nbpart, String nom, String local,String image) {
         this.description = description;
