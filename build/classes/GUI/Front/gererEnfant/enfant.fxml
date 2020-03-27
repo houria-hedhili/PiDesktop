@@ -31,6 +31,7 @@
                                     <Button fx:id="retour2" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour2" styleClass="retour" stylesheets="@../gererCantine/abonnement/aboncantine.css" text="Retour" />
                                  </children>
                               </Pane>
+
                               <TextField fx:id="nom" layoutX="60.0" layoutY="109.0" promptText="NOM" />
                               <TextField fx:id="prenom" layoutX="62.0" layoutY="157.0" promptText="PRENOM" />
                               <TextField fx:id="age" layoutX="60.0" layoutY="219.0" promptText="AGE" />
@@ -42,6 +43,12 @@
                                     <TableColumn fx:id="colnom1" prefWidth="82.0" text="NOM" />
                                     <TableColumn fx:id="colpre1" prefWidth="92.0" text="PRENOM" />
                                     <TableColumn fx:id="colage1" prefWidth="75.0" text="AGE" />
+
+                                    <TableColumn fx:id="colidbus1" prefWidth="79.0" text="ID BUS" />
+                                    <TableColumn fx:id="colidp1" prefWidth="91.0" text="ID PARENT" />
+                                 </columns>
+                              </TableView>
+
                                     <TableColumn fx:id="colidbus1" prefWidth="79.0" text="LIGNE" />
                                  </columns>
                               </TableView>
@@ -49,6 +56,13 @@
                               <Button fx:id="suppButton" layoutX="568.0" layoutY="481.0" mnemonicParsing="false" onAction="#supprimeB" text="RETIRER" />
                               <ComboBox fx:id="sexecombo" layoutX="59.0" layoutY="61.0" prefWidth="150.0" promptText="SEXE" />
                               <ComboBox fx:id="trajet1" layoutX="62.0" layoutY="277.0" prefWidth="150.0" promptText="Ligne" />
+                                    <TableColumn fx:id="colidbus1" prefWidth="79.0" text="ID BUS" />
+                                    <TableColumn fx:id="colidp1" prefWidth="91.0" text="ID PARENT" />
+                                 </columns>
+                              </TableView>
+
+                              <Button layoutX="438.0" layoutY="481.0" mnemonicParsing="false" text="MODIFIER" />
+                              <Button layoutX="568.0" layoutY="481.0" mnemonicParsing="false" text="RETIRER" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -69,6 +83,7 @@
                                     <Button fx:id="retour1" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour1" styleClass="retour" stylesheets="@../gererCantine/abonnement/aboncantine.css" text="Retour" />
                                  </children>
                               </Pane>
+
                               <TableView fx:id="tabAffiche" layoutX="76.0" layoutY="112.0" prefHeight="487.0" prefWidth="515.0">
                                  <columns>
                                     <TableColumn fx:id="colid" prefWidth="75.0" text="ID" />
@@ -76,6 +91,7 @@
                                     <TableColumn fx:id="colnom" prefWidth="75.0" text="NOM" />
                                     <TableColumn fx:id="colpre" prefWidth="100.0" text="PRENOM" />
                                     <TableColumn fx:id="colage" prefWidth="97.0" text="AGE" />
+
                                     <TableColumn fx:id="colidbus" prefWidth="77.0" text="LIGNE" />
                                  </columns>
                               </TableView>

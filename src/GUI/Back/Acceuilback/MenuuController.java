@@ -132,7 +132,7 @@ public class MenuuController implements Initializable {
 
     @FXML
     private void gererCategPersonnel(MouseEvent event) throws IOException {
-                  AnchorPane pane=FXMLLoader.load(getClass().getResource("/GUI/Back/gererCategoriePersonnels/categoriePersonnel.fxml"));
+                  AnchorPane pane=FXMLLoader.load(getClass().getResource("/GUI/Back/gererCategoriePersonnels/Categorie1.fxml"));
         ap.getChildren().setAll(pane);
     }
 

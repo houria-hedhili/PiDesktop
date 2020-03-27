@@ -105,9 +105,10 @@ public class EventCRUD {
                 p.setDate(rs.getDate("date"));
                 p.setLocal(rs.getString("local"));
                 p.setNbpart(rs.getInt("nbpart"));
-                p.setImage(rs.getString("image"));
+               
                 p.setDate_fin(rs.getDate("date_fin"));
                 p.setDescription(rs.getString("description"));
+                 p.setImage(rs.getString("image"));
                  ImageView v=new ImageView();
                    v.setImage(new Image(rs.getString(8)));
                    v.setFitHeight(100);

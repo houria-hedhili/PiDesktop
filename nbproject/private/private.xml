@@ -16,6 +16,33 @@
             <file>file:/D:/integrationJava/src/Entity/houria/Evenement.java</file>
             <file>file:/D:/integrationJava/src/GUI/Front/gererCours/CoursController.java</file>
             <file>file:/D:/integrationJava/src/GUI/Front/gererEvent/EventController.java</file>
+            <file>file:/C:/wamp/www/PiDesktop/src/service/aziza/PersonnelDao.java</file>
+            <file>file:/C:/wamp/www/PiDesktop/src/service/houria/EventCRUD.java</file>
+            <file>file:/C:/wamp/www/PiDesktop/src/GUI/Back/gererPersonnels/PersonnelController.java</file>
+            <file>file:/C:/wamp/www/PiDesktop/src/GUI/Back/gererPersonnels/personnel.fxml</file>
+            <file>file:/C:/wamp/www/PiDesktop/src/GUI/Back/gererEvent/EventtController.java</file>
+            <file>file:/C:/xampp/htdocs/PiDesktop/src/service/houria/test.java</file>
+            <file>file:/C:/xampp/htdocs/PiDesktop/src/service/houria/EventCRUD.java</file>
+            <file>file:/C:/xampp/htdocs/PiDesktop/src/GUI/Back/gererEvent/EventtController.java</file>
+            <file>file:/C:/xampp/htdocs/PiDesktop/src/Entity/wifek/enfant.java</file>
+            <file>file:/C:/xampp/htdocs/PiDesktop/src/GUI/Back/gererEvent/eventt.fxml</file>
+            <file>file:/C:/xampp/htdocs/PiDesktop/src/GUI/Front/gererCours/CoursController.java</file>
+            <file>file:/C:/xampp/htdocs/PiDesktop/src/GUI/Back/gererMatiere/MatiereController.java</file>
+            <file>file:/C:/xampp/htdocs/PiDesktop/src/GUI/login/LoginController.java</file>
+            <file>file:/C:/xampp/htdocs/PiDesktop/src/service/houria/matiereCRUD.java</file>
+            <file>file:/C:/xampp/htdocs/PiDesktop/src/GUI/Front/gererEnfant/EnfantController.java</file>
+            <file>file:/C:/xampp/htdocs/PiDesktop/src/Entity/wifek/Bus.java</file>
+            <file>file:/C:/xampp/htdocs/PiDesktop/src/pifinal/PiFinal.java</file>
+            <file>file:/C:/xampp/htdocs/PiDesktop/src/Entity/wifek/enfant.java</file>
+            <file>file:/C:/xampp/htdocs/PiDesktop/src/GUI/Front/Acceuilfront/acceuilFront.fxml</file>
+            <file>file:/C:/xampp/htdocs/PiDesktop/src/service/wifek/CrudBusService.java</file>
+            <file>file:/C:/xampp/htdocs/PiDesktop/src/GUI/Back/gererEnfant/EnfantController.java</file>
+            <file>file:/C:/xampp/htdocs/PiDesktop/src/GUI/MenuController.java</file>
+            <file>file:/C:/xampp/htdocs/PiDesktop/src/GUI/Front/Acceuilfront/AcceuilFrontController.java</file>
+            <file>file:/C:/xampp/htdocs/PiDesktop/src/service/wifek/CrudEnfantService.java</file>
+            <file>file:/C:/xampp/htdocs/PiDesktop/src/GUI/login/LoginController.java</file>
+            <file>file:/C:/xampp/htdocs/PiDesktop/src/GUI/Back/Acceuilback/MenuuController.java</file>
+            <file>file:/C:/xampp/htdocs/PiDesktop/src/GUI/Back/gererCours/CoursController.java</file>
         </group>
     </open-files>
 </project-private>
