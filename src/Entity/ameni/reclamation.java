@@ -22,6 +22,7 @@ public class reclamation {
     private String nom;
     private int idCategorie;
 
+    
     public reclamation(int id, Date date, String etat, String description, int idCategorie, String nom) {
         this.id = id;
         this.date = date;

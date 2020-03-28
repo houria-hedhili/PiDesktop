@@ -88,6 +88,7 @@ public class CategorieReclamationController implements Initializable {
 
     
       private void afficher() {
+          
       categorieReclamationService sp = new categorieReclamationService();
         List categ=sp.affcatRec();
         ObservableList et=FXCollections.observableArrayList(categ);
@@ -95,7 +96,8 @@ public class CategorieReclamationController implements Initializable {
         ObservableList observableList = FXCollections.observableArrayList(categ);
         colRef.setCellValueFactory(new PropertyValueFactory<>("ref"));
         colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));   
+        colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));  
+        
         }
       
         private void affichecatrec(ActionEvent event) {

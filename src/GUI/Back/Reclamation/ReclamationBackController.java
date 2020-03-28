@@ -58,7 +58,7 @@ public class ReclamationBackController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         afficherReclamation1();
         // TODO
-  
+ 
     }    
     
            private void afficher() {
