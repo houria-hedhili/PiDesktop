@@ -9,6 +9,7 @@ import ConnexionBd.connexionBd;
 import Entity.houria.Evenement;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -64,23 +65,23 @@ public class EventCRUD {
 
     public void updateEvent(Evenement t, int id) throws IOException {
 
-              // Date dd=new java.sql.Date(t.getDate_debut_event().getTime());
-        //Date df=new java.sql.Date(t.getDate_fin_event().getTime()); 
+
          try {
 
                      
             String requete
-                    ="UPDATE event SET nom = ? ,image = ? ,nbpart =? ,description=? ,local=? WHERE idEvent=?";
+                    ="UPDATE event SET nom = ? ,image = ? ,date = ? ,date_fin = ? ,nbpart =? ,description=? ,local=? WHERE idEvent=?";
                         PreparedStatement st = cnx.prepareStatement(requete);
              st.setString(1,t.getNom());
              st.setString(2,t.getImage());
-             //pre.setDate(3,dd);
-             //pre.setDate(4, df);
-             st.setInt(3, t.getNbpart());
-             st.setString(4,t.getDescription());
-            st.setString(5,t.getLocal());
+             st.setDate(3,t.getDate());
 
-             st.setInt(6,id);
+             st.setDate(4,t.getDate_fin());
+             st.setInt(5, t.getNbpart());
+             st.setString(6,t.getDescription());
+             st.setString(7,t.getLocal());
+
+             st.setInt(8,id);
              st.executeUpdate();
          } catch (SQLException ex) {
              Logger.getLogger(EventCRUD.class.getName()).log(Level.SEVERE, null, ex);
@@ -104,9 +105,10 @@ public class EventCRUD {
                 p.setDate(rs.getDate("date"));
                 p.setLocal(rs.getString("local"));
                 p.setNbpart(rs.getInt("nbpart"));
-                p.setImage(rs.getString("image"));
+               
                 p.setDate_fin(rs.getDate("date_fin"));
                 p.setDescription(rs.getString("description"));
+                 p.setImage(rs.getString("image"));
                  ImageView v=new ImageView();
                    v.setImage(new Image(rs.getString(8)));
                    v.setFitHeight(100);

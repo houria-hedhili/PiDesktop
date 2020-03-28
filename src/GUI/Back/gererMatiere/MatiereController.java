@@ -18,6 +18,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -51,6 +52,10 @@ public class MatiereController implements Initializable {
     private Button Emodifier1;
 
    private Matiere matt=null;
+    @FXML
+    private Label labelnom;
+    @FXML
+    private Label labelcoeff;
 
     /**
      * Initializes the controller class.
@@ -88,9 +93,34 @@ public class MatiereController implements Initializable {
 }
     @FXML
     private void ajouter(ActionEvent event) throws IOException {
-                  String nomM = Mnom.getText();
+                                       labelnom.setText("");
+       labelnom.setText("");
+       labelcoeff.setText("");
+        if(Mnom.getText().isEmpty()||Mcoeff.getText().isEmpty() ){
+         
+         if (Mnom.getText().isEmpty()) {
+            labelnom.setText("Champ nom vide");
+           // new Alert(Alert.AlertType.ERROR, "Champ Description vide").show();
+        }
+         if (Mcoeff.getText().isEmpty()) {
+           labelcoeff.setText("Champ coefficient vide");
+           // new Alert(Alert.AlertType.ERROR, " Champ Nom vide").show();
+        }
+        
 
-        int coeff= Integer.parseInt(Mcoeff.getText());
+        }else 
+        {
+             if(!Mcoeff.getText().matches("^([1-9][0-9]{0,4}|31)$")) {
+           labelcoeff.setText("(il faut que le coefficient soit un entier positive inferieure a 5)");
+
+           }else{ 
+                         int coeff= Integer.parseInt(Mcoeff.getText());
+
+                 if(coeff>5){
+               labelcoeff.setText("(il faut que le coefficient soit >0 et < 5)");
+
+                 }else{
+                    String nomM = Mnom.getText();
         matiereCRUD sp = new matiereCRUD();
         Matiere e = new Matiere(nomM,coeff);
         sp.addMatiere(e); 
@@ -98,11 +128,44 @@ public class MatiereController implements Initializable {
          Mnom.clear();
 
         Mcoeff.clear();
-        afficher();
+        afficher(); }
+             }
+        }
+        
+      
+               
     }
 
     @FXML
     private void modifier(ActionEvent event) throws SQLException, IOException {
+        
+                                               labelnom.setText("");
+       labelnom.setText("");
+       labelcoeff.setText("");
+        if(Mnom.getText().isEmpty()||Mcoeff.getText().isEmpty() ){
+         
+         if (Mnom.getText().isEmpty()) {
+            labelnom.setText("Champ nom vide");
+           // new Alert(Alert.AlertType.ERROR, "Champ Description vide").show();
+        }
+         if (Mcoeff.getText().isEmpty()) {
+           labelcoeff.setText("Champ coefficient vide");
+           // new Alert(Alert.AlertType.ERROR, " Champ Nom vide").show();
+        }
+        
+
+        }else 
+        {
+             if(!Mcoeff.getText().matches("^([1-9][0-9]{0,4}|31)$")) {
+           labelcoeff.setText("(il faut que le coefficient soit un entier positive inferieure a 5)");
+
+           }else{ 
+                         int coeff= Integer.parseInt(Mcoeff.getText());
+
+                 if(coeff>5){
+               labelcoeff.setText("(il faut que le coefficient soit >0 et < 5)");
+
+                 }else{
               matiereCRUD cs = new matiereCRUD();
         
         System.out.println(matt);
@@ -118,7 +181,7 @@ public class MatiereController implements Initializable {
         Mcoeff.clear();
         matt=null;
         }
-    }
+    }}}}
 
     @FXML
     private void supprimer(ActionEvent event) throws SQLException {

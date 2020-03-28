@@ -10,43 +10,45 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="GUI.Back.gererMatiere.MatiereController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Back.gererMatiere.MatiereController">
     <stylesheets>
         <URL value="@matiere.css" />
     </stylesheets>
    <children>
-      <AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1214.0" styleClass="mainFxmlClass">
+      <AnchorPane id="AnchorPane" prefHeight="691.0" prefWidth="1000.0" styleClass="mainFxmlClass">
           <stylesheets>
               <URL value="@matiere.css" />
           </stylesheets>
          <children>
-            <Label layoutX="68.0" layoutY="201.0" text="nom De la matiere">
+            <Label layoutX="33.0" layoutY="201.0" prefHeight="10.0" prefWidth="153.0" text="nom De la matiere">
                <font>
                   <Font name="Arial Bold" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="109.0" layoutY="316.0" prefHeight="20.0" prefWidth="104.0" text="coefficient">
+            <Label layoutX="48.0" layoutY="291.0" prefHeight="20.0" prefWidth="104.0" text="coefficient">
                <font>
                   <Font name="Arial Bold" size="17.0" />
                </font>
             </Label>
-            <TextField fx:id="Mnom" layoutX="299.0" layoutY="195.0" />
-            <TextField fx:id="Mcoeff" layoutX="299.0" layoutY="300.0" />
+            <TextField fx:id="Mnom" layoutX="225.0" layoutY="196.0" />
+            <TextField fx:id="Mcoeff" layoutX="225.0" layoutY="285.0" />
             <ImageView fitHeight="162.0" fitWidth="247.0" layoutX="71.0" layoutY="442.0" pickOnBounds="true" preserveRatio="true" />
-            <TableView fx:id="table_matiere" layoutX="631.0" layoutY="194.0" prefHeight="445.0" prefWidth="457.0">
+            <TableView fx:id="table_matiere" layoutX="480.0" layoutY="178.0" prefHeight="445.0" prefWidth="504.0">
               <columns>
-                <TableColumn fx:id="colnom" prefWidth="225.0" text="nom de la matiere" />
-                <TableColumn fx:id="colcoeff" prefWidth="208.0" text="coefficient" />
+                <TableColumn fx:id="colnom" prefWidth="269.0" text="nom de la matiere" />
+                <TableColumn fx:id="colcoeff" prefWidth="234.0" text="coefficient" />
               </columns>
             </TableView>
-            <Button fx:id="Eajouter" layoutX="100.0" layoutY="508.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="40.0" prefWidth="104.0" style="-fx-background-color: #eda678; -fx-background-radius: 5em;" text="ajouter" />
-            <Button fx:id="Esupprimer" layoutX="393.0" layoutY="508.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="40.0" prefWidth="124.0" style="-fx-background-radius: 5em; -fx-background-color: #eda678;" text="supprimer" />
-            <Button fx:id="Emodifier1" layoutX="243.0" layoutY="508.0" mnemonicParsing="false" onAction="#modifier" prefHeight="40.0" prefWidth="117.0" style="-fx-background-radius: 5em; -fx-background-color: #eda678;" text="modifier" />
+            <Button fx:id="Eajouter" layoutX="48.0" layoutY="459.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="40.0" prefWidth="104.0" style="-fx-background-color: #eda678; -fx-background-radius: 5em;" text="ajouter" />
+            <Button fx:id="Esupprimer" layoutX="318.0" layoutY="459.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="40.0" prefWidth="124.0" style="-fx-background-radius: 5em; -fx-background-color: #eda678;" text="supprimer" />
+            <Button fx:id="Emodifier1" layoutX="179.0" layoutY="459.0" mnemonicParsing="false" onAction="#modifier" prefHeight="40.0" prefWidth="117.0" style="-fx-background-radius: 5em; -fx-background-color: #eda678;" text="modifier" />
             <Label layoutX="455.0" layoutY="62.0" prefHeight="46.0" prefWidth="277.0" text="Gestion Matiere" textFill="#f27735">
                <font>
                   <Font name="Arial Bold Italic" size="22.0" />
                </font>
             </Label>
+            <Label fx:id="labelnom" layoutX="100.0" layoutY="248.0" prefHeight="21.0" prefWidth="307.0" textFill="RED" />
+            <Label fx:id="labelcoeff" layoutX="25.0" layoutY="335.0" prefHeight="21.0" prefWidth="451.0" textFill="RED" />
          </children>
       </AnchorPane>
    </children>

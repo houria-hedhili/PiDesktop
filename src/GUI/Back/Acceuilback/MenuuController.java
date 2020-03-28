@@ -36,19 +36,25 @@ public class MenuuController implements Initializable {
     @FXML
     private AnchorPane ap;
     @FXML
-    private Button gerEvent1;
+    private Button enfan;
     @FXML
-    private Button gerEvent2;
+    private Button bus;
     @FXML
-    private Button gerEvent21;
+    private Button cantin;
     @FXML
-    private Button gerEvent22;
+    private Button abonn;
     @FXML
-    private Button gerEvent23;
+    private Button reclam;
     @FXML
-    private Button gerEvent231;
+    private Button catR;
     @FXML
-    private Button gerEvent232;
+    private Button perso;
+    @FXML
+    private Button catP;
+    @FXML
+    private Button profi;
+    @FXML
+    private Button decon;
 
     /**
      * Initializes the controller class.
@@ -73,6 +79,72 @@ public class MenuuController implements Initializable {
     @FXML
     private void gererMatiere(MouseEvent event) throws IOException {
           AnchorPane pane=FXMLLoader.load(getClass().getResource("/GUI/Back/gererMatiere/matiere.fxml"));
+        ap.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void gererParticipation(MouseEvent event) throws IOException { 
+              AnchorPane pane=FXMLLoader.load(getClass().getResource("/GUI/Back/gererParticipation/participant.fxml"));
+        ap.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void gererEnfant(MouseEvent event) throws IOException {
+                  AnchorPane pane=FXMLLoader.load(getClass().getResource("/GUI/Back/gererEnfant/enfant.fxml"));
+        ap.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void gererBus(MouseEvent event) throws IOException {
+                  AnchorPane pane=FXMLLoader.load(getClass().getResource("/GUI/Back/gererBus/bus.fxml"));
+        ap.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void gererCantine(MouseEvent event) throws IOException {
+                  AnchorPane pane=FXMLLoader.load(getClass().getResource("/GUI/Back/gererCantine/cantine.fxml"));
+        ap.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void gererAbonnement(MouseEvent event) throws IOException {
+                  AnchorPane pane=FXMLLoader.load(getClass().getResource("/GUI/Back/gererAbonnement/abonnement.fxml"));
+        ap.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void gererReclamation(MouseEvent event) throws IOException {
+                  AnchorPane pane=FXMLLoader.load(getClass().getResource("/GUI/Back/gererReclamation/reclamation.fxml"));
+        ap.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void gererCategReclamation(MouseEvent event) throws IOException {
+         AnchorPane pane=FXMLLoader.load(getClass().getResource("/GUI/Back/gererCategorieReclamation/categorieReclamation.fxml"));
+        ap.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void gererPersonnel(MouseEvent event) throws IOException {
+                  AnchorPane pane=FXMLLoader.load(getClass().getResource("/GUI/Back/gererPersonnels/personnel.fxml"));
+        ap.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void gererCategPersonnel(MouseEvent event) throws IOException {
+                  AnchorPane pane=FXMLLoader.load(getClass().getResource("/GUI/Back/gererCategoriePersonnels/Categorie1.fxml"));
+        ap.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void profil(MouseEvent event) throws IOException {
+        AnchorPane pane=FXMLLoader.load(getClass().getResource("/profilback/profilback.fxml"));
+        ap.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void deconnecter(MouseEvent event) throws IOException {
+         AnchorPane pane=FXMLLoader.load(getClass().getResource("/GUI/login/login.fxml"));
         ap.getChildren().setAll(pane);
     }
     
