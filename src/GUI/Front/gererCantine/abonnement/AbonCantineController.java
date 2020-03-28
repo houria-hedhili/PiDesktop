@@ -441,7 +441,7 @@ platCombo.setValue(mii.getPlat());
     }
     
     public void afficherAbonn()
-    {
+    { System.out.println("imen");
     List<abonnement> ls=as.afficherAll();
         ObservableList<abonnement> abonListe=FXCollections.observableArrayList(ls);
         datedCol.setCellValueFactory(new PropertyValueFactory<>("dated"));
