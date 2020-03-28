@@ -97,7 +97,7 @@ public class CategorieReclamationController implements Initializable {
         colRef.setCellValueFactory(new PropertyValueFactory<>("ref"));
         colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));  
-        
+        //ahla
         }
       
         private void affichecatrec(ActionEvent event) {
