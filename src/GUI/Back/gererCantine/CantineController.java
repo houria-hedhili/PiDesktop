@@ -81,7 +81,7 @@ PlatService ps = new PlatService();
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
                 affichAllPlat();
-
+System.out.println("commiti");
         type.setValue("plat");
         type.setItems(platList);
           typee =new ArrayList();
