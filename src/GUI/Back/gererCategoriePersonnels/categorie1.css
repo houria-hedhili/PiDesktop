@@ -5,13 +5,13 @@
 .mainFxmlClass {}
     #btn
     {
-     -fx-background-color:#FE7A79;
+     -fx-background-color:#B2ADAD;
     -fx-background-radius:30%;   
     }
     
 #btn_supp
     {
-     -fx-background-color:#FE7A79;
+     -fx-background-color:#B2ADAD;
     -fx-background-radius:30%;   
     }
 

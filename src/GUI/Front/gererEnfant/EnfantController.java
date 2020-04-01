@@ -147,7 +147,6 @@ trajet1.setItems(listetrajet);
         colpre.setCellValueFactory(new PropertyValueFactory<>("prenom")); 
         colage.setCellValueFactory(new PropertyValueFactory<>("age")); 
         colidbus.setCellValueFactory(new PropertyValueFactory<>("nomLigne"));
-//jareb badel fi constructeur wala fi re
 }
       private void afficher2() {
      CrudBusService c=new CrudBusService();

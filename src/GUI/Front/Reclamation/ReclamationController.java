@@ -239,16 +239,17 @@ reclamationService rc=new reclamationService();
 
     @FXML
     private void supprec(ActionEvent event) {
-                 reclamationService rs = new reclamationService();
+         reclamationService rs = new reclamationService();
          reclamation cc = (reclamation)tab.getSelectionModel().getSelectedItem();
         System.out.println(cc);
         if(cc== null){
-            JOptionPane.showMessageDialog(null, "choisir ");
+            JOptionPane.showMessageDialog(null, "choisir une reclamation");
         }else{
             rs.supprimerRec(cc.getId());
             afficheRec(event);
             //refreshB(event);
-            afficher();
+            //afficher();
+            afficherReclamation1();
            JOptionPane.showMessageDialog(null, "supprimer");
         // nomText.clear();
          //descriptionText.clear();
