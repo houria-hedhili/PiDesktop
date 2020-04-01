@@ -89,7 +89,7 @@ private Connection cnx;
                 } catch (SQLException ex) {
                     Logger.getLogger(CrudBusService.class.getName()).log(Level.SEVERE, null, ex);
                 }
-      return list ;   //hedhi enfant  oss xD hhh bich net2aked men haja wkhalini nrrakez
+      return list ;  
        }
            public  ArrayList<enfant>  getLigneBus(){
          ArrayList<enfant> list = new ArrayList<>() ;
