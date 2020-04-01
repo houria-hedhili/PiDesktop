@@ -201,6 +201,22 @@ m.setPlat(c.getNomPlat1(res.getInt(4)));
 
         
     }
+        
+        public int nombrePlat()
+        {int x=0;
+        try {
+        String req="SELECT COUNT(*) FROM plat";
+         st = cnx.createStatement();
+            ResultSet res = st.executeQuery(req);
+            while(res.next())
+                x=res.getInt(1);
+        
+        }catch(SQLException ex){
+        
+        System.out.println(ex);
+        }
+        return x;
+        }
 
     
 }

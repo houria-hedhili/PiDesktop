@@ -19,9 +19,72 @@ public class Personnel {
      private int age;
      private float nb_h;
      private float prix_h;
-     private Categorie categorie;
+     private String categorie;
+     private int id_cat;
       private String image;
       private ImageView photo;
+
+    public Personnel(String nom, String prenom, int age, float nb_h, float prix_h, String categorie, int id_cat, String image) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.age = age;
+        this.nb_h = nb_h;
+        this.prix_h = prix_h;
+        this.categorie = categorie;
+        this.id_cat = id_cat;
+        this.image = image;
+    }
+   public Personnel(int id,String nom, String prenom, int age, float nb_h, float prix_h, String categorie, String image) {
+        this.id=id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.age = age;
+        this.nb_h = nb_h;
+        this.prix_h = prix_h;
+        this.categorie = categorie;
+        this.image = image;
+    }
+    public Personnel(int id,String nom, String prenom, int age, float nb_h, float prix_h, String categorie, String image,int idCat) {
+        this.id=id;
+        this.nom = nom;
+        
+       this.id_cat=idCat;
+        this.prenom = prenom;
+        this.age = age;
+        this.nb_h = nb_h;
+        this.prix_h = prix_h;
+        this.categorie = categorie;
+        this.image = image;
+    }
+    public Personnel(String text, String text0, int parseInt, float parseFloat, float parseFloat0, int idCategorie, String img) {
+       this.nom=text;
+       this.prenom=text0;
+       this.age=parseInt;
+       this.prix_h=parseFloat;
+       this.nb_h=parseFloat0;
+       this.id_cat=idCategorie;
+       this.image=img;
+    }
+
+    public int getId_cat() {
+        return id_cat;
+    }
+
+    public void setId_cat(int id_cat) {
+        this.id_cat = id_cat;
+    }
+
+    public Personnel(int id, String nom, String prenom, int age, float nb_h, float prix_h, int id_cat, String image) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.age = age;
+        this.nb_h = nb_h;
+        this.prix_h = prix_h;
+        this.id_cat = id_cat;
+        this.image = image;
+    }
+      
 
     public Personnel(String text, String text0, int age, float prix, float heure, String img) {
         this.nom=text;
@@ -30,6 +93,16 @@ this.age=age;
 this.prix_h=prix;
 this.nb_h=heure;
 this.image=img;//To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Personnel(int id, String nom, String prenom, int age, float nb_h, float prix_h, String image) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.age = age;
+        this.nb_h = nb_h;
+        this.prix_h = prix_h;
+        this.image = image;
     }
 
     
@@ -121,19 +194,21 @@ this.image=img;//To change body of generated methods, choose Tools | Templates.
         this.photo = photo;
     }
 
-    public Categorie getCategorie() {
+    public String getCategorie() {
         return categorie;
     }
 
-    public void setCategorie(Categorie categorie) {
+    public void setCategorie(String categorie) {
         this.categorie = categorie;
     }
 
-   
+    
 
    
 
-    public Personnel(String nom, String prenom, int age, float nb_h, float prix_h, Categorie categorie, String image) {
+   
+
+    public Personnel(String nom, String prenom, int age, float nb_h, float prix_h, String categorie, String image) {
         this.nom = nom;
         this.prenom = prenom;
         this.age = age;
