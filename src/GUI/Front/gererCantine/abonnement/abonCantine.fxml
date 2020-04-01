@@ -2,14 +2,23 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="691.0" prefWidth="1017.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Front.gererCantine.abonnement.AbonCantineController">
     <stylesheets>
@@ -29,6 +38,18 @@
                                     <Button fx:id="retour1" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour1" styleClass="retour" stylesheets="@aboncantine.css" text="Retour" />
                                  </children>
                               </Pane>
+                              <TableView fx:id="tableabon" layoutX="98.0" layoutY="97.0" onMouseClicked="#modAbon" prefHeight="385.0" prefWidth="534.0">
+                                <columns>
+                                  <TableColumn fx:id="datedCol" prefWidth="150.0" text="date debut" />
+                                  <TableColumn fx:id="datefCol" minWidth="0.0" prefWidth="116.0" text="date fin" />
+                                    <TableColumn fx:id="nbenfantCol" minWidth="0.0" prefWidth="98.0" text="nombre enfant" />
+                                    <TableColumn fx:id="tarifCol" minWidth="0.0" prefWidth="85.0" text="tarif" />
+                                    <TableColumn fx:id="etatCol" minWidth="0.0" prefWidth="84.0" text="etat" />
+                                </columns>
+                              </TableView>
+                              <DatePicker fx:id="datef" layoutX="163.0" layoutY="561.0" />
+                              <Text layoutX="77.0" layoutY="576.0" strokeType="OUTSIDE" strokeWidth="0.0" text="date fin" wrappingWidth="65.13671875" />
+                              <Button fx:id="modifierAbonn" layoutX="365.0" layoutY="559.0" mnemonicParsing="false" onAction="#modifierAbonn" text="modifier" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -49,6 +70,26 @@
                                     <Button fx:id="retour2" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour2" styleClass="retour" stylesheets="@aboncantine.css" text="Retour" />
                                  </children>
                               </Pane>
+                              <GridPane layoutX="150.0" layoutY="115.0" prefHeight="307.0" prefWidth="497.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <DatePicker fx:id="dated" prefHeight="25.0" prefWidth="254.0" GridPane.columnIndex="1" />
+                                    <DatePicker fx:id="datef2" prefHeight="25.0" prefWidth="269.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="nbenfant2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label prefHeight="34.0" prefWidth="106.0" text="Date debut" />
+                                    <Label prefHeight="17.0" prefWidth="161.0" text="Date fin" GridPane.rowIndex="1" />
+                                    <Label prefHeight="17.0" prefWidth="121.0" text="Nombre enfant" GridPane.rowIndex="2" />
+                                 </children>
+                              </GridPane>
+                              <Button fx:id="ajoutAbon" layoutX="526.0" layoutY="431.0" mnemonicParsing="false" onAction="#ajoutAbon" text="ajouter" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -76,6 +117,9 @@
                               </Label>
                               <TilePane fx:id="gridPlat" layoutX="169.0" layoutY="155.0" prefHeight="415.0" prefWidth="525.0" />
                               <ImageView fx:id="img" fitHeight="150.0" fitWidth="200.0" layoutY="-14.0" pickOnBounds="true" preserveRatio="true" />
+                              <ComboBox fx:id="listeEnfant" layoutX="334.0" layoutY="124.0" prefWidth="150.0" />
+                              <Text layoutX="188.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choisir un enfant" />
+                              <Button fx:id="ajoutMenu" layoutX="340.0" layoutY="570.0" mnemonicParsing="false" onAction="#ajoutMenu" prefHeight="35.0" prefWidth="137.0" text="valider le menu" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -87,7 +131,7 @@
                         </Label>
                      </graphic>
                   </Tab>
-                  <Tab>
+                  <Tab onSelectionChanged="#raff">
                      <content>
                         <AnchorPane prefHeight="691.0" prefWidth="1017.0">
                            <children>
@@ -96,6 +140,19 @@
                                     <Button fx:id="retour4" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour4" styleClass="retour" stylesheets="@aboncantine.css" text="Retour" />
                                  </children>
                               </Pane>
+                              <TableView fx:id="tableMenu" layoutX="138.0" layoutY="109.0" onMouseClicked="#affichMod" prefHeight="328.0" prefWidth="540.0">
+                                <columns>
+                                  <TableColumn fx:id="nomColl" prefWidth="126.0" text="nom" />
+                                  <TableColumn fx:id="prenomColl" prefWidth="126.0" text="prenom" />
+                                    <TableColumn fx:id="platColl" prefWidth="134.0" text="plat principal" />
+                                    <TableColumn fx:id="dessertColl" prefWidth="145.0" text="dessert" />
+                                </columns>
+                              </TableView>
+                              <Button fx:id="suppMenu" layoutX="531.0" layoutY="437.0" mnemonicParsing="false" onAction="#suppMenu" prefHeight="60.0" prefWidth="155.0" text="Supprimer" />
+                              <Label layoutX="322.0" layoutY="38.0" prefHeight="30.0" prefWidth="209.0" text="Le menu de votre enfant" />
+                              <ComboBox fx:id="platCombo" layoutX="217.0" layoutY="564.0" prefWidth="150.0" />
+                              <ComboBox fx:id="dessertCombo" layoutX="398.0" layoutY="564.0" prefWidth="150.0" />
+                              <Button fx:id="modfierMenu" layoutX="616.0" layoutY="552.0" mnemonicParsing="false" onAction="#modifierMenu" prefHeight="47.0" prefWidth="84.0" text="modifier" />
                            </children>
                         </AnchorPane>
                      </content>

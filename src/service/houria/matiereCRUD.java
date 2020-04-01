@@ -97,26 +97,42 @@ public class matiereCRUD {
 
   
     
-        public Matiere getMatiere(Matiere a) throws SQLException {   
+        public Matiere getMatiere(String a) throws SQLException {   
         Matiere an = new Matiere();
-        PreparedStatement pre = cnx.prepareStatement("SELECT * FROM matiere WHERE id=? AND nom LIKE ? AND coeff LIKE ?  ;");
+        PreparedStatement pre = cnx.prepareStatement("SELECT * FROM matiere WHERE nom LIKE ?  ;");
 
-        pre.setString(1, a.getNom());
-        pre.setString(1, a.getNom());
-        pre.setInt(2, a.getCoefficient());
+        pre.setString(1, a);
         ResultSet rs = pre.executeQuery();
         while (rs.next()) {
-            int id_annonce = rs.getInt(1);
-            String image= rs.getString(2);
 
-            an.setId(id_annonce);
-            an.setNom(image);
+            an.setId(rs.getInt("id"));
+           an.setNom(a);
+           an.setCoefficient(rs.getInt("coeff"));
+
 
            
         }
         return an;
 
     }
+
+    public Matiere getMatiereId(int a) throws SQLException {
+          Matiere an = new Matiere();
+        PreparedStatement pre = cnx.prepareStatement("SELECT * FROM matiere WHERE id = ?  ;");
+
+        pre.setInt(1, a);
+        ResultSet rs = pre.executeQuery();
+        while (rs.next()) {
+
+            an.setId(a);
+           an.setNom(rs.getString("nom"));
+           an.setCoefficient(rs.getInt("coeff"));
+
+
+           
+        }
+        return an;
+     }
     
 
 }

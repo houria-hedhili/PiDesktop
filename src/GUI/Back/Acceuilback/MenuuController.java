@@ -114,13 +114,13 @@ public class MenuuController implements Initializable {
 
     @FXML
     private void gererReclamation(MouseEvent event) throws IOException {
-                  AnchorPane pane=FXMLLoader.load(getClass().getResource("/GUI/Back/gererReclamation/reclamation.fxml"));
+                  AnchorPane pane=FXMLLoader.load(getClass().getResource("/GUI/Back/Reclamation/reclamationBack.fxml"));
         ap.getChildren().setAll(pane);
     }
 
     @FXML
     private void gererCategReclamation(MouseEvent event) throws IOException {
-         AnchorPane pane=FXMLLoader.load(getClass().getResource("/GUI/Back/gererCategorieReclamation/categorieReclamation.fxml"));
+         AnchorPane pane=FXMLLoader.load(getClass().getResource("/GUI/Back/gererCatRec/categorieReclamation.fxml"));
         ap.getChildren().setAll(pane);
     }
 

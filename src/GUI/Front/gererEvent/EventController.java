@@ -32,12 +32,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -63,12 +65,18 @@ public class EventController implements Initializable {
     private Label precEvent;
     @FXML
     private Tab partcip;
-    private VBox eventcont;
+    
      
     connexionBd connection = null;
         private Connection cnx;
+        Statement ste;
 
+    @FXML
     private VBox eventcontainer;
+    @FXML
+    private ScrollPane scroll;
+    @FXML
+    private Label nom;
 
     public EventController() {
         cnx= connexionBd.getInstance().getCnx();
@@ -89,6 +97,12 @@ public class EventController implements Initializable {
             Logger.getLogger(EventController.class.getName()).log(Level.SEVERE, null, ex);
         }
  */
+     try {
+            eventcontainer.setSpacing(5);
+            display_events();
+        } catch (SQLException ex) {
+            Logger.getLogger(EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }    
 
@@ -141,53 +155,46 @@ public class EventController implements Initializable {
     stage.close();
      
     }
-      /*   private void display_events() throws SQLException{
-          participationCRUD pa = new participationCRUD();
+      private void display_events() throws SQLException{
+         // participationService pa = new participationService();
           String req="select * from event  ";
           List<VBox> list = new ArrayList<>();
-            Statement pst = cnx.createStatement();
-            ResultSet rs = pst.executeQuery(req);
+          ste=cnx.createStatement();
+          ResultSet rs = ste.executeQuery(req);
           while(rs.next()){
-
-              Evenement e= new Evenement(rs.getInt(1), rs.getString(2), rs.getInt(5), rs.getString(6),rs.getString(7));
+             Evenement e= new Evenement(rs.getInt(1), rs.getString(2),rs.getInt(5),rs.getString(6),rs.getString(7));
               ImageView va=new ImageView(new Image(rs.getString(8)));
                va.setFitHeight(200);
-        va.setFitWidth(743);
+                va.setFitWidth(743);
               Button bt1=new Button("participer");
+          
+
+             Label nomm=new Label("le nom de cette evenement est : "+e.getNom());
+             Label local=new Label( " l adress : "+e.getLocal());
+             Button bt2=new Button("plus de details" ) ;
              
-              Participation pp= new Participation(new user(),e.getIdEvent());
-              if(pa.chercher_ajout_participation(pp)){
-                  bt1.setDisable(true);
-              }
               HBox h= new HBox();
               h.setSpacing(10);
               h.setAlignment(Pos.CENTER);
-              h.getChildren().addAll(bt1);
+              h.getChildren().addAll(bt1,bt2);
+                         
+              HBox No= new HBox();
+              No.setSpacing(10);
+              No.setAlignment(Pos.CENTER);
+               No.getChildren().addAll(nomm);
+               HBox adres= new HBox();
+              adres.setSpacing(10);
+              adres.setAlignment(Pos.CENTER);
+               adres.getChildren().addAll(local);
+               
                VBox v1=new VBox();
                v1.setAlignment(Pos.CENTER);
                v1.setSpacing(10);
-               v1.getChildren().addAll(va,h);
+               v1.getChildren().addAll(va,No,adres,h);
                list.add(v1);
-               bt1.setOnAction(new EventHandler<ActionEvent>(){
-                   @Override
-                   public void handle(ActionEvent event) {
-                       try {
-                           if(!pa.chercher_ajout_participation(pp))
-                           {  
-                              // pa.insert(pp);
-                               bt1.setDisable(true);
-                               
-                           }          
-                           else System.out.println("deja participe");
-                       } catch (SQLException ex) {
-                           Logger.getLogger(EventController.class.getName()).log(Level.SEVERE, null, ex);
-                       }
-                   }
-                   
-               });
+
           }
-         eventcont.getChildren().addAll(list);
-     }*/
-    
+         eventcontainer.getChildren().addAll(list);
+     }
     
 }
