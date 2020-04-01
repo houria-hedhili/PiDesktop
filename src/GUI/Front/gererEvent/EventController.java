@@ -22,12 +22,16 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -35,6 +39,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -43,6 +50,8 @@ import javafx.scene.layout.Border;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
+import service.houria.EventCRUD;
 import service.houria.participationCRUD;
 
 /**
@@ -76,7 +85,20 @@ public class EventController implements Initializable {
     @FXML
     private ScrollPane scroll;
     @FXML
-    private Label nom;
+    private TableColumn<?, ?> nom;
+    EventCRUD bb = new EventCRUD();
+    @FXML
+    private TableView<?> table_event;
+    @FXML
+    private TableColumn<?, ?> timage;
+    @FXML
+    private TableColumn<?, ?> dat_d;
+    @FXML
+    private TableColumn<?, ?> date_f;
+    @FXML
+    private TableColumn<?, ?> descrip;
+    @FXML
+    private TableColumn<?, ?> adress;
 
     public EventController() {
         cnx= connexionBd.getInstance().getCnx();
@@ -87,22 +109,9 @@ public class EventController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // UserSession n = UserSession.getInstance();
-                              //  s1 = n.getUserName();
-   /*     try {
-            eventcontainer.setSpacing(5);
 
-            display_events();
-        } catch (SQLException ex) {
-            Logger.getLogger(EventController.class.getName()).log(Level.SEVERE, null, ex);
-        }
- */
-     try {
-            eventcontainer.setSpacing(5);
-            display_events();
-        } catch (SQLException ex) {
-            Logger.getLogger(EventController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+      
+     afficher();
 
     }    
 
@@ -167,21 +176,63 @@ public class EventController implements Initializable {
                va.setFitHeight(200);
                 va.setFitWidth(743);
               Button bt1=new Button("participer");
-          
+              Button bt222=new Button("hou");
+              Label complet = null;
 
+                 Participation pp= new Participation(9,rs.getInt(1));
+              participationCRUD a = new participationCRUD();
+              HBox h= new HBox();
+              Label inscrit=new Label("");
+              
+              //3rft chniya el scrol ?eyyy
+              if (a.chercherparticipation(pp)){
+                 bt1.setDisable(true);
+               inscrit=new Label(" vous etes inscrit a cet evenement  ");
+
+              }
+              
+              if(e.getNbpart()==0){
+               //  bt1.setDisable(true);
+             complet=new Label(" Notre evenement est complet   ");
+                          
+              h.setSpacing(10);
+              h.setAlignment(Pos.CENTER);
+              h.getChildren().addAll(bt222);
+              }else{
+                   complet=new Label("");
+                                
+              h.setSpacing(10);
+              h.setAlignment(Pos.CENTER);
+              h.getChildren().addAll(bt1,bt222);
+
+              bt1.setOnAction(new EventHandler<ActionEvent>() {
+                 @Override
+                 public void handle(ActionEvent event) { //bitha heki chas
+                     System.out.println("c button mouhage tsir creation houniiii  ");//eyy fheemtik chnia theb taamel bih?
+                      a.insert(pp);// insert hedhi yaanii bech yaaml participer bech nkaml table thenya mtaa event participation aaa fhemtik
+                               bt1.setDisable(true); 
+                      bb.decrementer(e.getNbpart()-1,e.getIdEvent());
+               afficher();
+               
+
+                      
+                 }
+             });}
              Label nomm=new Label("le nom de cette evenement est : "+e.getNom());
              Label local=new Label( " l adress : "+e.getLocal());
              Button bt2=new Button("plus de details" ) ;
-             
-              HBox h= new HBox();
-              h.setSpacing(10);
-              h.setAlignment(Pos.CENTER);
-              h.getChildren().addAll(bt1,bt2);
-                         
               HBox No= new HBox();
               No.setSpacing(10);
               No.setAlignment(Pos.CENTER);
                No.getChildren().addAll(nomm);
+             HBox ins= new HBox();
+              ins.setSpacing(10);
+              ins.setAlignment(Pos.CENTER);
+               ins.getChildren().addAll(inscrit);  
+              HBox com= new HBox();
+              com.setSpacing(10);
+              com.setAlignment(Pos.CENTER);
+               com.getChildren().addAll(complet);
                HBox adres= new HBox();
               adres.setSpacing(10);
               adres.setAlignment(Pos.CENTER);
@@ -190,11 +241,60 @@ public class EventController implements Initializable {
                VBox v1=new VBox();
                v1.setAlignment(Pos.CENTER);
                v1.setSpacing(10);
-               v1.getChildren().addAll(va,No,adres,h);
+
+               v1.getChildren().addAll(va,No,adres,com,ins,h);
                list.add(v1);
+               
+              
+
 
           }
+          eventcontainer.getChildren().clear();
          eventcontainer.getChildren().addAll(list);
      }
+         private void afficher() {
+    
+     EventCRUD sp = new EventCRUD();
+      List events=sp.displaymesevent(9);
+       ObservableList et=FXCollections.observableArrayList(events);
+       table_event.setItems(et);//  ouiii chnouwa 5orm hedha ???  
+       nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+       timage.setCellValueFactory(new PropertyValueFactory<>("photo"));
+       dat_d.setCellValueFactory(new PropertyValueFactory<>("date"));
+       date_f.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
+       descrip.setCellValueFactory(new PropertyValueFactory<>("description"));
+       adress.setCellValueFactory(new PropertyValueFactory<>("local"));
+
+}
+
+    @FXML
+    private void annuler(MouseEvent event) throws SQLException {
+        System.out.println("ok");
+         participationCRUD cs = new participationCRUD();
+         Evenement cc = (Evenement)table_event.getSelectionModel().getSelectedItem();
+        System.out.println(cc);
+        if(cc== null){
+            JOptionPane.showMessageDialog(null, "choisir event");
+                   
+        }else{
+          bb.decrementer(cc.getNbpart()+1,cc.getIdEvent());
+
+            cs.deleteparticipation(cc.getIdEvent(),9);
+
+    
+           afficher();
+           
+           JOptionPane.showMessageDialog(null, "event supprimer");
+
+        cc=null;
+    }
+    }
+
+    @FXML
+    private void aff(Event event) throws SQLException {
+                    display_events();
+
+    }
+
     
 }

@@ -11,10 +11,13 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -144,8 +147,18 @@ public class MenuuController implements Initializable {
 
     @FXML
     private void deconnecter(MouseEvent event) throws IOException {
-         AnchorPane pane=FXMLLoader.load(getClass().getResource("/GUI/login/login.fxml"));
-        ap.getChildren().setAll(pane);
+          Parent root = FXMLLoader.load(getClass().getResource("/GUI/login/login.fxml"));
+        Stage stage1=new Stage();
+        Scene scene = new Scene(root);
+                      Stage stage = (Stage) decon.getScene().getWindow();
+stage.close();
+        stage1.setScene(scene);
+        stage1.show();
+    }
+       public String getName(String name)
+    { String namee=name;
+
+        return namee;
     }
     
 }

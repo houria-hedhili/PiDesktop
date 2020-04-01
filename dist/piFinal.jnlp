@@ -8,10 +8,8 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="lib\controlsfx-8.40.11.jar" size="985420" download="eager" />
-    <jar href="lib\jfoenix-8.0.8.jar" size="2708772" download="eager" />
     <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="834126" download="eager" />
-    <jar href="piFinal.jar" size="2126711" download="eager" />
+    <jar href="piFinal.jar" size="2055178" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="piFinal" >
     <param name="requiredFXVersion" value="8.0+"/>
