@@ -9,7 +9,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="691.0" prefWidth="1151.0" style="-fx-background-color: #AEB6F2;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Back.gererAbonnement.AbonnementController">
+
+<AnchorPane id="AnchorPane" prefHeight="691.0" prefWidth="1017.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Back.gererAbonnement.AbonnementController">
     <stylesheets>
         <URL value="@abonnement.css" />
     </stylesheets>
@@ -41,5 +42,19 @@
             <Font name="Cambria" size="20.0" />
          </font>
       </Label>
+      <TableView fx:id="tableabon" layoutX="157.0" layoutY="66.0" onMouseClicked="#moddifAbon" prefHeight="468.0" prefWidth="818.0">
+         <columns>
+            <TableColumn fx:id="prenomCol" prefWidth="150.0" text="prenom" />
+            <TableColumn fx:id="nomCol" prefWidth="150.0" text="Nom" />
+            <TableColumn fx:id="nbenfantCol" minWidth="0.0" prefWidth="98.0" text="nombre enfant" />
+            <TableColumn fx:id="tarifCol" minWidth="0.0" prefWidth="85.0" text="tarif" />
+            <TableColumn fx:id="etatCol" minWidth="0.0" prefWidth="84.0" text="etat" />
+            <TableColumn fx:id="datedCol" prefWidth="150.0" text="date debut" />
+            <TableColumn fx:id="datefCol" minWidth="0.0" prefWidth="116.0" text="date fin" />
+         </columns>
+      </TableView>
+      <ComboBox fx:id="abonCombo" layoutX="455.0" layoutY="575.0" prefWidth="150.0" />
+      <Label layoutX="368.0" layoutY="579.0" text="Etat" />
+      <Button fx:id="modifier" layoutX="713.0" layoutY="575.0" mnemonicParsing="false" onAction="#modifier" text="modifier" />
    </children>
 </AnchorPane>
