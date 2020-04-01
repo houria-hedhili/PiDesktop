@@ -5,11 +5,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Front.gererPersonnel.PersonnelController">
     <stylesheets>
@@ -29,12 +29,14 @@
                                     <Button fx:id="retour1" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour1" styleClass="retour" stylesheets="@../gererCantine/abonnement/aboncantine.css" text="Retour" />
                                  </children>
                               </Pane>
-                              <ImageView fitHeight="150.0" fitWidth="166.0" layoutX="38.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fitHeight="150.0" fitWidth="148.0" layoutX="38.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true" />
-                              <Text layoutX="47.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom et Prenom" />
-                              <Text layoutX="47.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categorie" />
-                              <Text layoutX="47.0" layoutY="445.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom et Prenom" />
-                              <Text layoutX="47.0" layoutY="473.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categorie" />
+                              <TableView fx:id="tabb" layoutX="29.0" layoutY="122.0" prefHeight="434.0" prefWidth="610.0">
+                                <columns>
+                                  <TableColumn fx:id="nom" prefWidth="133.0" text="Nom" />
+                                  <TableColumn fx:id="pre" prefWidth="150.0" text="Prenom" />
+                                    <TableColumn fx:id="catt" minWidth="0.0" prefWidth="140.0" text="Categorie" />
+                                    <TableColumn fx:id="image" prefWidth="186.0" text="Image" />
+                                </columns>
+                              </TableView>
                            </children>
                         </AnchorPane>
                      </content>
