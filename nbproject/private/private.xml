@@ -5,31 +5,12 @@
         <group>
             <file>file:/C:/wamp/www/PiDesktop/src/GUI/Back/gererCategoriePersonnels/CategoriePersonnelController.java</file>
             <file>file:/C:/wamp/www/PiDesktop/src/GUI/Back/gererCategoriePersonnels/Categorie1Controller.java</file>
-            <file>file:/C:/wamp64/www/PiDesktop/src/GUI/Back/gererCours/CoursController.java</file>
-            <file>file:/C:/wamp64/www/PiDesktop/src/service/houria/EventCRUD.java</file>
-            <file>file:/C:/wamp64/www/PiDesktop/src/service/ameni/reclamationService.java</file>
-            <file>file:/C:/wamp64/www/PiDesktop/src/GUI/Back/Acceuilback/MenuuController.java</file>
-            <file>file:/C:/wamp64/www/PiDesktop/src/GUI/Back/gererEvent/EventtController.java</file>
-            <file>file:/C:/wamp64/www/PiDesktop/src/GUI/Front/Acceuilfront/AcceuilFrontController.java</file>
-            <file>file:/C:/wamp64/www/PiDesktop/src/Entity/wifek/enfant.java</file>
-            <file>file:/C:/wamp64/www/PiDesktop/src/GUI/Back/gererEvent/eventt.css</file>
-            <file>file:/C:/wamp64/www/PiDesktop/src/GUI/Back/gererMatiere/MatiereController.java</file>
-            <file>file:/C:/wamp64/www/PiDesktop/src/Entity/ameni/reclamation.java</file>
-            <file>file:/C:/wamp64/www/PiDesktop/src/Entity/ameni/categorieReclamation.java</file>
-            <file>file:/C:/wamp64/www/PiDesktop/src/GUI/Back/gererCatRec/categoriereclamation.css</file>
-            <file>file:/C:/wamp64/www/PiDesktop/src/GUI/Back/gererCatRec/categorieReclamation.fxml</file>
-            <file>file:/C:/wamp64/www/PiDesktop/src/GUI/Front/Reclamation/ReclamationController.java</file>
-            <file>file:/C:/wamp64/www/PiDesktop/src/GUI/Back/gererCatRec/CategorieReclamationController.java</file>
-            <file>file:/C:/wamp64/www/PiDesktop/src/service/ameni/categorieReclamationService.java</file>
-            <file>file:/C:/wamp64/www/PiDesktop/src/GUI/Front/gererEnfant/EnfantController.java</file>
-            <file>file:/C:/wamp64/www/PiDesktop/src/GUI/Back/Reclamation/ReclamationBackController.java</file>
-            <file>file:/C:/wamp64/www/PiDesktop/src/GUI/Back/Reclamation/reclamationback.css</file>
-            <file>file:/C:/wamp64/www/PiDesktop/src/GUI/MenuController.java</file>
-            <file>file:/C:/wamp64/www/PiDesktop/src/GUI/Front/Reclamation/reclamation.css</file>
-            <file>file:/C:/wamp64/www/PiDesktop/src/GUI/Back/Reclamation/reclamationBack.fxml</file>
-            <file>file:/C:/wamp64/www/PiDesktop/src/Entity/houria/Evenement.java</file>
-            <file>file:/C:/wamp64/www/PiDesktop/src/ConnexionBd/connexionBd.java</file>
-            <file>file:/C:/wamp64/www/PiDesktop/src/service/houria/matiereCRUD.java</file>
+            <file>file:/C:/wamp/www/PiDesktop/src/ConnexionBd/connexionBd.java</file>
+            <file>file:/C:/wamp/www/PiDesktop/src/GUI/Back/gererCours/CoursController.java</file>
+            <file>file:/C:/wamp/www/PiDesktop/src/GUI/Back/gererPersonnels/PersonnelController.java</file>
+            <file>file:/C:/wamp/www/PiDesktop/src/GUI/Front/gererCantine/abonnement/AbonCantineController.java</file>
+            <file>file:/C:/wamp/www/PiDesktop/src/GUI/Front/gererEnfant/EnfantController.java</file>
+            <file>file:/C:/wamp/www/PiDesktop/src/service/aziza/CategorieDao.java</file>
         </group>
     </open-files>
 </project-private>

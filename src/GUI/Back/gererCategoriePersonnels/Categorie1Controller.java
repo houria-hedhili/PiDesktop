@@ -16,15 +16,19 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Duration;
 import javax.swing.JOptionPane;
+import org.controlsfx.control.Notifications;
 import service.aziza.CategorieDao;
 import service.houria.EventCRUD;
 
@@ -55,6 +59,7 @@ CategorieDao buss=new CategorieDao();
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        afficher();
         // TODO
     }    
 
@@ -89,10 +94,10 @@ CategorieDao buss=new CategorieDao();
     b.insert(cat);
     afficher();
       
-    /*
+    
     Notifications notif=Notifications.create()
-            .title("Bus ajouté")
-            .text("Un nouveau Bus vient d'être ajoutée !")
+            .title("Categorie personnel ajouté")
+            .text("Une nouvelle categorie vient d'être ajoutée !")
             .darkStyle().graphic(null).hideAfter(Duration.seconds(5))
             .position(Pos.TOP_LEFT)
             .onAction(new EventHandler<ActionEvent>() {
@@ -101,11 +106,10 @@ CategorieDao buss=new CategorieDao();
                     }
                 });
     notif.showConfirm();
-    }*/
-    refreshB(event);
-   clearCat();
     }
+   
     }
+    
     
         private void afficher() {
     CategorieDao sp = new CategorieDao();

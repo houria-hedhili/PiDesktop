@@ -101,6 +101,7 @@ private Personnel evenn=null;
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+         
        CategorieDao c= new CategorieDao();
        List<String> l=c.getNomCategorie();
        ObservableList<String> listCat=FXCollections.observableArrayList(l);
@@ -213,7 +214,14 @@ CategorieDao b1= new CategorieDao();
     }
             
              afficherPer();
-
+ imageview.setImage(null);
+            prenom.clear();
+          aagee.clear();
+        
+       prixheure.clear();
+       nombreheure.clear();
+       nom.clear();
+       cat.setValue(null);
  
     }
     

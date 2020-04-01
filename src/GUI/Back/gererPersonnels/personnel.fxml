@@ -37,8 +37,8 @@
       <TextArea fx:id="nom" layoutX="135.0" layoutY="96.0" prefHeight="39.0" prefWidth="173.0" />
       <TextArea fx:id="prenom" layoutX="135.0" layoutY="151.0" prefHeight="26.0" prefWidth="173.0" />
       <Text fontSmoothingType="LCD" layoutX="53.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age" />
-      <Text fontSmoothingType="LCD" layoutX="32.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre heures" />
-      <Text fontSmoothingType="LCD" layoutX="48.0" layoutY="324.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prix heure" />
+      <Text fontSmoothingType="LCD" layoutX="47.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prix heure" />
+      <Text fontSmoothingType="LCD" layoutX="33.0" layoutY="324.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre heures" />
       <TextArea fx:id="prixheure" layoutX="135.0" layoutY="300.0" prefHeight="38.0" prefWidth="173.0" />
       <TextArea fx:id="aagee" layoutX="135.0" layoutY="202.0" prefHeight="38.0" prefWidth="173.0" />
       <TextArea fx:id="nombreheure" layoutX="135.0" layoutY="251.0" prefHeight="38.0" prefWidth="173.0" />
