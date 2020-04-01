@@ -54,21 +54,21 @@ public class PersonnelController implements Initializable {
     @FXML
     private Label azii;
     @FXML
-    private TableView<?> tab;
+    private TableView<Personnel> tab;
     @FXML
-    private TableColumn<?, ?> NomColonne;
+    private TableColumn<Personnel, String> NomColonne;
     @FXML
-    private TableColumn<?, ?> PrenomColonne;
+    private TableColumn<Personnel, String> PrenomColonne;
     @FXML
-    private TableColumn<?, ?> AgeColonne;
+    private TableColumn<Personnel, Integer> AgeColonne;
     @FXML
-    private TableColumn<?, ?> Nb;
+    private TableColumn<Personnel, Integer> Nb;
     @FXML
-    private TableColumn<?, ?> Prix;
+    private TableColumn<Personnel, Float> Prix;
     @FXML
-    private TableColumn<?, ?> CategorieColonne;
+    private TableColumn<Personnel, String> CategorieColonne;
     @FXML
-    private TableColumn<?, ?> ImageColonne;
+    private TableColumn<Personnel, ImageView> ImageColonne;
     @FXML
     private TextArea nom;
     @FXML
@@ -101,11 +101,18 @@ private Personnel evenn=null;
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+       CategorieDao c= new CategorieDao();
+       List<String> l=c.getNomCategorie();
+       ObservableList<String> listCat=FXCollections.observableArrayList(l);
+       cat.setValue("categorie");
+       cat.setItems(listCat);
+        
+        
         afficherPer();
         type =new ArrayList();
         type.add("*.jpg");
          type.add("*.png");
-        tab.setOnMouseClicked((MouseEvent event) -> {
+        /*tab.setOnMouseClicked((MouseEvent event) -> {
             evenn = (Personnel)tab.getSelectionModel().getSelectedItem();
             System.out.println(evenn);
             nom.setText(evenn.getNom());
@@ -115,12 +122,12 @@ private Personnel evenn=null;
             aagee.setText(nb_PPP);
             float nb=(float) evenn.getNb_h();
             String nbh=String.valueOf(nb);
-            nombreheure.setText(nb_PPP);
+            nombreheure.setText(nbh);
             float prix=(float) evenn.getPrix_h();
             String prixx=String.valueOf(prix);
             prixheure.setText(prixx);
             prenom.setText(evenn.getPrenom());
-        });
+        });*/
         // TODO
     }    
 
@@ -141,26 +148,47 @@ private Personnel evenn=null;
     private void AjouterPersonnel(ActionEvent event) throws IOException, SQLException {
 CategorieDao b1= new CategorieDao();
         PersonnelDao b= new PersonnelDao();
-    if (!aagee.getText().matches("[3-6]")){
+    if( cat.getValue().isEmpty() || nom.getText().isEmpty() || prenom.getText().isEmpty() || aagee.getText().isEmpty() || prixheure.getText().isEmpty()|| nombreheure.getText().isEmpty()){
+    Alert alertt=new Alert(Alert.AlertType.ERROR);
+    alertt.setTitle("WARNING!");
+    alertt.setHeaderText(null);
+    alertt.setContentText("Merci de vérifier que vous avez remplit tout les champs");
+    alertt.showAndWait();
+    }
+   else if (!aagee.getText().matches("^[0-9\\s]*$")){
           Alert alert1 = new Alert(Alert.AlertType.ERROR);
         alert1.setTitle("Valider Age");
             alert1.setHeaderText(null);
-            alert1.setContentText("L'âge doit être entre 3 ans et 6 ans");
+            alert1.setContentText("L'âge doit être des chiffre");
             alert1.showAndWait();
     }else if(!nom.getText().matches("^[a-zA-Z\\s]*$")){
             Alert alert11 = new Alert(Alert.AlertType.ERROR);
-            alert11.setTitle("Verifier");
+            alert11.setTitle("Verifier le Nom");
             alert11.setHeaderText(null);
             alert11.setContentText("Le champ NOM accepte que les lettres ");
             alert11.showAndWait();
          }else if( !prenom.getText().matches("^[a-zA-Z\\s]*$")){
          Alert alert1 = new Alert(Alert.AlertType.ERROR);
-            alert1.setTitle("Verifier");
+            alert1.setTitle("Verifier le Prénom");
             alert1.setHeaderText(null);
             alert1.setContentText("Le champ PRENOM accepte que les lettres ");
             alert1.showAndWait();
          
-         }else{ 
+         }
+         else if( !prixheure.getText().matches("^[0-9\\s]*$")){
+         Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setTitle("Verifier le prix");
+            alert1.setHeaderText(null);
+            alert1.setContentText("Le champ prix heure accepte que les chiffres ");
+            alert1.showAndWait();}
+         else if( !nombreheure.getText().matches("^[0-9\\s]*$")){
+         Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setTitle("Verifier le nombre d'heure");
+            alert1.setHeaderText(null);
+            alert1.setContentText("Le champ NOMBREHEURE accepte que les chiffres ");
+            alert1.showAndWait();}
+   else
+         { 
              
         Personnel categorie=new Personnel(nom.getText(),
             prenom.getText(),
@@ -172,8 +200,8 @@ CategorieDao b1= new CategorieDao();
         System.out.println( b1.getIdCategorie(cat.getValue()));
     
     Notifications notif=Notifications.create()
-            .title("Bus ajouté")
-            .text("Un nouveau Bus vient d'être ajoutée !")
+            .title(" ajouté")
+            .text("Un nouveau perso vient d'être ajoutée !")
             .darkStyle().graphic(null).hideAfter(Duration.seconds(5))
             .position(Pos.TOP_LEFT)
             .onAction(new EventHandler<ActionEvent>() {
@@ -186,42 +214,39 @@ CategorieDao b1= new CategorieDao();
             
              afficherPer();
 
-  // clearEnfant(event);
+ 
     }
     
 
     @FXML
     private void ModifierPersonnel(ActionEvent event) throws IOException {
+                  Personnel imen = tab.getSelectionModel().getSelectedItem();
+
         PersonnelDao cs = new PersonnelDao();
-        
-        System.out.println(evenn);
-        if(evenn== null){
-            JOptionPane.showMessageDialog(null, "choisir event");
+        CategorieDao b1= new CategorieDao();
+        System.out.println(imen);
+        if(imen== null){
+            JOptionPane.showMessageDialog(null, "choisir personnel");
                    
         }else{
 
-                   // LocalDate dd=Edatedebut.getValue();
-       // LocalDate df=Edatefin.getValue();
-        //java.util.Date d1=java.sql.Date.valueOf(dd);
-        //java.util.Date d2=java.sql.Date.valueOf(df);
-       //int nb_place= Integer.parseInt(nb_part.getText());
        if(img!=""){
-           Personnel e = new Personnel(nom.getText(),prenom.getText(),Integer.parseInt(aagee.getText()),Float.parseFloat(prixheure.getText()),Float.parseFloat(nombreheure.getText()),img);
-        cs.updatePersonnel(e,evenn.getId());
+           Personnel e = new Personnel(nom.getText(),prenom.getText(),Integer.parseInt(aagee.getText()),Float.parseFloat(prixheure.getText()),Float.parseFloat(nombreheure.getText()),b1.getIdCategorie(cat.getValue()),img);
+        cs.updatePersonnel(e,imen.getId());
 
        }else
-           cs.updatePersonnel(new Personnel(nom.getText(),prenom.getText(),Integer.parseInt(aagee.getText()),Float.parseFloat(prixheure.getText()),Float.parseFloat(nombreheure.getText()),evenn.getImage()),evenn.getId());
-           
+           cs.updatePersonnel(new Personnel(nom.getText(),prenom.getText(),Integer.parseInt(aagee.getText()),Float.parseFloat(prixheure.getText()),Float.parseFloat(nombreheure.getText()),b1.getIdCategorie(cat.getValue()),imen.getImage()),imen.getId());
+           System.out.println(imen.getId());
        afficherPer();
         JOptionPane.showMessageDialog(null, "personnel modifier");
-       nom.clear();
          imageview.setImage(null);
             prenom.clear();
           aagee.clear();
-        //Edate_deb.setValue(null);
+        
        prixheure.clear();
        nombreheure.clear();
-        evenn=null;
+       nom.clear();
+        imen=null;
         }
 
     }
@@ -229,35 +254,47 @@ CategorieDao b1= new CategorieDao();
     @FXML
     private void SuppPersonnet(ActionEvent event) throws SQLException {
        PersonnelDao cs = new PersonnelDao();
-    
-         Personnel cc = (Personnel)tab.getSelectionModel().getSelectedItem();
+         Personnel cc = tab.getSelectionModel().getSelectedItem();
         System.out.println(cc);
         if(cc== null){
-            JOptionPane.showMessageDialog(null, "choisir personnel");
+            JOptionPane.showMessageDialog(null, "choisir un personnel");
                    
         }else{
             cs.deletePersonnel(cc.getId());
     
            afficherPer();
            
-           JOptionPane.showMessageDialog(null, "personnel supprimer");
+           JOptionPane.showMessageDialog(null, "personnel supprimer avec succes");
          nom.clear();
-         imageview.setImage(null);
-            prenom.clear();
-          aagee.clear();
-        //Edate_deb.setValue(null);
-       prixheure.clear();
-       nombreheure.clear();
+         prenom.clear();
+         aagee.clear();
+         prixheure.clear();
+         nombreheure.clear();
+         
+          imageview.setImage(null);
+        
         cc=null;
+         Notifications notif=Notifications.create()
+            .title(" supprimé")
+            .text("Un nouveau personnel vient d'être supprimé !")
+            .darkStyle().graphic(null).hideAfter(Duration.seconds(5))
+            .position(Pos.TOP_LEFT)
+            .onAction(new EventHandler<ActionEvent>() {
+                    public void handle(ActionEvent event) {
+                        System.out.println("Clicked ont notif");
+                    }
+                });
+    notif.showConfirm();
     }
     }
+    
        private void afficherPer()  {
     
     CategorieDao sp = new CategorieDao();
      
           List<Personnel> liste=sp.getCategorie();
        ObservableList et=FXCollections.observableArrayList(liste);
-       tab.setItems(et);//  ouiii chnouwa 5orm hedha ???  
+       tab.setItems(et);
        NomColonne.setCellValueFactory(new PropertyValueFactory<>("nom"));
        ImageColonne.setCellValueFactory(new PropertyValueFactory<>("photo"));
        PrenomColonne.setCellValueFactory(new PropertyValueFactory<>("prenom"));
@@ -265,9 +302,25 @@ CategorieDao b1= new CategorieDao();
        Nb.setCellValueFactory(new PropertyValueFactory<>("nb_h"));
        Prix.setCellValueFactory(new PropertyValueFactory<>("prix_h"));
        CategorieColonne.setCellValueFactory(new PropertyValueFactory<>("categorie"));
-      /* adress.setCellValueFactory(new PropertyValueFactory<>("local"));
-       Id_event.setCellValueFactory(new PropertyValueFactory<>("idEvent"));*/
+      
 
 }
+
+    @FXML
+    private void refModif(MouseEvent event) {
+    Personnel evennt = tab.getSelectionModel().getSelectedItem();
+            nom.setText(evennt.getNom());
+            imageview.setImage(new Image(evennt.getImage()));
+            int age=evennt.getAge();
+            String nb_PPP=String.valueOf(age);
+            aagee.setText(nb_PPP);
+            float nb=(float) evennt.getNb_h();
+            String nbh=String.valueOf(nb);
+            nombreheure.setText(nbh);
+            float prix=(float) evennt.getPrix_h();
+            String prixx=String.valueOf(prix);
+            prixheure.setText(prixx);
+            prenom.setText(evennt.getPrenom());
+    }
     
 }

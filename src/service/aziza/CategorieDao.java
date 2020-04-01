@@ -160,21 +160,30 @@ public  class CategorieDao implements Idao<Categorie> {
     }
 
     
-
+  
+  
        public  ArrayList<Personnel>  getCategorie(){
          ArrayList<Personnel> list = new ArrayList<>() ;
-             try {
+             try {//chimdakhell image ???
                 Statement st=cnx.createStatement();
-                String req="Select s.id,s.nom,s.prenom, s.age,s.prix_h,s.nb_h,b.type ,s.image from categorie b INNER JOIN personnel s on b.id=s.id_cat";//stana nkhamemb sayeeleeb na3rafha la requete ena manich bich nnselecti ken ligne bich naffichi tbaleau keml ok
+                String req="Select s.id,s.nom,s.prenom, s.age,s.prix_h,s.nb_h,b.type ,s.image,s.categorie from categorie b INNER JOIN personnel s on b.id=s.categorie";//stana nkhamemb sayeeleeb na3rafha la requete ena manich bich nnselecti ken ligne bich naffichi tbaleau keml ok
                 ResultSet rs = st.executeQuery(req);
                 while(rs.next()){
-                  Personnel e= new Personnel(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getInt(4), rs.getFloat(5), rs.getFloat(6),rs.getString(7)); //yakhra matmesesch
-                    list.add(e);            
+
+                     // public Personnel(String nom, String prenom, int age, float nb_h, float prix_h, String categorie, String image) {
+Personnel e= new  Personnel(rs.getInt(1),rs.getString(2), rs.getString(3),rs.getInt(4), rs.getFloat(5), rs.getFloat(6), rs.getString(7), rs.getString(8),rs.getInt(9));
+                  //  Personnel e= new Personnel(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getInt(4), rs.getFloat(5), rs.getFloat(6),rs.getString(7)); //yakhra matmesesch
+ImageView i=new ImageView();
+i.setImage(new Image(rs.getString(8)));
+i.setFitHeight(100);
+i.setFitWidth(100);
+e.setPhoto(i);
+        list.add(e);            
                    }
                 } catch (SQLException ex) {
                     Logger.getLogger(CategorieDao.class.getName()).log(Level.SEVERE, null, ex);
                 }
-      return list ;   
+      return list ;  
        }
     public int getIdCategorie(String type)
       {   int x=0;
@@ -191,6 +200,24 @@ public  class CategorieDao implements Idao<Categorie> {
       return x;
       
       }
+      public List<String> getNomCategorie()
+      {
+       List<String> x=new ArrayList();
+             try {
+                Statement st=cnx.createStatement();
+                String req="Select type from categorie ";
+                ResultSet rs = st.executeQuery(req);
+             while(rs.next())
+             {String ch= rs.getString(1);
+             x.add(ch);             }
+               
+                } catch (SQLException ex) {
+                    Logger.getLogger(CategorieDao.class.getName()).log(Level.SEVERE, null, ex);
+                }
+     
+      return x;
       
+      }
+              
 
 }

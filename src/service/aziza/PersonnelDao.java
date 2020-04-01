@@ -46,10 +46,10 @@ public class PersonnelDao {
         st.setInt(3, personnel.getAge());
         st.setFloat(5, (float) personnel.getNb_h());
         st.setFloat(4, (float) personnel.getPrix_h());
-      st.setString(6, personnel.getCategorie());
+      st.setInt(6, personnel.getId_cat());//LEE ME "ANDICH FEL TA heki id ccat mte3ek heka cle etranger
         st.setString(7, personnel.getImage());
             st.executeUpdate();
-            System.out.println("personnel ajoutée");
+          //System.out.println(personnel.getCategorie()); ajo
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
             
@@ -59,32 +59,34 @@ public class PersonnelDao {
 
     }
     public void deletePersonnel(int id) throws SQLException {
-        String req = "DELETE FROM personnel WHERE id='" + id + "'";
+           String req = "DELETE FROM personnel WHERE id='" + id + "'";
         PreparedStatement ste = cnx.prepareStatement(req);
         ste.executeUpdate();
+        System.out.println("supprime");
     }
 
     public void updatePersonnel(Personnel personnel, int id) throws IOException {
 
          try {
 
-                     
+                 
             String requete
-                    ="UPDATE personnel SET nom = ?,prenom = ?,age = ?,prix_h = ?,nb_h = ?,image = ? WHERE id=?";
+                    ="UPDATE personnel SET nom = ?,prenom = ?,age = ?,prix_h = ?,nb_h = ?,categorie=?,image = ? WHERE id=?";
                         PreparedStatement st = cnx.prepareStatement(requete);
             st.setString(1, personnel.getNom());
         st.setString(2, personnel.getPrenom());
         st.setInt(3, personnel.getAge());
         st.setFloat(5, (float) personnel.getNb_h());
         st.setFloat(4, (float) personnel.getPrix_h());
-       // st.setString(6, personnel.getCategorie());
-        st.setString(6, personnel.getImage());
-             st.setInt(7,id);
+       st.setInt(6, personnel.getId_cat());
+        st.setString(7, personnel.getImage());
+             st.setInt(8,id);
              st.executeUpdate();
          } catch (SQLException ex) {
              Logger.getLogger(PersonnelDao.class.getName()).log(Level.SEVERE, null, ex);
          }
             System.out.println("update valide");
+
 
 
 
