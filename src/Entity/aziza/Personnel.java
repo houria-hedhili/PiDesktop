@@ -34,7 +34,28 @@ public class Personnel {
         this.id_cat = id_cat;
         this.image = image;
     }
-
+   public Personnel(int id,String nom, String prenom, int age, float nb_h, float prix_h, String categorie, String image) {
+        this.id=id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.age = age;
+        this.nb_h = nb_h;
+        this.prix_h = prix_h;
+        this.categorie = categorie;
+        this.image = image;
+    }
+    public Personnel(int id,String nom, String prenom, int age, float nb_h, float prix_h, String categorie, String image,int idCat) {
+        this.id=id;
+        this.nom = nom;
+        
+       this.id_cat=idCat;
+        this.prenom = prenom;
+        this.age = age;
+        this.nb_h = nb_h;
+        this.prix_h = prix_h;
+        this.categorie = categorie;
+        this.image = image;
+    }
     public Personnel(String text, String text0, int parseInt, float parseFloat, float parseFloat0, int idCategorie, String img) {
        this.nom=text;
        this.prenom=text0;
