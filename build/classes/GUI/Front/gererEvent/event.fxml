@@ -6,6 +6,8 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -24,7 +26,7 @@
                      <children>
                         <TabPane fx:id="tabpane" layoutX="-2.0" prefHeight="691.0" prefWidth="1003.0" side="LEFT" styleClass="tabpane" stylesheets="@../gererCantine/abonnement/aboncantine.css" tabClosingPolicy="UNAVAILABLE">
                            <tabs>
-                              <Tab>
+                              <Tab onSelectionChanged="#aff">
                                  <content>
                                     <AnchorPane fx:id="prochEvent" prefHeight="637.0" prefWidth="755.0">
                                        <children>
@@ -38,11 +40,6 @@
                                                 <VBox fx:id="eventcontainer" prefHeight="426.0" prefWidth="660.0" />
                                              </content>
                                           </ScrollPane>
-                                        <AnchorPane layoutX="29.0" layoutY="72.0" minHeight="0.0" minWidth="0.0" prefHeight="547.0" prefWidth="745.0">
-                                             <children>
-                                                <Label fx:id="nom" layoutX="290.0" layoutY="468.0" prefHeight="55.0" prefWidth="198.0" />
-                                             </children>
-                                          </AnchorPane>
                                        </children>
                                     </AnchorPane>
                                  </content>
@@ -56,9 +53,9 @@
                               </Tab>
                               <Tab>
                                  <content>
-                                    <AnchorPane prefHeight="690.0" prefWidth="1020.0">
+                                    <AnchorPane prefHeight="138.0" prefWidth="803.0">
                                        <children>
-                                          <Pane layoutX="602.0" layoutY="623.0" prefHeight="54.0" prefWidth="200.0">
+                                          <Pane layoutX="575.0" layoutY="609.0" prefHeight="54.0" prefWidth="200.0">
                                              <children>
                                                 <Button fx:id="retour2" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour2" styleClass="retour" stylesheets="@../gererCantine/abonnement/aboncantine.css" text="Retour" />
                                              </children>
@@ -83,6 +80,28 @@
                                                 <Button fx:id="retour3" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour3" styleClass="retour" stylesheets="@../gererCantine/abonnement/aboncantine.css" text="Retour" />
                                              </children>
                                           </Pane>
+                                          <Label layoutX="18.0" layoutY="58.0" prefHeight="16.0" prefWidth="780.0" text="liste des evenements auxquels vous etes participé">
+                                             <font>
+                                                <Font name="Eras Bold ITC" size="30.0" />
+                                             </font>
+                                          </Label>
+                                          <TableView fx:id="table_event" layoutX="41.0" layoutY="129.0" prefHeight="392.0" prefWidth="723.0">
+                                             <columns>
+                                                <TableColumn fx:id="nom" prefWidth="91.0" text="nom" />
+                                                <TableColumn fx:id="timage" prefWidth="123.0" text="image" />
+                                                <TableColumn fx:id="dat_d" minWidth="7.0" prefWidth="115.0" text="date debut" />
+                                                <TableColumn fx:id="date_f" minWidth="0.0" prefWidth="118.0" text="date fin" />
+                                                <TableColumn fx:id="descrip" prefWidth="128.0" text="description" />
+                                                <TableColumn fx:id="adress" prefWidth="147.0" text="adress" />
+                                             </columns>
+                                          </TableView>
+                                          <Label layoutX="53.0" layoutY="545.0" text="pour annuler une participation :" textFill="#cf2d2d">
+                                             <font>
+                                                <Font name="Elephant" size="19.0" />
+                                             </font>
+                                          </Label>
+                                          <Button layoutX="494.0" layoutY="587.0" mnemonicParsing="false" onMouseClicked="#annuler" text="annuler" />
+                                          <Label layoutX="53.0" layoutY="592.0" text="il faut selectionner l evenement puis appuyer sur ce boutton" />
                                        </children>
                                     </AnchorPane>
                                  </content>

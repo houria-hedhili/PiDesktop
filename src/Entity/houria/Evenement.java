@@ -6,6 +6,7 @@
 package Entity.houria;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import javafx.scene.image.ImageView;
 
 /**
@@ -15,8 +16,8 @@ import javafx.scene.image.ImageView;
 public class Evenement {
     private int idEvent;
     private String description ;
-    private Date date;
-    private Date date_fin;
+    private Timestamp date;
+    private Timestamp date_fin;
     private int nbpart;
     private String nom; 
     private String local ;
@@ -41,7 +42,7 @@ public class Evenement {
         this.local = local;
     }
     
-    public Evenement(String description, Date date, Date date_fin, int nbpart, String nom, String local,String image) {
+    public Evenement(String description, Timestamp date, Timestamp date_fin, int nbpart, String nom, String local,String image) {
         this.description = description;
         this.date = date;
         this.date_fin = date_fin;
@@ -71,7 +72,7 @@ public class Evenement {
         this.nom = nom;
     }
 
-    public Evenement(int idEvent, String description, Date date, Date date_fin, int nbpart, String nom, String local, String image) {
+    public Evenement(int idEvent, String description, Timestamp date, Timestamp date_fin, int nbpart, String nom, String local, String image) {
         this.idEvent = idEvent;
         this.description = description;
         this.date = date;
@@ -102,19 +103,19 @@ public class Evenement {
         this.description = description;
     }
 
-    public Date getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 
-    public Date getDate_fin() {
+    public Timestamp getDate_fin() {
         return date_fin;
     }
 
-    public void setDate_fin(Date date_fin) {
+    public void setDate_fin(Timestamp date_fin) {
         this.date_fin = date_fin;
     }
 
