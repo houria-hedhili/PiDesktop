@@ -8,13 +8,12 @@ package GUI.Front.gererCantine.abonnement;
 import Entity.imen.Menu;
 import Entity.imen.Plat;
 import Entity.imen.abonnement;
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
+import Entity.user.Utilisateur;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import static java.time.temporal.TemporalQueries.localDate;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -231,13 +230,64 @@ dessertCombo.setItems(dessertList);
          }
     }
     private void Images()
+    {//sol if nbr image est 
+    
+       int y= ms.nombrePlat();
+       System.out.println(y);
+       if(y==0)
+       {System.out.println("menu en cours de preparation ");}
+       else if(y==1)
+       {    for (int k=0;k<1;k++)
     {
-    for (int k=0;k<nbrColumn;k++)
-    {
-        for(int j=0;j<nbrRow;j++)
+        for(int j=0;j<1;j++)
         {gridPlat.getChildren().add(createPage(count));
     count++;}
     }
+       }   else if(y==2)
+       {    for (int k=0;k<1;k++)
+    {
+        for(int j=0;j<2;j++)
+        {gridPlat.getChildren().add(createPage(count));
+    count++;}
+    }
+       }   else if(y==3)
+       {    for (int k=0;k<3;k++)
+    {
+        for(int j=0;j<1;j++)
+        {gridPlat.getChildren().add(createPage(count));
+    count++;}
+    }
+       }   else if(y==4)
+       {    for (int k=0;k<2;k++)
+    {
+        for(int j=0;j<2;j++)
+        {gridPlat.getChildren().add(createPage(count));
+    count++;
+     }
+    }
+       }   else if(y==5)
+       {   
+           for (int k=0;k<1;k++)
+    {
+        for(int j=0;j<5;j++)
+        {gridPlat.getChildren().add(createPage(count));
+    count++;
+    int x=1;
+    /*count =count +x;
+    gridPlat.getChildren().add(createPage(count));*/
+     //  gridPlat.getChildren().add(createPage(5));
+        System.out.println("hetha houa hseb jdid"+count);
+        }
+    }
+       }   else if(y==6)
+       {    for (int k=0;k<3;k++)
+    {
+        for(int j=0;j<2;j++)
+        {gridPlat.getChildren().add(createPage(count));
+    count++;}
+    }
+       }
+    
     }
     private VBox createPage(int index)
     {        listP=ps.afficherAll();
@@ -285,6 +335,7 @@ dessertCombo.setItems(dessertList);
      }
 });
   RadioButton affecter= rb2[index];
+  affecter.setStyle("-fx-label-padding : 5;-fx-border-color:#16A0F8;-fx-font-size:15;-fx-font-family:Century Gothic;");
     affecter.setOnAction(new EventHandler<ActionEvent>() {
 boolean t=false;
 
@@ -341,7 +392,7 @@ int k=0;
     pageImage.getChildren().add(imageview);
     pageImage.getChildren().add(affecter);
             //pageImage.getChildren().add(label);
-    pageImage.setStyle("-fx-border-color: orange;");
+    pageImage.setStyle("-fx-border-color:  #16A0F8;-fx-border-width:2;");
     imageview=null;
     return pageImage;
     }
@@ -451,5 +502,16 @@ etatCol.setCellValueFactory(new PropertyValueFactory<>("etat"));
     nbenfantCol.setCellValueFactory(new PropertyValueFactory<>("nbEnfant"));
      tableabon.setItems(abonListe);
     
+    }
+    
+    
+       public String getUser(String nom ,String prenom )
+    { String ch=nom+" "+prenom;
+
+        return ch ;
+    }
+     public String getUsername(String nom  )
+    { String ch=nom;
+        return ch ;
     }
 }

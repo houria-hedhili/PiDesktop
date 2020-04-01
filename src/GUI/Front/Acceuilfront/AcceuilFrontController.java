@@ -5,6 +5,8 @@
  */
 package GUI.Front.Acceuilfront;
 
+import Entity.user.Utilisateur;
+import GUI.Front.gererCantine.abonnement.AbonCantineController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,10 +14,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
@@ -36,10 +40,16 @@ public class AcceuilFrontController implements Initializable {
     private Button gererReclamation1;
     @FXML
     private Button gererEvent1;
-
+    @FXML
+    private Label nom;
+    String namee;
+    @FXML
+    private Label nomUser;
+Utilisateur u=new Utilisateur();
     /**
      * Initializes the controller class.
      */
+  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -88,15 +98,20 @@ public class AcceuilFrontController implements Initializable {
 
     @FXML
     private void gererCantine(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front/gererCantine/abonnement/abonCantine.fxml"));
-        
-        Scene scene = new Scene(root);
-        
-        stage.setScene(scene);
-        stage.show();
-           Stage stage1 = (Stage) gererCantine1.getScene().getWindow();
-    stage1.close(); 
+    
+        FXMLLoader loader = new FXMLLoader();
+                     loader.setLocation(getClass().getResource("/GUI/Front/gererCantine/abonnement/abonCantine.fxml"));
+
+              
+              Parent detail=loader.load();
+              Scene scene = new Scene(detail);
+               AbonCantineController controller = loader.getController();
+               controller.getUsername(namee);
+             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+            Stage stage1 = (Stage) gererCantine1.getScene().getWindow();
+    stage1.close();
     }
 
     @FXML
@@ -124,5 +139,20 @@ public class AcceuilFrontController implements Initializable {
            Stage stage1 = (Stage) gererEvent1.getScene().getWindow();
     stage1.close(); 
     }
+      public String getUser(String nom )
+    { String ch=nom;
+    
+               nomUser.setText("Bienvenue "+ch);
+
+        return ch ;
+    }
+     public String getUsername(String nom)
+    { String ch=nom;
+            namee=ch;  
+                           //nomUser.setText("Bienvenue "+ch);
+
+        return ch ;
+    }
+    
     
 }

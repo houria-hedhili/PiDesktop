@@ -137,7 +137,7 @@ trajet1.setItems(listetrajet);
       List buss=sp.afficherEnfant();*/
                  CrudBusService c=new CrudBusService();
           List<enfant> liste=c.getLigneBus();
-          System.out.println(liste.get(0).getNomLigne());
+          //System.out.println(liste.get(0).getNomLigne());
        ObservableList et=FXCollections.observableArrayList(liste);
        tabAffiche.setItems(et);
    //  ObservableList observableList = FXCollections.observableArrayList(buss);
@@ -244,7 +244,6 @@ CrudBusService b1= new CrudBusService();
             alert1.setHeaderText(null);
             alert1.setContentText("Le champ PRENOM accepte que les lettres ");
             alert1.showAndWait();
-         
          }else{ 
              
         enfant bus=new enfant(sexecombo.getValue(),
@@ -255,7 +254,7 @@ CrudBusService b1= new CrudBusService();
     );   
     b.ajouterEnfant(bus);
 
-        System.out.println( b1.getIdLigne(trajet1.getValue()));
+    //    System.out.println( b1.getIdLigne(trajet1.getValue()));
     
     Notifications notif=Notifications.create()
             .title("Bus ajouté")

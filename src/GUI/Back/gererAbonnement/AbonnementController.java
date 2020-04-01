@@ -59,7 +59,7 @@ public class AbonnementController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
- ObservableList<String> platList=FXCollections.observableArrayList("paye","nom paye");
+ ObservableList<String> platList=FXCollections.observableArrayList("paye","non paye");
  abonCombo.setValue("etat");
  abonCombo.setItems(platList);
  afficher();

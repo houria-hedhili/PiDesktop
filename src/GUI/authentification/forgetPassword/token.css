@@ -1,0 +1,27 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+   #valider { 
+    -fx-background-color: blue;
+}
+
+
+   #valider { 
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+#valider:hover {
+    -fx-text-fill: #f20808;
+}
+   #signout { 
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+#signout:hover {
+    -fx-text-fill: #f20808;
+}
+}
