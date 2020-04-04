@@ -42,10 +42,10 @@ public class EventCRUD {
                     = "INSERT INTO event (nom,date,local,nbpart,date_fin,description,image) VALUES (?,?,?,?,?,?,?)";
             PreparedStatement st = cnx.prepareStatement(requete);
         st.setString(1, event.getNom());
-        st.setDate(2, event.getDate());
+        st.setTimestamp(2, event.getDate());
         st.setString(3, event.getLocal());
         st.setInt(4, event.getNbpart());
-        st.setDate(5, event.getDate_fin());
+        st.setTimestamp(5, event.getDate_fin());
         st.setString(6, event.getDescription());
         st.setString(7, event.getImage());
             st.executeUpdate();
@@ -74,9 +74,9 @@ public class EventCRUD {
                         PreparedStatement st = cnx.prepareStatement(requete);
              st.setString(1,t.getNom());
              st.setString(2,t.getImage());
-             st.setDate(3,t.getDate());
+             st.setTimestamp(3,t.getDate());
 
-             st.setDate(4,t.getDate_fin());
+             st.setTimestamp(4,t.getDate_fin());
              st.setInt(5, t.getNbpart());
              st.setString(6,t.getDescription());
              st.setString(7,t.getLocal());
@@ -102,17 +102,60 @@ public class EventCRUD {
                 Evenement p = new Evenement();
                 p.setIdEvent(rs.getInt("idEvent"));
                 p.setNom(rs.getString("nom"));
-                p.setDate(rs.getDate("date"));
+                p.setDate(rs.getTimestamp("date"));
                 p.setLocal(rs.getString("local"));
                 p.setNbpart(rs.getInt("nbpart"));
                
-                p.setDate_fin(rs.getDate("date_fin"));
+                p.setDate_fin(rs.getTimestamp("date_fin"));
                 p.setDescription(rs.getString("description"));
                  p.setImage(rs.getString("image"));
                  ImageView v=new ImageView();
                    v.setImage(new Image(rs.getString(8)));
                    v.setFitHeight(100);
                    v.setFitWidth(100);
+                p.setPhoto(v);
+                myList.add(p);
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+
+        }
+        return myList;
+    }
+        public ObservableList<Evenement> displaymesevent(int a) {
+        ObservableList<Evenement> myList = FXCollections.observableArrayList();
+        try {
+                String requete
+                      
+                    ="  SELECT *\n" +
+"FROM `event`\n" +
+"WHERE `IdEvent` IN (\n" +
+"    SELECT `IdEvent`\n" +
+"    FROM `participation`\n" +
+"    WHERE `IdUser` = '"+a+"'\n" +
+"  )";
+                        PreparedStatement st = cnx.prepareStatement(requete);
+                 // st.setInt(1, a);
+
+                      ResultSet rs = st.executeQuery(requete);
+
+
+            while (rs.next()) {
+                Evenement p = new Evenement();
+                p.setIdEvent(rs.getInt("idEvent"));
+                p.setNom(rs.getString("nom"));
+                p.setDate(rs.getTimestamp("date"));
+                p.setLocal(rs.getString("local"));
+                p.setNbpart(rs.getInt("nbpart"));
+               
+                p.setDate_fin(rs.getTimestamp("date_fin"));
+                p.setDescription(rs.getString("description"));
+                p.setImage(rs.getString("image"));
+                ImageView v=new ImageView();
+                v.setImage(new Image(rs.getString(8)));
+                v.setFitHeight(100);
+                v.setFitWidth(100);
                 p.setPhoto(v);
                 myList.add(p);
             }
@@ -134,12 +177,17 @@ public class EventCRUD {
 
                 p.setIdEvent(rs.getInt("idEvent"));
                 p.setNom(rs.getString("nom"));
-                p.setDate(rs.getDate("date"));
+                p.setDate(rs.getTimestamp("date"));
                 p.setLocal(rs.getString("local"));
                 p.setNbpart(rs.getInt("nbpart"));
                 p.setImage(rs.getString("image"));
-                p.setDate_fin(rs.getDate("date_fin"));
+                p.setDate_fin(rs.getTimestamp("date_fin"));
                 p.setDescription(rs.getString("description"));
+                ImageView v=new ImageView();
+                v.setImage(new Image(rs.getString(8)));
+                v.setFitHeight(100);
+                v.setFitWidth(100);
+                p.setPhoto(v);
 
             }
 
@@ -147,7 +195,22 @@ public class EventCRUD {
             System.err.println(ex.getMessage());
 
         }
-        return p; // jwna bhy aya by esnaa bich tcomitii wnhabtouh oprojet nekhdmou 3lih wala le ? eyh akiddd nkmll n // o93ed maaya nkaml nhot tak tak el matiere w nhabtouh mabaadhna okk
+        return p; 
     }
+           public void decrementer(int a,int id) {
+        try {
 
+                     
+            String requete
+                    ="UPDATE event SET nbpart =? WHERE idEvent=?";
+                        PreparedStatement st = cnx.prepareStatement(requete);
+              st.setInt(1,a);
+
+             st.setInt(2,id);
+             st.executeUpdate();
+         } catch (SQLException ex) {
+             Logger.getLogger(EventCRUD.class.getName()).log(Level.SEVERE, null, ex);
+         }
+            System.out.println("les nb de place dispo est diminué ");
+    }
 }
