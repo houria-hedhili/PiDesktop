@@ -7,28 +7,40 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" onMouseClicked="#modifCat" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Back.gererCatRec.CategorieReclamationController">
+<AnchorPane id="AnchorPane" onMouseClicked="#modifCat" prefHeight="704.0" prefWidth="1151.0" style="-fx-background-color: #AEB6F2;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Back.gererCatRec.CategorieReclamationController">
     <stylesheets>
         <URL value="@categoriereclamation.css" />
     </stylesheets>
    <children>
-      <Label fx:id="CategorieReclamation" layoutX="236.0" layoutY="14.0" text="Categories des Reclamations" />
-      <Label fx:id="nomLabel" layoutX="51.0" layoutY="55.0" text="Nom" />
-      <Label fx:id="descriptionLabel" layoutX="48.0" layoutY="130.0" text="Description" />
-      <TextField fx:id="nomText" layoutX="51.0" layoutY="86.0" />
-      <TextField fx:id="descriptionText" layoutX="51.0" layoutY="161.0" />
-      <TableView fx:id="tab" layoutX="271.0" layoutY="61.0" onMouseClicked="#modifCat" prefHeight="257.0" prefWidth="314.0">
+      <Label fx:id="CategorieReclamation" layoutX="191.0" layoutY="8.0" text="Categories des Reclamations" textFill="#3a25ba">
+         <font>
+            <Font name="Century Schoolbook Bold" size="36.0" />
+         </font></Label>
+      <Label fx:id="nomLabel" layoutX="52.0" layoutY="87.0" text="Nom" textFill="#5d0f25">
+         <font>
+            <Font name="Cambria" size="31.0" />
+         </font></Label>
+      <Label fx:id="descriptionLabel" layoutX="49.0" layoutY="151.0" text="Description" textFill="#5d0f25">
+         <font>
+            <Font name="Cambria" size="31.0" />
+         </font></Label>
+      <TextField fx:id="nomText" layoutX="227.0" layoutY="94.0" promptText="nom.." />
+      <TextField fx:id="descriptionText" layoutX="227.0" layoutY="158.0" promptText="description.." />
+      <TableView fx:id="tab" layoutX="460.0" layoutY="58.0" onMouseClicked="#modifCat" prefHeight="548.0" prefWidth="656.0">
         <columns>
-          <TableColumn fx:id="colRef" prefWidth="75.0" text="Ref" />
-          <TableColumn fx:id="colNom" prefWidth="75.0" text="Nom" />
-            <TableColumn fx:id="colDescription" prefWidth="163.0" text="Description" />
+          <TableColumn fx:id="colNom" prefWidth="235.0" text="Nom" />
+            <TableColumn fx:id="colDescription" prefWidth="420.0" text="Description" />
         </columns>
       </TableView>
-      <Button fx:id="AjouterBt" layoutX="52.0" layoutY="211.0" mnemonicParsing="false" onAction="#handleButtonActionAjouter" text="Ajouter" />
-      <Button fx:id="ModifierBt" layoutX="139.0" layoutY="211.0" mnemonicParsing="false" onAction="#handleButtonActionModifier" text="Modifier" />
-      <Button fx:id="SupprimerBt" layoutX="513.0" layoutY="330.0" mnemonicParsing="false" onAction="#suppcat" text="Supprimer" />
-      <TextField fx:id="filtreText" layoutX="51.0" layoutY="293.0" promptText="rechercher.." />
-      <Label layoutX="50.0" layoutY="261.0" text="Recherhcer" />
+      <Button fx:id="AjouterBt" layoutX="99.0" layoutY="354.0" mnemonicParsing="false" onAction="#handleButtonActionAjouter" styleClass="mod" stylesheets="@categoriereclamation.css" text="Ajouter" />
+      <Button fx:id="ModifierBt" layoutX="236.0" layoutY="352.0" mnemonicParsing="false" onAction="#handleButtonActionModifier" styleClass="mod" stylesheets="@categoriereclamation.css" text="Modifier" />
+      <Button fx:id="SupprimerBt" layoutX="1002.0" layoutY="629.0" mnemonicParsing="false" onAction="#suppcat" styleClass="mod" stylesheets="@categoriereclamation.css" text="Supprimer" />
+      <TextField fx:id="filtreText" layoutX="227.0" layoutY="230.0" promptText="rechercher.." />
+      <Label layoutX="50.0" layoutY="219.0" text="Recherhcer" textFill="#5d0f25">
+         <font>
+            <Font size="31.0" />
+         </font></Label>
    </children>
 </AnchorPane>

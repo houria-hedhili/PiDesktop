@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package GUI.Back.Reclamation;
-
+//jh
 import Entity.ameni.reclamation;
 import java.net.URL;
 import java.sql.Date;
@@ -67,7 +67,7 @@ public class ReclamationBackController implements Initializable {
        ObservableList et=FXCollections.observableArrayList(rec);
        tab.setItems(et);
      ObservableList observableList = FXCollections.observableArrayList(rec);
-        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+       // colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         colEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));   
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));   
@@ -83,7 +83,7 @@ public class ReclamationBackController implements Initializable {
      ObservableList observableList = FXCollections.observableArrayList(categ);
      //en vert hekom mil interface tu les recuperes m tableau eli samitou tab
      //en oranger hekom les entités mte3ek
-        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+       // colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         colEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -100,7 +100,7 @@ public class ReclamationBackController implements Initializable {
        tab.setItems(et);
      //en vert hekom mil interface tu les recuperes m tableau eli samitou tab
      //en oranger hekom les entités mte3ek
-        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+       // colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         colEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
