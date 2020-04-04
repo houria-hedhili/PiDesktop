@@ -6,6 +6,9 @@
 package GUI.Back.gererEvent;
 
 import Entity.houria.Evenement;
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTimePicker;
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.dateTime;
 import service.houria.EventCRUD;
 
 import java.io.File;
@@ -13,9 +16,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,8 +62,6 @@ public class EventtController implements Initializable {
     private Button Esupprimer;
     @FXML
     private DatePicker Edate_deb;
-    @FXML
-    private DatePicker Edate_fin;
     @FXML
     private TextField Enom;
     @FXML
@@ -104,6 +108,11 @@ public class EventtController implements Initializable {
     @FXML
     private Label labelnbpart;
 
+    @FXML
+    private JFXTimePicker ETime_debut;
+    @FXML
+    private JFXTimePicker ETime_fin;
+
 
     /**
      * Initializes the controller class.
@@ -130,12 +139,13 @@ public class EventtController implements Initializable {
 	System.out.println("instant cv");
 
 	//Converting the Date to LocalDate
-	LocalDate d1 = evenn.getDate().toLocalDate();
+	LocalDateTime d1 = evenn.getDate().toLocalDateTime();
 	System.out.println("Local Date is: "+d1);
-                LocalDate d2=evenn.getDate_fin().toLocalDate();
+                LocalDateTime d2=evenn.getDate_fin().toLocalDateTime();
                   System.out.println("lena za3ma 1");
-                Edate_deb.setValue(d1);
-               Edate_fin.setValue(d2);
+                Edate_deb.setValue(d1.toLocalDate() );
+               ETime_debut.setValue(d1.toLocalTime());
+               ETime_fin.setValue(d2.toLocalTime());
                  System.out.println("lena mela za3ma 2");  
                 
                 int place=evenn.getNbpart();
@@ -157,7 +167,7 @@ public class EventtController implements Initializable {
         labelimage.setText(""); 
 
           labeldatefin.setText(""); 
-        if(nom.getText().isEmpty()||Edescription.getText().isEmpty()||Enbpart.getText().isEmpty()||Eadresse.getText().isEmpty()||img=="" ||Edate_deb==null||Edate_fin==null ){
+        if(nom.getText().isEmpty()||Edescription.getText().isEmpty()||Enbpart.getText().isEmpty()||Eadresse.getText().isEmpty()||img=="" ||Edate_deb==null||ETime_fin==null ||ETime_debut==null){
          
          if (Edescription.getText().isEmpty()) {
             labeldescription.setText("Champ Description vide");
@@ -182,19 +192,25 @@ public class EventtController implements Initializable {
          
            try {
              Date valueOf = java.sql.Date.valueOf(Edate_deb.getValue());
+             Time  time = java.sql.Time.valueOf(ETime_debut.getValue());
             } catch (Exception e) {
-                labeldatedebut.setText("datee debut vide");
+                labeldatedebut.setText("remplir date debut ");
 
+            }
+           
+            try{
+          Time  timed = java.sql.Time.valueOf(ETime_fin.getValue());
+       } catch (Exception e) {
+              labeldatedebut.setText("remplir time debut");
+              //  new Alert(Alert.AlertType.ERROR, " Champ Adresse vide").show();
             }
         
        try{
-          Date valueOf = java.sql.Date.valueOf(Edate_fin.getValue());
-
+          Time  timef = java.sql.Time.valueOf(ETime_fin.getValue());
        } catch (Exception e) {
-              labeldatefin.setText("champ date fin vide");
+              labeldatefin.setText("remplir time fin");
               //  new Alert(Alert.AlertType.ERROR, " Champ Adresse vide").show();
             }
-
 
         }else {
       
@@ -206,8 +222,21 @@ public class EventtController implements Initializable {
            labelnbpart.setText("(il faut que nombre de participant soit >0)");
 
            }
+         LocalDate dd =Edate_deb.getValue();
 
-         if (java.sql.Date.valueOf(Edate_deb.getValue()).compareTo(java.sql.Date.valueOf(Edate_fin.getValue())) > 0) {
+        LocalTime td =ETime_debut.getValue();
+        try{
+        LocalDateTime ldt= LocalDateTime.of(dd,td);
+                java.util.Date date = Date.from( ldt.atZone( ZoneId.systemDefault()).toInstant());
+        Timestamp date_debutE = new java.sql.Timestamp(date.getTime());
+        }catch(Exception e){
+         labeldatedebut.setText("remplir time debut");
+
+        }
+        
+
+        
+         if (java.sql.Time.valueOf(ETime_debut.getValue()).compareTo(java.sql.Time.valueOf(ETime_fin.getValue())) > 0) {
 
 
            labeldatefin.setText("date fin doit etre supérieur ou égal a la date debut");
@@ -218,15 +247,34 @@ public class EventtController implements Initializable {
         }  
          else {
         
-            
+             LocalDateTime ldt= LocalDateTime.of(dd,td);
+                java.util.Date date = Date.from( ldt.atZone( ZoneId.systemDefault()).toInstant());
+        Timestamp date_debutE = new java.sql.Timestamp(date.getTime());
         
           String titreE = Enom.getText();
         String adresseE=Eadresse.getText();
         String descriptionE=Edescription.getText();
-        LocalDate dd =Edate_deb.getValue();
-        LocalDate df =Edate_fin.getValue();
-        Date date_debutE = java.sql.Date.valueOf(dd);
-        Date date_finE = java.sql.Date.valueOf(df);
+      
+        
+       //Timestamp date_debutE = new java.sql.Timestamp(date.getTime());
+
+         LocalTime tf =ETime_fin.getValue();
+          LocalDateTime ldtt= LocalDateTime.of(dd,tf);
+         java.util.Date datef = Date.from( ldtt.atZone( ZoneId.systemDefault()).toInstant());
+        Timestamp date_finE = new java.sql.Timestamp(datef.getTime());
+       // temchi Date date_finE = java.sql.Date.valueOf(df);
+
+           //java.util.Date date = Date.from( ldt.atZone( ZoneId.systemDefault()).toInstant());
+        // Timestamp date_debutE = new java.sql.Timestamp(date.getTime());
+               // System.out.println(sqlDate);
+
+        // Date date_debutE = java.sql.Date.valueOf(dd);
+       /*  LocalDateTime ldt=
+         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        java.util.Date dt = new java.util.Date();*/
+ 
+      // java.util.Date dateF = java.util.Date.from(dateFin.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+        //java.sql.Date sqldateD = new java.sql.Date(dateD.getTime());
        int nb_place= Integer.parseInt(Enbpart.getText());
        if(nb_place<0){ 
        labelnbpart.setText("nombre de place doit etre >0");
@@ -243,7 +291,8 @@ public class EventtController implements Initializable {
             Edescription.clear();
           Eadresse.clear();
         Edate_deb.setValue(null);
-        Edate_fin.setValue(null);
+        ETime_debut.setValue(null);
+        ETime_fin.setValue(null);
         Enbpart.clear();
         afficher();
                labelnom.setText("");
@@ -265,7 +314,7 @@ public class EventtController implements Initializable {
         labelnbpart.setText(""); ;
         labeldatedebut.setText(""); 
           labeldatefin.setText(""); 
-        if(nom.getText().isEmpty()||Edescription.getText().isEmpty()||Enbpart.getText().isEmpty()||Eadresse.getText().isEmpty()||Edate_deb==null||Edate_fin==null ){
+        if(nom.getText().isEmpty()||Edescription.getText().isEmpty()||Enbpart.getText().isEmpty()||Eadresse.getText().isEmpty()||Edate_deb==null||ETime_fin==null ||ETime_debut==null ){
          
          if (Edescription.getText().isEmpty()) {
             labeldescription.setText("Champ Description vide");
@@ -287,19 +336,34 @@ public class EventtController implements Initializable {
          
            try {
              Date valueOf = java.sql.Date.valueOf(Edate_deb.getValue());
-            } catch (Exception e) {
-                labeldatedebut.setText("datee ye m3alem hotou tensech");
 
-            }
+            } catch (Exception e) {
+                labeldatedebut.setText("champ date debut vide");
+
+            } 
+           try {
+           Time tt = java.sql.Time.valueOf(ETime_debut.getValue());
+
+            } catch (Exception e) {
+                labeldatedebut.setText("champ date debut vide");
+
+            } 
+
         
        try{
-          Date valueOf = java.sql.Date.valueOf(Edate_fin.getValue());
+          Time valueOf = java.sql.Time.valueOf(ETime_debut.getValue());
 
        } catch (Exception e) {
-              labeldatefin.setText("champ date debut vide");
+              labeldatefin.setText("champ time debut vide");
               //  new Alert(Alert.AlertType.ERROR, " Champ Adresse vide").show();
             }
+          try{
+          Time valueOff = java.sql.Time.valueOf(ETime_fin.getValue());
 
+       } catch (Exception e) {
+              labeldatefin.setText("champ time fin vide");
+              //  new Alert(Alert.AlertType.ERROR, " Champ Adresse vide").show();
+            }
 
         }else {
       
@@ -312,10 +376,10 @@ public class EventtController implements Initializable {
 
            }
 
-         if (java.sql.Date.valueOf(Edate_deb.getValue()).compareTo(java.sql.Date.valueOf(Edate_fin.getValue())) > 0) {
+         if (java.sql.Time.valueOf(ETime_debut.getValue()).compareTo(java.sql.Time.valueOf(ETime_fin.getValue())) > 0) {
 
 
-           labeldatefin.setText("date fin doit etre supérieur ou égal a la date debut");
+           labeldatefin.setText("date fin doit etre supérieur a la date debut");
            // new Alert(Alert.AlertType.ERROR, "date fin doit etre supérieur ou égal a la date debut").show();
         } else if (java.sql.Date.valueOf(Edate_deb.getValue()).compareTo(sqldatecourante)  < 0) {
             labeldatedebut.setText("date debut doit etre supérieur ou egal a la date courante");
@@ -328,10 +392,23 @@ public class EventtController implements Initializable {
           String titreE = Enom.getText();
         String adresseE=Eadresse.getText();
         String descriptionE=Edescription.getText();
-        LocalDate dd =Edate_deb.getValue();
+      /*  LocalDate dd =Edate_deb.getValue();
         LocalDate df =Edate_fin.getValue();
         Date date_debutE = java.sql.Date.valueOf(dd);
-        Date date_finE = java.sql.Date.valueOf(df);
+        Date date_finE = java.sql.Date.valueOf(df);*/
+  
+        LocalDate dd =Edate_deb.getValue();
+        LocalTime td =ETime_debut.getValue();
+        LocalDateTime ldt= LocalDateTime.of(dd,td);
+        java.util.Date date = Date.from( ldt.atZone( ZoneId.systemDefault()).toInstant());
+        Timestamp date_debutE = new java.sql.Timestamp(date.getTime());
+        
+       //Timestamp date_debutE = new java.sql.Timestamp(date.getTime());
+
+         LocalTime tf =ETime_fin.getValue();
+          LocalDateTime ldtt= LocalDateTime.of(dd,tf);
+         java.util.Date datef = Date.from( ldtt.atZone( ZoneId.systemDefault()).toInstant());
+        Timestamp date_finE = new java.sql.Timestamp(datef.getTime());
        int nb_place= Integer.parseInt(Enbpart.getText());
        if(nb_place<0){ 
        labelnbpart.setText("nombre de place doit etre >0");
@@ -362,7 +439,9 @@ public class EventtController implements Initializable {
         Edescription.clear();
         Eadresse.clear();
                 Edate_deb.setValue(null);
-        Edate_fin.setValue(null);
+        ETime_debut.setValue(null);
+          ETime_fin.setValue(null);
+
         evenn=null;
         }
        }
@@ -371,7 +450,6 @@ public class EventtController implements Initializable {
             Edescription.clear();
           Eadresse.clear();
         Edate_deb.setValue(null);
-        Edate_fin.setValue(null);
         Enbpart.clear();
         afficher();
                labelnom.setText("");
@@ -408,7 +486,8 @@ public class EventtController implements Initializable {
             Edescription.clear();
           Eadresse.clear();
         Edate_deb.setValue(null);
-        Edate_fin.setValue(null);
+         ETime_debut.setValue(null);
+        ETime_fin.setValue(null);
         Enbpart.clear();
         cc=null;
     }
@@ -432,7 +511,7 @@ public class EventtController implements Initializable {
      EventCRUD sp = new EventCRUD();
       List events=sp.displayALLEvent();
        ObservableList et=FXCollections.observableArrayList(events);
-       table_event.setItems(et);//  ouiii chnouwa 5orm hedha ???  
+       table_event.setItems(et);
        nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
        timage.setCellValueFactory(new PropertyValueFactory<>("photo"));
        dat_d.setCellValueFactory(new PropertyValueFactory<>("date"));
@@ -440,7 +519,6 @@ public class EventtController implements Initializable {
        nb_part.setCellValueFactory(new PropertyValueFactory<>("nbpart"));
        descrip.setCellValueFactory(new PropertyValueFactory<>("description"));
        adress.setCellValueFactory(new PropertyValueFactory<>("local"));
-       /*Id_event.setCellValueFactory(new PropertyValueFactory<>("idEvent"));*/
 
 }
     

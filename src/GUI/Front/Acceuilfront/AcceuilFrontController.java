@@ -7,8 +7,10 @@ package GUI.Front.Acceuilfront;
 
 import Entity.user.Utilisateur;
 import GUI.Front.gererCantine.abonnement.AbonCantineController;
+import GUI.Front.gererEvent.EventController;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,6 +23,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import service.authentification.UserCRUD;
 
 /**
  * FXML Controller class
@@ -45,7 +48,8 @@ public class AcceuilFrontController implements Initializable {
     String namee;
     @FXML
     private Label nomUser;
-Utilisateur u=new Utilisateur();
+      Utilisateur u=new Utilisateur();
+      UserCRUD uc=new UserCRUD();
     /**
      * Initializes the controller class.
      */
@@ -128,16 +132,24 @@ Utilisateur u=new Utilisateur();
     }
 
     @FXML
-    private void gererEvent(ActionEvent event) throws IOException {
-         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front/gererEvent/event.fxml"));
+    private void gererEvent(ActionEvent event) throws IOException, SQLException {
+         u=uc.getUser(namee);
+               System.out.println("lena zaama 0 "+u.getId());//cv jawou bhy
+        FXMLLoader loader = new FXMLLoader();
+                     loader.setLocation(getClass().getResource("/GUI/Front/gererEvent/event.fxml"));
+                    Parent detail=loader.load();
+              Scene scene = new Scene(detail);
+             
+             EventController controller = loader.getController();
+               controller.getUser(u);
+
+            
+             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+            Stage stage1 = (Stage) gererEvent1.getScene().getWindow();
+            stage1.close();
         
-        Scene scene = new Scene(root);
-        
-        stage.setScene(scene);
-        stage.show();
-           Stage stage1 = (Stage) gererEvent1.getScene().getWindow();
-    stage1.close(); 
     }
       public String getUser(String nom )
     { String ch=nom;
