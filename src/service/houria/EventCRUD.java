@@ -208,9 +208,10 @@ public class EventCRUD {
 
              st.setInt(2,id);
              st.executeUpdate();
+             System.out.println("les nb de place dispo est diminué ");
+
          } catch (SQLException ex) {
              Logger.getLogger(EventCRUD.class.getName()).log(Level.SEVERE, null, ex);
          }
-            System.out.println("les nb de place dispo est diminué ");
     }
 }
