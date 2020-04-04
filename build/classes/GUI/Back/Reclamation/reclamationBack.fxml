@@ -4,25 +4,26 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Back.Reclamation.ReclamationBackController">
+<AnchorPane id="AnchorPane" prefHeight="691.0" prefWidth="1151.0" style="-fx-background-color: #AEB6F2;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Back.Reclamation.ReclamationBackController">
     <stylesheets>
         <URL value="@reclamationback.css" />
     </stylesheets>
    <children>
-      <Label fx:id="ListeReclamation" layoutX="48.0" layoutY="23.0" text="Liste des Reclamations" />
-      <TableView fx:id="tab" layoutX="14.0" layoutY="69.0" prefHeight="295.0" prefWidth="577.0">
+      <Label fx:id="ListeReclamation" layoutX="48.0" layoutY="23.0" prefHeight="30.0" prefWidth="584.0" text="Liste des Reclamations Triées selon l'etat" textFill="#dd0595">
+         <font>
+            <Font name="Century Schoolbook Bold" size="24.0" />
+         </font></Label>
+      <TableView fx:id="tab" layoutX="14.0" layoutY="69.0" prefHeight="597.0" prefWidth="1116.0">
         <columns>
-          <TableColumn fx:id="colId" prefWidth="38.0" text="ID" />
-          <TableColumn fx:id="colDate" prefWidth="95.0" text="Date" />
-            <TableColumn fx:id="colEtat" prefWidth="92.0" text="Etat" />
-            <TableColumn fx:id="colDescription" prefWidth="126.0" text="Description" />
-            <TableColumn fx:id="colCategorieReclamation" prefWidth="161.0" text="Categorie de Reclamation" />
-            <TableColumn fx:id="colIdParent" prefWidth="64.0" text="IdParent" />
+          <TableColumn fx:id="colDate" prefWidth="164.0" text="Date" />
+            <TableColumn fx:id="colEtat" prefWidth="221.0" text="Etat" />
+            <TableColumn fx:id="colDescription" prefWidth="341.0" text="Description" />
+            <TableColumn fx:id="colCategorieReclamation" prefWidth="235.0" text="Categorie de Reclamation" />
+            <TableColumn fx:id="colIdParent" prefWidth="154.0" text="IdParent" />
         </columns>
       </TableView>
-      <TextField fx:id="filterField" layoutX="205.0" layoutY="19.0" />
    </children>
 </AnchorPane>

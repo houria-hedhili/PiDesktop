@@ -210,7 +210,7 @@ reclamationService rc=new reclamationService();
        ObservableList et=FXCollections.observableArrayList(rec);
        tab.setItems(et);
         ObservableList observableList = FXCollections.observableArrayList(rec);
-        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+       // colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         colEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));   
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));   
@@ -226,7 +226,7 @@ reclamationService rc=new reclamationService();
      ObservableList observableList = FXCollections.observableArrayList(categ);
      //en vert hekom mil interface tu les recuperes m tableau eli samitou tab
      //en oranger hekom les entités mte3ek
-        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+      //  colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         colEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -336,7 +336,7 @@ reclamationService rc=new reclamationService();
        tab.setItems(et);
      //en vert hekom mil interface tu les recuperes m tableau eli samitou tab
      //en oranger hekom les entités mte3ek
-        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+       // colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         colEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -352,7 +352,7 @@ reclamationService rc=new reclamationService();
        tab1.setItems(et);
      //en vert hekom mil interface tu les recuperes m tableau eli samitou tab
      //en oranger hekom les entités mte3ek
-        colId1.setCellValueFactory(new PropertyValueFactory<>("id"));
+       // colId1.setCellValueFactory(new PropertyValueFactory<>("id"));
         colDate1.setCellValueFactory(new PropertyValueFactory<>("date"));
         colEtat1.setCellValueFactory(new PropertyValueFactory<>("etat"));
         colDescription1.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -367,7 +367,7 @@ reclamationService rc=new reclamationService();
        tab2.setItems(et);
      //en vert hekom mil interface tu les recuperes m tableau eli samitou tab
      //en oranger hekom les entités mte3ek
-        colId2.setCellValueFactory(new PropertyValueFactory<>("id"));
+       // colId2.setCellValueFactory(new PropertyValueFactory<>("id"));
         colDate2.setCellValueFactory(new PropertyValueFactory<>("date"));
         colEtat2.setCellValueFactory(new PropertyValueFactory<>("etat"));
         colDescription2.setCellValueFactory(new PropertyValueFactory<>("description"));
