@@ -12,6 +12,7 @@ import Entity.user.Utilisateur;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 import java.util.ArrayList;
@@ -19,6 +20,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,12 +33,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Spinner;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
@@ -408,12 +413,14 @@ int k=0;
        for(int x=0;x<listeEnfant.getItems().size();x++)
        {Menu mi = new Menu(idPlatPrincipal,idDessert,1,ms.enfant(1, listeEnfant.getItems().get(x))); 
         ms.ajouterMenu(mi);
+        Success("les menus sont ajoute");
        }
        
    }else
    {Menu mi = new Menu(idPlatPrincipal,idDessert,1,ms.enfant(1, listeEnfant.getValue())); 
         ms.ajouterMenu(mi);
-   
+           Success("le menu  est ajoute");
+
    //if menu affecter nfaskh men combo box esmou
    }
     }
@@ -482,15 +489,26 @@ platCombo.setValue(mii.getPlat());
         LocalDate f=datef2.getValue();
                 java.sql.Date sqlDate = java.sql.Date.valueOf(d);
                 java.sql.Date sqlDate1 = java.sql.Date.valueOf(f);
-       int nb=Integer.valueOf(nbenfant2.getText());
-        
+      
 
-        abonnement a=new abonnement(sqlDate, sqlDate1,0,nb);
+double y=calculTarif();
+ int nb=Integer.valueOf(nbenfant2.getText());
+    abonnement a=new abonnement(sqlDate, sqlDate1,y,nb);
         as.ajouterAbon(a);
         System.out.print(sqlDate);
         afficherAbonn();
+       Success("ajout a ete effectuer avec succes");
     }
-    
+       private void Success(String msg) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Ajouter un plat");
+ 
+        // Header Text: nullCla
+        alert.setHeaderText(null);
+        alert.setContentText(msg);
+ 
+        alert.showAndWait();
+    }
     public void afficherAbonn()
     { System.out.println("imen");
     List<abonnement> ls=as.afficherAll();
@@ -514,4 +532,45 @@ etatCol.setCellValueFactory(new PropertyValueFactory<>("etat"));
     { String ch=nom;
         return ch ;
     }
+     
+     public double calculTarif()
+     { double x=0;
+     try {
+        LocalDate d= (LocalDate)dated.getValue();
+        LocalDate f=datef2.getValue();
+                java.sql.Date sqlDate = java.sql.Date.valueOf(d);
+                java.sql.Date sqlDate1 = java.sql.Date.valueOf(f);
+       long diff = sqlDate1.getTime() - sqlDate.getTime();
+       float res = (diff / (1000*60*60*24));
+      x=res*6;
+       
+     } catch (Exception e) {
+         e.printStackTrace();
+     }
+     return x;
+     }
+     
+public boolean controlDate()
+{LocalDate d= (LocalDate)dated.getValue();
+        LocalDate f=datef2.getValue();
+                java.sql.Date sqlDate = java.sql.Date.valueOf(d);
+                java.sql.Date sqlDate1 = java.sql.Date.valueOf(f);
+                 long diff = sqlDate.getTime() - sqlDate1.getTime();
+       float res = (diff / (1000*60*60*24));
+                if(res>0)
+                {return true;
+                }else return false;
+                    
+}
+public boolean controlNbr()
+{
+  Pattern pattern = Pattern.compile("[0-9]");
+                   Matcher matcher = pattern.matcher(nbenfant2.getText()); 
+
+      if(!matcher.find())
+      {
+      return true;
+      }return false;
+}
+     
 }
