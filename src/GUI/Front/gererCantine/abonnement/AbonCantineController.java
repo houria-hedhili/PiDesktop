@@ -9,6 +9,7 @@ import Entity.imen.Menu;
 import Entity.imen.Plat;
 import Entity.imen.abonnement;
 import Entity.user.Utilisateur;
+import GUI.login.LoginController;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -151,6 +152,8 @@ int x=0;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+       int id = LoginController.ID;
+       System.out.println("hetha id user" +id);
         gridPlat.setPrefColumns(nbrColumn);
         gridPlat.setPrefRows(nbrRow);
          List<String> enfants =ms.listeEnfant(1);
@@ -238,7 +241,6 @@ dessertCombo.setItems(dessertList);
     {//sol if nbr image est 
     
        int y= ms.nombrePlat();
-       System.out.println(y);
        if(y==0)
        {System.out.println("menu en cours de preparation ");}
        else if(y==1)
@@ -281,7 +283,6 @@ dessertCombo.setItems(dessertList);
     /*count =count +x;
     gridPlat.getChildren().add(createPage(count));*/
      //  gridPlat.getChildren().add(createPage(5));
-        System.out.println("hetha houa hseb jdid"+count);
         }
     }
        }   else if(y==6)
@@ -328,7 +329,6 @@ dessertCombo.setItems(dessertList);
                CreerMenuController controller = loader.getController();
                controller.afficher(p);
              Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        System.out.println(r);
         window.setScene(scene);
         window.show();
      
@@ -391,7 +391,6 @@ int k=0;
             }
             
 
-        System.out.println("id Plat"+idPlatPrincipal+"id dessert "+idDessert+ " test "+test);
         }
     });
     pageImage.getChildren().add(imageview);
@@ -447,7 +446,6 @@ int k=0;
     @FXML
     private void modifierMenu(ActionEvent event) {
                Menu mii= tableMenu.getSelectionModel().getSelectedItem();
-               System.out.println("dessert "+ps.PlatUnique2(dessertCombo.getValue()) +" pLT " +ps.PlatUnique2(platCombo.getValue())+" id   " + mii.getId());
 
    ms.modifierPlat(ps.PlatUnique2(dessertCombo.getValue()),ps.PlatUnique2(platCombo.getValue()),mii.getId());
    afficher();
@@ -495,7 +493,6 @@ double y=calculTarif();
  int nb=Integer.valueOf(nbenfant2.getText());
     abonnement a=new abonnement(sqlDate, sqlDate1,y,nb);
         as.ajouterAbon(a);
-        System.out.print(sqlDate);
         afficherAbonn();
        Success("ajout a ete effectuer avec succes");
     }
@@ -510,7 +507,7 @@ double y=calculTarif();
         alert.showAndWait();
     }
     public void afficherAbonn()
-    { System.out.println("imen");
+    { 
     List<abonnement> ls=as.afficherAll();
         ObservableList<abonnement> abonListe=FXCollections.observableArrayList(ls);
         datedCol.setCellValueFactory(new PropertyValueFactory<>("dated"));

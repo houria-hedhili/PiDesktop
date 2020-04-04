@@ -61,48 +61,52 @@ public class AcceuilFrontController implements Initializable {
 
     @FXML
     private void gererEnfant(ActionEvent event) throws IOException {
-  Stage stage = new Stage();
+    Stage stage1 = (Stage) gererEnfant1.getScene().getWindow();
+    stage1.close(); 
+        Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front/gererEnfant/enfant.fxml"));
         
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
         stage.show();
-           Stage stage1 = (Stage) gererEnfant1.getScene().getWindow();
-    stage1.close(); 
+        
     
     
     }
 
     @FXML
     private void gereClasse(ActionEvent event) throws IOException {
-         Stage stage = new Stage();
+            Stage stage1 = (Stage) gereClasse1.getScene().getWindow();
+    stage1.close();
+        Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front/gererCours/cours.fxml"));
         
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
         stage.show();
-           Stage stage1 = (Stage) gereClasse1.getScene().getWindow();
-    stage1.close(); 
+       
     }
 
     @FXML
     private void gererPersonnel(ActionEvent event) throws IOException {
-         Stage stage = new Stage();
+             Stage stage1 = (Stage) gererPersonnel1.getScene().getWindow();
+    stage1.close();  
+        Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front/gererPersonnel/personnel.fxml"));
         
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
         stage.show();
-           Stage stage1 = (Stage) gererPersonnel1.getScene().getWindow();
-    stage1.close(); 
+      
     }
 
     @FXML
     private void gererCantine(ActionEvent event) throws IOException {
-    
+          Stage stage1 = (Stage) gererCantine1.getScene().getWindow();
+    stage1.close();
         FXMLLoader loader = new FXMLLoader();
                      loader.setLocation(getClass().getResource("/GUI/Front/gererCantine/abonnement/abonCantine.fxml"));
 
@@ -114,26 +118,28 @@ public class AcceuilFrontController implements Initializable {
              Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
-            Stage stage1 = (Stage) gererCantine1.getScene().getWindow();
-    stage1.close();
+      
     }
 
     @FXML
     private void gererReclamation(ActionEvent event) throws IOException {
-         Stage stage = new Stage();
+         Stage stage1 = (Stage) gererReclamation1.getScene().getWindow();
+    stage1.close(); 
+        Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front/Reclamation/reclamation.fxml"));
         
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
         stage.show();
-           Stage stage1 = (Stage) gererReclamation1.getScene().getWindow();
-    stage1.close(); 
+         
     }
 
     @FXML
     private void gererEvent(ActionEvent event) throws IOException, SQLException {
-         u=uc.getUser(namee);
+       Stage stage1 = (Stage) gererEvent1.getScene().getWindow();
+            stage1.close();
+        u=uc.getUser(namee);
                System.out.println("lena zaama 0 "+u.getId());//cv jawou bhy
         FXMLLoader loader = new FXMLLoader();
                      loader.setLocation(getClass().getResource("/GUI/Front/gererEvent/event.fxml"));
@@ -147,8 +153,7 @@ public class AcceuilFrontController implements Initializable {
              Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
-            Stage stage1 = (Stage) gererEvent1.getScene().getWindow();
-            stage1.close();
+           
         
     }
       public String getUser(String nom )

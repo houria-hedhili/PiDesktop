@@ -24,6 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import Entity.imen.Plat;
+import GUI.login.LoginController;
 import java.io.File;
 import java.sql.Date;
 import java.util.regex.Matcher;
@@ -88,8 +89,10 @@ PlatService ps = new PlatService();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
                 affichAllPlat();
-System.out.println("commiti");
+ int id = LoginController.ID;
+       System.out.println("hetha id user" +id);
         type.setValue("plat");
         type.setItems(platList);
           typee =new ArrayList();
