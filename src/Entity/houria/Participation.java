@@ -18,6 +18,11 @@ public class Participation {
     private user user; 
     private int id_event;    
 
+    public Participation(int id_user, int id_event) {
+        this.id_user = id_user;
+        this.id_event = id_event;
+    }
+
     public Participation(user user, int id_event) {
         this.user = user;
         this.id_event = id_event;

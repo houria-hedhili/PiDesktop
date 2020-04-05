@@ -9,7 +9,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -35,25 +34,39 @@
                               <TextField fx:id="nom" layoutX="60.0" layoutY="109.0" promptText="NOM" />
                               <TextField fx:id="prenom" layoutX="62.0" layoutY="157.0" promptText="PRENOM" />
                               <TextField fx:id="age" layoutX="60.0" layoutY="219.0" promptText="AGE" />
-                              <Button fx:id="buttonAdd" layoutX="134.0" layoutY="339.0" mnemonicParsing="false" onAction="#ajoutB" styleClass="supp" text="INSCRIRE" />
+                              <Button fx:id="buttonAdd" layoutX="134.0" layoutY="339.0" mnemonicParsing="false" onAction="#ajoutB" text="INSCRIRE" />
                               <TableView fx:id="tabAffiche1" layoutX="311.0" layoutY="30.0" onMouseClicked="#modifAff" prefHeight="430.0" prefWidth="441.0">
+                              <TextField layoutX="58.0" layoutY="45.0" promptText="SEXE" />
+                              <TextField layoutX="60.0" layoutY="100.0" promptText="NOM" />
+                              <TextField layoutX="62.0" layoutY="157.0" promptText="PRENOM" />
+                              <TextField layoutX="60.0" layoutY="219.0" promptText="AGE" />
+                              <TextField layoutX="60.0" layoutY="273.0" promptText="TRAJET" />
+                              <Button layoutX="134.0" layoutY="339.0" mnemonicParsing="false" text="INSCRIRE" />
+                              <TableView fx:id="tabAffiche1" layoutX="265.0" layoutY="32.0" prefHeight="427.0" prefWidth="519.0">
                                  <columns>
-                                    <TableColumn fx:id="colsexe1" prefWidth="79.0" text="SEXE" />
-                                    <TableColumn fx:id="colnom1" prefWidth="91.0" text="NOM" />
-                                    <TableColumn fx:id="colpre1" prefWidth="106.0" text="PRENOM" />
-                                    <TableColumn fx:id="colage1" prefWidth="57.0" text="AGE" />
-                                    <TableColumn fx:id="colidbus1" prefWidth="107.0" text="LIGNE" />
+                                    <TableColumn fx:id="colid1" prefWidth="42.0" text="ID" />
+                                    <TableColumn fx:id="colsexe1" prefWidth="65.0" text="SEXE" />
+                                    <TableColumn fx:id="colnom1" prefWidth="82.0" text="NOM" />
+                                    <TableColumn fx:id="colpre1" prefWidth="92.0" text="PRENOM" />
+                                    <TableColumn fx:id="colage1" prefWidth="75.0" text="AGE" />
+                                    <TableColumn fx:id="colidbus1" prefWidth="79.0" text="LIGNE" />
                                  </columns>
                               </TableView>
-                              <Button fx:id="updateButton" layoutX="438.0" layoutY="481.0" mnemonicParsing="false" onAction="#modifB" styleClass="supp" text="MODIFIER" />
-                              <Button fx:id="suppButton" layoutX="568.0" layoutY="481.0" mnemonicParsing="false" onAction="#supprimeB" styleClass="supp" text="RETIRER" />
-                              <ComboBox fx:id="sexecombo" layoutX="59.0" layoutY="61.0" prefWidth="150.0" promptText="SEXE" styleClass="combo" />
-                              <ComboBox fx:id="trajet1" layoutX="62.0" layoutY="277.0" prefWidth="150.0" promptText="Ligne" styleClass="combo" />
+                              <Button fx:id="updateButton" layoutX="438.0" layoutY="481.0" mnemonicParsing="false" onAction="#modifB" text="MODIFIER" />
+                              <Button fx:id="suppButton" layoutX="568.0" layoutY="481.0" mnemonicParsing="false" onAction="#supprimeB" text="RETIRER" />
+                              <ComboBox fx:id="sexecombo" layoutX="59.0" layoutY="61.0" prefWidth="150.0" promptText="SEXE" />
+                              <ComboBox fx:id="trajet1" layoutX="62.0" layoutY="277.0" prefWidth="150.0" promptText="Ligne" />
+                                    <TableColumn fx:id="colidbus1" prefWidth="79.0" text="ID BUS" />
+                                    <TableColumn fx:id="colidp1" prefWidth="91.0" text="ID PARENT" />
+                                 </columns>
+                              </TableView>
+                              <Button layoutX="438.0" layoutY="481.0" mnemonicParsing="false" text="MODIFIER" />
+                              <Button layoutX="568.0" layoutY="481.0" mnemonicParsing="false" text="RETIRER" />
                            </children>
                         </AnchorPane>
                      </content>
                      <graphic>
-                        <Label prefHeight="29.0" prefWidth="59.0" text="S'inscrire" textFill="#f2f2f2">
+                        <Label text="S'inscrire" textFill="#f2f2f2">
                            <font>
                               <Font name="Cooper Black" size="14.0" />
                            </font>
@@ -69,24 +82,63 @@
                                     <Button fx:id="retour1" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour1" styleClass="retour" stylesheets="@../gererCantine/abonnement/aboncantine.css" text="Retour" />
                                  </children>
                               </Pane>
-                              <TableView fx:id="tabAffiche" layoutX="76.0" layoutY="112.0" prefHeight="487.0" prefWidth="515.0">
+                              <TableView fx:id="tabAffiche" layoutX="76.0" layoutY="109.0" prefHeight="490.0" prefWidth="592.0">
                                  <columns>
-                                    <TableColumn fx:id="colsexe" prefWidth="89.0" text="SEXE" />
-                                    <TableColumn fx:id="colnom" prefWidth="89.0" text="NOM" />
-                                    <TableColumn fx:id="colpre" prefWidth="126.0" text="PRENOM" />
-                                    <TableColumn fx:id="colage" text="AGE" />
-                                    <TableColumn fx:id="colidbus" prefWidth="130.0" text="LIGNE" />
+                                    <TableColumn fx:id="colid" prefWidth="75.0" text="ID" />
+                                    <TableColumn fx:id="colsexe" prefWidth="75.0" text="SEXE" />
+                                    <TableColumn fx:id="colnom" prefWidth="75.0" text="NOM" />
+                                    <TableColumn fx:id="colpre" prefWidth="100.0" text="PRENOM" />
+                                    <TableColumn fx:id="colage" prefWidth="97.0" text="AGE" />
+                                    <TableColumn fx:id="colidbus" prefWidth="77.0" text="ID BUS" />
+                                    <TableColumn fx:id="colidp" prefWidth="94.0" text="ID PARENT" />
                                  </columns>
                               </TableView>
-                              <Label alignment="TOP_CENTER" layoutX="76.0" layoutY="52.0" styleClass="mod" text="Liste de mes enfants inscrits " textAlignment="CENTER">
-                                 <effect>
-                                    <Blend />
-                                 </effect></Label>
+                              <Label layoutX="76.0" layoutY="52.0" text="Liste de mes enfants inscrits " />
                            </children>
                         </AnchorPane>
                      </content>
                      <graphic>
-                        <Label prefHeight="16.0" prefWidth="46.0" text="Enfant" textFill="#f2f2f2">
+                        <Label text="Enfant" textFill="#f2f2f2">
+                           <font>
+                              <Font name="Cooper Black" size="14.0" />
+                           </font>
+                        </Label>
+                     </graphic>
+                  </Tab>
+                  <Tab>
+                     <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Pane layoutX="602.0" layoutY="623.0" prefHeight="54.0" prefWidth="200.0">
+                                 <children>
+                                    <Button fx:id="retour3" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour3" styleClass="retour" stylesheets="@../gererCantine/abonnement/aboncantine.css" text="Retour" />
+                                 </children>
+                              </Pane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                     <graphic>
+                        <Label text="Plats de jour" textFill="#f2f2f2">
+                           <font>
+                              <Font name="Cooper Black" size="14.0" />
+                           </font>
+                        </Label>
+                     </graphic>
+                  </Tab>
+                  <Tab>
+                     <content>
+                        <AnchorPane prefHeight="691.0" prefWidth="1017.0">
+                           <children>
+                              <Pane layoutX="602.0" layoutY="623.0" prefHeight="54.0" prefWidth="200.0">
+                                 <children>
+                                    <Button fx:id="retour4" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour4" styleClass="retour" stylesheets="@../gererCantine/abonnement/aboncantine.css" text="Retour" />
+                                 </children>
+                              </Pane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                     <graphic>
+                        <Label text="Votre menu" textFill="#f2f2f2">
                            <font>
                               <Font name="Cooper Black" size="14.0" />
                            </font>

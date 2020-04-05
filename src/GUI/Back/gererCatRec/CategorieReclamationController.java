@@ -93,7 +93,7 @@ public class CategorieReclamationController implements Initializable {
         ObservableList et=FXCollections.observableArrayList(categ);
         tab.setItems(et);
         ObservableList observableList = FXCollections.observableArrayList(categ);
-        colRef.setCellValueFactory(new PropertyValueFactory<>("ref"));
+       // colRef.setCellValueFactory(new PropertyValueFactory<>("ref"));
         colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));  
         }
@@ -107,7 +107,7 @@ public class CategorieReclamationController implements Initializable {
         ObservableList observableList = FXCollections.observableArrayList(categ);
      //en vert hekom mil interface tu les recuperes m tableau eli samitou tab
      //en oranger hekom les entités mte3ek
-        colRef.setCellValueFactory(new PropertyValueFactory<>("ref"));
+     //   colRef.setCellValueFactory(new PropertyValueFactory<>("ref"));
         colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
     }

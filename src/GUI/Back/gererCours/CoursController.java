@@ -270,7 +270,7 @@ public class CoursController implements Initializable {
       List events=sp.displayALLCours();
        ObservableList et=FXCollections.observableArrayList(events);
        table_cours.setItems(et);
-       colmatiere.setCellValueFactory(new PropertyValueFactory<>("id_mat"));
+       colmatiere.setCellValueFactory(new PropertyValueFactory<>("mat"));
        colimage.setCellValueFactory(new PropertyValueFactory<>("photo"));
        colplace.setCellValueFactory(new PropertyValueFactory<>("seats"));
        colduree.setCellValueFactory(new PropertyValueFactory<>("duree"));

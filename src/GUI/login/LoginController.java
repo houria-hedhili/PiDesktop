@@ -55,6 +55,8 @@ public class LoginController implements Initializable {
     private Label oublier;
     @FXML
     private Button signout;
+    public  static int ID=0;
+
   UserCRUD us = new UserCRUD();
 
     /**
@@ -65,7 +67,7 @@ public class LoginController implements Initializable {
         // TODO
     }    
 
- 
+
 
     @FXML
     private void connexionUtilisateur(ActionEvent event) throws SQLException, IOException {
@@ -74,20 +76,22 @@ public class LoginController implements Initializable {
         u.setPassword(password.getText());
         String name=us.getNomPrenom(u.getUsername());
        System.out.println(us.verifAdmin(u.getUsername()).equals("a:1:{i:0;s:16:\"ROLE_SUPER_ADMIN\";}"));
-
         if (us.verifpassword(u.getUsername(), u.getPassword()) ) {
         if(us.verifAdmin(u.getUsername()).equals("a:1:{i:0;s:16:\"ROLE_SUPER_ADMIN\";}"))
         {    Stage stage = new Stage();
+       ID=us.getId(u.getUsername());
+
         Parent root = FXMLLoader.load(getClass().getResource("/GUI/Back/Acceuilback/menuu.fxml"));
         
         Scene scene = new Scene(root);
-        
         stage.setScene(scene);
         stage.show();
+        
         }
         else if(us.verifAdmin(u.getUsername()).equals("a:0:{}"))
         { FXMLLoader loader = new FXMLLoader();
                      loader.setLocation(getClass().getResource("/GUI/Front/Acceuilfront/acceuilFront.fxml"));
+ID=us.getId(u.getUsername());
 
               
               Parent detail=loader.load();

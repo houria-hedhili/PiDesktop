@@ -26,6 +26,10 @@
             <file>file:/C:/xampp/htdocs/PiDesktop/src/GUI/Back/Acceuilback/MenuuController.java</file>
             <file>file:/C:/xampp/htdocs/PiDesktop/src/GUI/Back/gererBus/bus.css</file>
             <file>file:/C:/xampp/htdocs/PiDesktop/src/GUI/Front/gererEnfant/enfant.fxml</file>
+            <file>file:/D:/integrationJava/src/GUI/login/LoginController.java</file>
+            <file>file:/D:/integrationJava/src/GUI/Front/Acceuilfront/AcceuilFrontController.java</file>
+            <file>file:/D:/integrationJava/src/GUI/Front/gererCantine/abonnement/AbonCantineController.java</file>
+            <file>file:/D:/integrationJava/src/service/authentification/UserCRUD.java</file>
         </group>
     </open-files>
 </project-private>
