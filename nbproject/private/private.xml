@@ -3,25 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/integrationJava/src/service/imen/abonnementService.java</file>
-            <file>file:/D:/integrationJava/src/service/authentification/UserCRUD.java</file>
-            <file>file:/D:/integrationJava/src/service/houria/participationCRUD.java</file>
-            <file>file:/D:/integrationJava/src/GUI/Back/gererCantine/CantineController.java</file>
-            <file>file:/D:/integrationJava/src/service/ameni/reclamationService.java</file>
             <file>file:/D:/integrationJava/src/GUI/login/LoginController.java</file>
-            <file>file:/D:/integrationJava/src/GUI/Back/gererCours/CoursController.java</file>
-            <file>file:/D:/integrationJava/src/toolsHouria/PDF.java</file>
-            <file>file:/D:/integrationJava/src/Entity/houria/Participation.java</file>
             <file>file:/D:/integrationJava/src/GUI/Front/Acceuilfront/AcceuilFrontController.java</file>
-            <file>file:/D:/integrationJava/src/service/houria/EventCRUD.java</file>
-            <file>file:/D:/integrationJava/src/service/houria/CoursCRUD.java</file>
-            <file>file:/D:/integrationJava/src/GUI/Front/gererEvent/EventfrontController.java</file>
-            <file>file:/D:/integrationJava/src/Entity/ameni/reclamation.java</file>
-            <file>file:/D:/integrationJava/src/GUI/Back/gererAbonnement/AbonnementController.java</file>
-            <file>file:/D:/integrationJava/src/GUI/Front/gererEvent/EventController.java</file>
-            <file>file:/D:/integrationJava/src/Entity/imen/abonnement.java</file>
             <file>file:/D:/integrationJava/src/GUI/Front/gererCantine/abonnement/AbonCantineController.java</file>
-            <file>file:/D:/integrationJava/src/GUI/Back/gererCatRec/CategorieReclamationController.java</file>
+            <file>file:/D:/integrationJava/src/service/authentification/UserCRUD.java</file>
         </group>
     </open-files>
 </project-private>
