@@ -83,14 +83,19 @@
                                     <Button fx:id="retour2" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour2" styleClass="retour" stylesheets="@../gererCantine/abonnement/aboncantine.css" text="Retour" />
                                  </children>
                               </Pane>
-                              <TableView fx:id="tab1" layoutX="6.0" layoutY="38.0" prefHeight="583.0" prefWidth="795.0">
+                              <TableView fx:id="tab1" layoutX="6.0" layoutY="86.0" prefHeight="535.0" prefWidth="793.0">
                                 <columns>
                                   <TableColumn fx:id="colDate1" prefWidth="129.0" text="Date" />
                                     <TableColumn fx:id="colEtat1" prefWidth="211.0" text="Etat" />
-                                    <TableColumn fx:id="colDescription1" prefWidth="217.0" text="Description" />
-                                    <TableColumn fx:id="colCategorieReclamation1" prefWidth="237.0" text="CategorieReclamation" />
+                                    <TableColumn fx:id="colDescription1" prefWidth="228.0" text="Description" />
+                                    <TableColumn fx:id="colCategorieReclamation1" prefWidth="226.0" text="CategorieReclamation" />
                                 </columns>
                               </TableView>
+                              <Label layoutX="28.0" layoutY="20.0" text="Reclamation à Urgence avec risque" textFill="#66bb55">
+                                 <font>
+                                    <Font name="Forte" size="43.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                      </content>
@@ -111,7 +116,7 @@
                                     <Button fx:id="retour3" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour3" styleClass="retour" stylesheets="@../gererCantine/abonnement/aboncantine.css" text="Retour" />
                                  </children>
                               </Pane>
-                              <TableView fx:id="tab2" layoutX="14.0" layoutY="52.0" prefHeight="569.0" prefWidth="790.0">
+                              <TableView fx:id="tab2" layoutX="13.0" layoutY="78.0" prefHeight="535.0" prefWidth="792.0">
                                 <columns>
                                   <TableColumn fx:id="colDate2" prefWidth="75.0" text="Date" />
                                     <TableColumn fx:id="colEtat2" prefWidth="208.0" text="Etat" />
@@ -119,6 +124,11 @@
                                     <TableColumn fx:id="colCategorieReclamation2" prefWidth="298.0" text="CategorieReclamation" />
                                 </columns>
                               </TableView>
+                              <Label layoutX="60.0" layoutY="14.0" text="Reclamation à Urgence non vitale" textFill="#e5942b">
+                                 <font>
+                                    <Font name="Forte" size="43.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                      </content>

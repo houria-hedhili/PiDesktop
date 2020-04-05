@@ -24,8 +24,7 @@
     <jar href="lib\simple-java-mail-1.8.jar" size="18844" download="eager" />
     <jar href="lib\slf4j-api-1.6.1.jar" size="25496" download="eager" />
     <jar href="lib\smtp.jar" size="52787" download="eager" />
-    <jar href="piFinal.jar" size="2757587" download="eager" />
-    <jar href="piFinal.jar" size="2743988" download="eager" />
+    <jar href="piFinal.jar" size="2964697" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="piFinal" >
     <param name="requiredFXVersion" value="8.0+"/>
