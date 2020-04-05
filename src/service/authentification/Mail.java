@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Services;
+package service.authentification;
 
 import com.sun.mail.util.MailSSLSocketFactory;
 import java.io.IOException;

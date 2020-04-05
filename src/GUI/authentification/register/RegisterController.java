@@ -18,6 +18,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -80,7 +82,18 @@ public class RegisterController implements Initializable {
     private void inscrireUtilisateur(ActionEvent event) throws IOException {
    Utilisateur u = new Utilisateur();
         UserCRUD us = new UserCRUD();
-            u.setUsername(username.getText());
+           
+        if(username.getText().equals("")&& mail.getText().equals("") && password.getText().equals("") && nom.getText().equals("") && prenom.getText().equals(""))
+        {Alert alert = new Alert(AlertType.ERROR);
+alert.setTitle("Invalide inscription");
+alert.setHeaderText("Veuillez remplir tous les champs");
+alert.setContentText("Ooops!");
+
+alert.showAndWait();
+        
+        
+        }else
+        { u.setUsername(username.getText());
             u.setEmail(mail.getText());
             u.setPassword(password.getText());
             u.setEnable(1);
@@ -88,14 +101,14 @@ u.setNom(nom.getText());
 u.setRoles(null);
 u.setPrenom(prenom.getText());
 
-            us.ajoutUser(u, u.getPassword());
+           us.ajoutUser(u, u.getPassword());
                Parent root = FXMLLoader.load(getClass().getResource("/GUI/login/login.fxml"));
         Stage stage1=new Stage();
         Scene scene = new Scene(root);
                       Stage stage = (Stage) signout.getScene().getWindow();
 stage.close();
         stage1.setScene(scene);
-        stage1.show();//ghaltet azizaaa
+        stage1.show();}//ghaltet azizaaa
             
     }
     @FXML

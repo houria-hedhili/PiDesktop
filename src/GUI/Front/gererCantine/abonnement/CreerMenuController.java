@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
 /**
@@ -30,11 +31,7 @@ public class CreerMenuController implements Initializable {
     @FXML
     private ImageView image;
     @FXML
-    private TextArea desc;
-    @FXML
-    private Button ajoutMenu;
-    @FXML
-    private Button retour;
+    private Text desc;
     /**
      * Initializes the controller class.
      */
@@ -45,15 +42,6 @@ public class CreerMenuController implements Initializable {
         
     }    
 
-    @FXML
-    private void ajoutMenu(ActionEvent event) {
-    
-    
-    }
-
-    @FXML
-    private void retour(ActionEvent event) {
-    }
     /**
      * This method accepts a person to initialize the view
      * @param p 

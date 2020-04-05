@@ -62,13 +62,7 @@ public class EnfantController implements Initializable {
     @FXML
     private Button retour2;
     @FXML
-    private Button retour3;
-    @FXML
-    private Button retour4;
-    @FXML
     private TableView<enfant> tabAffiche;
-    @FXML
-    private TableColumn<enfant, Integer> colid;
     @FXML
     private TableColumn<enfant, String> colsexe;
     @FXML
@@ -81,8 +75,6 @@ public class EnfantController implements Initializable {
     private TableColumn<enfant, Integer> colidbus;
     @FXML
     private TableView<enfant> tabAffiche1;
-    @FXML
-    private TableColumn<?,?> colid1;
     @FXML
     private TableColumn<enfant, String> colsexe1;
     @FXML
@@ -110,7 +102,7 @@ public class EnfantController implements Initializable {
     private TextField age;
     @FXML
     private ComboBox<String> trajet1;
-    
+    String ch="";
     /**
      * Initializes the controller class.
      */
@@ -119,15 +111,14 @@ public class EnfantController implements Initializable {
         // TODO               
        afficher1();
         afficher2();
-        //combo sexe
         ObservableList<String> sexe=FXCollections.observableArrayList("Garcon","Fille");
         sexecombo.setValue("sexe");
        sexecombo.setItems(sexe);
         CrudBusService c=new CrudBusService();
         List<String> listeTrajete= c.getAllLigne();
-       ObservableList<String> listetrajet =FXCollections.observableArrayList(listeTrajete);
-trajet1.setValue("ligne");
-trajet1.setItems(listetrajet);
+        ObservableList<String> listetrajet =FXCollections.observableArrayList(listeTrajete);
+        trajet1.setValue("ligne");
+        trajet1.setItems(listetrajet);
        
 
     }    
@@ -141,7 +132,8 @@ trajet1.setItems(listetrajet);
        ObservableList et=FXCollections.observableArrayList(liste);
        tabAffiche.setItems(et);
    //  ObservableList observableList = FXCollections.observableArrayList(buss);
-        colid.setCellValueFactory(new PropertyValueFactory<>("id"));
+       //
+       //colid.setCellValueFactory(new PropertyValueFactory<>("id"));
         colsexe.setCellValueFactory(new PropertyValueFactory<>("sexe"));
         colnom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         colpre.setCellValueFactory(new PropertyValueFactory<>("prenom")); 
@@ -151,11 +143,11 @@ trajet1.setItems(listetrajet);
       private void afficher2() {
      CrudBusService c=new CrudBusService();
           List<enfant> liste=c.getLigneBus();
-      //ya benti 5demneha fil crudBusSer vice normalemnt fel enfant  etyy et de typoe enfant 
+  
        ObservableList et=FXCollections.observableArrayList(liste);
        tabAffiche1.setItems(et);
      ObservableList observableList = FXCollections.observableArrayList(liste);
-        colid1.setCellValueFactory(new PropertyValueFactory<>("id"));
+       // colid1.setCellValueFactory(new PropertyValueFactory<>("id"));
         colsexe1.setCellValueFactory(new PropertyValueFactory<>("sexe"));
         colnom1.setCellValueFactory(new PropertyValueFactory<>("nom"));
         colpre1.setCellValueFactory(new PropertyValueFactory<>("prenom")); 
@@ -189,7 +181,6 @@ trajet1.setItems(listetrajet);
      
     }
 
-    @FXML
     private void retour3(ActionEvent event) throws IOException {
        Stage stage = (Stage) retour1.getScene().getWindow();
       Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front/Acceuilfront/acceuilFront.fxml"));
@@ -201,7 +192,6 @@ trajet1.setItems(listetrajet);
        stage.close();
     }
 
-    @FXML
     private void retour4(ActionEvent event) throws IOException {
    Stage stage = (Stage) retour1.getScene().getWindow();
     Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front/Acceuilfront/acceuilFront.fxml"));
@@ -350,5 +340,10 @@ CrudBusService b1= new CrudBusService();
     @FXML
     private void refreshAff(Event event) {
         afficher2();
+    }
+    
+    public void getUsername(String u)
+    {
+    ch=u;
     }
 }

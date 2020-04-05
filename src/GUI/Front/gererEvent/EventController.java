@@ -8,7 +8,10 @@ package GUI.Front.gererEvent;
 import ConnexionBd.connexionBd;
 import Entity.houria.Evenement;
 import Entity.houria.Participation;
+import Entity.user.Utilisateur;
 import Entity.user.user;
+import com.itextpdf.text.DocumentException;
+import java.io.FileNotFoundException;
 
 import java.io.IOException;
 import java.net.URL;
@@ -53,6 +56,7 @@ import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import service.houria.EventCRUD;
 import service.houria.participationCRUD;
+import toolsHouria.PDF;
 
 /**
  * FXML Controller class
@@ -99,7 +103,7 @@ public class EventController implements Initializable {
     private TableColumn<?, ?> descrip;
     @FXML
     private TableColumn<?, ?> adress;
-
+    private Utilisateur u=new Utilisateur();
     public EventController() {
         cnx= connexionBd.getInstance().getCnx();
     }
@@ -107,11 +111,17 @@ public class EventController implements Initializable {
     /**
      * Initializes the controller class.
      */
+          public void getUser(Utilisateur m )
+    { 
+               u=m;
+               System.out.println("lena fi event : id "+u.getId());
+
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
       
-     afficher();
+    // afficher();
 
     }    
 
@@ -164,8 +174,12 @@ public class EventController implements Initializable {
     stage.close();
      
     }
-      private void display_events() throws SQLException{
+      
+      private void display_events() throws SQLException, FileNotFoundException, DocumentException{
          // participationService pa = new participationService();
+         
+          System.out.println("hedha l id eli connecté pour verifier : "+u.getId());
+
           String req="select * from event  ";
           List<VBox> list = new ArrayList<>();
           ste=cnx.createStatement();
@@ -178,19 +192,24 @@ public class EventController implements Initializable {
               Button bt1=new Button("participer");
               Button bt222=new Button("hou");
               Label complet = null;
+          System.out.println("9bal creation de participation fer8a"+u.getId());
 
-                 Participation pp= new Participation(9,rs.getInt(1));
+                 Participation pp= new Participation(u.getId(),rs.getInt(1));
+     System.out.println("baed creation w fi wost pp "+pp.getId_user());
+
               participationCRUD a = new participationCRUD();
               HBox h= new HBox();
               Label inscrit=new Label("");
               
               //3rft chniya el scrol ?eyyy
               if (a.chercherparticipation(pp)){
+              System.out.println("wsol lel chercher"+u.getId());
+
                  bt1.setDisable(true);
                inscrit=new Label(" vous etes inscrit a cet evenement  ");
 
               }
-              
+
               if(e.getNbpart()==0){
                //  bt1.setDisable(true);
              complet=new Label(" Notre evenement est complet   ");
@@ -208,12 +227,23 @@ public class EventController implements Initializable {
               bt1.setOnAction(new EventHandler<ActionEvent>() {
                  @Override
                  public void handle(ActionEvent event) { //bitha heki chas
-                     System.out.println("c button mouhage tsir creation houniiii  ");//eyy fheemtik chnia theb taamel bih?
-                      a.insert(pp);// insert hedhi yaanii bech yaaml participer bech nkaml table thenya mtaa event participation aaa fhemtik
+                     System.out.println("c button mouhage tsir creation houniiii  ");
+                      
+                     a.insert(pp);//insert participation
+                         PDF pdf = new PDF();
+                     try {
+                         pdf.pdf(e);
+                     } catch (SQLException ex) {
+                         Logger.getLogger(EventController.class.getName()).log(Level.SEVERE, null, ex);
+                     } catch (FileNotFoundException ex) {
+                         Logger.getLogger(EventController.class.getName()).log(Level.SEVERE, null, ex);
+                     } catch (DocumentException ex) {
+                         Logger.getLogger(EventController.class.getName()).log(Level.SEVERE, null, ex);
+                     }
                                bt1.setDisable(true); 
                       bb.decrementer(e.getNbpart()-1,e.getIdEvent());
                afficher();
-               
+
 
                       
                  }
@@ -253,9 +283,10 @@ public class EventController implements Initializable {
          eventcontainer.getChildren().addAll(list);
      }
          private void afficher() {
-    
+    System.out.println("awel l addichage"+u.getId());
      EventCRUD sp = new EventCRUD();
-      List events=sp.displaymesevent(9);
+     System.out.println("mes part"+u.getId());
+      List events=sp.displaymesevent(u.getId());
        ObservableList et=FXCollections.observableArrayList(events);
        table_event.setItems(et);//  ouiii chnouwa 5orm hedha ???  
        nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
@@ -279,7 +310,7 @@ public class EventController implements Initializable {
         }else{
           bb.decrementer(cc.getNbpart()+1,cc.getIdEvent());
 
-            cs.deleteparticipation(cc.getIdEvent(),9);
+            cs.deleteparticipation(cc.getIdEvent(),u.getId());
 
     
            afficher();
@@ -291,10 +322,12 @@ public class EventController implements Initializable {
     }
 
     @FXML
-    private void aff(Event event) throws SQLException {
+    private void aff(Event event) throws SQLException, FileNotFoundException, DocumentException {
                     display_events();
+                    System.out.println("offff"+u.getId());
 
     }
 
-    
+   
+     
 }

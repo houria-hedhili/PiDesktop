@@ -99,7 +99,7 @@ public class CoursCRUD {
     public ObservableList<Cours> displayALLCours() {
         ObservableList<Cours> myList = FXCollections.observableArrayList();
         try {
-            String req = "SELECT * FROM cours";
+            String req ="select r.*,c.nom from cours r INNER JOIN matiere c on r.matiere = c.id ";
             Statement pst = cnx.createStatement();
             ResultSet rs = pst.executeQuery(req);
             while (rs.next()) {
@@ -116,6 +116,7 @@ public class CoursCRUD {
                    v.setFitHeight(100);
                    v.setFitWidth(100);
                 p.setPhoto(v);
+                p.setMat(rs.getString("nom"));
                 myList.add(p);
             }
 

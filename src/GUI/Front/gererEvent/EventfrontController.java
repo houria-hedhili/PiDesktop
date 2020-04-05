@@ -8,6 +8,7 @@ package GUI.Front.gererEvent;
 import ConnexionBd.connexionBd;
 import Entity.houria.Evenement;
 import Entity.houria.Participation;
+import Entity.user.Utilisateur;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -50,7 +51,8 @@ public class EventfrontController implements Initializable {
     @FXML
     private VBox eventcontainer;
         EventCRUD bb = new EventCRUD();
-            
+        private Utilisateur u=new Utilisateur();
+
     connexionBd connection = null;
         private Connection cnx;
         Statement ste;
@@ -85,7 +87,6 @@ public class EventfrontController implements Initializable {
               Button bt1=new Button("participer");
               Button bt222=new Button("hou");
               Label complet = null;
-
                  Participation pp= new Participation(9,rs.getInt(1));
               participationCRUD a = new participationCRUD();
               HBox h= new HBox();
@@ -115,7 +116,7 @@ public class EventfrontController implements Initializable {
               bt1.setOnAction(new EventHandler<ActionEvent>() {
                  @Override
                  public void handle(ActionEvent event) { //bitha heki chas
-                     System.out.println("c button mouhage tsir creation houniiii  ");//eyy fheemtik chnia theb taamel bih?
+                     System.out.println("c button mouhage tsir creation houniiii  ");
                       a.insert(pp);// insert hedhi yaanii bech yaaml participer bech nkaml table thenya mtaa event participation aaa fhemtik
                                bt1.setDisable(true); 
                       bb.decrementer(e.getNbpart()-1,e.getIdEvent());
@@ -157,5 +158,6 @@ public class EventfrontController implements Initializable {
           }
          eventcontainer.getChildren().addAll(list);
      }
+         
     
 }

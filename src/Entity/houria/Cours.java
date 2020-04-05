@@ -14,6 +14,7 @@ import javafx.scene.image.ImageView;
  */
 public class Cours {
     private Matiere a;  
+   private String mat;
     private int id_mat;
         private int id  ;
     private String description ;
@@ -22,6 +23,14 @@ public class Cours {
     private Time duree; 
     private int age ;
     private ImageView photo;
+
+    public String getMat() {
+        return mat;
+    }
+
+    public void setMat(String mat) {
+        this.mat = mat;
+    }
 
 
     public Cours(int id_mat, String description, Time duree, int seats, int age, String image) {
