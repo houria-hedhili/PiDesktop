@@ -86,6 +86,7 @@ public class LoginController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        
         }
         else if(us.verifAdmin(u.getUsername()).equals("a:0:{}"))
         { FXMLLoader loader = new FXMLLoader();

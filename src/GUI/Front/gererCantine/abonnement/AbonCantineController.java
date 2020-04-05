@@ -489,9 +489,15 @@ platCombo.setValue(mii.getPlat());
                 java.sql.Date sqlDate1 = java.sql.Date.valueOf(f);
       
 
-double y=calculTarif();
+
+                
+                double y=calculTarif();
  int nb=Integer.valueOf(nbenfant2.getText());
-    abonnement a=new abonnement(sqlDate, sqlDate1,y,nb);
+   if(dated.getValue().equals("") ||datef2.getValue().equals("") || nbenfant2.getText().isEmpty())
+   {Error("vous devez remplir tout le champ");
+   }
+ 
+ abonnement a=new abonnement(sqlDate, sqlDate1,y,nb);
         as.ajouterAbon(a);
         afficherAbonn();
        Success("ajout a ete effectuer avec succes");
@@ -517,6 +523,13 @@ etatCol.setCellValueFactory(new PropertyValueFactory<>("etat"));
     nbenfantCol.setCellValueFactory(new PropertyValueFactory<>("nbEnfant"));
      tableabon.setItems(abonListe);
     
+    }
+      private void Error(String msg) {
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+alert.setTitle("Error Dialog");
+alert.setHeaderText("Look, an Error Dialog");
+alert.setContentText(msg);
+alert.showAndWait();
     }
     
     
