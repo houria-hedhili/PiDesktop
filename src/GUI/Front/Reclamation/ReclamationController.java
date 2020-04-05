@@ -21,6 +21,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -60,8 +61,6 @@ public class ReclamationController implements Initializable {
     @FXML
     private TableView<reclamation> tab;
     @FXML
-    private TableColumn<reclamation, Integer> colId;
-    @FXML
     private TableColumn<reclamation, Date> colDate;
     @FXML
     private TableColumn<reclamation, String> colEtat;
@@ -92,8 +91,6 @@ public class ReclamationController implements Initializable {
     @FXML
     private TableView<reclamation> tab1;
     @FXML
-    private TableColumn<reclamation, Integer> colId1;
-    @FXML
     private TableColumn<reclamation, Date> colDate1;
     @FXML
     private TableColumn<reclamation, String> colEtat1;
@@ -109,8 +106,6 @@ reclamationService rc=new reclamationService();
     @FXML
     private TableView<reclamation> tab2;
     @FXML
-    private TableColumn<reclamation, Integer> colId2;
-    @FXML
     private TableColumn<reclamation, Date> colDate2;
     @FXML
     private TableColumn<reclamation, String> colEtat2;
@@ -118,6 +113,8 @@ reclamationService rc=new reclamationService();
     private TableColumn<reclamation, String> colDescription2;
     @FXML
     private TableColumn<reclamation, String> colCategorieReclamation2;
+    @FXML
+    private Button detaille;
 
     /**
      * Initializes the controller class.
@@ -373,5 +370,24 @@ reclamationService rc=new reclamationService();
         colDescription2.setCellValueFactory(new PropertyValueFactory<>("description"));
         colCategorieReclamation2.setCellValueFactory(new PropertyValueFactory<>("nom"));
          }
+
+    @FXML
+    private void detaille(ActionEvent event) throws IOException {
+                FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("detaille.fxml"));
+        Parent tableViewParent = loader.load();
+        
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //access the controller and call a method
+        DetailleController controller = loader.getController();
+        controller.initData(tab.getSelectionModel().getSelectedItem());
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
     
 }

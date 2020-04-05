@@ -2,13 +2,21 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="GUI.Back.gererCategorieReclamation.CategorieReclamationController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Back.gererCategorieReclamation.CategorieReclamationController">
     <stylesheets>
         <URL value="@categoriereclamation.css" />
     </stylesheets>
    <children>
-      <Label fx:id="catrec" layoutX="265.0" layoutY="179.0" text="categorie rec" />
+      <Label fx:id="catrec" layoutX="509.0" layoutY="34.0" text="categorie rec" />
+      <TableView layoutX="216.0" layoutY="73.0" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="colNom" prefWidth="75.0" text="Nom" />
+          <TableColumn fx:id="colDescription" prefWidth="124.0" text="Description" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
