@@ -92,7 +92,7 @@ public class PersonnelDao {
 
     }
 
-    public ObservableList<Personnel> displayALLPersonnel() {
+   /* public ObservableList<Personnel> displayALLPersonnel() {
         ObservableList<Personnel> myList = FXCollections.observableArrayList();
         try {
             String req = "SELECT * FROM personnel";
@@ -100,16 +100,17 @@ public class PersonnelDao {
             ResultSet rs = pst.executeQuery(req);
             while (rs.next()) {
                 Personnel p = new Personnel();
-                p.setId(rs.getInt("id"));
+               // p.setId(rs.getInt("id"));
                 p.setNom(rs.getString("nom"));
                 p.setPrenom(rs.getString("prenom"));
                 p.setAge(rs.getInt("age"));
                 p.setNb_h(rs.getFloat("nb_h"));
                 p.setPrix_h(rs.getFloat("prix_h"));
+                p.setCategorie(rs.getString("categorie"));
                   p.setImage(rs.getString("image"));
                  ImageView v=new ImageView();
                  
-                  // v.setImage(new Image(rs.getString(8)));
+                   v.setImage(new Image(rs.getString(8)));
                    v.setFitHeight(100);
                    v.setFitWidth(100);
                 p.setPhoto(v);
@@ -121,7 +122,7 @@ public class PersonnelDao {
 
         }
         return myList;
-    }
+    }*/
     
  public Personnel displayEventByID(int id) {
         Personnel p = new Personnel();
@@ -147,5 +148,53 @@ public class PersonnelDao {
         }
         return p; // jwna bhy aya by esnaa bich tcomitii wnhabtouh oprojet nekhdmou 3lih wala le ? eyh akiddd nkmll n // o93ed maaya nkaml nhot tak tak el matiere w nhabtouh mabaadhna okk
     }
+ 
+ 
+ 
+ 
+ 
+ 
+ public ObservableList<Personnel> recherchePersonnel(String recherche) throws SQLException {
+       ObservableList<Personnel> list = FXCollections.observableArrayList();
+       // ArrayList<Personnel> list = new ArrayList<>() ;
+        String requete = "Select s.id,s.nom,s.prenom,s.age,s.prix_h,s.nb_h,b.type,s.image,s.categorie from categorie b INNER JOIN personnel s on b.id=s.categorie where b.type LIKE '%"+recherche+"%' OR s.prenom LIKE '%"+recherche+"%' OR s.nom LIKE '%"+recherche+"%' OR s.age LIKE '%"+recherche+"%' OR s.nb_h LIKE '%"+recherche+"%' OR s.prix_h LIKE '%"+recherche+"%' OR s.categorie LIKE '%"+recherche+"%'" ;
+        try {
+
+            PreparedStatement ps = cnx.prepareStatement(requete);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+    Personnel p = new Personnel (rs.getInt(1),rs.getString(2), rs.getString(3),rs.getInt(4), rs.getFloat(5), rs.getFloat(6), rs.getString(7), rs.getString(8),rs.getInt(9));
+                    
+ImageView i=new ImageView();
+i.setImage(new Image(rs.getString(8)));
+i.setFitHeight(100);
+i.setFitWidth(100);
+p.setPhoto(i);
+            list.add(p);          
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return list;
+    }
+ 
+//  public void export (Personnel personnel) throws IOException, SQLException {
+//        try {
+//
+//            String requete
+//                    = "INSERT INTO personnel (nom,prenom,age,prix_h,nb_h,categorie,image) VALUES (?,?,?,?,?,?,?)";
+//            PreparedStatement st = cnx.prepareStatement(requete);
+//        
+//           
+//          //System.out.println(personnel.getCategorie()); ajo
+//        } catch (SQLException ex) {
+//            System.err.println(ex.getMessage());
+//            
+//            
+//
+//        }
+//
+//    }
     
 }
