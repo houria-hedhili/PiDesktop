@@ -3,13 +3,6 @@
  */
 
 .mainFxmlClass {
-
-}
-/*
- * Empty Stylesheet file.
- */
-
-.mainFxmlClass {
 #tabpane {
     -fx-tab-min-height: 5em;
     /* 24 */

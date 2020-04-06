@@ -36,6 +36,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javax.swing.JOptionPane;
@@ -115,6 +117,8 @@ reclamationService rc=new reclamationService();
     private TableColumn<reclamation, String> colCategorieReclamation2;
     @FXML
     private Button detaille;
+    @FXML
+    private WebView viewweb;
 
     /**
      * Initializes the controller class.
@@ -135,6 +139,11 @@ reclamationService rc=new reclamationService();
         //afficherRecherche();
         
         // TODO
+        
+        final WebEngine web = viewweb.getEngine();
+        //String urlweb = "http://google.com";
+        String urlweb = "https://www.google.com/maps/d/embed?mid=1vtsotPGfHrmxVaTGy_F_KOI6HxoiX7Rb&hl=fr";
+        web.load(urlweb);
     }    
 
 @FXML
@@ -267,6 +276,8 @@ reclamationService rc=new reclamationService();
     reclamationService b= new reclamationService();
     reclamation r=new reclamation(desc.getText(),b.getIdCategorie(categorieReclamationCombo.getValue()) ,comboEtat.getValue());
     b.ajouterReclamation(r);
+    afficherReclamation1();
+    
    /* if( etatText.getText().isEmpty() || descriptionText.getText().isEmpty()){
     Alert alertt=new Alert(Alert.AlertType.ERROR);
     alertt.setTitle("WARNING!");
@@ -306,7 +317,7 @@ reclamationService rc=new reclamationService();
    afficheRec(event);*/
   
   
-  afficherReclamation1();
+  
   
     }
 

@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
@@ -44,50 +43,3 @@
       </Label>
    </children>
 </AnchorPane>
-
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.net.URL?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-
-<AnchorPane id="AnchorPane" prefHeight="691.0" prefWidth="1151.0" style="-fx-background-color: #AEB6F2;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Back.gererAbonnement.AbonnementController">
-    <stylesheets>
-        <URL value="@abonnement.css" />
-    </stylesheets>
-   <children>
-      <TableView fx:id="tableabon" layoutX="169.0" layoutY="102.0" onMouseClicked="#moddifAbon" prefHeight="468.0" prefWidth="818.0">
-         <columns>
-            <TableColumn fx:id="prenomCol" prefWidth="150.0" text="Prenom" />
-            <TableColumn fx:id="nomCol" prefWidth="150.0" text="Nom" />
-            <TableColumn fx:id="nbenfantCol" minWidth="0.0" prefWidth="98.0" text="Nombre enfant" />
-            <TableColumn fx:id="tarifCol" minWidth="0.0" prefWidth="85.0" text="Tarif" />
-            <TableColumn fx:id="etatCol" minWidth="0.0" prefWidth="84.0" text="Etat" />
-            <TableColumn fx:id="datedCol" prefWidth="150.0" text="Date debut" />
-            <TableColumn fx:id="datefCol" minWidth="0.0" prefWidth="100.0" text="Date fin" />
-         </columns>
-      </TableView>
-      <ComboBox fx:id="abonCombo" layoutX="418.0" layoutY="622.0" prefHeight="41.0" prefWidth="191.0" styleClass="combo" stylesheets="@abonnement.css" />
-      <Label layoutX="305.0" layoutY="617.0" prefHeight="44.0" prefWidth="91.0" text="Etat :" textFill="#8547c6">
-         <font>
-            <Font name="Cambria" size="31.0" />
-         </font></Label>
-      <Button fx:id="modifier" layoutX="644.0" layoutY="621.0" mnemonicParsing="false" onAction="#modifier" prefHeight="44.0" prefWidth="139.0" styleClass="mod" stylesheets="@abonnement.css" text="Modifier" />
-      <Label layoutX="359.0" layoutY="20.0" text="Liste des abonnements au cantine" textFill="#3a25ba">
-         <font>
-            <Font name="Century Schoolbook Bold" size="26.0" />
-         </font>
-      </Label>
-      <Label layoutX="252.0" layoutY="580.0" text="Vous pouvez changer etat de l'abonnement en cas du payement" textFill="#3b136b">
-         <font>
-            <Font name="Cambria" size="20.0" />
-         </font>
-      </Label>
-   </children>
-</AnchorPane>
-

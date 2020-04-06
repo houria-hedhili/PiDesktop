@@ -77,13 +77,14 @@ public class CategorieReclamationController implements Initializable {
     @FXML
     private Button SupprimerBt;
     
+        public ArrayList<categorieReclamation> ran;
     categorieReclamationService categ=new categorieReclamationService();
-    @FXML
-    private TextField filtreText;
     
     
     @FXML
     private Pagination pagination;
+    @FXML
+    private TextField recherche;
     
 
     
@@ -130,11 +131,11 @@ public class CategorieReclamationController implements Initializable {
     nomText.clear();
     descriptionText.clear();    }
         
-        private void refreshB(ActionEvent event) throws SQLException{
-        List<categorieReclamation> listC=new ArrayList<>();
+        private void refreshB() throws SQLException{
+        List<categorieReclamation> listB=new ArrayList<>();
         categorieReclamationService   cr = new categorieReclamationService();
-        listC = cr.affcatRec();
-        ObservableList <categorieReclamation> data = FXCollections.observableArrayList(listC);
+        listB = cr.affcatRec();
+        ObservableList <categorieReclamation> data = FXCollections.observableArrayList(listB);
         tab.setItems(data);
     }
 
@@ -236,6 +237,41 @@ public class CategorieReclamationController implements Initializable {
     @FXML
     private void rechercheCat(KeyEvent event) {
     }
+
+    @FXML
+    private void recherche(KeyEvent event) {
+           categorieReclamationService categorieReclamationService = new categorieReclamationService();
+        recherche.setOnKeyReleased(e
+                -> {
+            if (recherche.getText().equals("") ) {
+
+                try {
+                    refreshB();
+                } catch (SQLException ex) {
+                    Logger.getLogger(CategorieReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+
+            } else {
+
+                try {
+        colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+
+                    tab.getItems().clear();
+
+                    tab.setItems(categorieReclamationService.recherche(recherche.getText()));
+
+                } catch (SQLException ex) {
+                Logger.getLogger(CategorieReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+
+                }
+            }
+        }
+        );
+
+    }
+    }
        
 
-}
+
