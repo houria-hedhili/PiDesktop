@@ -3,13 +3,6 @@
  */
 
 .mainFxmlClass {
-
-}
-/*
- * Empty Stylesheet file.
- */
-
-.mainFxmlClass {
 .table-view {
     -fx-background-color:#5969DA;
     -fx-background-radius: 30;
