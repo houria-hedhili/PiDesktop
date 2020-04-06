@@ -141,8 +141,8 @@ reclamationService rc=new reclamationService();
         // TODO
         
         final WebEngine web = viewweb.getEngine();
-        //String urlweb = "http://google.com";
-        String urlweb = "https://www.google.com/maps/d/embed?mid=1vtsotPGfHrmxVaTGy_F_KOI6HxoiX7Rb&hl=fr";
+        String urlweb = "http://google.com";
+        //String urlweb = "https://www.google.com/maps/d/embed?mid=1vtsotPGfHrmxVaTGy_F_KOI6HxoiX7Rb&hl=fr";
         web.load(urlweb);
     }    
 

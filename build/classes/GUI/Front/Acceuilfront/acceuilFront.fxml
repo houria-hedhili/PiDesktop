@@ -73,7 +73,7 @@
                         <Font name="Forte" size="26.0" />
                      </font>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="104.0" prefWidth="303.0" styleClass="but1" stylesheets="@acceuilfront.css" text="Visitez-nous" textFill="WHITE">
+                  <Button fx:id="VisiterNous" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#visiterNous" prefHeight="104.0" prefWidth="303.0" styleClass="but1" stylesheets="@acceuilfront.css" text="Visitez-nous" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="66.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
                            <image>

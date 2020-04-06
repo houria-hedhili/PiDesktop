@@ -172,6 +172,19 @@ public class AcceuilFrontController implements Initializable {
 
         return ch ;
     }
+
+    @FXML
+    private void visiterNous(ActionEvent event) throws IOException {
+             Stage stage1 = (Stage) VisiterNous.getScene().getWindow();
+    stage1.close();  
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front/Acceuilfront/visiterNous.fxml"));
+        
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+        stage.show();
+    }
     
     
 }
