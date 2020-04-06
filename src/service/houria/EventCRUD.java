@@ -128,13 +128,8 @@ public class EventCRUD {
         try {
                 String requete
                       
-                    ="  SELECT *\n" +
-"FROM `event`\n" +
-"WHERE `IdEvent` IN (\n" +
-"    SELECT `IdEvent`\n" +
-"    FROM `participation`\n" +
-"    WHERE `IdUser` = '"+a+"'\n" +
-"  )";
+                    =" select * from event where idEvent in (select idEvent from participation where idUser = '"+a+"') ";
+
                         PreparedStatement st = cnx.prepareStatement(requete);
                  // st.setInt(1, a);
 
@@ -208,9 +203,41 @@ public class EventCRUD {
 
              st.setInt(2,id);
              st.executeUpdate();
+             System.out.println("les nb de place dispo est diminué ");
+
          } catch (SQLException ex) {
              Logger.getLogger(EventCRUD.class.getName()).log(Level.SEVERE, null, ex);
          }
-            System.out.println("les nb de place dispo est diminué ");
+    }
+           
+           public ObservableList<Evenement> rechercheEvent(String recherche) throws SQLException {
+                   Evenement p = new Evenement();
+
+        ObservableList<Evenement> list = FXCollections.observableArrayList();
+        String requete = "Select *from event WHERE description LIKE '%"+recherche+"%' OR date LIKE '%"+recherche+"%' OR date_fin LIKE '%"+recherche+"%' OR nom LIKE '%"+recherche+"%' OR nbpart LIKE '%"+recherche+"%' OR local LIKE '%"+recherche+"%'  ";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(requete);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+           p.setIdEvent(rs.getInt("idEvent"));
+                p.setNom(rs.getString("nom"));
+                p.setDate(rs.getTimestamp("date"));
+                p.setLocal(rs.getString("local"));
+                p.setNbpart(rs.getInt("nbpart"));
+                p.setImage(rs.getString("image"));
+                p.setDate_fin(rs.getTimestamp("date_fin"));
+                p.setDescription(rs.getString("description"));
+                ImageView v=new ImageView();
+                v.setImage(new Image(rs.getString(8)));
+                v.setFitHeight(100);
+                v.setFitWidth(100);
+                p.setPhoto(v);
+            list.add(p);          
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return list;
     }
 }

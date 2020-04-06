@@ -50,7 +50,7 @@ public class UserCRUD {
 
     }
     
-    
+    //
    
     
     
@@ -396,6 +396,45 @@ String rq = "select * from fos_user where enabled ='"+ 0 +"' and (username like'
                 return false ;
         
     }
+     public Utilisateur getUser(String n) throws SQLException{
+           Utilisateur u=new Utilisateur();
+
+         try{
+                   String requete = "SELECT * FROM fos_user WHERE username = '" + n +"'";
+                       Statement s =  connexionBd.getInstance().getCnx().createStatement();
+            ResultSet rs = s.executeQuery(requete);
+             while (rs.next()) {
+
+                u.setId(rs.getInt("id")); 
+                u.setNom(rs.getString("username"));
+                u.setEmail(rs.getString("email"));
+             } 
+         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+
+        }
+            return u; 
+
+
+     }
+     public int getId(String u)
+     {
+      int i=0;
+         try{
+                   String requete = "SELECT id FROM fos_user WHERE username = '" + u +"'";
+                       Statement s =  connexionBd.getInstance().getCnx().createStatement();
+            ResultSet rs = s.executeQuery(requete);
+             while (rs.next()) {
+
+             i=rs.getInt(1);
+             } 
+         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+
+        }
+            return i; 
+
+     }
     
       public String verifAdmin (String username) throws SQLException {
         String ch="";

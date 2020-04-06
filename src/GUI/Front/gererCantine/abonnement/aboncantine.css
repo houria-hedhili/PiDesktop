@@ -151,7 +151,6 @@
 }
 .valider{
     -fx-background-color:#16A0F8;
-           
     -fx-background-insets: 0,1,2,3;
     -fx-padding: 12 30 12 30;
     -fx-text-fill: white;

@@ -5,6 +5,8 @@
  */
 package Entity.wifek;
 
+import GUI.login.LoginController;
+
 /**
  *
  * @author ASUS
@@ -18,6 +20,15 @@ public class enfant {
     private int id_Bus;
     private int idParent;
 private String nomLigne;
+private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getNomLigne() {
         return nomLigne;
@@ -36,13 +47,23 @@ private String nomLigne;
         this.nomLigne = nomLigne;
     }
 
+    public enfant(String sexe, String nom, String prenom, int age, String nomLigne, String username) {
+        this.sexe = sexe;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.age = age;
+        this.nomLigne = nomLigne;
+        this.username = username;
+    }
+
         public enfant(String sexe, String nom, String prenom, int age, int id_Bus) {
         this.sexe = sexe;
         this.nom = nom;
         this.prenom = prenom;
         this.age = age;
         this.id_Bus = id_Bus;
-        this.idParent=1;
+        this.idParent=LoginController.ID;
+        
     }
         public enfant(int id,String sexe, String nom, String prenom, int age, int id_Bus ) {
         this.id=id;
@@ -51,6 +72,16 @@ private String nomLigne;
         this.prenom = prenom;
         this.age = age;
         this.id_Bus = id_Bus;
+    }
+
+    public enfant(int id,String sexe,String nom, String prenom, int age, String nomLigne, String username) {
+       this.id=id;
+        this.sexe = sexe;
+        this.prenom = prenom;
+        this.nom = nom;
+        this.age = age;
+        this.nomLigne = nomLigne;
+        this.username = username;
     }
         
  
@@ -63,6 +94,16 @@ private String nomLigne;
         this.id_Bus = id_Bus;
         this.idParent = idParent;
     }
+
+   /* public enfant(String sexe, String nom, String prenom, int age, int idParent) {
+        this.sexe = sexe;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.age = age;
+      //  this.nomLigne = nomLigne;
+        this.idParent = idParent;
+
+    }*/
 
    public enfant() {
     }

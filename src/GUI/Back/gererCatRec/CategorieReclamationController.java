@@ -18,21 +18,28 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import javax.swing.JOptionPane;
@@ -60,8 +67,6 @@ public class CategorieReclamationController implements Initializable {
     @FXML
     private TableView<categorieReclamation> tab;
     @FXML
-    private TableColumn<categorieReclamation, Integer> colRef;
-    @FXML
     private TableColumn<categorieReclamation, String> colNom;
     @FXML
     private TableColumn<categorieReclamation, String> colDescription;
@@ -72,17 +77,26 @@ public class CategorieReclamationController implements Initializable {
     @FXML
     private Button SupprimerBt;
     
+        public ArrayList<categorieReclamation> ran;
     categorieReclamationService categ=new categorieReclamationService();
-    @FXML
-    private TextField filtreText;
     
+    
+    @FXML
+    private Pagination pagination;
+    @FXML
+    private TextField recherche;
+    
+
+    
+//han l khedma l shiha
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-              afficher();     
+              afficher();   
+
         // TODO
     }    
 
@@ -93,9 +107,10 @@ public class CategorieReclamationController implements Initializable {
         ObservableList et=FXCollections.observableArrayList(categ);
         tab.setItems(et);
         ObservableList observableList = FXCollections.observableArrayList(categ);
-        colRef.setCellValueFactory(new PropertyValueFactory<>("ref"));
+       // colRef.setCellValueFactory(new PropertyValueFactory<>("ref"));
         colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));  
+
         }
       
         private void affichecatrec(ActionEvent event) {
@@ -107,20 +122,20 @@ public class CategorieReclamationController implements Initializable {
         ObservableList observableList = FXCollections.observableArrayList(categ);
      //en vert hekom mil interface tu les recuperes m tableau eli samitou tab
      //en oranger hekom les entités mte3ek
-        colRef.setCellValueFactory(new PropertyValueFactory<>("ref"));
+     //   colRef.setCellValueFactory(new PropertyValueFactory<>("ref"));
         colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
     }
-        
+       
      private void clearTab() {
     nomText.clear();
     descriptionText.clear();    }
         
-        private void refreshB(ActionEvent event) throws SQLException{
-        List<categorieReclamation> listC=new ArrayList<>();
+        private void refreshB() throws SQLException{
+        List<categorieReclamation> listB=new ArrayList<>();
         categorieReclamationService   cr = new categorieReclamationService();
-        listC = cr.affcatRec();
-        ObservableList <categorieReclamation> data = FXCollections.observableArrayList(listC);
+        listB = cr.affcatRec();
+        ObservableList <categorieReclamation> data = FXCollections.observableArrayList(listB);
         tab.setItems(data);
     }
 
@@ -218,5 +233,45 @@ public class CategorieReclamationController implements Initializable {
         colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
     }*/
+
+    @FXML
+    private void rechercheCat(KeyEvent event) {
+    }
+
+    @FXML
+    private void recherche(KeyEvent event) {
+           categorieReclamationService categorieReclamationService = new categorieReclamationService();
+        recherche.setOnKeyReleased(e
+                -> {
+            if (recherche.getText().equals("") ) {
+
+                try {
+                    refreshB();
+                } catch (SQLException ex) {
+                    Logger.getLogger(CategorieReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+
+            } else {
+
+                try {
+        colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+
+                    tab.getItems().clear();
+
+                    tab.setItems(categorieReclamationService.recherche(recherche.getText()));
+
+                } catch (SQLException ex) {
+                Logger.getLogger(CategorieReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+
+                }
+            }
+        }
+        );
+
+    }
+    }
        
-}
+
+

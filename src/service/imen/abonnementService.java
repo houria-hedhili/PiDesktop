@@ -35,8 +35,8 @@ public class abonnementService {
       public boolean ajouterAbon(abonnement p) {
 
         try {
-            String req = "INSERT INTO abonnec (dated, datef,idParent,nbr_enfant,tarif,etat) VALUES "
-                    + "('" + p.getDated() + "', '" + p.getDatef() +"', '" + p.getIdParent() + "', '"+p.getNbEnfant()+"', '"+ p.getTarif() +"', '"+p.getEtat()+ "')";
+            String req = "INSERT INTO abonnec (dated, datef,idParent,idEnfant,tarif,etat) VALUES "
+                    + "('" + p.getDated() + "', '" + p.getDatef() +"', '" + p.getIdParent() + "', '"+p.getIdEnfant()+"', '"+ p.getTarif() +"', '"+p.getEtat()+ "')";
 
             st = cnx.createStatement();
 
@@ -100,14 +100,15 @@ public class abonnementService {
 
         try {
 
-            String req = "SELECT * FROM abonnec";
+            String req = "SELECT e.nom,e.prenom,a.* FROM abonnec a inner join enfant e on e.id=a.idEnfant";
 
             st = cnx.createStatement();
             ResultSet res = st.executeQuery(req);
 
             while (res.next()) {
                 abonnement p = new abonnement();
-
+p.setNom(res.getString(1));
+p.setPrenom(res.getString(2));
                 p.setId(res.getInt("id"));
                 p.setDated(res.getDate("dated"));
                                 p.setDatef(res.getDate("datef"));
@@ -216,4 +217,80 @@ m.setId(res.getInt(8));
 
         return listP;
     }
+
+public List<String> listeEnfant(int id)
+{String x="";
+List<String> listeEnfant=new ArrayList();
+
+        try{ 
+
+            String req = "SELECT prenom FROM enfant where idParent ='"+id+"'";
+
+            st = cnx.createStatement();
+            ResultSet res = st.executeQuery(req);
+
+            while (res.next()) {
+              x=res.getString(1);
+               listeEnfant.add(x);
+            }
+       
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return  listeEnfant;
+
+
+}
+public int getEnfant(String prenom,int id)
+{int x=0;
+
+        try{ 
+
+            String req = "SELECT id FROM enfant where prenom ='"+prenom+"' and  idParent ='"+id+"'";
+
+            st = cnx.createStatement();
+            ResultSet res = st.executeQuery(req);
+
+            while (res.next()) {
+              x=res.getInt(1);
+     
+            }
+       
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return  x;
+
+
+}
+public boolean abonne(int id)
+{int x=0;
+boolean test=false;
+        try{ 
+
+            String req = "SELECT id FROM abonnec where idEnfant ='"+id+"'";
+
+            st = cnx.createStatement();
+            ResultSet res = st.executeQuery(req);
+
+            while (res.next()) {
+              x=res.getInt(1);
+              if(x!=0)
+                  test=true;
+     
+            }
+       
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return  test;
+
+
+
+}
+
+
 }

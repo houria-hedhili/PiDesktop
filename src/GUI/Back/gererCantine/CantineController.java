@@ -24,8 +24,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import Entity.imen.Plat;
+import GUI.login.LoginController;
 import java.io.File;
 import java.sql.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.scene.control.Alert;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -74,14 +77,22 @@ ObservableList<String> platList=FXCollections.observableArrayList("dessert","pla
 PlatService ps = new PlatService();
    List<String> typee;
             String img="";
+    @FXML
+    private Label erreurTitre;
+    @FXML
+    private Label ErreurDesc;
+    @FXML
+    private Label ErreurImg;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
                 affichAllPlat();
-System.out.println("commiti");
+ int id = LoginController.ID;
+       System.out.println("hetha id user" +id);
         type.setValue("plat");
         type.setItems(platList);
           typee =new ArrayList();
@@ -115,25 +126,41 @@ System.out.println("commiti");
            System.out.print(img);
              Image i = new Image(img);
            imgg.setImage(i);
-        }
+        }//dkhalt? oui 
     }
 
     @FXML
     private void ajout(ActionEvent event) {
 
-    Plat plat=new Plat(titre.getText(), description.getText(),img, type.getValue().toString(), 0, 0);
+ if (titre.getText().isEmpty() || description.getText().isEmpty() || img.isEmpty() || type.getValue().equals("plat"))
+{Error("Veuillez remplir tous le champs");
+
+}else if(!titre.getText().matches("^[a-zA-Z\\s]*$"))
+{Error("invalide titre : le champs titre ne contient que des lettres");
+}else if(!description.getText().matches("^[a-zA-Z\\s]*$"))
+{Error("invalide description : le champs description ne contient que des lettres");}
+ else
+    {    Plat plat=new Plat(titre.getText(), description.getText(),img, type.getValue().toString(), 0, 0);
 if(img=="")
 {img="plat.png";
 plat.setImage(img);
 } 
-
-    Boolean test= ps.ajouterPlat(plat);
-        if(test)
+        Boolean test= ps.ajouterPlat(plat);
+    if(test)
      {
      Success("Votre ajout a ete efectue");
+     titre.setText("");
+     description.setText("");
+     img="";
+     erreurTitre.setText("");
      
+     type.setValue("plat");
       affichAllPlat();
-     }else
+     }
+    }
+        
+    /*
+    else
      { if(control(titre.getText())|| control(description.getText()))
      { Error("Veuillez  ne pas saisir des caracteres speciaux");
      }else if(control2()==false)
@@ -145,7 +172,7 @@ plat.setImage(img);
      System.out.println(test);
      } 
       
-     } 
+     }*/ 
     }
 
     @FXML
@@ -165,9 +192,9 @@ affichAllPlat();
 
                 Plat x= table.getSelectionModel().getSelectedItem();
   // System.out.println(platUnique.get(0).getId());
-                System.out.println();
 if(img == "")
-{ ps.modifierPlat(titre.getText(),type.getValue(),description.getText(),x.getImage(),x.getId());
+{ 
+    ps.modifierPlat(titre.getText(),type.getValue(),description.getText(),x.getImage(),x.getId());
 
 }
 else { ps.modifierPlat(titre.getText(),type.getValue(),description.getText(),img,x.getId());
@@ -225,5 +252,41 @@ if(titre.getText().length()<=2 && description.getText().length()<=10)
 {return false;
 }return true;
 }
+ 
+public boolean controlTitre()
+{
+      Pattern pattern = Pattern.compile("[^A-Z&&[^a-z&&[^ ]]]");
+                   Matcher matcher = pattern.matcher(titre.getText()); 
+
+      if(! matcher.find())
+      {if(!"".equals(titre.getText())){
+return true;      }else  {
+      erreurTitre.setText("veuillez remplir ce champs");
+      return false;
+      }
+    }
+else  {erreurTitre.setText("champs saisi invalide ");
+      return false;
+      } 
     
+}
+
+public boolean controlDesc()
+{
+      Pattern pattern = Pattern.compile("[A-Z&&[a-z]]");
+                   Matcher matcher = pattern.matcher(titre.getText()); 
+
+      if(! matcher.find())
+      {if(!"".equals(description.getText())){
+return true;      }else  {
+      ErreurDesc.setText("veuillez remplir ce champs");
+      return false;
+      }
+    }
+else  {ErreurDesc.setText("champs saisi invalide ");
+      return false;
+      } 
+    
+}
+
 }

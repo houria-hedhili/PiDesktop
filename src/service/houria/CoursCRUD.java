@@ -40,12 +40,7 @@ public class CoursCRUD {
             String requete
                     = "INSERT INTO cours (matiere,description,duree,seats,age,image) VALUES (?,?,?,?,?,?)";
             PreparedStatement st = cnx.prepareStatement(requete);
-         
-       // matiereCRUD matt = new matiereCRUD();
-     //   st.setInt(1, matt.getMatiere(event.getA()).getId());
-       // System.out.println(annonce_ser.getAnnonce(t.getA()).getId_annonce());
-       // if(annonce_ser.getAnnonce(t.getA())!= null){ System.out.println("reclamation d'annonce");}
-      //  ServiceUser user_ser= new ServiceUser();
+   
         st.setInt(1,event.getId_mat());
         st.setString(2, event.getDescription());
         st.setTime(3, event.getDuree());
@@ -69,28 +64,29 @@ public class CoursCRUD {
         ste.executeUpdate();
     }
 
-    public void updateCours(Cours t, int id) throws IOException {
-/*
+    public void updateCours(Cours event, int id) throws IOException {
+
          try {
 
                      
             String requete
                     ="UPDATE event SET nom = ? ,image = ? ,nbpart =? ,description=? ,local=? WHERE idEvent=?";
-                        PreparedStatement st = connection.prepareStatement(requete);
-             st.setString(1,t.getNom());
-             st.setString(2,t.getImage());
-             //pre.setDate(3,dd);
-             //pre.setDate(4, df);
-             st.setInt(3, t.getNbpart());
-             st.setString(4,t.getDescription());
-            st.setString(5,t.getLocal());
+                        PreparedStatement st = cnx.prepareStatement(requete);
+           st.setInt(1,event.getId_mat());
+        st.setString(2, event.getDescription());
+        st.setTime(3, event.getDuree());
+        st.setInt(4, event.getSeats());
+        st.setInt(5, event.getAge());
+        
+        System.out.println(event.getImage() );
+        st.setString(6, event.getImage());
+            st.executeUpdate();
+            System.out.println("cours ajoutée");
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
 
-             st.setInt(6,id);
-             st.executeUpdate();
-         } catch (SQLException ex) {
-             Logger.getLogger(CoursCRUD.class.getName()).log(Level.SEVERE, null, ex);
-         }
-            System.out.println("update valide");*/
+        }
+            System.out.println("update valide");
 
 
 
@@ -99,7 +95,7 @@ public class CoursCRUD {
     public ObservableList<Cours> displayALLCours() {
         ObservableList<Cours> myList = FXCollections.observableArrayList();
         try {
-            String req = "SELECT * FROM cours";
+            String req ="select r.*,c.nom from cours r INNER JOIN matiere c on r.matiere = c.id ";
             Statement pst = cnx.createStatement();
             ResultSet rs = pst.executeQuery(req);
             while (rs.next()) {
@@ -116,6 +112,7 @@ public class CoursCRUD {
                    v.setFitHeight(100);
                    v.setFitWidth(100);
                 p.setPhoto(v);
+                p.setMat(rs.getString("nom"));
                 myList.add(p);
             }
 
@@ -124,6 +121,37 @@ public class CoursCRUD {
 
         }
         return myList;
+    }
+               public ObservableList<Cours> rechercheCours(String recherche) throws SQLException {
+                   Cours p = new Cours();
+
+        ObservableList<Cours> list = FXCollections.observableArrayList();
+        String requete = "select r.*,c.nom from cours r INNER JOIN matiere c on r.matiere = c.id  WHERE c.nom LIKE '%"+recherche+"%' OR description LIKE '%"+recherche+"%' OR duree LIKE '%"+recherche+"%' OR seats LIKE '%"+recherche+"%' OR age LIKE '%"+recherche+"%'  ";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(requete);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                p.setId(rs.getInt("id"));
+                
+                p.setId_mat(rs.getInt("matiere"));
+                p.setDescription(rs.getString("description"));
+                p.setDuree(rs.getTime("duree"));
+                p.setSeats(rs.getInt("seats"));
+                p.setAge(rs.getInt("age"));
+                 ImageView v=new ImageView();
+                   v.setImage(new Image(rs.getString(7)));
+                   v.setFitHeight(100);
+                   v.setFitWidth(100);
+                p.setPhoto(v);
+                p.setMat(rs.getString("nom"));
+                list.add(p);
+ 
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return list;
     }
 
 }

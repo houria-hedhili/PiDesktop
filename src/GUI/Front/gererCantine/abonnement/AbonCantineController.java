@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -9,9 +9,11 @@ import Entity.imen.Menu;
 import Entity.imen.Plat;
 import Entity.imen.abonnement;
 import Entity.user.Utilisateur;
+import GUI.login.LoginController;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 import java.util.ArrayList;
@@ -19,6 +21,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,12 +34,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.control.Spinner;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
@@ -121,7 +129,6 @@ int x=0;
     private TableColumn<abonnement, Date> datedCol;
     @FXML
     private TableColumn<abonnement, Date> datefCol;
-    @FXML
     private TableColumn<abonnement, Integer> nbenfantCol;
     @FXML
     private TableColumn<abonnement,Double> tarifCol;
@@ -134,25 +141,72 @@ int x=0;
     @FXML
     private DatePicker datef2;
     @FXML
-    private TextField nbenfant2;
-    @FXML
     private Button ajoutAbon;
       abonnementService as=new abonnementService();  
     @FXML
     private TableColumn<abonnement, String> etatCol;
+    int id=0;
+    @FXML
+    private ListView<String> Liste;
+    List<String> listSelection=new ArrayList();
+    @FXML
+    private TableColumn<?, ?> nomCol;
+    @FXML
+    private Button retour11;
+    @FXML
+    private TableView<?> tableabon1;
+    @FXML
+    private TableColumn<?, ?> datedCol1;
+    @FXML
+    private TableColumn<?, ?> datefCol1;
+    @FXML
+    private TableColumn<?, ?> nbenfantCol1;
+    @FXML
+    private TableColumn<?, ?> tarifCol1;
+    @FXML
+    private TableColumn<?, ?> etatCol1;
+    @FXML
+    private DatePicker datef1;
+    @FXML
+    private Button modifierAbonn1;
+    @FXML
+    private TableColumn<?, ?> prenomCol;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        id = LoginController.ID;
+
         gridPlat.setPrefColumns(nbrColumn);
         gridPlat.setPrefRows(nbrRow);
-         List<String> enfants =ms.listeEnfant(1);
+         List<String> enfants =ms.listeEnfant(id);
+         
          enfants.add("all");
                  ObservableList<String> enfList=FXCollections.observableArrayList(enfants);
                  listeEnfant.setValue("Liste enfants");
                  listeEnfant.setItems(enfList);
+                 dated.setValue(LocalDate.now());
+                 datef2.setValue(LocalDate.now());
+                 /************************/
+                 List<String> L=new ArrayList<>();
+                      List<String> enfantss =as.listeEnfant(id);
+                      for(int i=0;i<enfantss.size();i++)
+                      {
+                          if(as.abonne(as.getEnfant(enfantss.get(i), id))==false)
+                          {
+                          L.add(enfantss.get(i));
+                          }
+                      }
+                     ObservableList<String> enfListe=FXCollections.observableArrayList(L);
+
+Liste.setItems(enfListe);
+                Liste.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+                 
+                 /************/
+
 afficher();
          List<String> l1=ps.platType("dessert");
                   List<String> l2=ps.platType("plat principal");
@@ -233,7 +287,6 @@ dessertCombo.setItems(dessertList);
     {//sol if nbr image est 
     
        int y= ms.nombrePlat();
-       System.out.println(y);
        if(y==0)
        {System.out.println("menu en cours de preparation ");}
        else if(y==1)
@@ -276,7 +329,6 @@ dessertCombo.setItems(dessertList);
     /*count =count +x;
     gridPlat.getChildren().add(createPage(count));*/
      //  gridPlat.getChildren().add(createPage(5));
-        System.out.println("hetha houa hseb jdid"+count);
         }
     }
        }   else if(y==6)
@@ -323,7 +375,6 @@ dessertCombo.setItems(dessertList);
                CreerMenuController controller = loader.getController();
                controller.afficher(p);
              Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        System.out.println(r);
         window.setScene(scene);
         window.show();
      
@@ -352,6 +403,7 @@ int k=0;
               {
               idDessert=idP[p];
           tab[k]=idDessert;    
+          
               }else {idPlatPrincipal=idP[p];
                   
               tab[k]=idPlatPrincipal;}
@@ -359,7 +411,8 @@ int k=0;
               
               k++;
               
-              
+                  System.out.println(idDessert+" "+idPlatPrincipal);
+
               
             }
             else if(affecter.isSelected()==false  && t==false )
@@ -386,7 +439,6 @@ int k=0;
             }
             
 
-        System.out.println("id Plat"+idPlatPrincipal+"id dessert "+idDessert+ " test "+test);
         }
     });
     pageImage.getChildren().add(imageview);
@@ -408,12 +460,14 @@ int k=0;
        for(int x=0;x<listeEnfant.getItems().size();x++)
        {Menu mi = new Menu(idPlatPrincipal,idDessert,1,ms.enfant(1, listeEnfant.getItems().get(x))); 
         ms.ajouterMenu(mi);
+        Success("les menus sont ajoute");
        }
        
    }else
    {Menu mi = new Menu(idPlatPrincipal,idDessert,1,ms.enfant(1, listeEnfant.getValue())); 
         ms.ajouterMenu(mi);
-   
+           Success("le menu  est ajoute");
+
    //if menu affecter nfaskh men combo box esmou
    }
     }
@@ -440,7 +494,6 @@ int k=0;
     @FXML
     private void modifierMenu(ActionEvent event) {
                Menu mii= tableMenu.getSelectionModel().getSelectedItem();
-               System.out.println("dessert "+ps.PlatUnique2(dessertCombo.getValue()) +" pLT " +ps.PlatUnique2(platCombo.getValue())+" id   " + mii.getId());
 
    ms.modifierPlat(ps.PlatUnique2(dessertCombo.getValue()),ps.PlatUnique2(platCombo.getValue()),mii.getId());
    afficher();
@@ -478,30 +531,86 @@ platCombo.setValue(mii.getPlat());
 
     @FXML
     private void ajoutAbon(ActionEvent event) {
-        LocalDate d= (LocalDate)dated.getValue();
+        
+
+  boolean test=false;
+                
+                double y=calculTarif();
+// int nb=Integer.valueOf(nbenfant2.getText());
+   System.out.println("hetha date d'aujourfi"+new java.util.Date());
+        SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+    System.out.println(formater.format(new java.util.Date()));
+   String aujourdhui=formater.format(new java.util.Date());
+   if(dated.getValue().equals(LocalDate.now())||datef2.getValue().equals(LocalDate.now()) ||(listSelection.isEmpty()))
+   {Error("vous devez remplir tout le champ");
+   } else if(dated.getValue().compareTo(datef2.getValue())>0)
+   {Error("Date fin doit etre superieur a celle du debut");
+   }else if (dated.getValue().toString().compareTo(aujourdhui)<0)
+   {Error("Date debut doit etre superieur a celle d'aujourdhui");
+   
+   }else if (listSelection.isEmpty())
+   {Error("Veuillez selectionner un enfant");
+   
+   }else
+   {LocalDate d= (LocalDate)dated.getValue();
         LocalDate f=datef2.getValue();
                 java.sql.Date sqlDate = java.sql.Date.valueOf(d);
                 java.sql.Date sqlDate1 = java.sql.Date.valueOf(f);
-       int nb=Integer.valueOf(nbenfant2.getText());
-        
-
-        abonnement a=new abonnement(sqlDate, sqlDate1,0,nb);
+      
+ 
+       int z=as.getEnfant(Liste.getSelectionModel().getSelectedItem(), id);
+   System.out.println("hetha id mte3 el enfant "+z);
+           abonnement a=new abonnement(sqlDate, sqlDate1,y,z,id);
         as.ajouterAbon(a);
-        System.out.print(sqlDate);
-        afficherAbonn();
+        test=true;
+        
+   if (test){
+       List<String> L=new ArrayList<>();
+                      List<String> enfantss =as.listeEnfant(id);
+                      for(int i=0;i<enfantss.size();i++)
+                      {
+                          if(as.abonne(as.getEnfant(enfantss.get(i), id))==false)
+                          {
+                          L.add(enfantss.get(i));
+                          }
+                      }
+                     ObservableList<String> enfListe=FXCollections.observableArrayList(L);
+
+Liste.setItems(enfListe);
+      
+  Success("ajout a ete effectuer avec succes");}}
+  afficherAbonn();
     }
-    
+       private void Success(String msg) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Ajouter un plat");
+ 
+        // Header Text: nullCla
+        alert.setHeaderText(null);
+        alert.setContentText(msg);
+ 
+        alert.showAndWait();
+    }
     public void afficherAbonn()
-    { System.out.println("imen");
+    { 
     List<abonnement> ls=as.afficherAll();
         ObservableList<abonnement> abonListe=FXCollections.observableArrayList(ls);
         datedCol.setCellValueFactory(new PropertyValueFactory<>("dated"));
     datefCol.setCellValueFactory(new PropertyValueFactory<>("datef"));
 etatCol.setCellValueFactory(new PropertyValueFactory<>("etat"));
     tarifCol.setCellValueFactory(new PropertyValueFactory<>("tarif"));
-    nbenfantCol.setCellValueFactory(new PropertyValueFactory<>("nbEnfant"));
+   nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
+      prenomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
+
      tableabon.setItems(abonListe);
     
+    }
+      private void Error(String msg) {
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+alert.setTitle("Error Dialog");
+alert.setHeaderText("Look, an Error Dialog");
+alert.setContentText(msg);
+alert.showAndWait();
     }
     
     
@@ -514,4 +623,48 @@ etatCol.setCellValueFactory(new PropertyValueFactory<>("etat"));
     { String ch=nom;
         return ch ;
     }
+     
+     public double calculTarif()
+     { double x=0;
+     try {
+        LocalDate d= (LocalDate)dated.getValue();
+        LocalDate f=datef2.getValue();
+                java.sql.Date sqlDate = java.sql.Date.valueOf(d);
+                java.sql.Date sqlDate1 = java.sql.Date.valueOf(f);
+       long diff = sqlDate1.getTime() - sqlDate.getTime();
+       float res = (diff / (1000*60*60*24));
+      x=res*6;
+       
+     } catch (Exception e) {
+         e.printStackTrace();
+     }
+     return x;
+     }
+     
+public boolean controlDate()
+{LocalDate d= (LocalDate)dated.getValue();
+        LocalDate f=datef2.getValue();
+                java.sql.Date sqlDate = java.sql.Date.valueOf(d);
+                java.sql.Date sqlDate1 = java.sql.Date.valueOf(f);
+                 long diff = sqlDate.getTime() - sqlDate1.getTime();
+       float res = (diff / (1000*60*60*24));
+                if(res>0)
+                {return true;
+                }else return false;
+                    
+}
+
+    @FXML
+    private void listenfant(MouseEvent event) {
+        
+        if(!Liste.getSelectionModel().getSelectedItem().isEmpty())
+        {  ObservableList<String> selectedItems =  Liste.getSelectionModel().getSelectedItems();
+                                for(String s : selectedItems){
+                           listSelection.add(s);
+                        }
+        } else listSelection.clear();
+        
+
+    }
+     
 }

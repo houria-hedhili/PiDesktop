@@ -5,6 +5,7 @@
  */
 package Entity.imen;
 
+import GUI.login.LoginController;
 import java.sql.Date;
 
 /**
@@ -25,10 +26,30 @@ public class abonnement {
     private Date datef;
     private double tarif;
     private int nbEnfant;
+    private int idEnfant;
     private int idParent;
 private String etat;
 private String nom;
 private String prenom;
+
+    public abonnement(Date dated, Date datef, double tarif, int idEnfant, int idParent) {
+        this.dated = dated;
+        this.datef = datef;
+        this.tarif = tarif;
+        this.idEnfant = idEnfant;
+        this.idParent = idParent;
+                this.etat="non paye";
+                this.nbEnfant=0;
+
+    }
+
+    public int getIdEnfant() {
+        return idEnfant;
+    }
+
+    public void setIdEnfant(int idEnfant) {
+        this.idEnfant = idEnfant;
+    }
 
     public String getNom() {
         return nom;
@@ -55,15 +76,15 @@ private String prenom;
     public void setEtat(String etat) {
         this.etat = etat;
     }
-
+/*
     public abonnement(Date dated, Date datef, double tarif, int nbEnfant) {
         this.dated = dated;
         this.datef = datef;
         this.tarif = tarif;
         this.nbEnfant = nbEnfant;
-        this.idParent = 1;
+        this.idParent = LoginController.ID;
         this.etat="non paye";
-    }
+    }*/
 
     public Date getDated() {
         return dated;

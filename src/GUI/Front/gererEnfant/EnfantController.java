@@ -7,6 +7,7 @@ package GUI.Front.gererEnfant;
 
 import Entity.wifek.Bus;
 import Entity.wifek.enfant;
+import GUI.login.LoginController;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -62,13 +63,7 @@ public class EnfantController implements Initializable {
     @FXML
     private Button retour2;
     @FXML
-    private Button retour3;
-    @FXML
-    private Button retour4;
-    @FXML
     private TableView<enfant> tabAffiche;
-    @FXML
-    private TableColumn<enfant, Integer> colid;
     @FXML
     private TableColumn<enfant, String> colsexe;
     @FXML
@@ -81,8 +76,6 @@ public class EnfantController implements Initializable {
     private TableColumn<enfant, Integer> colidbus;
     @FXML
     private TableView<enfant> tabAffiche1;
-    @FXML
-    private TableColumn<?,?> colid1;
     @FXML
     private TableColumn<enfant, String> colsexe1;
     @FXML
@@ -110,24 +103,24 @@ public class EnfantController implements Initializable {
     private TextField age;
     @FXML
     private ComboBox<String> trajet1;
-    
+    String ch="";
     /**
      * Initializes the controller class.
      */
+    CrudEnfantService es;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO               
        afficher1();
         afficher2();
-        //combo sexe
         ObservableList<String> sexe=FXCollections.observableArrayList("Garcon","Fille");
         sexecombo.setValue("sexe");
        sexecombo.setItems(sexe);
         CrudBusService c=new CrudBusService();
         List<String> listeTrajete= c.getAllLigne();
-       ObservableList<String> listetrajet =FXCollections.observableArrayList(listeTrajete);
-trajet1.setValue("ligne");
-trajet1.setItems(listetrajet);
+        ObservableList<String> listetrajet =FXCollections.observableArrayList(listeTrajete);
+        trajet1.setValue("ligne");
+        trajet1.setItems(listetrajet);
        
 
     }    
@@ -136,12 +129,14 @@ trajet1.setItems(listetrajet);
    /* CrudEnfantService sp = new CrudEnfantService();
       List buss=sp.afficherEnfant();*/
                  CrudBusService c=new CrudBusService();
-          List<enfant> liste=c.getLigneBus();
+          List<enfant> liste=c.getLigneBus(LoginController.ID);
           //System.out.println(liste.get(0).getNomLigne());
        ObservableList et=FXCollections.observableArrayList(liste);
        tabAffiche.setItems(et);
+       
    //  ObservableList observableList = FXCollections.observableArrayList(buss);
-        colid.setCellValueFactory(new PropertyValueFactory<>("id"));
+       //
+       //colid.setCellValueFactory(new PropertyValueFactory<>("id"));
         colsexe.setCellValueFactory(new PropertyValueFactory<>("sexe"));
         colnom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         colpre.setCellValueFactory(new PropertyValueFactory<>("prenom")); 
@@ -150,12 +145,13 @@ trajet1.setItems(listetrajet);
 }
       private void afficher2() {
      CrudBusService c=new CrudBusService();
-          List<enfant> liste=c.getLigneBus();
-      //ya benti 5demneha fil crudBusSer vice normalemnt fel enfant  etyy et de typoe enfant 
+          List<enfant> liste=c.getLigneBus(LoginController.ID);
+   //  List<enfant> liste=es.afficherEnfant2(LoginController.ID);
+     System.out.println(LoginController.ID);
        ObservableList et=FXCollections.observableArrayList(liste);
        tabAffiche1.setItems(et);
      ObservableList observableList = FXCollections.observableArrayList(liste);
-        colid1.setCellValueFactory(new PropertyValueFactory<>("id"));
+       // colid1.setCellValueFactory(new PropertyValueFactory<>("id"));
         colsexe1.setCellValueFactory(new PropertyValueFactory<>("sexe"));
         colnom1.setCellValueFactory(new PropertyValueFactory<>("nom"));
         colpre1.setCellValueFactory(new PropertyValueFactory<>("prenom")); 
@@ -189,7 +185,6 @@ trajet1.setItems(listetrajet);
      
     }
 
-    @FXML
     private void retour3(ActionEvent event) throws IOException {
        Stage stage = (Stage) retour1.getScene().getWindow();
       Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front/Acceuilfront/acceuilFront.fxml"));
@@ -201,7 +196,6 @@ trajet1.setItems(listetrajet);
        stage.close();
     }
 
-    @FXML
     private void retour4(ActionEvent event) throws IOException {
    Stage stage = (Stage) retour1.getScene().getWindow();
     Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front/Acceuilfront/acceuilFront.fxml"));
@@ -213,7 +207,6 @@ trajet1.setItems(listetrajet);
     stage.close();
      
     }
-
     @FXML
     private void ajoutB(ActionEvent event)  throws SQLException {
 CrudBusService b1= new CrudBusService();
@@ -252,7 +245,6 @@ CrudBusService b1= new CrudBusService();
        b1.getIdLigne(trajet1.getValue())
     );   
     b.ajouterEnfant(bus);
-
     //    System.out.println( b1.getIdLigne(trajet1.getValue()));
     
     Notifications notif=Notifications.create()
@@ -310,7 +302,7 @@ CrudBusService b1= new CrudBusService();
             JOptionPane.showMessageDialog(null, "choisir Enfant");
         }else{
             rs.supprimerEnfant(cc.getId());
-            //refreshB(event);
+            //ereshB(event);
             afficher2();
             clearEnfant(event);
            JOptionPane.showMessageDialog(null, "Enfant supprimer");
@@ -336,7 +328,7 @@ CrudBusService b1= new CrudBusService();
     private void refreshB(ActionEvent event) throws SQLException{
         List<enfant> listB=new ArrayList<>();
         CrudEnfantService   cr = new CrudEnfantService();
-        listB = cr.afficherEnfant();
+        listB = cr.afficherEnfant2(LoginController.ID);
         ObservableList <enfant> data = FXCollections.observableArrayList(listB);
         tabAffiche1.setItems(data);
     }
@@ -350,5 +342,10 @@ CrudBusService b1= new CrudBusService();
     @FXML
     private void refreshAff(Event event) {
         afficher2();
+    }
+    
+    public void getUsername(String u)
+    {
+    ch=u;
     }
 }

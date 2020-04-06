@@ -40,6 +40,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javax.swing.JOptionPane;
 import service.houria.CoursCRUD;
@@ -63,7 +64,7 @@ public class CoursController implements Initializable {
     @FXML
     private Button Cmodifier;
     @FXML
-    private TableView<?> table_cours;
+    private TableView<Cours> table_cours;
     @FXML
     private TableColumn<?, ?> colmatiere;
     @FXML
@@ -104,6 +105,8 @@ public class CoursController implements Initializable {
     private Label labelimage;
     @FXML
     private Label labelage;
+    @FXML
+    private TextField search;
 
    
     /**
@@ -270,7 +273,7 @@ public class CoursController implements Initializable {
       List events=sp.displayALLCours();
        ObservableList et=FXCollections.observableArrayList(events);
        table_cours.setItems(et);
-       colmatiere.setCellValueFactory(new PropertyValueFactory<>("id_mat"));
+       colmatiere.setCellValueFactory(new PropertyValueFactory<>("mat"));
        colimage.setCellValueFactory(new PropertyValueFactory<>("photo"));
        colplace.setCellValueFactory(new PropertyValueFactory<>("seats"));
        colduree.setCellValueFactory(new PropertyValueFactory<>("duree"));
@@ -278,6 +281,35 @@ public class CoursController implements Initializable {
        colage.setCellValueFactory(new PropertyValueFactory<>("age"));
 
 }
+
+    @FXML
+    private void recherche(KeyEvent event) {
+          CoursCRUD sp = new CoursCRUD();
+         search.setOnKeyReleased(
+         (   KeyEvent e)->{
+             if(search.getText().equals("")){
+                 afficher();
+             }else{ 
+                 try{
+                  colmatiere.setCellValueFactory(new PropertyValueFactory<>("mat"));
+       colimage.setCellValueFactory(new PropertyValueFactory<>("photo"));
+       colplace.setCellValueFactory(new PropertyValueFactory<>("seats"));
+       colduree.setCellValueFactory(new PropertyValueFactory<>("duree"));
+       coldescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+       colage.setCellValueFactory(new PropertyValueFactory<>("age"));
+              table_cours.getItems().clear();
+        table_cours.setItems(sp.rechercheCours(search.getText()));
+        
+                 } catch (SQLException ex) {
+                Logger.getLogger(CoursController.class.getName()).log(Level.SEVERE, null, ex);
+
+                }
+
+
+
+             }
+         });
+    }
          
          
          

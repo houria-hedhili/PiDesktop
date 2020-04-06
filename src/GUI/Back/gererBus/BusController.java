@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -86,13 +88,13 @@ public class BusController implements Initializable {
        ObservableList et=FXCollections.observableArrayList(buss);
        tabAffiche.setItems(et);
      ObservableList observableList = FXCollections.observableArrayList(buss);
-        colid.setCellValueFactory(new PropertyValueFactory<>("id"));
+//        colid.setCellValueFactory(new PropertyValueFactory<>("id"));
         colmat.setCellValueFactory(new PropertyValueFactory<>("matricule"));
         colnb.setCellValueFactory(new PropertyValueFactory<>("nbPlaces"));
         coltraj.setCellValueFactory(new PropertyValueFactory<>("ligne")); 
 
 }
-        private void refreshB(ActionEvent event) throws SQLException{
+        private void refreshB() throws SQLException{
         List<Bus> listB=new ArrayList<>();
         CrudBusService   cr = new CrudBusService();
         listB = cr.afficherBus();
@@ -150,7 +152,7 @@ public class BusController implements Initializable {
                 });
     notif.showConfirm();
     }
-    refreshB(event);
+    refreshB();
    clearBus();
     }
 
@@ -160,7 +162,7 @@ public class BusController implements Initializable {
     CrudBusService cs = new CrudBusService();
       Bus b=tabAffiche.getSelectionModel().getSelectedItem();
       cs.modifierBus(matricule.getText(),Integer.parseInt(nbplace.getText()),ligne.getText(), b.getId());
-      refreshB(event);
+      refreshB();
     }
 
     @FXML
@@ -195,7 +197,7 @@ public class BusController implements Initializable {
         System.out.println(cc);
         if(button == ButtonType.OK){
             rs.supprimerBus(cc.getId());
-            refreshB(event);
+            refreshB();
            JOptionPane.showMessageDialog(null, "Bus supprimer");
          matricule.clear();
          ligne.clear();
@@ -206,33 +208,43 @@ public class BusController implements Initializable {
         
     }
 
+
     @FXML
     private void recherche(KeyEvent event) {
-            Task<ArrayList<Bus>> task = new Task() {
+    CrudBusService CrudBusService = new CrudBusService();
+        recherche.setOnKeyReleased(e
+                -> {
+            if (recherche.getText().equals("") ) {
 
-            @Override
-            protected Object call() throws SQLException {
-                ran = (ArrayList<Bus>) new CrudBusService().rechercheBus(recherche.getText());
-                       
+                try {
+                    refreshB();
+                } catch (SQLException ex) {
+                    Logger.getLogger(BusController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
-                return ran;
-            }
-    };
-        task.setOnSucceeded((WorkerStateEvent e) -> {
-        colid.setCellValueFactory(new PropertyValueFactory<>("id"));
+
+            } else {
+
+                try {
         colmat.setCellValueFactory(new PropertyValueFactory<>("matricule"));
         colnb.setCellValueFactory(new PropertyValueFactory<>("nbPlaces"));
-        coltraj.setCellValueFactory(new PropertyValueFactory<>("ligne"));             
-        });
-        task.setOnFailed(e -> {
-            afficher();
-        });
-        Thread th = new Thread(task);
-        th.start();
-            
-               }
+        coltraj.setCellValueFactory(new PropertyValueFactory<>("ligne"));  
 
+                    tabAffiche.getItems().clear();
 
+                    tabAffiche.setItems(CrudBusService.rechercheBus(recherche.getText()));
+
+                } catch (SQLException ex) {
+                Logger.getLogger(BusController.class.getName()).log(Level.SEVERE, null, ex);
+
+                }
+        
+
+            }
+        }
+        );
+
+    }
 }
     
 

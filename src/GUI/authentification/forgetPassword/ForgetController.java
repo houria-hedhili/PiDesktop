@@ -15,7 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import Services.Mail;
+import service.authentification.Mail;
 import java.io.IOException;
 import static java.lang.Math.random;
 import java.security.SecureRandom;

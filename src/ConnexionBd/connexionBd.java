@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package ConnexionBd;
-
+//fama des bib neksin
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

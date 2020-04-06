@@ -26,6 +26,8 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -43,6 +45,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javax.swing.JOptionPane;
@@ -77,7 +81,7 @@ public class EventtController implements Initializable {
             String img="";
     List<String> type;
     @FXML
-    private TableView<?> table_event;
+    private TableView<Evenement> table_event;
     @FXML
     private TableColumn<?, ?> nom;
     @FXML
@@ -112,6 +116,8 @@ public class EventtController implements Initializable {
     private JFXTimePicker ETime_debut;
     @FXML
     private JFXTimePicker ETime_fin;
+    @FXML
+    private TextField search;
 
 
     /**
@@ -521,5 +527,37 @@ public class EventtController implements Initializable {
        adress.setCellValueFactory(new PropertyValueFactory<>("local"));
 
 }
+
+    @FXML
+    private void recherche(KeyEvent event) {
+             EventCRUD sp = new EventCRUD();
+         search.setOnKeyReleased(
+         (   KeyEvent e)->{
+             if(search.getText().equals("")){
+                 afficher();
+             }else{ 
+                 try{
+                  nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+       timage.setCellValueFactory(new PropertyValueFactory<>("photo"));
+       dat_d.setCellValueFactory(new PropertyValueFactory<>("date"));
+       date_f.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
+       nb_part.setCellValueFactory(new PropertyValueFactory<>("nbpart"));
+       descrip.setCellValueFactory(new PropertyValueFactory<>("description"));
+       adress.setCellValueFactory(new PropertyValueFactory<>("local"));
+              table_event.getItems().clear();
+        table_event.setItems(sp.rechercheEvent(search.getText()));
+        
+                 } catch (SQLException ex) {
+                Logger.getLogger(EventtController.class.getName()).log(Level.SEVERE, null, ex);
+
+                }
+
+
+
+             }
+         });
+        
+    }
+    
     
 }
