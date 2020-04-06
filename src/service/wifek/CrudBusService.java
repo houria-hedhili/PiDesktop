@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -89,7 +91,7 @@ private Connection cnx;
                 } catch (SQLException ex) {
                     Logger.getLogger(CrudBusService.class.getName()).log(Level.SEVERE, null, ex);
                 }
-      return list ;   //hedhi enfant  oss xD hhh bich net2aked men haja wkhalini nrrakez
+      return list ;  
        }
            public  ArrayList<enfant>  getLigneBus(){
          ArrayList<enfant> list = new ArrayList<>() ;
@@ -139,31 +141,27 @@ private Connection cnx;
       
       }
       
-        public  ArrayList<Bus> rechercheBus(String motClef){
-     ArrayList<Bus> list =new ArrayList<>();
 
-         try {
-            
-            Statement st=cnx.createStatement();
-            String req="Select * from bus WHERE `ligne` LIKE '%"+motClef+"%'  ";
-            ResultSet rs = st.executeQuery(req);
-             int i = 0;
-            while(rs.next()){
-                   i++;
-            Bus p = new Bus(rs.getInt(1),
-                    rs.getString(2),
-                    rs.getInt(3),
-                    rs.getString(4));
+      public ObservableList<Bus> rechercheBus(String recherche) throws SQLException {
+        ObservableList<Bus> list = FXCollections.observableArrayList();
+        String requete = "Select matricule,nbPlaces,ligne from bus WHERE `ligne` LIKE '%"+recherche+"%' OR `nbPlaces` LIKE '%"+recherche+"%' OR `matricule` LIKE '%"+recherche+"%'  ";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(requete);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+    Bus p = new Bus(
+                    rs.getString(1),
+                    rs.getInt(2),
+                    rs.getString(3));
 
-            list.add(p);            
-               
+            list.add(p);          
             }
         } catch (SQLException ex) {
-            Logger.getLogger(CrudBusService.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
-       return list ;
-   }
-      
+
+        return list;
+    }
 
 
 }

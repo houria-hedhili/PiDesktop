@@ -18,21 +18,28 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import javax.swing.JOptionPane;
@@ -60,8 +67,6 @@ public class CategorieReclamationController implements Initializable {
     @FXML
     private TableView<categorieReclamation> tab;
     @FXML
-    private TableColumn<categorieReclamation, Integer> colRef;
-    @FXML
     private TableColumn<categorieReclamation, String> colNom;
     @FXML
     private TableColumn<categorieReclamation, String> colDescription;
@@ -77,12 +82,20 @@ public class CategorieReclamationController implements Initializable {
     private TextField filtreText;
     
     
+    @FXML
+    private Pagination pagination;
+    
+
+    
+//han l khedma l shiha
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-              afficher();     
+              afficher();   
+
         // TODO
     }    
 
@@ -96,6 +109,7 @@ public class CategorieReclamationController implements Initializable {
        // colRef.setCellValueFactory(new PropertyValueFactory<>("ref"));
         colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));  
+
         }
       
         private void affichecatrec(ActionEvent event) {
@@ -111,7 +125,7 @@ public class CategorieReclamationController implements Initializable {
         colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
     }
-        
+       
      private void clearTab() {
     nomText.clear();
     descriptionText.clear();    }
@@ -218,5 +232,10 @@ public class CategorieReclamationController implements Initializable {
         colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
     }*/
+
+    @FXML
+    private void rechercheCat(KeyEvent event) {
+    }
        
+
 }

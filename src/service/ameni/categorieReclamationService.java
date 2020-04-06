@@ -97,7 +97,7 @@ public class categorieReclamationService {
                 ResultSet rs = st.executeQuery(req);
                 while(rs.next()){
                     categorieReclamation p = new categorieReclamation(rs.getString(1),rs.getString(2),rs.getInt(3));
-                    list.add(p);            
+                    list.add(p);    
                    }
                 } catch (SQLException ex) {
                     Logger.getLogger(categorieReclamationService.class.getName()).log(Level.SEVERE, null, ex);
