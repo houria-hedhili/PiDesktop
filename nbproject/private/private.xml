@@ -3,10 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/integrationJava/src/service/authentification/UserCRUD.java</file>
+            <file>file:/D:/integrationJava/src/GUI/Front/gererEvent/EventController.java</file>
             <file>file:/D:/integrationJava/src/GUI/login/LoginController.java</file>
             <file>file:/D:/integrationJava/src/GUI/Front/Acceuilfront/AcceuilFrontController.java</file>
             <file>file:/D:/integrationJava/src/GUI/Front/gererCantine/abonnement/AbonCantineController.java</file>
-            <file>file:/D:/integrationJava/src/service/authentification/UserCRUD.java</file>
+            <file>file:/D:/integrationJava/src/GUI/Back/gererEvent/EventtController.java</file>
         </group>
     </open-files>
 </project-private>

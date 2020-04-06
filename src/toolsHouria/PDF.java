@@ -7,14 +7,25 @@ package toolsHouria;
 
 import Entity.houria.Evenement;
 import Entity.houria.Participation;
+import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
+import static com.itextpdf.text.BaseColor.PINK;
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
+import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.BaseFont;
+import static com.itextpdf.text.pdf.BaseFont.CP1250;
 import com.itextpdf.text.pdf.PdfWriter;
+import static java.awt.Color.green;
+import java.awt.Font;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -33,7 +44,7 @@ import tray.notification.TrayNotification;
  */
 public class PDF {
 
-    public void pdf(Evenement p) throws SQLException, FileNotFoundException, DocumentException {
+    public void pdf(Evenement p) throws SQLException, FileNotFoundException, DocumentException, BadElementException, IOException {
         try {
             // System.out.println("Haouet------------------------------------->"+nom);
 
@@ -44,43 +55,21 @@ public class PDF {
             com.itextpdf.text.Document document = new com.itextpdf.text.Document();
             PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\LENOVO\\Desktop\\ticket/ticket" + randomNum + ".pdf"));
             document.open();
-            document.add(new Paragraph("  Coccinelle  ", FontFactory.getFont(FontFactory.TIMES)));
-            document.add(new Paragraph("    ", FontFactory.getFont(FontFactory.TIMES)));
+             Image img=Image.getInstance(p.getImage());
+             img.setWidthPercentage(50);
+           Paragraph adrr = new Paragraph(new Phrase("l adresse de l evenement : "+p.getLocal(), FontFactory.getFont(FontFactory.HELVETICA, 12)));
+             Paragraph par=new Paragraph(" Bienvenu MSR/MDMe chez Coccinelle  ", FontFactory.getFont(FontFactory.TIMES));
+             par.setAlignment(Element.ALIGN_CENTER);
+            document.add(par);
+              document.add(new Paragraph("Veuillez IMPRIMER et présenter ce billet à l'entrée de l'événement\n" , FontFactory.getFont(FontFactory.TIMES)));
 
-            //cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            //String date=new Date().toString();
-            //document.add(new Paragraph(" Date : " + new Date().toString()));
-            //  document.add(new Paragraph("-----------------------------------------------------------------"));
-            // document.add(new Paragraph("-----------------------------------------------------------------"));
-            com.itextpdf.text.pdf.PdfPTable table = new com.itextpdf.text.pdf.PdfPTable(2);
-            com.itextpdf.text.pdf.PdfPCell cell = new com.itextpdf.text.pdf.PdfPCell(new Paragraph("Ticket"));
+             document.add(img);
 
-            cell.setColspan(4);
-            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            cell.setBackgroundColor(BaseColor.PINK);
-            table.addCell(cell);
+             document.add(adrr);
+            document.add(new Paragraph("date debut de l evenement : "+p.getDate(), FontFactory.getFont(FontFactory.TIMES)));
+            document.add(new Paragraph("date fin de l evenement : "+p.getDate_fin(), FontFactory.getFont(FontFactory.TIMES)));
 
-//                table.addCell("nom");
-//              table.addCell(nom1);
-//              table.addCell("prenom");
-//              table.addCell(prenom1);
-            table.addCell("Evenement");
-            table.addCell(p.getNom());
-            table.addCell(" Utilisateur");
-            table.addCell(p.getLocal());
-            table.addCell("***************************");
-            table.addCell("***************************");
-
-            table.addCell("Date Debut");
-            table.addCell(String.valueOf(p.getDate()));
-            table.addCell("Date Fin");
-            table.addCell(String.valueOf(p.getDate_fin()));
-            table.addCell("***************************");
-            table.addCell("***************************");
-           // table.addCell("Nombre de Place");
-           // table.addCell(Integer.toString(p.getId_event()));
-
-            document.add(table);
+          
             document.close();
             TrayNotification tray = new TrayNotification("Ticket", "Ticket de participation créée avec succés", NotificationType.SUCCESS);
             tray.setAnimationType(AnimationType.POPUP);

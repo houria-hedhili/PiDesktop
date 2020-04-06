@@ -18,7 +18,7 @@
         <URL value="@eventt.css" />
     </stylesheets>
    <children>
-      <AnchorPane id="AnchorPane" prefHeight="692.0" prefWidth="1100.0" style="-fx-background-color: #ffe3be;" styleClass="mainFxmlClass">
+      <AnchorPane id="AnchorPane" prefHeight="692.0" prefWidth="1100.0" style="-fx-background-color: #AEB6F2;" styleClass="mainFxmlClass">
          <stylesheets>
             <URL value="@../../../coccinelleJAVA/src/coccinelleGui/event.css" />
          </stylesheets>
@@ -43,9 +43,9 @@
                   <Font name="Arial Bold" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="429.0" layoutY="21.0" prefHeight="46.0" prefWidth="310.0" text="Gestion Evenement" textFill="#f27735">
+            <Label layoutX="429.0" layoutY="21.0" prefHeight="46.0" prefWidth="310.0" text="Gestion Evenement" textFill="#04060d">
                <font>
-                  <Font name="Elephant Italic" size="22.0" />
+                  <Font name="Elephant Italic" size="31.0" />
                </font>
             </Label>
             <Label layoutX="44.0" layoutY="36.0" text="nom Event">
@@ -53,12 +53,12 @@
                   <Font name="Arial Bold" size="17.0" />
                </font>
             </Label>
-            <Button fx:id="Eajouter" layoutX="20.0" layoutY="642.0" mnemonicParsing="false" onAction="#ajouter" style="-fx-background-color: #eda678; -fx-background-radius: 5em;" text="ajouter" />
-            <Button fx:id="Emodifier" layoutX="122.0" layoutY="642.0" mnemonicParsing="false" onAction="#modifier" style="-fx-background-radius: 5em; -fx-background-color: #eda678;" text="modifier" />
-            <Button fx:id="Esupprimer" layoutX="224.0" layoutY="642.0" mnemonicParsing="false" onAction="#supprimer" style="-fx-background-color: #eda678; -fx-background-radius: 5em;" text="supprimer" />
+            <Button fx:id="Eajouter" layoutX="20.0" layoutY="642.0" mnemonicParsing="false" onAction="#ajouter" style="-fx-background-color: #5969DA; -fx-background-radius: 5em;" text="ajouter" />
+            <Button fx:id="Emodifier" layoutX="122.0" layoutY="642.0" mnemonicParsing="false" onAction="#modifier" style="-fx-background-radius: 5em; -fx-background-color: #5969DA;" text="modifier" />
+            <Button fx:id="Esupprimer" layoutX="224.0" layoutY="642.0" mnemonicParsing="false" onAction="#supprimer" style="-fx-background-color: #5969DA; -fx-background-radius: 5em;" text="supprimer" />
             <TextField fx:id="Enom" layoutX="141.0" layoutY="30.0" prefHeight="31.0" prefWidth="195.0" />
             <TextField fx:id="Enbpart" layoutX="131.0" layoutY="356.0" />
-            <Button fx:id="Eimage" layoutX="166.0" layoutY="519.0" mnemonicParsing="false" onAction="#importer" prefHeight="31.0" prefWidth="142.0" style="-fx-background-color: #eda678; -fx-background-radius: 5em;" text="import image" />
+            <Button fx:id="Eimage" layoutX="166.0" layoutY="519.0" mnemonicParsing="false" onAction="#importer" prefHeight="31.0" prefWidth="142.0" style="-fx-background-color: #5969DA; -fx-background-radius: 5em;" text="import image" />
             <Label layoutX="14.0" layoutY="118.0" prefHeight="20.0" prefWidth="109.0" text="decription">
                <font>
                   <Font name="Arial Bold" size="17.0" />
@@ -90,14 +90,15 @@
             <Label fx:id="labelimage" layoutX="64.0" layoutY="498.0" prefHeight="21.0" prefWidth="225.0" textFill="RED" />
             <Label fx:id="labeladresse" layoutX="41.0" layoutY="591.0" prefHeight="21.0" prefWidth="277.0" textFill="RED" />
             <Label fx:id="labelnbpart" layoutX="14.0" layoutY="388.0" prefHeight="21.0" prefWidth="292.0" textFill="RED" />
-            <JFXDatePicker fx:id="Edate_deb" defaultColor="#eda678" layoutX="128.0" layoutY="178.0" prefHeight="31.0" prefWidth="218.0" />
-            <JFXTimePicker fx:id="ETime_debut" defaultColor="#eda678" layoutX="136.0" layoutY="209.0" />
-            <JFXTimePicker fx:id="ETime_fin" defaultColor="#eda678" layoutX="132.0" layoutY="262.0" />
+            <JFXDatePicker fx:id="Edate_deb" defaultColor="#5969da" layoutX="128.0" layoutY="178.0" prefHeight="31.0" prefWidth="218.0" />
+            <JFXTimePicker fx:id="ETime_debut" defaultColor="#5969da" layoutX="136.0" layoutY="209.0" />
+            <JFXTimePicker fx:id="ETime_fin" defaultColor="#5969da" layoutX="132.0" layoutY="262.0" />
             <Label layoutX="11.0" layoutY="230.0" prefHeight="20.0" prefWidth="109.0" text="heure Debut">
                <font>
                   <Font name="Arial Bold" size="17.0" />
                </font>
             </Label>
+            <TextField fx:id="search" layoutX="354.0" layoutY="88.0" onKeyPressed="#recherche" prefHeight="31.0" prefWidth="734.0" promptText="rechercher" />
          </children>
       </AnchorPane>
    </children>

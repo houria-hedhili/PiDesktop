@@ -140,7 +140,7 @@ public class AcceuilFrontController implements Initializable {
        Stage stage1 = (Stage) gererEvent1.getScene().getWindow();
             stage1.close();
         u=uc.getUser(namee);
-               System.out.println("lena zaama 0 "+u.getId());//cv jawou bhy
+              // System.out.println("lena zaama 0 "+u.getId());//cv jawou bhy
         FXMLLoader loader = new FXMLLoader();
                      loader.setLocation(getClass().getResource("/GUI/Front/gererEvent/event.fxml"));
                     Parent detail=loader.load();
