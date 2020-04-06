@@ -132,10 +132,14 @@ PlatService ps = new PlatService();
     @FXML
     private void ajout(ActionEvent event) {
 
- if (controlTitre()==false)
-{Error("titre invalide");
+ if (titre.getText().isEmpty() || description.getText().isEmpty() || img.isEmpty() || type.getValue().equals("plat"))
+{Error("Veuillez remplir tous le champs");
 
-}else
+}else if(!titre.getText().matches("^[a-zA-Z\\s]*$"))
+{Error("invalide titre : le champs titre ne contient que des lettres");
+}else if(!description.getText().matches("^[a-zA-Z\\s]*$"))
+{Error("invalide description : le champs description ne contient que des lettres");}
+ else
     {    Plat plat=new Plat(titre.getText(), description.getText(),img, type.getValue().toString(), 0, 0);
 if(img=="")
 {img="plat.png";
@@ -188,15 +192,14 @@ affichAllPlat();
 
                 Plat x= table.getSelectionModel().getSelectedItem();
   // System.out.println(platUnique.get(0).getId());
-if(controlTitre())
-{ if(img == "")
+if(img == "")
 { 
     ps.modifierPlat(titre.getText(),type.getValue(),description.getText(),x.getImage(),x.getId());
 
 }
 else { ps.modifierPlat(titre.getText(),type.getValue(),description.getText(),img,x.getId());
 
-}}
+}
 affichAllPlat();
     }
     

@@ -36,11 +36,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -127,7 +129,6 @@ int x=0;
     private TableColumn<abonnement, Date> datedCol;
     @FXML
     private TableColumn<abonnement, Date> datefCol;
-    @FXML
     private TableColumn<abonnement, Integer> nbenfantCol;
     @FXML
     private TableColumn<abonnement,Double> tarifCol;
@@ -140,27 +141,72 @@ int x=0;
     @FXML
     private DatePicker datef2;
     @FXML
-    private TextField nbenfant2;
-    @FXML
     private Button ajoutAbon;
       abonnementService as=new abonnementService();  
     @FXML
     private TableColumn<abonnement, String> etatCol;
+    int id=0;
+    @FXML
+    private ListView<String> Liste;
+    List<String> listSelection=new ArrayList();
+    @FXML
+    private TableColumn<?, ?> nomCol;
+    @FXML
+    private Button retour11;
+    @FXML
+    private TableView<?> tableabon1;
+    @FXML
+    private TableColumn<?, ?> datedCol1;
+    @FXML
+    private TableColumn<?, ?> datefCol1;
+    @FXML
+    private TableColumn<?, ?> nbenfantCol1;
+    @FXML
+    private TableColumn<?, ?> tarifCol1;
+    @FXML
+    private TableColumn<?, ?> etatCol1;
+    @FXML
+    private DatePicker datef1;
+    @FXML
+    private Button modifierAbonn1;
+    @FXML
+    private TableColumn<?, ?> prenomCol;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-       int id = LoginController.ID;
-       System.out.println("hetha id user" +id);
+        id = LoginController.ID;
+
         gridPlat.setPrefColumns(nbrColumn);
         gridPlat.setPrefRows(nbrRow);
-         List<String> enfants =ms.listeEnfant(1);
+         List<String> enfants =ms.listeEnfant(id);
+         
          enfants.add("all");
                  ObservableList<String> enfList=FXCollections.observableArrayList(enfants);
                  listeEnfant.setValue("Liste enfants");
                  listeEnfant.setItems(enfList);
+                 dated.setValue(LocalDate.now());
+                 datef2.setValue(LocalDate.now());
+                 /************************/
+                 List<String> L=new ArrayList<>();
+                      List<String> enfantss =as.listeEnfant(id);
+                      for(int i=0;i<enfantss.size();i++)
+                      {
+                          if(as.abonne(as.getEnfant(enfantss.get(i), id))==false)
+                          {
+                          L.add(enfantss.get(i));
+                          }
+                      }
+                     ObservableList<String> enfListe=FXCollections.observableArrayList(L);
+
+Liste.setItems(enfListe);
+                Liste.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+                 
+                 /************/
+
 afficher();
          List<String> l1=ps.platType("dessert");
                   List<String> l2=ps.platType("plat principal");
@@ -357,6 +403,7 @@ int k=0;
               {
               idDessert=idP[p];
           tab[k]=idDessert;    
+          
               }else {idPlatPrincipal=idP[p];
                   
               tab[k]=idPlatPrincipal;}
@@ -364,7 +411,8 @@ int k=0;
               
               k++;
               
-              
+                  System.out.println(idDessert+" "+idPlatPrincipal);
+
               
             }
             else if(affecter.isSelected()==false  && t==false )
@@ -483,24 +531,55 @@ platCombo.setValue(mii.getPlat());
 
     @FXML
     private void ajoutAbon(ActionEvent event) {
-        LocalDate d= (LocalDate)dated.getValue();
+        
+
+  boolean test=false;
+                
+                double y=calculTarif();
+// int nb=Integer.valueOf(nbenfant2.getText());
+   System.out.println("hetha date d'aujourfi"+new java.util.Date());
+        SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+    System.out.println(formater.format(new java.util.Date()));
+   String aujourdhui=formater.format(new java.util.Date());
+   if(dated.getValue().equals(LocalDate.now())||datef2.getValue().equals(LocalDate.now()) ||(listSelection.isEmpty()))
+   {Error("vous devez remplir tout le champ");
+   } else if(dated.getValue().compareTo(datef2.getValue())>0)
+   {Error("Date fin doit etre superieur a celle du debut");
+   }else if (dated.getValue().toString().compareTo(aujourdhui)<0)
+   {Error("Date debut doit etre superieur a celle d'aujourdhui");
+   
+   }else if (listSelection.isEmpty())
+   {Error("Veuillez selectionner un enfant");
+   
+   }else
+   {LocalDate d= (LocalDate)dated.getValue();
         LocalDate f=datef2.getValue();
                 java.sql.Date sqlDate = java.sql.Date.valueOf(d);
                 java.sql.Date sqlDate1 = java.sql.Date.valueOf(f);
       
-
-
-                
-                double y=calculTarif();
- int nb=Integer.valueOf(nbenfant2.getText());
-   if(dated.getValue().equals("") ||datef2.getValue().equals("") || nbenfant2.getText().isEmpty())
-   {Error("vous devez remplir tout le champ");
-   }
  
- abonnement a=new abonnement(sqlDate, sqlDate1,y,nb);
+       int z=as.getEnfant(Liste.getSelectionModel().getSelectedItem(), id);
+   System.out.println("hetha id mte3 el enfant "+z);
+           abonnement a=new abonnement(sqlDate, sqlDate1,y,z,id);
         as.ajouterAbon(a);
-        afficherAbonn();
-       Success("ajout a ete effectuer avec succes");
+        test=true;
+        
+   if (test){
+       List<String> L=new ArrayList<>();
+                      List<String> enfantss =as.listeEnfant(id);
+                      for(int i=0;i<enfantss.size();i++)
+                      {
+                          if(as.abonne(as.getEnfant(enfantss.get(i), id))==false)
+                          {
+                          L.add(enfantss.get(i));
+                          }
+                      }
+                     ObservableList<String> enfListe=FXCollections.observableArrayList(L);
+
+Liste.setItems(enfListe);
+      
+  Success("ajout a ete effectuer avec succes");}}
+  afficherAbonn();
     }
        private void Success(String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -520,7 +599,9 @@ platCombo.setValue(mii.getPlat());
     datefCol.setCellValueFactory(new PropertyValueFactory<>("datef"));
 etatCol.setCellValueFactory(new PropertyValueFactory<>("etat"));
     tarifCol.setCellValueFactory(new PropertyValueFactory<>("tarif"));
-    nbenfantCol.setCellValueFactory(new PropertyValueFactory<>("nbEnfant"));
+   nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
+      prenomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
+
      tableabon.setItems(abonListe);
     
     }
@@ -572,15 +653,18 @@ public boolean controlDate()
                 }else return false;
                     
 }
-public boolean controlNbr()
-{
-  Pattern pattern = Pattern.compile("[0-9]");
-                   Matcher matcher = pattern.matcher(nbenfant2.getText()); 
 
-      if(!matcher.find())
-      {
-      return true;
-      }return false;
-}
+    @FXML
+    private void listenfant(MouseEvent event) {
+        
+        if(!Liste.getSelectionModel().getSelectedItem().isEmpty())
+        {  ObservableList<String> selectedItems =  Liste.getSelectionModel().getSelectedItems();
+                                for(String s : selectedItems){
+                           listSelection.add(s);
+                        }
+        } else listSelection.clear();
+        
+
+    }
      
 }
