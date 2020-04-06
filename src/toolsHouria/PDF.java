@@ -62,7 +62,7 @@ public class PDF {
              par.setAlignment(Element.ALIGN_CENTER);
             document.add(par);
               document.add(new Paragraph("Veuillez IMPRIMER et présenter ce billet à l'entrée de l'événement\n" , FontFactory.getFont(FontFactory.TIMES)));
-
+ 
              document.add(img);
 
              document.add(adrr);
