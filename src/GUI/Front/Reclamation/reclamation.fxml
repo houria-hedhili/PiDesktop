@@ -10,8 +10,10 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #5ec0f4;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Front.Reclamation.ReclamationController">
     <stylesheets>
@@ -28,7 +30,7 @@
                            <children>
                               <Pane layoutX="602.0" layoutY="623.0" prefHeight="54.0" prefWidth="200.0">
                                  <children>
-                                    <Button fx:id="retour1" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour1" styleClass="retour" stylesheets="@../gererCantine/abonnement/aboncantine.css" text="Retour" />
+                                    <Button fx:id="retour1" layoutX="89.0" layoutY="14.0" mnemonicParsing="false" onAction="#retour1" styleClass="retour" stylesheets="@../gererCantine/abonnement/aboncantine.css" text="Retour" />
                                  </children>
                               </Pane>
                               <TableView fx:id="tab" layoutX="197.0" layoutY="71.0" onMouseClicked="#modifRec" prefHeight="457.0" prefWidth="619.0">
@@ -40,29 +42,30 @@
                                     <TableColumn fx:id="colIdParent" prefWidth="128.0" text="IdParent" />
                                 </columns>
                               </TableView>
-                              <Button fx:id="SupprimerBt" layoutX="675.0" layoutY="548.0" mnemonicParsing="false" onAction="#supprec" style="-fx-background-color: #66bb55;" styleClass="mod" text="Supprimer" />
-                              <Label fx:id="etatLabel" layoutX="23.0" layoutY="139.0" text="Etat" textFill="#e82a9f">
+                              <Button fx:id="SupprimerBt" layoutX="675.0" layoutY="548.0" mnemonicParsing="false" onAction="#supprec" style="-fx-background-color: #464196;" styleClass="sup" text="Supprimer" />
+                              <Label fx:id="etatLabel" layoutX="23.0" layoutY="139.0" text="Etat" textFill="#464196">
                                  <font>
                                     <Font name="Courier New Bold" size="17.0" />
                                  </font></Label>
-                              <Label fx:id="descriptionLabel" layoutX="19.0" layoutY="198.0" text="Description" textFill="#e82a9f">
+                              <Label fx:id="descriptionLabel" layoutX="19.0" layoutY="198.0" text="Description" textFill="#464196">
                                  <font>
                                     <Font name="Courier New Bold" size="17.0" />
                                  </font></Label>
-                              <Label fx:id="categorieReclamationLabel" layoutX="1.0" layoutY="71.0" text="CategorieReclamation" textFill="#e82a9f">
+                              <Label fx:id="categorieReclamationLabel" layoutX="1.0" layoutY="71.0" text="CategorieReclamation" textFill="#464196">
                                  <font>
                                     <Font name="Courier New Bold" size="16.0" />
                                  </font></Label>
-                              <ComboBox fx:id="categorieReclamationCombo" layoutX="12.0" layoutY="99.0" prefWidth="171.0" style="-fx-background-color: #66bb55;" styleClass="combo" stylesheets="@../../Back/gererReclamation/reclamation.css" />
-                              <Button fx:id="ModifierBt" layoutX="548.0" layoutY="548.0" mnemonicParsing="false" onAction="#handleButtonActionModifier" style="-fx-background-color: #e82a9f;" styleClass="mod" stylesheets="@../../Back/gererReclamation/reclamation.css" text="Modifier" />
-                              <Button fx:id="AjouterBt" layoutX="46.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleButtonActionAjouter" style="-fx-background-color: #d6e52b;" styleClass="mod" stylesheets="@../../Back/gererReclamation/reclamation.css" text="Ajouter" />
+                              <ComboBox fx:id="categorieReclamationCombo" layoutX="12.0" layoutY="99.0" prefWidth="171.0" style="-fx-background-color: #464196;" styleClass="combo" stylesheets="@../../Back/gererReclamation/reclamation.css" />
+                              <Button fx:id="ModifierBt" layoutX="454.0" layoutY="548.0" mnemonicParsing="false" onAction="#handleButtonActionModifier" style="-fx-background-color: #464196;" styleClass="mod" text="Modifier" />
+                              <Button fx:id="AjouterBt" layoutX="13.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleButtonActionAjouter" style="-fx-background-color: #464196;" styleClass="aj" stylesheets="@reclamation.css" text="Ajouter" />
                               <TextArea fx:id="desc" layoutX="10.0" layoutY="218.0" prefHeight="84.0" prefWidth="178.0" />
-                              <ComboBox fx:id="comboEtat" layoutX="13.0" layoutY="166.0" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #e5942b;" styleClass="combo" stylesheets="@../../Back/gererReclamation/reclamation.css" />
-                              <Label layoutX="274.0" layoutY="14.0" text="Reclamation" textFill="#e82a9f">
+                              <ComboBox fx:id="comboEtat" layoutX="13.0" layoutY="166.0" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #464196;" styleClass="combo" stylesheets="@../../Back/gererReclamation/reclamation.css" />
+                              <Label layoutX="274.0" layoutY="14.0" text="Reclamation" textFill="#464196">
                                  <font>
                                     <Font name="Forte" size="43.0" />
                                  </font>
                               </Label>
+                              <Button fx:id="detaille" layoutX="226.0" layoutY="548.0" mnemonicParsing="false" onAction="#detaille" style="-fx-background-color: #464196;" styleClass="det" text="Detaille" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -91,7 +94,7 @@
                                     <TableColumn fx:id="colCategorieReclamation1" prefWidth="226.0" text="CategorieReclamation" />
                                 </columns>
                               </TableView>
-                              <Label layoutX="28.0" layoutY="20.0" text="Reclamation à Urgence avec risque" textFill="#66bb55">
+                              <Label layoutX="28.0" layoutY="20.0" text="Reclamation à Urgence avec risque" textFill="#464196">
                                  <font>
                                     <Font name="Forte" size="43.0" />
                                  </font>
@@ -124,7 +127,7 @@
                                     <TableColumn fx:id="colCategorieReclamation2" prefWidth="298.0" text="CategorieReclamation" />
                                 </columns>
                               </TableView>
-                              <Label layoutX="60.0" layoutY="14.0" text="Reclamation à Urgence non vitale" textFill="#e5942b">
+                              <Label layoutX="60.0" layoutY="14.0" text="Reclamation à Urgence non vitale" textFill="#464196">
                                  <font>
                                     <Font name="Forte" size="43.0" />
                                  </font>
@@ -146,14 +149,23 @@
                            <children>
                               <Pane layoutX="602.0" layoutY="623.0" prefHeight="54.0" prefWidth="200.0">
                                  <children>
-                                    <Button fx:id="retour4" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour4" styleClass="retour" stylesheets="@../gererCantine/abonnement/aboncantine.css" text="Retour" />
+                                    <Button fx:id="retour4" layoutX="100.0" layoutY="21.0" mnemonicParsing="false" onAction="#retour4" styleClass="retour" stylesheets="@../gererCantine/abonnement/aboncantine.css" text="Retour" />
                                  </children>
                               </Pane>
+                              <BorderPane layoutX="14.0" layoutY="14.0" prefHeight="597.0" prefWidth="789.0">
+                                 <center>
+                                    <AnchorPane prefHeight="669.0" prefWidth="789.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <WebView fx:id="viewweb" layoutX="3.0" layoutY="1.0" prefHeight="619.0" prefWidth="783.0" />
+                                       </children>
+                                    </AnchorPane>
+                                 </center>
+                              </BorderPane>
                            </children>
                         </AnchorPane>
                      </content>
                      <graphic>
-                        <Label text="aa" textFill="#f2f2f2">
+                        <Label text="Visiter Nous" textFill="#f2f2f2">
                            <font>
                               <Font name="Cooper Black" size="14.0" />
                            </font>

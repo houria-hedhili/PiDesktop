@@ -50,6 +50,8 @@ public class AcceuilFrontController implements Initializable {
     private Label nomUser;
       Utilisateur u=new Utilisateur();
       UserCRUD uc=new UserCRUD();
+    @FXML
+    private Button VisiterNous;
     /**
      * Initializes the controller class.
      */
@@ -169,6 +171,19 @@ public class AcceuilFrontController implements Initializable {
                            //nomUser.setText("Bienvenue "+ch);
 
         return ch ;
+    }
+
+    @FXML
+    private void visiterNous(ActionEvent event) throws IOException {
+             Stage stage1 = (Stage) VisiterNous.getScene().getWindow();
+    stage1.close();  
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front/Acceuilfront/visiterNous.fxml"));
+        
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+        stage.show();
     }
     
     

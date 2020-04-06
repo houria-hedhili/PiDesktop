@@ -55,6 +55,80 @@
     -fx-font-weight:bold; 
     
 }
+.sup {
+     -fx-background-color:#5969DA;
+           
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 30,2,2,2;
+    -fx-padding: 12 30 12 30;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight:bold; 
+    
+    
+}
+.sup:hover 
+{
+     -fx-background-color:#7582DD;
+           
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 30,2,2,2;
+    -fx-padding: 12 30 12 30;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight:bold; 
+    
+}
+
+.mod {
+     -fx-background-color:#5969DA;
+           
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 30,2,2,2;
+    -fx-padding: 12 30 12 30;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight:bold; 
+    
+    
+}
+.mod:hover 
+{
+     -fx-background-color:#7582DD;
+           
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 30,2,2,2;
+    -fx-padding: 12 30 12 30;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight:bold; 
+    
+}
+.det {
+     -fx-background-color:#5969DA;
+           
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 30,2,2,2;
+    -fx-padding: 12 30 12 30;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight:bold; 
+    
+    
+}
+.det:hover 
+{
+     -fx-background-color:#7582DD;
+           
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 30,2,2,2;
+    -fx-padding: 12 30 12 30;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight:bold; 
+    
+}
+
 
 .combo
 {
@@ -77,5 +151,29 @@
     
 }
 
+.aj {
+     -fx-background-color:#5969DA;
+           
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 30,2,2,2;
+    -fx-padding: 12 30 12 30;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight:bold; 
+    
+    
+}
+.aj:hover 
+{
+     -fx-background-color:#7582DD;
+           
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 30,2,2,2;
+    -fx-padding: 12 30 12 30;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight:bold; 
+    
+}
 
 }

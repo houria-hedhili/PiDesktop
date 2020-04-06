@@ -21,6 +21,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -35,6 +36,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javax.swing.JOptionPane;
@@ -59,8 +62,6 @@ public class ReclamationController implements Initializable {
     private Button retour4;
     @FXML
     private TableView<reclamation> tab;
-    @FXML
-    private TableColumn<reclamation, Integer> colId;
     @FXML
     private TableColumn<reclamation, Date> colDate;
     @FXML
@@ -92,8 +93,6 @@ public class ReclamationController implements Initializable {
     @FXML
     private TableView<reclamation> tab1;
     @FXML
-    private TableColumn<reclamation, Integer> colId1;
-    @FXML
     private TableColumn<reclamation, Date> colDate1;
     @FXML
     private TableColumn<reclamation, String> colEtat1;
@@ -109,8 +108,6 @@ reclamationService rc=new reclamationService();
     @FXML
     private TableView<reclamation> tab2;
     @FXML
-    private TableColumn<reclamation, Integer> colId2;
-    @FXML
     private TableColumn<reclamation, Date> colDate2;
     @FXML
     private TableColumn<reclamation, String> colEtat2;
@@ -118,6 +115,10 @@ reclamationService rc=new reclamationService();
     private TableColumn<reclamation, String> colDescription2;
     @FXML
     private TableColumn<reclamation, String> colCategorieReclamation2;
+    @FXML
+    private Button detaille;
+    @FXML
+    private WebView viewweb;
 
     /**
      * Initializes the controller class.
@@ -138,6 +139,11 @@ reclamationService rc=new reclamationService();
         //afficherRecherche();
         
         // TODO
+        
+        final WebEngine web = viewweb.getEngine();
+        String urlweb = "http://google.com";
+        //String urlweb = "https://www.google.com/maps/d/embed?mid=1vtsotPGfHrmxVaTGy_F_KOI6HxoiX7Rb&hl=fr";
+        web.load(urlweb);
     }    
 
 @FXML
@@ -270,6 +276,8 @@ reclamationService rc=new reclamationService();
     reclamationService b= new reclamationService();
     reclamation r=new reclamation(desc.getText(),b.getIdCategorie(categorieReclamationCombo.getValue()) ,comboEtat.getValue());
     b.ajouterReclamation(r);
+    afficherReclamation1();
+    
    /* if( etatText.getText().isEmpty() || descriptionText.getText().isEmpty()){
     Alert alertt=new Alert(Alert.AlertType.ERROR);
     alertt.setTitle("WARNING!");
@@ -309,7 +317,7 @@ reclamationService rc=new reclamationService();
    afficheRec(event);*/
   
   
-  afficherReclamation1();
+  
   
     }
 
@@ -373,5 +381,24 @@ reclamationService rc=new reclamationService();
         colDescription2.setCellValueFactory(new PropertyValueFactory<>("description"));
         colCategorieReclamation2.setCellValueFactory(new PropertyValueFactory<>("nom"));
          }
+
+    @FXML
+    private void detaille(ActionEvent event) throws IOException {
+                FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("detaille.fxml"));
+        Parent tableViewParent = loader.load();
+        
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //access the controller and call a method
+        DetailleController controller = loader.getController();
+        controller.initData(tab.getSelectionModel().getSelectedItem());
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
     
 }
