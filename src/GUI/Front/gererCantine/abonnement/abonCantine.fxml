@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -39,16 +38,17 @@
                                     <Button fx:id="retour1" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour1" styleClass="retour" stylesheets="@aboncantine.css" text="Retour" />
                                  </children>
                               </Pane>
-                              <TableView fx:id="tableabon" layoutX="135.0" layoutY="122.0" onMouseClicked="#modAbon" prefHeight="385.0" prefWidth="534.0">
+                              <TableView fx:id="tableabon" layoutX="68.0" layoutY="136.0" onMouseClicked="#modAbon" prefHeight="368.0" prefWidth="654.0">
                                 <columns>
-                                  <TableColumn fx:id="datedCol" prefWidth="130.0" text="date debut" />
-                                  <TableColumn fx:id="datefCol" minWidth="0.0" prefWidth="120.0" text="date fin" />
-                                    <TableColumn fx:id="nbenfantCol" minWidth="0.0" prefWidth="95.0" text="nombre enfant" />
-                                    <TableColumn fx:id="tarifCol" minWidth="0.0" prefWidth="104.0" text="tarif" />
-                                    <TableColumn fx:id="etatCol" minWidth="0.0" prefWidth="84.0" text="etat" />
+                                  <TableColumn fx:id="nomCol" prefWidth="114.0" text="Nom" />
+                                    <TableColumn fx:id="prenomCol" prefWidth="114.0" text="Prenom" />
+                                    <TableColumn fx:id="tarifCol" minWidth="0.0" prefWidth="99.0" text="tarif" />
+                                    <TableColumn fx:id="datedCol" prefWidth="114.0" text="date debut" />
+                                  <TableColumn fx:id="datefCol" minWidth="0.0" prefWidth="99.0" text="date fin" />
+                                    <TableColumn fx:id="etatCol" minWidth="0.0" prefWidth="110.0" text="etat" />
                                 </columns>
                               </TableView>
-                              <DatePicker fx:id="datef" layoutX="216.0" layoutY="579.0" prefHeight="37.0" prefWidth="176.0" styleClass="datePicker" stylesheets="@aboncantine.css" />
+                              <DatePicker fx:id="datef" layoutX="202.0" layoutY="579.0" prefHeight="37.0" prefWidth="176.0" styleClass="datePicker" stylesheets="@aboncantine.css" />
                               <Text fill="#3074a1" layoutX="74.0" layoutY="602.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date fin :" wrappingWidth="134.13671875">
                                  <font>
                                     <Font name="Matura MT Script Capitals" size="23.0" />
@@ -95,36 +95,32 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <DatePicker fx:id="dated" prefHeight="38.0" prefWidth="220.0" style="-fx-background-radius: 30;" GridPane.columnIndex="1" />
-                                    <DatePicker fx:id="datef2" prefHeight="39.0" prefWidth="227.0" style="-fx-background-radius: 30;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <TextField fx:id="nbenfant2" prefHeight="40.0" prefWidth="247.0" style="-fx-background-radius: 30;" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                       <GridPane.margin>
-                                          <Insets right="20.0" />
-                                       </GridPane.margin>
+                                    <DatePicker fx:id="dated" prefHeight="39.0" prefWidth="247.0" style="-fx-background-radius: 30;" GridPane.columnIndex="1" />
+                                    <Label prefHeight="34.0" prefWidth="112.0" text="   Date debut :" textFill="#1981c5">
                                        <font>
-                                          <Font name="Segoe MDL2 Assets" size="16.0" />
+                                          <Font name="Modern No. 20" size="18.0" />
                                        </font>
-                                    </TextField>
-                                    <Label prefHeight="34.0" prefWidth="160.0" text="   Date debut :" textFill="#1981c5">
-                                       <font>
-                                          <Font name="Modern No. 20" size="27.0" />
-                                       </font></Label>
+                                    </Label>
+                                    <DatePicker fx:id="datef2" prefHeight="43.0" prefWidth="247.0" style="-fx-background-radius: 30;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <Label prefHeight="17.0" prefWidth="161.0" text="   Date fin :" textFill="#1981c5" GridPane.rowIndex="1">
                                        <font>
-                                          <Font name="Modern No. 20" size="27.0" />
-                                       </font></Label>
-                                    <Label prefHeight="31.0" prefWidth="218.0" text="   Nombre enfant :" textFill="#1981c5" GridPane.rowIndex="2">
+                                          <Font name="Modern No. 20" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="31.0" prefWidth="107.0" text="   Enfants:" textFill="#1981c5" GridPane.rowIndex="2">
                                        <font>
-                                          <Font name="Modern No. 20" size="27.0" />
-                                       </font></Label>
+                                          <Font name="Modern No. 20" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <ListView fx:id="Liste" onMouseClicked="#listenfant" prefHeight="89.0" prefWidth="123.0" style="-fx-background-radius: 30;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                  </children>
                               </GridPane>
-                              <Button fx:id="ajoutAbon" layoutX="346.0" layoutY="499.0" mnemonicParsing="false" onAction="#ajoutAbon" prefHeight="52.0" prefWidth="147.0" styleClass="valider" stylesheets="@aboncantine.css" text="Valider" />
                               <Label layoutX="236.0" layoutY="58.0" text="Inscrire au cantine" textFill="#4a9067">
                                  <font>
                                     <Font name="Forte" size="43.0" />
                                  </font>
                               </Label>
+                              <Button fx:id="ajoutAbon" layoutX="332.0" layoutY="507.0" mnemonicParsing="false" onAction="#ajoutAbon" prefHeight="52.0" prefWidth="147.0" styleClass="valider" stylesheets="@aboncantine.css" text="Valider" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -178,7 +174,7 @@
                                     <Button fx:id="retour4" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour4" styleClass="retour" stylesheets="@aboncantine.css" text="Retour" />
                                  </children>
                               </Pane>
-                              <TableView fx:id="tableMenu" layoutX="139.0" layoutY="109.0" onMouseClicked="#affichMod" prefHeight="328.0" prefWidth="540.0">
+                              <TableView fx:id="tableMenu" layoutX="50.0" layoutY="102.0" onMouseClicked="#affichMod" prefHeight="328.0" prefWidth="540.0">
                                 <columns>
                                   <TableColumn fx:id="nomColl" prefWidth="126.0" text="nom" />
                                   <TableColumn fx:id="prenomColl" prefWidth="126.0" text="prenom" />
@@ -186,7 +182,7 @@
                                     <TableColumn fx:id="dessertColl" prefWidth="153.0" text="dessert" />
                                 </columns>
                               </TableView>
-                              <Button fx:id="suppMenu" layoutX="330.0" layoutY="437.0" mnemonicParsing="false" onAction="#suppMenu" prefHeight="50.0" prefWidth="150.0" styleClass="supp" stylesheets="@aboncantine.css" text="Supprimer" textFill="#0f78a7" />
+                              <Button fx:id="suppMenu" layoutX="226.0" layoutY="437.0" mnemonicParsing="false" onAction="#suppMenu" prefHeight="50.0" prefWidth="150.0" styleClass="supp" stylesheets="@aboncantine.css" text="Supprimer" textFill="#0f78a7" />
                               <ComboBox fx:id="platCombo" layoutX="64.0" layoutY="566.0" prefHeight="33.0" prefWidth="150.0" styleClass="combo" stylesheets="@aboncantine.css" />
                               <ComboBox fx:id="dessertCombo" layoutX="229.0" layoutY="568.0" prefHeight="32.0" prefWidth="150.0" styleClass="combo" stylesheets="@aboncantine.css" />
                               <Button fx:id="modfierMenu" layoutX="397.0" layoutY="562.0" mnemonicParsing="false" onAction="#modifierMenu" prefHeight="29.0" prefWidth="132.0" styleClass="mod" text="Modifier" />
@@ -205,6 +201,53 @@
                      </content>
                      <graphic>
                         <Label text="Votre menu" textFill="#f2f2f2">
+                           <font>
+                              <Font name="Cooper Black" size="14.0" />
+                           </font>
+                        </Label>
+                     </graphic>
+                  </Tab>
+                  <Tab>
+                     <content>
+                        <AnchorPane prefHeight="719.0" prefWidth="840.0">
+                           <children>
+                              <Pane layoutX="602.0" layoutY="623.0" prefHeight="54.0" prefWidth="200.0">
+                                 <children>
+                                    <Button fx:id="retour11" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour1" styleClass="retour" stylesheets="@aboncantine.css" text="Retour" />
+                                 </children>
+                              </Pane>
+                              <TableView fx:id="tableabon1" layoutX="261.0" layoutY="128.0" onMouseClicked="#modAbon" prefHeight="354.0" prefWidth="534.0">
+                                 <columns>
+                                    <TableColumn fx:id="datedCol1" prefWidth="130.0" text="date debut" />
+                                    <TableColumn fx:id="datefCol1" minWidth="0.0" prefWidth="120.0" text="date fin" />
+                                    <TableColumn fx:id="nbenfantCol1" minWidth="0.0" prefWidth="95.0" text="nombre enfant" />
+                                    <TableColumn fx:id="tarifCol1" minWidth="0.0" prefWidth="104.0" text="tarif" />
+                                    <TableColumn fx:id="etatCol1" minWidth="0.0" prefWidth="84.0" text="etat" />
+                                 </columns>
+                              </TableView>
+                              <DatePicker fx:id="datef1" layoutX="455.0" layoutY="555.0" prefHeight="37.0" prefWidth="176.0" styleClass="datePicker" stylesheets="@aboncantine.css" />
+                              <Text fill="#3074a1" layoutX="320.0" layoutY="581.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date fin :" wrappingWidth="134.13671875">
+                                 <font>
+                                    <Font name="Matura MT Script Capitals" size="23.0" />
+                                 </font>
+                              </Text>
+                              <Button fx:id="modifierAbonn1" layoutX="639.0" layoutY="555.0" mnemonicParsing="false" onAction="#modifierAbonn" prefHeight="43.0" prefWidth="126.0" styleClass="mod" stylesheets="@aboncantine.css" text="Modifier" />
+                              <Label layoutX="216.0" layoutY="32.0" text="Liste des abonnements" textFill="#4a9067">
+                                 <font>
+                                    <Font name="Forte" size="43.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="338.0" layoutY="517.0" text="Vous pouvez prolonger votre abonnement :" textFill="#2277b9">
+                                 <font>
+                                    <Font name="Courier New Bold" size="17.0" />
+                                 </font>
+                              </Label>
+                              <Pane layoutY="132.0" prefHeight="351.0" prefWidth="258.0" style="-fx-background-color: blue;" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                     <graphic>
+                        <Label text="Consulter" textFill="#f2f2f2">
                            <font>
                               <Font name="Cooper Black" size="14.0" />
                            </font>
