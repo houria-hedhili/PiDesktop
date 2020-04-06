@@ -50,6 +50,8 @@ public class AcceuilFrontController implements Initializable {
     private Label nomUser;
       Utilisateur u=new Utilisateur();
       UserCRUD uc=new UserCRUD();
+    @FXML
+    private Button VisiterNous;
     /**
      * Initializes the controller class.
      */

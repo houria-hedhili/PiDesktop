@@ -10,7 +10,7 @@ package Entity.ameni;
  * @author User
  */
 public class categorieReclamation {
-    private String nom;
+    public String nom;
     private String description;
     private int ref;
 

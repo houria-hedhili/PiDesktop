@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -97,11 +99,32 @@ public class categorieReclamationService {
                 ResultSet rs = st.executeQuery(req);
                 while(rs.next()){
                     categorieReclamation p = new categorieReclamation(rs.getString(1),rs.getString(2),rs.getInt(3));
-                    list.add(p);            
+                    list.add(p);    
                    }
                 } catch (SQLException ex) {
                     Logger.getLogger(categorieReclamationService.class.getName()).log(Level.SEVERE, null, ex);
                 }
       return list ;   
        }*/
+        
+         public ObservableList<categorieReclamation> recherche(String recherche) throws SQLException {
+        ObservableList<categorieReclamation> list = FXCollections.observableArrayList();
+        String requete = "Select nom,description,ref from categorie_reclamation WHERE `nom` LIKE '%"+recherche+"%' OR `description` LIKE '%"+recherche+"%' OR `ref` LIKE '%"+recherche+"%'  ";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(requete);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+    categorieReclamation p = new categorieReclamation(
+                    rs.getString(1),
+                    rs.getString(2),
+                    rs.getInt(3));
+
+            list.add(p);          
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return list;
+    }
 }
