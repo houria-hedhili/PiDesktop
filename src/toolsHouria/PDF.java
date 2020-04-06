@@ -53,7 +53,7 @@ public class PDF {
             int randomNum = ThreadLocalRandom.current().nextInt(1, 100 + 1);
 
             com.itextpdf.text.Document document = new com.itextpdf.text.Document();
-            PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\LENOVO\\Desktop\\ticket/ticket" + randomNum + ".pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\ASUS\\Desktop\\ticket/ticket" + randomNum + ".pdf"));
             document.open();
              Image img=Image.getInstance(p.getImage());
              img.setWidthPercentage(50);
@@ -62,7 +62,7 @@ public class PDF {
              par.setAlignment(Element.ALIGN_CENTER);
             document.add(par);
               document.add(new Paragraph("Veuillez IMPRIMER et présenter ce billet à l'entrée de l'événement\n" , FontFactory.getFont(FontFactory.TIMES)));
- 
+
              document.add(img);
 
              document.add(adrr);
