@@ -38,6 +38,9 @@
 
     <jar href="piFinal.jar" size="2032559" download="eager" />
 
+    <jar href="piFinal.jar" size="4892842" download="eager" />
+
+
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="piFinal" >
     <param name="requiredFXVersion" value="8.0+"/>
