@@ -1,0 +1,27 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+#signin { 
+    -fx-background-color: blue;
+}
+
+
+   #signin { 
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+#signin:hover {
+    -fx-text-fill: #f20808;
+}
+   #signout { 
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+#signout:hover {
+    -fx-text-fill: #f20808;
+}
+}

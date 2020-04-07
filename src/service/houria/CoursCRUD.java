@@ -70,18 +70,21 @@ public class CoursCRUD {
 
                      
             String requete
-                    ="UPDATE event SET nom = ? ,image = ? ,nbpart =? ,description=? ,local=? WHERE idEvent=?";
+                    ="UPDATE cours SET matiere = ? ,description = ? ,duree =? ,seats=? ,age=? ,image=? WHERE id=?";
                         PreparedStatement st = cnx.prepareStatement(requete);
            st.setInt(1,event.getId_mat());
         st.setString(2, event.getDescription());
         st.setTime(3, event.getDuree());
         st.setInt(4, event.getSeats());
         st.setInt(5, event.getAge());
+
         
         System.out.println(event.getImage() );
         st.setString(6, event.getImage());
-            st.executeUpdate();
-            System.out.println("cours ajoutée");
+        st.setInt(7, id);
+
+        st.executeUpdate();
+           // System.out.println("cours ajoutée");
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
 
@@ -90,8 +93,7 @@ public class CoursCRUD {
 
 
 
-    }
-
+    }//mouch mena hou oskot khalnchouf
     public ObservableList<Cours> displayALLCours() {
         ObservableList<Cours> myList = FXCollections.observableArrayList();
         try {
@@ -101,17 +103,18 @@ public class CoursCRUD {
             while (rs.next()) {
                 Cours p = new Cours();
                 p.setId(rs.getInt("id"));
-                
+                p.setImage(rs.getString("image"));
+                System.out.println(rs.getString("image"));
                 p.setId_mat(rs.getInt("matiere"));
                 p.setDescription(rs.getString("description"));
                 p.setDuree(rs.getTime("duree"));
                 p.setSeats(rs.getInt("seats"));
                 p.setAge(rs.getInt("age"));
                  ImageView v=new ImageView();
-                   v.setImage(new Image(rs.getString(7)));
+                   v.setImage(new Image(rs.getString("image")));
                    v.setFitHeight(100);
                    v.setFitWidth(100);
-                p.setPhoto(v);
+                p.setPhoto(v); 
                 p.setMat(rs.getString("nom"));
                 myList.add(p);
             }

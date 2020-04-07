@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="404.0" prefWidth="599.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.authentification.register.RegisterController">
+    <stylesheets>
+        <URL value="@register.css" />
+    </stylesheets>
+   <children>
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="651.0" style="-fx-background-color: #1562ED;">
+         <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="324.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="S'inscrire" textFill="#f8efef">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Cambria" size="34.0" />
+                     </font>
+                  </Label>
+                  <HBox onInputMethodTextChanged="#essai" style="-fx-border-color: #f56f6f; -fx-background-radius: 0;">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <children>
+                        <TextField fx:id="prenom" onKeyTyped="#prenomControl" onMouseMoved="#showInfo" prefHeight="32.0" promptText="prenom" style="-fx-background-color: transparent; -fx-prompt-text-fill: #D2E2FE; -fx-text-fill: white;" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" prefHeight="32.0" style="-fx-background-color: transparent;">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: transparent;">
+                                 <image>
+                                    <Image url="@../../login/user.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <ImageView fx:id="img1" fitHeight="26.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                     <VBox.margin>
+                        <Insets left="50.0" right="50.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="242.0" style="-fx-border-color: #f56f6f; -fx-background-radius: 0;">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <children>
+                        <TextField fx:id="nom" onKeyTyped="#nomControl" prefHeight="32.0" promptText="nom" style="-fx-background-color: transparent; -fx-prompt-text-fill: #D2E2FE; -fx-text-fill: white;" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" prefHeight="32.0" style="-fx-background-color: transparent;">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: transparent;">
+                                 <image>
+                                    <Image url="@../../login/user.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <ImageView fx:id="img2" fitHeight="26.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                     <VBox.margin>
+                        <Insets left="50.0" right="50.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="316.0" style="-fx-border-color: #f56f6f; -fx-background-radius: 0;">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <children>
+                        <TextField fx:id="mail" onKeyTyped="#mailControl" prefHeight="32.0" promptText="email" style="-fx-background-color: transparent; -fx-prompt-text-fill: #D2E2FE; -fx-text-fill: white;" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </TextField>
+                        <Button mnemonicParsing="false" prefHeight="32.0" style="-fx-background-color: transparent;">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: transparent;">
+                                 <image>
+                                    <Image url="@email.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <ImageView fx:id="img3" fitHeight="26.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                     <VBox.margin>
+                        <Insets left="50.0" right="50.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="343.0" style="-fx-border-color: #f56f6f; -fx-background-radius: 0;">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <children>
+                        <TextField fx:id="username" onKeyTyped="#loginControl" prefHeight="32.0" promptText="username" style="-fx-background-color: transparent; -fx-prompt-text-fill: #D2E2FE; -fx-text-fill: white;" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" prefHeight="32.0" style="-fx-background-color: transparent;">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: transparent;">
+                                 <image>
+                                    <Image url="@../../login/user.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <ImageView fx:id="img4" fitHeight="26.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                     <VBox.margin>
+                        <Insets left="50.0" right="50.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox layoutX="60.0" layoutY="188.0" style="-fx-border-color: #f56f6f; -fx-background-radius: 0;">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <children>
+                        <PasswordField fx:id="password" onKeyTyped="#passwordControl" prefHeight="32.0" promptText="mot de passe" style="-fx-background-color: transparent; -fx-prompt-text-fill: #D2E2FE; -fx-text-fill: white;" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" prefHeight="32.0" style="-fx-background-color: transparent;">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: transparent;">
+                                 <image>
+                                    <Image url="@../../login/password.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <ImageView fx:id="img5" fitHeight="26.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                     <VBox.margin>
+                        <Insets left="50.0" right="50.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox layoutX="60.0" layoutY="388.0" style="-fx-border-color: #f56f6f; -fx-background-radius: 0;">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <children>
+                        <PasswordField fx:id="password1" onKeyTyped="#password1Control" prefHeight="32.0" promptText="mot de passe repete" style="-fx-background-color: transparent; -fx-prompt-text-fill: #D2E2FE; -fx-text-fill: white;" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" prefHeight="32.0" style="-fx-background-color: transparent;">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: transparent;">
+                                 <image>
+                                    <Image url="@../../login/password.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <ImageView fx:id="img6" fitHeight="26.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                     <VBox.margin>
+                        <Insets left="50.0" right="50.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox style="-fx-background-radius: 0;">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <children>
+                        <Label prefHeight="32.0" />
+                        <Button fx:id="signout" mnemonicParsing="false" onAction="#inscrireUtilisateur" prefHeight="34.0" prefWidth="171.0" stylesheets="@register.css" text="Valider" textFill="#2580a8" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets left="40.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="50.0" right="50.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="400.0" prefWidth="274.0" style="-fx-background-color: #025BF8;">
+               <children>
+                  <HBox prefHeight="259.0" prefWidth="274.0">
+                     <children>
+                        <ImageView fitHeight="230.0" fitWidth="236.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../login/img.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </ImageView>
+                     </children>
+                     <padding>
+                        <Insets bottom="70.0" />
+                     </padding>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="79.0" prefWidth="274.0">
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                     <children>
+                        <Text fill="#e89c9c" strokeType="OUTSIDE" strokeWidth="0.0" text="Vous possedez deja un compte ?" textAlignment="CENTER" wrappingWidth="201.3984375" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets left="30.0" top="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Comic Sans MS" size="17.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <Button fx:id="signin" mnemonicParsing="false" onAction="#pageConnexion" prefHeight="51.0" prefWidth="195.0" stylesheets="@register.css" text="Se connecter" textFill="#2580a8">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

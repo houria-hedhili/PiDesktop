@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Front.gererPersonnel.PersonnelController">
+    <stylesheets>
+        <URL value="@personnel.css" />
+    </stylesheets>
+   <children>
+      <AnchorPane layoutY="10.0" prefHeight="691.0" prefWidth="1003.0">
+         <children>
+            <TabPane fx:id="tabpane" layoutX="2.0" prefHeight="691.0" prefWidth="989.0" side="LEFT" styleClass="tabpane" stylesheets="@../gererCantine/abonnement/aboncantine.css" tabClosingPolicy="UNAVAILABLE">
+               <tabs>
+                  <Tab>
+                     <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Pane layoutX="602.0" layoutY="623.0" prefHeight="54.0" prefWidth="200.0">
+                                 <children>
+                                    <Button fx:id="retour1" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour1" styleClass="retour" stylesheets="@../gererCantine/abonnement/aboncantine.css" text="Retour" />
+                                 </children>
+                              </Pane>
+                              <TableView fx:id="tabb" layoutX="29.0" layoutY="122.0" prefHeight="434.0" prefWidth="610.0">
+                                <columns>
+                                  <TableColumn fx:id="nom" prefWidth="133.0" text="Nom" />
+                                  <TableColumn fx:id="pre" prefWidth="150.0" text="Prenom" />
+                                    <TableColumn fx:id="catt" minWidth="0.0" prefWidth="140.0" text="Categorie" />
+                                    <TableColumn fx:id="image" prefWidth="186.0" text="Image" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                     <graphic>
+                        <Label text="Liste personnels" textFill="#f2f2f2">
+                           <font>
+                              <Font name="Cooper Black" size="14.0" />
+                           </font>
+                        </Label>
+                     </graphic>
+                  </Tab>
+               </tabs>
+            </TabPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
