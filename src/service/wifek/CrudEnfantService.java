@@ -89,6 +89,21 @@ public class CrudEnfantService {
                 }
       return list ;   
        }
+         public ArrayList<enfant> afficherEnfant2(int id){
+         ArrayList<enfant> list = new ArrayList<>() ;
+             try {
+                Statement st=cnx.createStatement();
+                String req="Select e.id, e.sexe, e.nom, e.prenom, e.age, b.ligne, p.username from enfant e  inner join Bus b on b.id=e.id_Bus inner join fos_user p on e.idParent = p.id where idParent = '"+id+"'";
+                ResultSet rs = st.executeQuery(req);
+                while(rs.next()){//
+                    enfant p = new enfant(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getString(6),rs.getString(7));
+                    list.add(p);            
+                   }
+                } catch (SQLException ex) {
+                    Logger.getLogger(CrudBusService.class.getName()).log(Level.SEVERE, null, ex);
+                }
+      return list ;   
+       }
         
              
      public void modifierEnfant(String sexe,String nom,String prenom,int age,int id_Bus,int id){
@@ -110,14 +125,14 @@ public class CrudEnfantService {
      
         public ObservableList<enfant> Affichertoutpdf() throws SQLException {
         ObservableList<enfant> list = FXCollections.observableArrayList();
-        String requete = "select sexe,nom,prenom,age,idParent from enfant";
+        String requete = "Select e.sexe, e.nom, e.prenom, e.age, b.ligne, p.username from enfant e  inner join Bus b on b.id=e.id_Bus inner join fos_user p on e.idParent = p.id ";
        // (String sexe, String nom, String prenom, int age, String nomLigne, int idParent)
         try {
             PreparedStatement ps = cnx.prepareStatement(requete);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                list.add(new enfant(rs.getString("sexe"), rs.getString("nom"), rs.getString("prenom"), rs.getInt("age"),rs.getInt("idParent")));
+                list.add(new enfant(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6)));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();

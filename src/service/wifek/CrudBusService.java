@@ -93,11 +93,11 @@ private Connection cnx;
                 }
       return list ;  
        }
-           public  ArrayList<enfant>  getLigneBus(){
+           public  ArrayList<enfant>  getLigneBus(int id){
          ArrayList<enfant> list = new ArrayList<>() ;
              try {
                 Statement st=cnx.createStatement();
-                String req="Select s.id,b.ligne,s.sexe, s.nom,s.prenom,s.age from bus b INNER JOIN enfant s on b.id=s.id_bus";//stana nkhamemb sayeeleeb na3rafha la requete ena manich bich nnselecti ken ligne bich naffichi tbaleau keml ok
+                String req="Select s.id,b.ligne,s.sexe, s.nom,s.prenom,s.age from bus b INNER JOIN enfant s on b.id=s.id_bus where s.idParent='"+id+"'";//stana nkhamemb sayeeleeb na3rafha la requete ena manich bich nnselecti ken ligne bich naffichi tbaleau keml ok
                 ResultSet rs = st.executeQuery(req);
                 while(rs.next()){//hezni lil
                    //stana nkhamem

@@ -87,10 +87,10 @@ public class EnfantController implements Initializable {
                 Document document = new Document();
         try {
 
-            PdfWriter.getInstance(document, new FileOutputStream("doc.pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream("Enfant.pdf"));
             document.open();
             Paragraph ph1 = new Paragraph("Bienvenue a Coccinelle !");
-            PdfPTable table = new PdfPTable(5);
+            PdfPTable table = new PdfPTable(6);
             //On créer l'objet cellule.
             PdfPCell cell;
             cell = new PdfPCell(new Phrase("Tableau des Enfants Inscrits"));
@@ -100,8 +100,8 @@ public class EnfantController implements Initializable {
             table.addCell("Sexe : ");
             table.addCell("Nom : ");
             table.addCell("Prenom : ");
-            table.addCell("Age :");
-        
+            table.addCell("Age : ");
+            table.addCell("Ligne : ");
             table.addCell("Parent : ");
           
             sp.Affichertoutpdf().forEach(e
@@ -110,14 +110,14 @@ public class EnfantController implements Initializable {
                 table.addCell(e.getNom());
                 table.addCell(e.getPrenom());
                 table.addCell(String.valueOf(e.getAge()));
-              
-                table.addCell(String.valueOf(e.getIdParent()));
+                table.addCell(e.getNomLigne());
+                table.addCell(e.getUsername());
             }
             );
             document.add(ph1);
             document.add(table);
             document.addAuthor("Coccinelle");
-//            AlertDialog.showNotification("Creation PDF ", "Votre fichier PDF a ete cree avec success", AlertDialog.image_checked);
+//           AlertDialog.showNotification("Creation PDF ", "Votre fichier PDF a ete cree avec success", AlertDialog.image_checked);
         } catch (Exception e) {
             System.out.println(e);
         }

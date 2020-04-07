@@ -5,6 +5,8 @@
  */
 package Entity.wifek;
 
+import GUI.login.LoginController;
+
 /**
  *
  * @author ASUS
@@ -45,13 +47,23 @@ private String username;
         this.nomLigne = nomLigne;
     }
 
+    public enfant(String sexe, String nom, String prenom, int age, String nomLigne, String username) {
+        this.sexe = sexe;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.age = age;
+        this.nomLigne = nomLigne;
+        this.username = username;
+    }
+
         public enfant(String sexe, String nom, String prenom, int age, int id_Bus) {
         this.sexe = sexe;
         this.nom = nom;
         this.prenom = prenom;
         this.age = age;
         this.id_Bus = id_Bus;
-        this.idParent=1;
+        this.idParent=LoginController.ID;
+        
     }
         public enfant(int id,String sexe, String nom, String prenom, int age, int id_Bus ) {
         this.id=id;

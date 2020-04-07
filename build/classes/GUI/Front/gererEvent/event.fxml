@@ -26,7 +26,7 @@
                      <children>
                         <TabPane fx:id="tabpane" layoutX="-2.0" prefHeight="691.0" prefWidth="1003.0" side="LEFT" styleClass="tabpane" stylesheets="@../gererCantine/abonnement/aboncantine.css" tabClosingPolicy="UNAVAILABLE">
                            <tabs>
-                              <Tab>
+                              <Tab onSelectionChanged="#affpassee">
                                  <content>
                                     <AnchorPane prefHeight="138.0" prefWidth="803.0">
                                        <children>
@@ -35,6 +35,15 @@
                                                 <Button fx:id="retour2" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour2" styleClass="retour" stylesheets="@../gererCantine/abonnement/aboncantine.css" text="Retour" />
                                              </children>
                                           </Pane>
+                                          <ScrollPane fx:id="scrollpass" prefHeight="607.0" prefWidth="800.0" style="-fx-background-color: #A7D5F3;">
+                                            <content>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                                                   <children>
+                                                      <VBox fx:id="eventcontainerpass" prefHeight="600.0" prefWidth="798.0" style="-fx-background-color: #A7D5F3;" />
+                                                   </children>
+                                                </AnchorPane>
+                                            </content>
+                                          </ScrollPane>
                                        </children>
                                     </AnchorPane>
                                  </content>
@@ -57,7 +66,7 @@
                                           </Pane>
                                           <ScrollPane fx:id="scroll" prefHeight="622.0" prefWidth="797.0" style="-fx-background-color: #A7D5F3;">
                                              <content>
-                                                <VBox fx:id="eventcontainer" prefHeight="426.0" prefWidth="660.0" style="-fx-background-color: #A7D5F3;" />
+                                                <VBox fx:id="eventcontainer" prefHeight="618.0" prefWidth="794.0" style="-fx-background-color: #A7D5F3;" />
                                              </content>
                                           </ScrollPane>
                                        </children>
