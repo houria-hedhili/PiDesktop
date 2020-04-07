@@ -12,6 +12,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -83,6 +84,7 @@
                   <Font name="Calisto MT" size="21.0" />
                </font>
             </Text>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
             <Label fx:id="erreurTitre" prefHeight="24.0" prefWidth="254.0" textFill="#c92020" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="Calibri Bold" size="15.0" />

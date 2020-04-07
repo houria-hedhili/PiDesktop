@@ -7,6 +7,7 @@ package GUI.Front.gererEnfant;
 
 import Entity.wifek.Bus;
 import Entity.wifek.enfant;
+import GUI.login.LoginController;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -106,6 +107,7 @@ public class EnfantController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    CrudEnfantService es;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO               
@@ -127,10 +129,11 @@ public class EnfantController implements Initializable {
    /* CrudEnfantService sp = new CrudEnfantService();
       List buss=sp.afficherEnfant();*/
                  CrudBusService c=new CrudBusService();
-          List<enfant> liste=c.getLigneBus();
+          List<enfant> liste=c.getLigneBus(LoginController.ID);
           //System.out.println(liste.get(0).getNomLigne());
        ObservableList et=FXCollections.observableArrayList(liste);
        tabAffiche.setItems(et);
+       
    //  ObservableList observableList = FXCollections.observableArrayList(buss);
        //
        //colid.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -142,8 +145,9 @@ public class EnfantController implements Initializable {
 }
       private void afficher2() {
      CrudBusService c=new CrudBusService();
-          List<enfant> liste=c.getLigneBus();
-  
+          List<enfant> liste=c.getLigneBus(LoginController.ID);
+   //  List<enfant> liste=es.afficherEnfant2(LoginController.ID);
+     System.out.println(LoginController.ID);
        ObservableList et=FXCollections.observableArrayList(liste);
        tabAffiche1.setItems(et);
      ObservableList observableList = FXCollections.observableArrayList(liste);
@@ -203,7 +207,6 @@ public class EnfantController implements Initializable {
     stage.close();
      
     }
-
     @FXML
     private void ajoutB(ActionEvent event)  throws SQLException {
 CrudBusService b1= new CrudBusService();
@@ -242,7 +245,6 @@ CrudBusService b1= new CrudBusService();
        b1.getIdLigne(trajet1.getValue())
     );   
     b.ajouterEnfant(bus);
-
     //    System.out.println( b1.getIdLigne(trajet1.getValue()));
     
     Notifications notif=Notifications.create()
@@ -300,7 +302,7 @@ CrudBusService b1= new CrudBusService();
             JOptionPane.showMessageDialog(null, "choisir Enfant");
         }else{
             rs.supprimerEnfant(cc.getId());
-            //refreshB(event);
+            //ereshB(event);
             afficher2();
             clearEnfant(event);
            JOptionPane.showMessageDialog(null, "Enfant supprimer");
@@ -326,7 +328,7 @@ CrudBusService b1= new CrudBusService();
     private void refreshB(ActionEvent event) throws SQLException{
         List<enfant> listB=new ArrayList<>();
         CrudEnfantService   cr = new CrudEnfantService();
-        listB = cr.afficherEnfant();
+        listB = cr.afficherEnfant2(LoginController.ID);
         ObservableList <enfant> data = FXCollections.observableArrayList(listB);
         tabAffiche1.setItems(data);
     }

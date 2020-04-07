@@ -34,6 +34,7 @@ public class Personnel {
         this.id_cat = id_cat;
         this.image = image;
     }
+    
    public Personnel(int id,String nom, String prenom, int age, float nb_h, float prix_h, String categorie, String image) {
         this.id=id;
         this.nom = nom;
@@ -65,6 +66,8 @@ public class Personnel {
        this.id_cat=idCategorie;
        this.image=img;
     }
+
+   
 
     public int getId_cat() {
         return id_cat;
@@ -204,9 +207,8 @@ this.image=img;//To change body of generated methods, choose Tools | Templates.
 
     
 
-   
+  
 
-   
 
     public Personnel(String nom, String prenom, int age, float nb_h, float prix_h, String categorie, String image) {
         this.nom = nom;

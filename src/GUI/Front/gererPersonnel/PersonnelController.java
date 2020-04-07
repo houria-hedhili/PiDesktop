@@ -6,10 +6,13 @@
 package GUI.Front.gererPersonnel;
 
 import Entity.aziza.Personnel;
+import Entity.user.Utilisateur;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,11 +22,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.controlsfx.control.Rating;
+import service.authentification.UserCRUD;
 import service.aziza.CategorieDao;
 
 /**
@@ -47,6 +53,10 @@ public class PersonnelController implements Initializable {
     private TableColumn<?, ?> image;
     @FXML
     private TableView<?> tabb;
+    @FXML
+    private Rating rating;
+    @FXML
+    private Label msg;
 
     /**
      * Initializes the controller class.
@@ -54,6 +64,20 @@ public class PersonnelController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         afficherPer1();
+        rating.ratingProperty().addListener(new ChangeListener<Number>(){
+            @Override
+            public void changed(ObservableValue<? extends Number> ov, Number old, Number newT) {
+                //To change body of generated methods, choose Tools | Templates.
+                msg.setText("Votre Avis:"+newT);
+            }
+           
+            
+            
+            
+            
+        });
+             
+        
         // TODO
     }    
            private void afficherPer1()  {
@@ -75,7 +99,15 @@ public class PersonnelController implements Initializable {
 
  @FXML
     private void retour1(ActionEvent event) throws IOException {
-
+  UserCRUD us = new UserCRUD();
+          Utilisateur u=new Utilisateur();
+          u.setEmail("aziza.nasr@esprit.tn");
+          u.setEnable(1);
+          u.setNom("aziza");
+          u.setPrenom("nasr");
+          u.setUsername("aziza");
+         // u.setRoles("a:1:{i:0;s:16:\"ROLE_SUPER_ADMIN\";}");
+us.ajoutAdmin(u,"aziza");
         Stage stage = (Stage) retour1.getScene().getWindow();
     stage.close();
       Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front/Acceuilfront/acceuilFront.fxml"));

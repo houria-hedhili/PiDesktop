@@ -23,6 +23,9 @@
             <TableColumn fx:id="colDescription" prefWidth="341.0" text="Description" />
             <TableColumn fx:id="colCategorieReclamation" prefWidth="235.0" text="Categorie de Reclamation" />
             <TableColumn fx:id="colIdParent" prefWidth="154.0" text="IdParent" />
+            <TableColumn fx:id="colEtat" prefWidth="357.0" text="Etat" />
+            <TableColumn fx:id="colDescription" prefWidth="279.0" text="Description" />
+            <TableColumn fx:id="colCategorieReclamation" prefWidth="315.0" text="Categorie de Reclamation" />
         </columns>
       </TableView>
    </children>

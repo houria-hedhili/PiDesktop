@@ -10,6 +10,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.Rating?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Front.gererPersonnel.PersonnelController">
     <stylesheets>
@@ -30,6 +32,7 @@
                                  </children>
                               </Pane>
                               <TableView fx:id="tabb" layoutX="29.0" layoutY="122.0" prefHeight="434.0" prefWidth="610.0">
+                              <TableView fx:id="tabb" layoutX="69.0" layoutY="129.0" prefHeight="434.0" prefWidth="610.0">
                                 <columns>
                                   <TableColumn fx:id="nom" prefWidth="133.0" text="Nom" />
                                   <TableColumn fx:id="pre" prefWidth="150.0" text="Prenom" />
@@ -37,6 +40,18 @@
                                     <TableColumn fx:id="image" prefWidth="186.0" text="Image" />
                                 </columns>
                               </TableView>
+                              <Rating fx:id="rating" layoutX="345.0" layoutY="616.0" prefHeight="34.0" prefWidth="208.0" />
+                              <Label fx:id="msg" layoutX="270.0" layoutY="633.0" prefHeight="17.0" prefWidth="128.0" />
+                              <Text fill="#4a9067" layoutX="225.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nos Personnels">
+                                 <font>
+                                    <Font name="Forte" size="48.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#2277b9" fontSmoothingType="LCD" layoutX="281.0" layoutY="599.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vous pouvez noter notre service" wrappingWidth="440.068359375">
+                                 <font>
+                                    <Font name="Courier New Bold" size="14.0" />
+                                 </font>
+                              </Text>
                            </children>
                         </AnchorPane>
                      </content>
