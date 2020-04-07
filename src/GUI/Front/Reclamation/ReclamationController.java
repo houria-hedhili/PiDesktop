@@ -70,8 +70,6 @@ public class ReclamationController implements Initializable {
     private TableColumn<reclamation, String> colDescription;
     @FXML
     private TableColumn<reclamation, String> colCategorieReclamation;
-    @FXML
-    private TableColumn<reclamation, String> colIdParent;
     
     reclamationService rec=new reclamationService();
     @FXML
@@ -144,6 +142,7 @@ reclamationService rc=new reclamationService();
         String urlweb = "http://google.com";
         //String urlweb = "https://www.google.com/maps/d/embed?mid=1vtsotPGfHrmxVaTGy_F_KOI6HxoiX7Rb&hl=fr";
         web.load(urlweb);
+       
     }    
 
 @FXML
@@ -221,7 +220,7 @@ reclamationService rc=new reclamationService();
         colEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));   
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));   
         colCategorieReclamation.setCellValueFactory(new PropertyValueFactory<>("categorieReclamation")); 
-        colIdParent.setCellValueFactory(new PropertyValueFactory<>("idParent"));          
+        //colIdParent.setCellValueFactory(new PropertyValueFactory<>("idParent"));          
         }
          
                 private void afficheRec(ActionEvent event) {   
@@ -237,7 +236,7 @@ reclamationService rc=new reclamationService();
         colEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         colCategorieReclamation.setCellValueFactory(new PropertyValueFactory<>("categorieReclamation"));
-        colIdParent.setCellValueFactory(new PropertyValueFactory<>("idParent")); 
+        //colIdParent.setCellValueFactory(new PropertyValueFactory<>("idParent")); 
 
     }
                 
@@ -349,7 +348,7 @@ reclamationService rc=new reclamationService();
         colEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         colCategorieReclamation.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        colIdParent.setCellValueFactory(new PropertyValueFactory<>("idParent"));
+       // colIdParent.setCellValueFactory(new PropertyValueFactory<>("idParent"));
          }
     
            public void afficherReclamation2()

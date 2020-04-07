@@ -37,8 +37,6 @@ public class DetailleController implements Initializable {
     @FXML
     private Label categorieReclamation;
     @FXML
-    private Label idParent;
-    @FXML
     private Button retour;
 
 
@@ -55,7 +53,7 @@ public class DetailleController implements Initializable {
         etat.setText(reclamationn.getEtat());
         description.setText(reclamationn.getDescription());
        // categorieReclamation.setText(reclamationn.getCategorieReclamation());
-        idParent.setText(Integer.toString(reclamationn.getIdParent()));
+        //idParent.setText(Integer.toString(reclamationn.getIdParent()));
         categorieReclamation.setText(reclamationn.getNom());
     }
     
