@@ -19,10 +19,9 @@
       <TableView fx:id="tab" layoutX="14.0" layoutY="69.0" prefHeight="597.0" prefWidth="1116.0">
         <columns>
           <TableColumn fx:id="colDate" prefWidth="164.0" text="Date" />
-            <TableColumn fx:id="colEtat" prefWidth="221.0" text="Etat" />
-            <TableColumn fx:id="colDescription" prefWidth="341.0" text="Description" />
-            <TableColumn fx:id="colCategorieReclamation" prefWidth="235.0" text="Categorie de Reclamation" />
-            <TableColumn fx:id="colIdParent" prefWidth="154.0" text="IdParent" />
+            <TableColumn fx:id="colEtat" prefWidth="357.0" text="Etat" />
+            <TableColumn fx:id="colDescription" prefWidth="279.0" text="Description" />
+            <TableColumn fx:id="colCategorieReclamation" prefWidth="315.0" text="Categorie de Reclamation" />
         </columns>
       </TableView>
    </children>

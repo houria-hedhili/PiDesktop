@@ -82,8 +82,6 @@ public class CategorieReclamationController implements Initializable {
     
     
     @FXML
-    private Pagination pagination;
-    @FXML
     private TextField recherche;
     
 

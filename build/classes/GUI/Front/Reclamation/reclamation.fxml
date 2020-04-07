@@ -22,7 +22,7 @@
    <children>
       <AnchorPane layoutY="10.0" prefHeight="691.0" prefWidth="1003.0">
          <children>
-            <TabPane fx:id="tabpane" layoutX="-26.0" prefHeight="691.0" prefWidth="1017.0" side="LEFT" styleClass="tabpane" stylesheets="@../gererCantine/abonnement/aboncantine.css" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="tabpane" layoutX="-26.0" prefHeight="691.0" prefWidth="1016.0" side="LEFT" styleClass="tabpane" stylesheets="@../gererCantine/abonnement/aboncantine.css" tabClosingPolicy="UNAVAILABLE">
                <tabs>
                   <Tab>
                      <content>
@@ -36,13 +36,12 @@
                               <TableView fx:id="tab" layoutX="197.0" layoutY="71.0" onMouseClicked="#modifRec" prefHeight="457.0" prefWidth="619.0">
                                 <columns>
                                   <TableColumn fx:id="colDate" prefWidth="97.0" text="Date" />
-                                    <TableColumn fx:id="colEtat" prefWidth="75.0" text="Etat" />
-                                    <TableColumn fx:id="colDescription" prefWidth="130.0" text="Description" />
-                                    <TableColumn fx:id="colCategorieReclamation" prefWidth="188.0" text="Categorie reclamation" />
-                                    <TableColumn fx:id="colIdParent" prefWidth="128.0" text="IdParent" />
+                                    <TableColumn fx:id="colEtat" prefWidth="176.0" text="Etat" />
+                                    <TableColumn fx:id="colDescription" prefWidth="164.0" text="Description" />
+                                    <TableColumn fx:id="colCategorieReclamation" prefWidth="181.0" text="Categorie reclamation" />
                                 </columns>
                               </TableView>
-                              <Button fx:id="SupprimerBt" layoutX="675.0" layoutY="548.0" mnemonicParsing="false" onAction="#supprec" style="-fx-background-color: #464196;" styleClass="sup" text="Supprimer" />
+                              <Button fx:id="SupprimerBt" layoutX="675.0" layoutY="548.0" mnemonicParsing="false" onAction="#supprec" styleClass="mod" text="Supprimer" />
                               <Label fx:id="etatLabel" layoutX="23.0" layoutY="139.0" text="Etat" textFill="#464196">
                                  <font>
                                     <Font name="Courier New Bold" size="17.0" />
@@ -55,17 +54,17 @@
                                  <font>
                                     <Font name="Courier New Bold" size="16.0" />
                                  </font></Label>
-                              <ComboBox fx:id="categorieReclamationCombo" layoutX="12.0" layoutY="99.0" prefWidth="171.0" style="-fx-background-color: #464196;" styleClass="combo" stylesheets="@../../Back/gererReclamation/reclamation.css" />
-                              <Button fx:id="ModifierBt" layoutX="454.0" layoutY="548.0" mnemonicParsing="false" onAction="#handleButtonActionModifier" style="-fx-background-color: #464196;" styleClass="mod" text="Modifier" />
-                              <Button fx:id="AjouterBt" layoutX="13.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleButtonActionAjouter" style="-fx-background-color: #464196;" styleClass="aj" stylesheets="@reclamation.css" text="Ajouter" />
+                              <ComboBox fx:id="categorieReclamationCombo" layoutX="12.0" layoutY="99.0" prefWidth="171.0" styleClass="combo" stylesheets="@../../Back/gererReclamation/reclamation.css" />
+                              <Button fx:id="ModifierBt" layoutX="454.0" layoutY="548.0" mnemonicParsing="false" onAction="#handleButtonActionModifier" styleClass="mod" text="Modifier" />
+                              <Button fx:id="AjouterBt" layoutX="13.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleButtonActionAjouter" styleClass="mod" stylesheets="@reclamation.css" text="Ajouter" />
                               <TextArea fx:id="desc" layoutX="10.0" layoutY="218.0" prefHeight="84.0" prefWidth="178.0" />
-                              <ComboBox fx:id="comboEtat" layoutX="13.0" layoutY="166.0" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #464196;" styleClass="combo" stylesheets="@../../Back/gererReclamation/reclamation.css" />
+                              <ComboBox fx:id="comboEtat" layoutX="13.0" layoutY="166.0" prefHeight="25.0" prefWidth="170.0" styleClass="combo" stylesheets="@../../Back/gererReclamation/reclamation.css" />
                               <Label layoutX="274.0" layoutY="14.0" text="Reclamation" textFill="#464196">
                                  <font>
                                     <Font name="Forte" size="43.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="detaille" layoutX="226.0" layoutY="548.0" mnemonicParsing="false" onAction="#detaille" style="-fx-background-color: #464196;" styleClass="det" text="Detaille" />
+                              <Button fx:id="detaille" layoutX="226.0" layoutY="548.0" mnemonicParsing="false" onAction="#detaille" styleClass="mod" text="Detaille" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -124,7 +123,7 @@
                                   <TableColumn fx:id="colDate2" prefWidth="75.0" text="Date" />
                                     <TableColumn fx:id="colEtat2" prefWidth="208.0" text="Etat" />
                                     <TableColumn fx:id="colDescription2" prefWidth="208.0" text="Description" />
-                                    <TableColumn fx:id="colCategorieReclamation2" prefWidth="298.0" text="CategorieReclamation" />
+                                    <TableColumn fx:id="colCategorieReclamation2" prefWidth="300.0" text="CategorieReclamation" />
                                 </columns>
                               </TableView>
                               <Label layoutX="60.0" layoutY="14.0" text="Reclamation à Urgence non vitale" textFill="#464196">
@@ -165,7 +164,7 @@
                         </AnchorPane>
                      </content>
                      <graphic>
-                        <Label text="Visiter Nous" textFill="#f2f2f2">
+                        <Label text="Brows" textFill="#f2f2f2">
                            <font>
                               <Font name="Cooper Black" size="14.0" />
                            </font>

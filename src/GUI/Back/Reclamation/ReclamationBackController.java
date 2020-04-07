@@ -72,7 +72,7 @@ public class ReclamationBackController implements Initializable {
         colEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));   
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));   
         colCategorieReclamation.setCellValueFactory(new PropertyValueFactory<>("categorieReclamation")); 
-        colIdParent.setCellValueFactory(new PropertyValueFactory<>("idParent"));          
+        //colIdParent.setCellValueFactory(new PropertyValueFactory<>("idParent"));          
         }
             
        private void afficheRec(ActionEvent event) {   
@@ -88,7 +88,7 @@ public class ReclamationBackController implements Initializable {
         colEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         colCategorieReclamation.setCellValueFactory(new PropertyValueFactory<>("categorieReclamation"));
-        colIdParent.setCellValueFactory(new PropertyValueFactory<>("idParent"));   
+       // colIdParent.setCellValueFactory(new PropertyValueFactory<>("idParent"));   
     }
        
        //hedhi taaml fl affichage l hakiki
@@ -105,7 +105,7 @@ public class ReclamationBackController implements Initializable {
         colEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         colCategorieReclamation.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        colIdParent.setCellValueFactory(new PropertyValueFactory<>("idParent"));
+       // colIdParent.setCellValueFactory(new PropertyValueFactory<>("idParent"));
          }
          
          
