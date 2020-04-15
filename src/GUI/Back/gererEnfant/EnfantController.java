@@ -5,6 +5,8 @@
  */
 package GUI.Back.gererEnfant;
 
+import ConnexionBd.connexionBd;
+import Entity.wifek.enfant;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
@@ -14,6 +16,9 @@ import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -22,9 +27,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -39,7 +46,7 @@ import service.wifek.CrudEnfantService;
 public class EnfantController implements Initializable {
 
     @FXML
-    private TableView<?> tabAffiche1;
+    private TableView<enfant> tabAffiche1;
     @FXML
     private TableColumn<?, ?> colsexe1;
     @FXML
@@ -56,6 +63,10 @@ public class EnfantController implements Initializable {
     private Button btnpdf;
     @FXML
     private Button btnstat;
+    @FXML
+    private Pagination Pagination;
+    int from = 0, to = 0;
+    int itemPerPage = 5;
 
     /**
      * Initializes the controller class.
@@ -64,6 +75,30 @@ public class EnfantController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         afficher1();
+        int count = 0;
+        String req = "Select count(*) from enfant ";
+        try {
+
+            try (Statement pst1 = connexionBd.getInstance().getCnx().createStatement()) {
+                ResultSet rs1 = pst1.executeQuery(req);
+                rs1.first();
+                count = rs1.getInt(1);
+                rs1.close();
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        colsexe1.setCellValueFactory(new PropertyValueFactory<>("sexe"));
+        colnom1.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        colpre1.setCellValueFactory(new PropertyValueFactory<>("prenom")); 
+        colage1.setCellValueFactory(new PropertyValueFactory<>("age")); 
+        colidbus1.setCellValueFactory(new PropertyValueFactory<>("nomLigne"));
+        parent1.setCellValueFactory(new PropertyValueFactory<>("username")); 
+
+        int pageCount = (count / itemPerPage) + 1;
+        Pagination.setPageCount(pageCount);
+        Pagination.setPageFactory(this::createPage);
     }    
     
     private void afficher1() {
@@ -137,6 +172,40 @@ public class EnfantController implements Initializable {
             
       
     }
+    
+     
+    public ObservableList<enfant> getTableData() {
+        ObservableList<enfant> data = FXCollections.observableArrayList();
+        try {
+            String req = "Select e.id, e.sexe, e.nom, e.prenom, e.age, b.ligne, p.username from enfant e  inner join Bus b on b.id=e.id_Bus inner join fos_user p on e.idParent = p.id limit "+ from + "," + to;
+            try (Statement pst = connexionBd.getInstance().getCnx().createStatement()) {
+             ResultSet rs = pst.executeQuery(req);
+                while (rs.next()) {
+                  enfant r = new enfant(rs.getInt(1),
+                          rs.getString(2),
+                          rs.getString(3),
+                          rs.getString(4),
+                          rs.getInt(5),
+                          rs.getString(6),
+                          rs.getString(7));
+                  data.add(r);
+                    
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return data;
+    }
+    
+    private Node createPage(int pageIndex) {
+        from = pageIndex * itemPerPage;
+        to = itemPerPage;
+        tabAffiche1.setItems(FXCollections.observableArrayList(getTableData()));
+        return tabAffiche1;
+    }
+    
+    
     
     
 }
