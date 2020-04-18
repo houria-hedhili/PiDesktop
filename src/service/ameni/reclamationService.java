@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -57,6 +59,12 @@ public class reclamationService {
          ArrayList<reclamation> list = new ArrayList<>() ;
              try {
                 Statement st=cnx.createStatement();
+                               //String req="select r.*,c.nom,f.username "
+                                      // + "from reclamation r "
+                                       //+ "INNER JOIN categorie_reclamation c "
+                                       //+ "on r.CategorieReclamation = c.ref "
+                                     //  + "INNER JOIN fos_user p"
+                                     //  + "on e.idParent = f.id";                                    
                 String req="select r.*,c.nom from reclamation r INNER JOIN categorie_reclamation c on r.CategorieReclamation = c.ref ";
                 ResultSet rs = st.executeQuery(req);
                 while(rs.next()){//hani jeya lahtha ok
@@ -210,5 +218,46 @@ public class reclamationService {
                 }
       return list ;   
        }
+                   
+                   
+              public ObservableList<reclamation> Affichertoutpdf() throws SQLException {
+        ObservableList<reclamation> list = FXCollections.observableArrayList();
+        String requete = "select r.*,c.nom from reclamation r INNER JOIN categorie_reclamation c on r.CategorieReclamation = c.ref  ";
+       // (String sexe, String nom, String prenom, int age, String nomLigne, int idParent)
+        try {
+            PreparedStatement ps = cnx.prepareStatement(requete);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                reclamation p= new reclamation(rs.getInt(1),rs.getDate(2), rs.getString(3), rs.getString(4), rs.getInt(5),rs.getString("nom"));
+                list.add(p);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return list;
+    }
+              
+              
+
+         public ObservableList<reclamation> recherche(String recherche) throws SQLException {
+        ObservableList<reclamation> list = FXCollections.observableArrayList();
+       
+        //String requete = "Select nom,description,ref from categorie_reclamation WHERE `nom` LIKE '%"+recherche+"%' OR `description` LIKE '%"+recherche+"%' OR `ref` LIKE '%"+recherche+"%'  ";
+     String requete="select r.*,c.nom from reclamation r INNER JOIN categorie_reclamation c on r.CategorieReclamation = c.ref where r.etat LIKE '%"+recherche+"%' OR r.date LIKE '%"+recherche+"%' OR r.description LIKE '%"+recherche+"%' OR c.nom LIKE '%"+recherche+"%'";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(requete);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+           reclamation p= new reclamation(rs.getInt(1),rs.getDate(2), rs.getString(3), rs.getString(4), rs.getInt(5),rs.getString("nom"));
+            list.add(p);          
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return list;
+    }        
+        
+                                
          }
 
