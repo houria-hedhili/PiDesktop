@@ -32,37 +32,3 @@
       </Text>
    </children>
 </AnchorPane>
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.net.URL?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
-<AnchorPane id="AnchorPane" prefHeight="548.0" prefWidth="401.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Front.gererCantine.abonnement.CreerMenuController">
-    <stylesheets>
-        <URL value="@creermenu.css" />
-    </stylesheets>
-   <children>
-      <Text layoutX="-91.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <ImageView fitHeight="580.0" fitWidth="414.0" layoutX="-16.0" layoutY="-12.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@special.jpg" />
-         </image>
-      </ImageView>
-      <Label fx:id="nomPlat" layoutX="161.0" layoutY="153.0" prefHeight="132.0" prefWidth="127.0" text="plat" textFill="#bc9696">
-         <font>
-            <Font name="Calibri Bold" size="29.0" />
-         </font>
-      </Label>
-      <ImageView fx:id="image" fitHeight="161.0" fitWidth="137.0" layoutX="215.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true" />
-      <Text fx:id="desc" layoutX="47.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="63.09912109375">
-         <font>
-            <Font name="Calibri" size="29.0" />
-         </font>
-      </Text>
-   </children>
-</AnchorPane>
