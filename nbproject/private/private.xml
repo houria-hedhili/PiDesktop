@@ -65,6 +65,11 @@
             <file>file:/C:/wamp64/www/PiDesktop/src/GUI/Back/gererCantine/cantine.css</file>
             <file>file:/C:/wamp64/www/PiDesktop/src/Entity/houria/Evenement.java</file>
             <file>file:/C:/wamp64/www/PiDesktop/src/GUI/Back/gererCategorieReclamation/categoriereclamation.css</file>
+
+            <file>file:/C:/xampp/htdocs/PiDesktop/src/ConnexionBd/connexionBd.java</file>
+            <file>file:/C:/xampp/htdocs/PiDesktop/src/service/wifek/CrudBusService.java</file>
+            <file>file:/C:/xampp/htdocs/PiDesktop/src/GUI/Back/gererEnfant/EnfantController.java</file>
+            <file>file:/C:/xampp/htdocs/PiDesktop/src/GUI/Back/gererBus/BusController.java</file>
         </group>
     </open-files>
 </project-private>

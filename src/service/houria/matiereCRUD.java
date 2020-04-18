@@ -133,6 +133,21 @@ public class matiereCRUD {
         }
         return an;
      }
-    
+    //bara ofter wmbaad ija hel mokhek tawnriglouha  
+     public String getnomat(int a) throws SQLException {
+          String an="" ;
+        PreparedStatement pre = cnx.prepareStatement("SELECT nom FROM matiere WHERE id = ?  ;");
 
+        pre.setInt(1, a);
+        ResultSet rs = pre.executeQuery();
+        while (rs.next()) {
+
+            an=rs.getString(1);
+
+
+           
+        }
+        return an;
+     }
+    
 }

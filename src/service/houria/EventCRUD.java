@@ -128,7 +128,7 @@ public class EventCRUD {
         try {
                 String requete
                       
-                    =" select * from event where idEvent in (select idEvent from participation where idUser = '"+a+"') ";
+                    =" select * from event where idEvent in (select idEvent from participation where idUser = '"+a+"') ORDER BY date DESC ";
 
                         PreparedStatement st = cnx.prepareStatement(requete);
                  // st.setInt(1, a);
