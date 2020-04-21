@@ -179,22 +179,68 @@ p.setPhoto(i);
         return list;
     }
  
-//  public void export (Personnel personnel) throws IOException, SQLException {
-//        try {
-//
-//            String requete
-//                    = "INSERT INTO personnel (nom,prenom,age,prix_h,nb_h,categorie,image) VALUES (?,?,?,?,?,?,?)";
-//            PreparedStatement st = cnx.prepareStatement(requete);
-//        
-//           
-//          //System.out.println(personnel.getCategorie()); ajo
-//        } catch (SQLException ex) {
-//            System.err.println(ex.getMessage());
-//            
-//            
-//
-//        }
-//
-//    }
-    
+       public  ArrayList<Personnel>  TrierNomPer(){
+         ArrayList<Personnel> list = new ArrayList<>() ;
+             try {//chimdakhell image ???
+                Statement st=cnx.createStatement();
+                String req="Select s.id,s.nom,s.prenom, s.age,s.prix_h,s.nb_h,b.type ,s.image,s.categorie from categorie b INNER JOIN personnel s on b.id=s.categorie order by nom";
+                ResultSet rs = st.executeQuery(req);
+                while(rs.next()){
+
+                     // public Personnel(String nom, String prenom, int age, float nb_h, float prix_h, String categorie, String image) {
+Personnel e= new  Personnel(rs.getInt(1),rs.getString(2), rs.getString(3),rs.getInt(4), rs.getFloat(5), rs.getFloat(6), rs.getString(7), rs.getString(8),rs.getInt(9));
+                  //  Personnel e= new Personnel(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getInt(4), rs.getFloat(5), rs.getFloat(6),rs.getString(7)); 
+ImageView i=new ImageView();
+i.setImage(new Image(rs.getString(8)));
+i.setFitHeight(100);
+i.setFitWidth(100);
+e.setPhoto(i);
+        list.add(e);            
+                   }
+                } catch (SQLException ex) {
+                    Logger.getLogger(CategorieDao.class.getName()).log(Level.SEVERE, null, ex);
+                }
+      return list ;  
+       }
+        public  ArrayList<Personnel>  TrierCatPer(){
+         ArrayList<Personnel> list = new ArrayList<>() ;
+             try {//chimdakhell image ???
+                Statement st=cnx.createStatement();
+                String req="Select s.id,s.nom,s.prenom, s.age,s.prix_h,s.nb_h,b.type ,s.image,s.categorie from categorie b INNER JOIN personnel s on b.id=s.categorie order by age";
+                ResultSet rs = st.executeQuery(req);
+                while(rs.next()){
+
+                     // public Personnel(String nom, String prenom, int age, float nb_h, float prix_h, String categorie, String image) {
+Personnel e= new  Personnel(rs.getInt(1),rs.getString(2), rs.getString(3),rs.getInt(4), rs.getFloat(5), rs.getFloat(6), rs.getString(7), rs.getString(8),rs.getInt(9));
+                  //  Personnel e= new Personnel(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getInt(4), rs.getFloat(5), rs.getFloat(6),rs.getString(7)); 
+ImageView i=new ImageView();
+i.setImage(new Image(rs.getString(8)));
+i.setFitHeight(100);
+i.setFitWidth(100);
+e.setPhoto(i);
+        list.add(e);            
+                   }
+                } catch (SQLException ex) {
+                    Logger.getLogger(CategorieDao.class.getName()).log(Level.SEVERE, null, ex);
+                }
+      return list ;  
+       }
+        public double CalculSalaire(){
+            
+             double sal = 0;
+        String req = "SELECT  prix_h*nb_h FROM personnel";
+        try {
+
+            try (Statement pst1 = connexionBd.getInstance().getCnx().createStatement()) {
+                ResultSet rs1 = pst1.executeQuery(req);
+                rs1.first();
+                sal = rs1.getDouble(1);
+                rs1.close();
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return sal;
+        }
 }

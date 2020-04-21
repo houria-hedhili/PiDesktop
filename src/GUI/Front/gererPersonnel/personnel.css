@@ -106,4 +106,82 @@
    -fx-text-fill: white; 
     
 }
+.mod {
+     -fx-background-color:#5969DA;
+           
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 30,2,2,2;
+    -fx-padding: 12 30 12 30;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight:bold; 
+    
+    
+}
+.cate
+{
+       -fx-background-color:#5969DA;
+           
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 30,2,2,2;
+    -fx-padding: 12 30 12 30;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight:bold; 
+    
+    
+}
+.ts{
+      -fx-background-color:#7582DD;
+           
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 30,2,2,2;
+    -fx-padding: 12 30 12 30;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight:bold; 
+    
+}
+.btn{
+      -fx-background-color:#7582DD;
+           
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 30,2,2,2;
+    -fx-padding: 12 30 12 30;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight:bold; 
+    
+}
+.combo
+{
+  -fx-background-color:#5969DA;
+  
+-fx-background-radius: 30;
+    -fx-text-fill: white;
+    
+    -fx-font-weight:bold;   
+    -fx-font-color: white;
+    
+}
+.combo:hover
+{
+      -fx-background-color:#7582DD;
+           
+-fx-background-radius: 30;
+    -fx-text-fill: white;
+    -fx-font-weight:bold;   
+    
+}
+ .nombtn{
+      -fx-background-color:#7582DD;
+           
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 30,2,2,2;
+    -fx-padding: 12 30 12 30;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight:bold; 
+}
+
 }

@@ -23,6 +23,11 @@ public class Personnel {
      private int id_cat;
       private String image;
       private ImageView photo;
+    public double t;
+
+    public double getT() {
+        return t;
+    }
 
     public Personnel(String nom, String prenom, int age, float nb_h, float prix_h, String categorie, int id_cat, String image) {
         this.nom = nom;
