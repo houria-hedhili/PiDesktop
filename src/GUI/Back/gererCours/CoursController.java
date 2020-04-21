@@ -11,6 +11,11 @@ import Entity.houria.Cours;
 import Entity.houria.Evenement;
 import Entity.houria.Matiere;
 import com.jfoenix.controls.JFXTimePicker;
+import com.nexmo.client.NexmoClient;
+import com.nexmo.client.NexmoClientException;
+import com.nexmo.client.sms.MessageStatus;
+import com.nexmo.client.sms.SmsSubmissionResponse;
+import com.nexmo.client.sms.messages.TextMessage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -132,8 +137,8 @@ public class CoursController implements Initializable {
            public void handle(MouseEvent event) {
                 evenn = (Cours)table_cours.getSelectionModel().getSelectedItem();
   //kenet tekhdem wala awel mara taa3melha? kont nesyetha aslnn ma5demthech emaa f event amlaa keka w te5demm mafhmtch lena chbeha 
-  System.out.println(evenn.getImage());//yekhou feha null 
-                imageview.setImage(new Image(evenn.getImage()));
+//  System.out.println(evenn.getImage());//yekhou feha null 
+                imageview.setImage(new Image("file:/C:/xampp/htdocs/integration/jardin/web/images/courses/"+evenn.getImage()));
            //chouf maach mesa hh 
            LocalTime d1 = evenn.getDuree().toLocalTime();
            
@@ -184,7 +189,7 @@ public class CoursController implements Initializable {
     }    
 
     @FXML
-    private void ajouter(ActionEvent event) throws IOException, SQLException {
+    private void ajouter(ActionEvent event) throws IOException, SQLException, NexmoClientException {
 
        labelmatiere.setText("");
        labeldescription.setText("");
@@ -253,6 +258,20 @@ public class CoursController implements Initializable {
         b=oui.getMatiere(Cmatiere.getValue());
         Cours e = new Cours(b.getId(),descC,dureeC,seats,age,img);
         sp.addCours(e); 
+                NexmoClient client = new NexmoClient.Builder()
+                        .apiKey("0a05460e")
+                        .apiSecret("sFEhja9oAyNZlyJE")
+                        .build();
+              TextMessage message = new TextMessage("COCCINELLE"," 21698565782",
+                "Bonjour Mr/mdme , nous avons ajouter un cours dans la matiere : "+b.getNom()+" pour plus de details consulter notre site  ");
+
+               SmsSubmissionResponse response = client.getSmsClient().submitMessage(message);
+
+            if (response.getMessages().get(0).getStatus() == MessageStatus.OK) {
+               System.out.println("Message sent successfully.");
+           } else {
+                System.out.println("Message failed with error: " + response.getMessages().get(0).getErrorText());
+           }
          JOptionPane.showMessageDialog(null, "ajout avec succes");
          Cdescr.clear();
          imageview.setImage(null);
@@ -270,8 +289,8 @@ public class CoursController implements Initializable {
         if(f!= null)
         {
             System.out.println(fc.getName());
-            img=fc.getAbsoluteFile().toURI().toString();
-            Image i = new Image(img);
+            img=fc.getName();
+            Image i = new Image("file:/C:/xampp/htdocs/integration/jardin/web/images/courses/"+img);
            imageview.setImage(i);
         }
     }

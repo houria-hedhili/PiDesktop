@@ -27,15 +27,4 @@
          </font>
       </Label>
    </children>
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Back.gererParticipation.ParticipantController">
-    <stylesheets>
-        <URL value="@participant.css"/>
-    </stylesheets>
 </AnchorPane>
