@@ -213,5 +213,7 @@
     -fx-font-weight:bold;   
     
 }
-
+#platListe{
+   -fx-background-color:transparent;
+}
 }

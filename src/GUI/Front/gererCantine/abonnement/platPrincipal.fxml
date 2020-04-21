@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="GUI.Front.gererCantine.abonnement.PlatPrincipalController">
+    <stylesheets>
+        <URL value="@platprincipal.css" />
+    </stylesheets>
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="-20.0" prefHeight="691.0" prefWidth="1017.0" styleClass="mainFxmlClass">
+         <stylesheets>
+            <URL value="@aboncantine.css" />
+         </stylesheets>
+         <children>
+            <ComboBox fx:id="combo" layoutX="476.0" layoutY="617.0" prefHeight="42.0" prefWidth="201.0" styleClass="combo" stylesheets="@aboncantine.css" />
+            <Button fx:id="valider" layoutX="695.0" layoutY="608.0" mnemonicParsing="false" onAction="#valider" style="-fx-background-color: transparent;" text="valider">
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@like.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Forte" size="24.0" />
+               </font>
+            </Button>
+            <Label layoutX="209.0" layoutY="627.0" text="Choisir un enfant">
+               <font>
+                  <Font name="Cooper Black" size="26.0" />
+               </font>
+            </Label>
+            <ScrollPane layoutX="185.0" layoutY="74.0" prefHeight="413.0" prefWidth="771.0">
+               <content>
+                  <VBox fx:id="detail" prefHeight="200.0" prefWidth="682.0" />
+               </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

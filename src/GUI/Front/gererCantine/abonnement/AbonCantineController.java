@@ -13,10 +13,12 @@ import GUI.login.LoginController;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 import java.util.ArrayList;
+import static java.util.Collections.list;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -31,6 +33,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -42,6 +45,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.Tab;
@@ -53,10 +57,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import service.imen.PlatService;
 import service.imen.abonnementService;
@@ -74,12 +82,6 @@ public class AbonCantineController implements Initializable {
     private Button retour1;
     @FXML
     private Button retour2;
-    @FXML
-    private Button retour3;
-    @FXML
-    private Button retour4;
-    @FXML
-    private TilePane gridPlat;
     int r;
     List<Plat> listP = new ArrayList<>();
     List<Menu> listm = new ArrayList<>();
@@ -97,32 +99,10 @@ int x=0;
        int idDessert;
        int idPlatPrincipal;
        String platPrincipal;
-       int test=0;
+  int test=0;
            RadioButton[] rb2 = new RadioButton[20];
-    @FXML
-    private ImageView img;
-    @FXML
-    private ComboBox<String> listeEnfant;
-    @FXML
-    private Button ajoutMenu;
-    @FXML
-    private TableView<Menu> tableMenu;
-    @FXML
-    private TableColumn<Menu, String> nomColl;
-    @FXML
-    private TableColumn<Menu, String> prenomColl;
-    @FXML
-    private TableColumn<Menu, String> platColl;
-    @FXML
-    private TableColumn<Menu, String> dessertColl;
-    @FXML
-    private Button suppMenu;
-    @FXML
-    private ComboBox<String> platCombo;
-    @FXML
-    private ComboBox<String> dessertCombo;
-    @FXML
-    private Button modfierMenu;
+  
+ 
     @FXML
     private TableView<abonnement> tableabon;
     @FXML
@@ -140,8 +120,6 @@ int x=0;
     private DatePicker dated;
     @FXML
     private DatePicker datef2;
-    @FXML
-    private Button ajoutAbon;
       abonnementService as=new abonnementService();  
     @FXML
     private TableColumn<abonnement, String> etatCol;
@@ -152,41 +130,65 @@ int x=0;
     @FXML
     private TableColumn<?, ?> nomCol;
     @FXML
-    private Button retour11;
-    @FXML
-    private TableView<?> tableabon1;
-    @FXML
-    private TableColumn<?, ?> datedCol1;
-    @FXML
-    private TableColumn<?, ?> datefCol1;
-    @FXML
-    private TableColumn<?, ?> nbenfantCol1;
-    @FXML
-    private TableColumn<?, ?> tarifCol1;
-    @FXML
-    private TableColumn<?, ?> etatCol1;
-    @FXML
-    private DatePicker datef1;
-    @FXML
-    private Button modifierAbonn1;
-    @FXML
     private TableColumn<?, ?> prenomCol;
+    @FXML
+    private Pane pla;
+    @FXML
+    private Button ajoutAbon;
+    @FXML
+    private AnchorPane platL;
+    @FXML
+    private Button retour4;
+    @FXML
+    private ScrollPane platListe;
+    @FXML
+    private AnchorPane platL1;
+    @FXML
+    private Button retour41;
+    @FXML
+    private Button creerMenu;
+    @FXML
+    private VBox menuEnfant;
+    @FXML
+    private ImageView bulle;
+    @FXML
+    private Button raffraichir;
+    @FXML
+    private Text labelo;
+    @FXML
+    private ImageView raff;
+    @FXML
+    private Button test1;
+    @FXML
+    private Tab platDuJour;
+    @FXML
+    private Tab VotreMenu;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        bulle.setVisible(false);
+        raffraichir.setVisible(false);
+        labelo.setVisible(false);
+       raff.setVisible(false);
+        System.out.println(ModifierMenuController.mo);
+      test1.setVisible(false);
+          
         id = LoginController.ID;
-
-        gridPlat.setPrefColumns(nbrColumn);
-        gridPlat.setPrefRows(nbrRow);
+        try {
+            display_plat();
+        } catch (SQLException ex) {
+            Logger.getLogger(AbonCantineController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     afficherMenuEnfant();
          List<String> enfants =ms.listeEnfant(id);
          
-         enfants.add("all");
+        /* enfants.add("all");
                  ObservableList<String> enfList=FXCollections.observableArrayList(enfants);
                  listeEnfant.setValue("Liste enfants");
-                 listeEnfant.setItems(enfList);
+                 listeEnfant.setItems(enfList);*/
                  dated.setValue(LocalDate.now());
                  datef2.setValue(LocalDate.now());
                  /************************/
@@ -207,18 +209,18 @@ Liste.setItems(enfListe);
                  
                  /************/
 
-afficher();
-         List<String> l1=ps.platType("dessert");
+       /*  List<String> l1=ps.platType("dessert");
                   List<String> l2=ps.platType("plat principal");
                                    ObservableList<String> platList=FXCollections.observableArrayList(l2);
                  ObservableList<String> dessertList=FXCollections.observableArrayList(l1);
 platCombo.setValue("plat principal");
 platCombo.setItems(platList);
 dessertCombo.setValue("dessert");
-dessertCombo.setItems(dessertList);
+dessertCombo.setItems(dessertList);*/
       afficherAbonn();    
-     AllImage();
-     Images();
+      
+      /**************/
+  
     }    
 
     @FXML
@@ -247,7 +249,6 @@ dessertCombo.setItems(dessertList);
      
     }
 
-    @FXML
     private void retour3(ActionEvent event) throws IOException {
        Stage stage = (Stage) retour1.getScene().getWindow();
       Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front/Acceuilfront/acceuilFront.fxml"));
@@ -272,245 +273,10 @@ dessertCombo.setItems(dessertList);
      
     }
     
-    private void AllImage()
-    { List<String> ch= new ArrayList<>();
-        listP=ps.afficherAll();
-         ch=ps.afficherPlat();
-         for(int j =0 ;j<listP.size();j++)
-         {
-         i[j]=new Image(listP.get(j).getImage());
-         idP[j]=listP.get(j).getId();
-         rb2[j]= new RadioButton(ch.get(j));
-         }
-    }
-    private void Images()
-    {//sol if nbr image est 
     
-       int y= ms.nombrePlat();
-       if(y==0)
-       {System.out.println("menu en cours de preparation ");}
-       else if(y==1)
-       {    for (int k=0;k<1;k++)
-    {
-        for(int j=0;j<1;j++)
-        {gridPlat.getChildren().add(createPage(count));
-    count++;}
-    }
-       }   else if(y==2)
-       {    for (int k=0;k<1;k++)
-    {
-        for(int j=0;j<2;j++)
-        {gridPlat.getChildren().add(createPage(count));
-    count++;}
-    }
-       }   else if(y==3)
-       {    for (int k=0;k<3;k++)
-    {
-        for(int j=0;j<1;j++)
-        {gridPlat.getChildren().add(createPage(count));
-    count++;}
-    }
-       }   else if(y==4)
-       {    for (int k=0;k<2;k++)
-    {
-        for(int j=0;j<2;j++)
-        {gridPlat.getChildren().add(createPage(count));
-    count++;
-     }
-    }
-       }   else if(y==5)
-       {   
-           for (int k=0;k<1;k++)
-    {
-        for(int j=0;j<5;j++)
-        {gridPlat.getChildren().add(createPage(count));
-    count++;
-    int x=1;
-    /*count =count +x;
-    gridPlat.getChildren().add(createPage(count));*/
-     //  gridPlat.getChildren().add(createPage(5));
-        }
-    }
-       }   else if(y==6)
-       {    for (int k=0;k<3;k++)
-    {
-        for(int j=0;j<2;j++)
-        {gridPlat.getChildren().add(createPage(count));
-    count++;}
-    }
-       }
-    
-    }
-    private VBox createPage(int index)
-    {        listP=ps.afficherAll();
-
-
-        ImageView imageview = new ImageView();
-    Image imag =i[index];
-    imageview.setImage(imag);
-    imageview.setFitWidth(170);
-    imageview.setFitHeight(170);
-    imageview.setSmooth(true);
-    imageview.setCache(true);
-
-  VBox pageImage =new VBox();
-  imageview.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-
-     public void handle(MouseEvent event) {
-
-       r=index;  
-         Plat p=ps.PlatId(idP[r]);
-                //Stage stage = (Stage) retour1.getScene().getWindow();
-      Parent root;
-            
-
-         try { 
-             FXMLLoader loader = new FXMLLoader();
-                     loader.setLocation(getClass().getResource("/GUI/Front/gererCantine/abonnement/creerMenu.fxml"));
+   
 
    
-              
-              Parent detail=loader.load();
-              Scene scene = new Scene(detail);
-               CreerMenuController controller = loader.getController();
-               controller.afficher(p);
-             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-     
-         } catch (IOException ex) {
-             Logger.getLogger(AbonCantineController.class.getName()).log(Level.SEVERE, null, ex);
-         }       
-        
-         event.consume();
-     }
-});
-  RadioButton affecter= rb2[index];
-  affecter.setStyle("-fx-label-padding : 5;-fx-border-color:#16A0F8;-fx-font-size:15;-fx-font-family:Century Gothic;");
-    affecter.setOnAction(new EventHandler<ActionEvent>() {
-boolean t=false;
-
-int k=0;
-        @Override
-        public void handle(ActionEvent arg0) {
-            r=index;//ch
-             int tab[]=new int[7];
-            if(affecter.isSelected() && test<=1 ){
-              test++;
-                          int p=index;
-
-              if(ps.getTypePlat(idP[p]).equals("dessert"))
-              {
-              idDessert=idP[p];
-          tab[k]=idDessert;    
-          
-              }else {idPlatPrincipal=idP[p];
-                  
-              tab[k]=idPlatPrincipal;}
-              
-              
-              k++;
-              
-                  System.out.println(idDessert+" "+idPlatPrincipal);
-
-              
-            }
-            else if(affecter.isSelected()==false  && t==false )
-            {            //affecter.setDisable(false);
-
-                test--;
-                
-                if(ps.getTypePlat(idP[r]).equals("dessert"))
-              {
-              idDessert=0;
-              }else idPlatPrincipal=0;
-            
-            }
-            
-            
-            
-            else if(test>1)
-            { t=true;
-            //affecter.disableProperty();
-            affecter.setSelected(false);
-            test=2;
-           
-                  
-            }
-            
-
-        }
-    });
-    pageImage.getChildren().add(imageview);
-    pageImage.getChildren().add(affecter);
-            //pageImage.getChildren().add(label);
-    pageImage.setStyle("-fx-border-color:  #16A0F8;-fx-border-width:2;");
-    imageview=null;
-    return pageImage;
-    }
-
-    @FXML
-    private void ajoutMenu(ActionEvent event) {
-        
-   Menu m = new Menu(idPlatPrincipal,idDessert,1,ms.enfant(1, listeEnfant.getValue()));
- 
-          
-   if(listeEnfant.getValue().equals("all"))
-   {   
-       for(int x=0;x<listeEnfant.getItems().size();x++)
-       {Menu mi = new Menu(idPlatPrincipal,idDessert,1,ms.enfant(1, listeEnfant.getItems().get(x))); 
-        ms.ajouterMenu(mi);
-        Success("les menus sont ajoute");
-       }
-       
-   }else
-   {Menu mi = new Menu(idPlatPrincipal,idDessert,1,ms.enfant(1, listeEnfant.getValue())); 
-        ms.ajouterMenu(mi);
-           Success("le menu  est ajoute");
-
-   //if menu affecter nfaskh men combo box esmou
-   }
-    }
-
-    @FXML
-    private void suppMenu(ActionEvent event) {
-       Menu mii= tableMenu.getSelectionModel().getSelectedItem();
-       ms.deleteMenu(mii.getId());
-      
-       afficher();
-    }
-    
-    private void afficher()
-    {
-    List<Menu> mi=ms.afficherAll(1);
-    ObservableList<Menu> platListe=FXCollections.observableArrayList(mi);
-        nomColl.setCellValueFactory(new PropertyValueFactory<>("nom"));
-    prenomColl.setCellValueFactory(new PropertyValueFactory<>("prenom"));
- platColl.setCellValueFactory(new PropertyValueFactory<>("plat"));
-    dessertColl.setCellValueFactory(new PropertyValueFactory<>("dessert"));
-      tableMenu.setItems(platListe);
-    }
-
-    @FXML
-    private void modifierMenu(ActionEvent event) {
-               Menu mii= tableMenu.getSelectionModel().getSelectedItem();
-
-   ms.modifierPlat(ps.PlatUnique2(dessertCombo.getValue()),ps.PlatUnique2(platCombo.getValue()),mii.getId());
-   afficher();
-    }
-
-    @FXML
-    private void raff(Event event) {
-        afficher();
-    }
-
-    @FXML
-    private void affichMod(MouseEvent event) {
-             Menu mii= tableMenu.getSelectionModel().getSelectedItem();
-
-dessertCombo.setValue(mii.getDessert());
-platCombo.setValue(mii.getPlat());
-    }
 
     @FXML
     private void modAbon(MouseEvent event) {
@@ -523,9 +289,17 @@ platCombo.setValue(mii.getPlat());
     private void modifierAbonn(ActionEvent event) {
                  abonnement a = tableabon.getSelectionModel().getSelectedItem();
                 java.sql.Date sqlDate = java.sql.Date.valueOf(datef.getValue());
-
-   as.modifierAbon(sqlDate, 0, a.getId());
-           afficherAbonn();
+ java.sql.Date sqlDate1=a.getDatef();
+                
+if(sqlDate1.compareTo(sqlDate)>0)
+    
+{ 
+    Error("Date fin doit etre superieur a celle du debut");
+   
+}else{  as.modifierAbon(sqlDate, 0, a.getId());
+  Success("Modification a ete effectuer avec succes");
+          
+afficherAbonn();}
 
     }
 
@@ -577,7 +351,8 @@ platCombo.setValue(mii.getPlat());
                      ObservableList<String> enfListe=FXCollections.observableArrayList(L);
 
 Liste.setItems(enfListe);
-      
+      platDuJour.setDisable(false);
+          VotreMenu.setDisable(false);
   Success("ajout a ete effectuer avec succes");}}
   afficherAbonn();
     }
@@ -593,14 +368,14 @@ Liste.setItems(enfListe);
     }
     public void afficherAbonn()
     { 
-    List<abonnement> ls=as.afficherAll();
+    List<abonnement> ls=as.afficherAll(LoginController.ID);
         ObservableList<abonnement> abonListe=FXCollections.observableArrayList(ls);
         datedCol.setCellValueFactory(new PropertyValueFactory<>("dated"));
     datefCol.setCellValueFactory(new PropertyValueFactory<>("datef"));
 etatCol.setCellValueFactory(new PropertyValueFactory<>("etat"));
     tarifCol.setCellValueFactory(new PropertyValueFactory<>("tarif"));
    nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
-      prenomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
+      prenomCol.setCellValueFactory(new PropertyValueFactory<>("prenom"));
 
      tableabon.setItems(abonListe);
     
@@ -666,5 +441,246 @@ public boolean controlDate()
         
 
     }
+static int j=0;
+static Plat plat=new Plat();
+   /*************************/
+        public void display_plat()throws SQLException{
+           List<Plat> listPlat=ps.afficherAll();
+          List<VBox> list = new ArrayList<>();
+         
+          while(j<listPlat.size()){
+              ImageView va=new ImageView(new Image("file:/C:/wamp/www/jardin1/web/"+listPlat.get(j).getImg()));
+               va.setFitHeight(200);
+                va.setFitWidth(743);
+
+
+              HBox h= new HBox();
+              Label inscrit=new Label("");
+   
+
+
+             Label nomm=new Label("nom plat : "+listPlat.get(x).getNom()+"");
+          nomm.setStyle("-fx-font-family :Cooper Black;-fx-font-size:15;-fx-font-weight: bold;");
+             Label local=new Label( " Type : "+listPlat.get(x).getType());
+                          local.setStyle("-fx-font-family :Cooper Black;-fx-font-size:15;-fx-font-weight: bold;");
+
+             Button bt2=new Button("Detail" ) ;
+             bt2.setStyle("-fx-background-color:#16A0F8;" +
+"    -fx-background-insets: 0,1,2,3;" +
+"    -fx-background-radius: 3,2,2,2;" +
+"    -fx-padding: 12 30 12 30;" +
+"    -fx-text-fill: white;" +
+"    -fx-font-size: 12px;");
+             /*****************/
+             int n=j;
+                      ImageView vue=new ImageView(new Image(this.getClass().getResourceAsStream("vue.png")));
+vue.setFitHeight(20);
+vue.setFitWidth(40);
+System.out.println(String.valueOf("1: "+listPlat.get(j).getNbrVue()));
+Label nbrVue=new Label(String.valueOf(listPlat.get(j).getNbrVue()));
+             bt2.setOnAction(new EventHandler<ActionEvent>() {
+                  @Override
+                  public void handle(ActionEvent event) {
+                     int xii= ps.getNbrVue(plat.getId())+1;
+                      plat=listPlat.get(n); 
+                   boolean test=ps.rechercheVue(LoginController.ID,plat.getId());
+                   if(test==false)
+                   {ps.nbrVue(LoginController.ID,AbonCantineController.plat.getId());
+ 
+  ps.updateVue(plat.getId(),xii);
+   
+ plat.setNbrVue(ps.getNbrVue(plat.getId()));
+   System.out.println("2 :"+plat.getNbrVue());
+   nbrVue.setText(String.valueOf(plat.getNbrVue()));}
+   
+                      
+                  Stage stage=new Stage();
+                   Parent root;
+                      try {
+                          root = FXMLLoader.load(getClass().getResource("/GUI/Front/gererCantine/abonnement/creerMenu.fxml"));
+                   Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+        stage.show();
+                      } catch (IOException ex) {
+                          Logger.getLogger(AbonCantineController.class.getName()).log(Level.SEVERE, null, ex);
+                      }
+        
+                  
+                  }
+              });
+             Text t=new Text();
+             /*********************/
+              HBox No= new HBox();
+              No.setSpacing(10);
+              No.setAlignment(Pos.CENTER);
+               No.getChildren().addAll(nomm);
+             HBox ins= new HBox();
+              ins.setSpacing(10);
+              ins.setAlignment(Pos.CENTER);
+               ins.getChildren().addAll(inscrit);  
+               HBox adres= new HBox();
+              adres.setSpacing(10);
+              adres.setAlignment(Pos.CENTER);
+               adres.getChildren().addAll(local);
+                   HBox det= new HBox();
+              det.setSpacing(3);
+              det.setAlignment(Pos.CENTER);
+               det.getChildren().addAll(bt2,vue,nbrVue);
+               VBox v1=new VBox();
+               v1.setAlignment(Pos.CENTER);
+               
+               
+               v1.setSpacing(10);
+               
+
+               v1.getChildren().addAll(va,No,adres,ins,det,h);
+               list.add(v1);
+               
+               
+               
+               
+               
+              j++;
+
+
+          }
+          pla.getChildren().clear();
+         pla.getChildren().addAll(list);
+        
+    }
+        static Menu mi=new Menu();
+        void afficherMenuEnfant()
+        {List<VBox> list=new ArrayList<>();
+        List<Menu> listeMenu=ms.afficherAll(LoginController.ID);
+        for(int l=0;l<listeMenu.size();l++)
+        {
+        Label nom=new Label();
+        nom.setText(listeMenu.get(l).getNom()+" "+listeMenu.get(l).getPrenom());
+                nom.setStyle("-fx-font-family :Cooper Black;-fx-font-size:15;-fx-font-weight: bold;");
+
+      /********************/
+        VBox v=new VBox();
+        Label plat=new Label();
+        plat.setText("Plat :"+listeMenu.get(l).getPlat());
+        plat.setStyle("-fx-font-family :Cooper Black;-fx-font-size:15;-fx-font-weight: bold;");
+        Label dessert = new Label();
+        dessert.setText("Dessert :"+listeMenu.get(l).getDessert());
+               dessert.setStyle("-fx-font-family :Cooper Black;-fx-font-size:15;-fx-font-weight: bold;");
+
+         v.setAlignment(Pos.CENTER);
+         
+               v.setSpacing(5);
+               v.getChildren().addAll(plat,dessert);
+        /*************/
+               
+         ImageView va=new ImageView(new Image(this.getClass().getResourceAsStream("edit.png")));
+               va.setFitHeight(20);
+                va.setFitWidth(20);
+  ImageView v1=new ImageView(new Image(this.getClass().getResourceAsStream("delete.png")));
+               v1.setFitHeight(20);
+                v1.setFitWidth(20);
+
+         HBox No= new HBox();
+              No.setSpacing(30);
+              No.setAlignment(Pos.CENTER);
+               No.getChildren().addAll(nom,v,va,v1);
+                VBox all=new VBox();
+               all.setAlignment(Pos.CENTER);
+               
+               
+               all.setSpacing(20);
+               
+
+               all.getChildren().addAll(No);
+               list.add(all);
+               int k=l;
+               /*********************************/
+               va.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+
+     @Override
+     public void handle(MouseEvent event) {
+         mi=listeMenu.get(k);
+             Stage stage=new Stage();
+                   Parent root;
+                      try { 
+                           bulle.setVisible(true);
+        raffraichir.setVisible(true);
+        labelo.setVisible(true);
+       raff.setVisible(true);
+                          root = FXMLLoader.load(getClass().getResource("/GUI/Front/gererCantine/abonnement/modifierMenu.fxml"));
+                   Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+        stage.show();
+                      } catch (IOException ex) {
+                          Logger.getLogger(AbonCantineController.class.getName()).log(Level.SEVERE, null, ex);
+                      }
+        
+     }
+});
+         v1.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+
+     @Override
+     public void handle(MouseEvent event) {
+                      bulle.setVisible(true);
+        raffraichir.setVisible(true);
+        labelo.setText("Voulez vous vraiment supprimer le menu ?");
+        labelo.setVisible(true);
+       raff.setVisible(true);
+         mi=listeMenu.get(k);
+             ms.deleteMenu(mi.getId());
+        
+     }
+});
+        }/***********************/
+        
+           menuEnfant.getChildren().clear();
+        menuEnfant.getChildren().addAll(list);
+        }
+
+    @FXML
+    private void raff(Event event) {
+    }
+
+    @FXML
+    private void creerMenu(ActionEvent event) throws IOException {
+        
+    
+      Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front/gererCantine/abonnement/ajoutMenu.fxml"));
+        Stage stage=new Stage();
+        Scene scene = new Scene(root);
+         stage.setScene(scene);
+        stage.show();
+              bulle.setVisible(true);
+        raffraichir.setVisible(true);
+        labelo.setVisible(true);
+        labelo.setText("voulez vous vraiment ajouter ce menu ?");
+       raff.setVisible(true);
+       /* stage1.setScene(scene);
+        stage1.show();*/
+    }
+
+    @FXML
+    private void raffraichir(ActionEvent event) {
+        afficherMenuEnfant();
+        System.out.println("kaa3ed nenzel");
+         bulle.setVisible(false);
+        raffraichir.setVisible(false);
+        labelo.setVisible(false);
+       raff.setVisible(false);
+    }
+
+    @FXML
+    private void test1(ActionEvent event) throws IOException {
+        
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front/gererCantine/abonnement/platPrincipal.fxml"));
+        Stage stage1=new Stage();
+        Scene scene = new Scene(root);
+        
+       /* stage1.setScene(scene);
+        stage1.show();*/
+    }
+
      
 }

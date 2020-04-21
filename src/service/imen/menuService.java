@@ -47,8 +47,7 @@ System.out.println("ajout sar");
         }
 
     }
-       
-       
+            
        public List<Menu> afficherAll(int idParent) {
 
         List<Menu> listP = new ArrayList<>();
@@ -72,6 +71,71 @@ m.setIdPlat(res.getInt(4));
 m.setDessert(c.getNomPlat1(res.getInt(5)));
 m.setPlat(c.getNomPlat1(res.getInt(4)));
         
+
+ 
+                listP.add(m);
+            }
+            
+            System.out.println(listP);
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        return listP;
+    }
+       
+       public List<Menu> afficherAllDessert() {
+
+        List<Menu> listP = new ArrayList<>();
+
+        try {
+
+            String req = "SELECT m.*,p.nom from menu m inner join plat p on m.idDessert=p.id ";
+
+            st = cnx.createStatement();
+            ResultSet res = st.executeQuery(req);
+
+            while (res.next()) {
+  
+           PlatService c= new PlatService();              
+Menu m =new Menu();
+m.setDessert(res.getString("nom"));
+m.setIdDessert(res.getInt("idDessert"));
+m.setIdPlat(res.getInt("idPlat"));
+
+
+ 
+                listP.add(m);
+            }
+            
+            System.out.println(listP);
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        return listP;
+    }
+        public List<Menu> afficherAllPlat() {
+
+        List<Menu> listP = new ArrayList<>();
+
+        try {
+
+            String req = "SELECT m.*,p.nom from menu m inner join plat p on m.idPlat=p.id ";
+
+            st = cnx.createStatement();
+            ResultSet res = st.executeQuery(req);
+
+            while (res.next()) {
+  
+           PlatService c= new PlatService();              
+Menu m =new Menu();
+m.setPlat(res.getString("nom"));
+m.setIdDessert(res.getInt("idDessert"));
+m.setIdPlat(res.getInt("idPlat"));
+
 
  
                 listP.add(m);
@@ -217,6 +281,59 @@ m.setPlat(c.getNomPlat1(res.getInt(4)));
         }
         return x;
         }
+        public int getNbrPlatMenu(int id)
+        {
+        int x=0;
+        try {
+        String req="SELECT COUNT(*) FROM menu where idPlat ="+id;
+         st = cnx.createStatement();
+            ResultSet res = st.executeQuery(req);
+            while(res.next())
+                x=res.getInt(1);
+        
+        }catch(SQLException ex){
+        
+        System.out.println(ex);
+        }
+        return x;
+        
+        }
+        public String getNomPlat(int id)
+        {
+       String x="";
+        String ch="plat principal";
+        try {
+        String req="SELECT nom FROM plat where id ="+id;
+         st = cnx.createStatement();
+            ResultSet res = st.executeQuery(req);
+            while(res.next())
+                x=res.getString(1);
+        
+        }catch(SQLException ex){
+        
+        System.out.println(ex);
+        }
+        return x;
+        
+        }
+        public int getNbrDessertMenu(int id)
+        {
+        int x=0;
+        try {
+        String req="SELECT COUNT(*) FROM menu where idDessert ="+id;
+         st = cnx.createStatement();
+            ResultSet res = st.executeQuery(req);
+            while(res.next())
+                x=res.getInt(1);
+        
+        }catch(SQLException ex){
+        
+        System.out.println(ex);
+        }
+        return x;
+        
+        }
+        
 
     
 }

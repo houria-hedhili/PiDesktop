@@ -25,14 +25,30 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import Entity.imen.Plat;
 import GUI.login.LoginController;
+import com.restfb.BinaryAttachment;
+import com.restfb.DefaultFacebookClient;
+import com.restfb.FacebookClient;
+import com.restfb.Parameter;
+import com.restfb.types.FacebookType;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 import service.imen.PlatService;
 /**
  * FXML Controller class
@@ -113,9 +129,11 @@ PlatService ps = new PlatService();
        type.setValue(x.getType());
         
     }
+    String immg="";
+    String immmg="";
 
     @FXML
-    private void upload(ActionEvent event) {
+    private void upload(ActionEvent event) throws IOException {
           FileChooser f=new FileChooser();
         f.getExtensionFilters().add(new FileChooser.ExtensionFilter("jpeg,png", typee));
         File fc=f.showOpenDialog(null);
@@ -123,14 +141,18 @@ PlatService ps = new PlatService();
         {
             System.out.println(fc.getName());
              img=fc.getAbsoluteFile().toURI().toString();
-           System.out.print(img);
+             immg=fc.getPath();
+             immmg=fc.getName();
+             System.out.println(img);
+          // System.out.print(img);
              Image i = new Image(img);
            imgg.setImage(i);
         }//dkhalt? oui 
     }
-
+String des="";
+String tit="";
     @FXML
-    private void ajout(ActionEvent event) {
+    private void ajout(ActionEvent event) throws FileNotFoundException {
 
  if (titre.getText().isEmpty() || description.getText().isEmpty() || img.isEmpty() || type.getValue().equals("plat"))
 {Error("Veuillez remplir tous le champs");
@@ -140,7 +162,17 @@ PlatService ps = new PlatService();
 }else if(!description.getText().matches("^[a-zA-Z\\s]*$"))
 {Error("invalide description : le champs description ne contient que des lettres");}
  else
-    {    Plat plat=new Plat(titre.getText(), description.getText(),img, type.getValue().toString(), 0, 0);
+    {   tit=titre.getText();
+         des=description.getText();
+   /*   String accessToken="EAAkiGpblq8kBAPGRmhprYw9NUZC6Dvp6SU1eM4JhooTFiuxgOymlDIUvOaPUoGJK3xUhLfGXTrOMmPh0hhxCwqF1byuyJeZAlzj3j7kntbktcmoyeO9Hn0cTDh6m8ypKSZAIXwyMk052ag0bZAt9KH3JQmZAqKZAJ9jEMgt2hqogFchu2S3y2zdhMEmmYsubSJAWImE7l8WQZDZD";
+   FacebookClient fbClient=new DefaultFacebookClient(accessToken);
+   FileInputStream fis=new FileInputStream(new File(immg));
+   FacebookType response=fbClient.publish("me/photos",FacebookType.class, BinaryAttachment.with(immmg,fis),Parameter.with("message","Titre :"+tit+"\n"+des),Parameter.with("link","http://localhost/jardin1/web/app_dev.php/index"));
+   System.out.println(response);*/
+        
+        //Plat plat=new Plat(titre.getText(), description.getText(),img, type.getValue().toString(),0,0,"100174535001126_"+response.getId());
+                 Plat plat=new Plat(titre.getText(), description.getText(),"file:/C:/wamp/www/jardin1/web/"+immmg, type.getValue().toString(),0,0,"0",immmg);
+
 if(img=="")
 {img="plat.png";
 plat.setImage(img);
@@ -148,6 +180,7 @@ plat.setImage(img);
         Boolean test= ps.ajouterPlat(plat);
     if(test)
      {
+       
      Success("Votre ajout a ete efectue");
      titre.setText("");
      description.setText("");
@@ -155,6 +188,18 @@ plat.setImage(img);
      erreurTitre.setText("");
      
      type.setValue("plat");
+   //  partageFb();
+       Notifications notif=Notifications.create()
+            .title("Facebook ")
+            .text("Le plat a été publié !")
+            .darkStyle().graphic(null).hideAfter(Duration.seconds(5))
+            .position(Pos.TOP_LEFT)
+            .onAction(new EventHandler<ActionEvent>() {
+                    public void handle(ActionEvent event) {
+                        System.out.println("Clicked ont notif");
+                    }
+                });
+    notif.showConfirm();
       affichAllPlat();
      }
     }
@@ -188,16 +233,17 @@ affichAllPlat();
     }
 
     @FXML
-    private void modifier(ActionEvent event) {
+    private void modifier(ActionEvent event) throws FileNotFoundException {
 
                 Plat x= table.getSelectionModel().getSelectedItem();
+               
   // System.out.println(platUnique.get(0).getId());
 if(img == "")
-{ 
-    ps.modifierPlat(titre.getText(),type.getValue(),description.getText(),x.getImage(),x.getId());
+{  
+    ps.modifierPlat(titre.getText(),type.getValue(),description.getText(),x.getImage(),x.getId(),x.getIdPost());
 
 }
-else { ps.modifierPlat(titre.getText(),type.getValue(),description.getText(),img,x.getId());
+else { ps.modifierPlat(titre.getText(),type.getValue(),description.getText(),img,x.getId(),x.getIdPost());
 
 }
 affichAllPlat();
@@ -288,5 +334,26 @@ else  {ErreurDesc.setText("champs saisi invalide ");
       } 
     
 }
+
+public void partageFb() throws FileNotFoundException
+{
+   String accessToken="EAAkiGpblq8kBAP92Wf1PGqrQktdZA2rZB8aSOFBwWPRWgazFym064FDm9Ncsca1vCd7cq3UqJSZAXqArfRNIMB8SobOXmexmWAlRmSjq2m86f32ioAT0XNEOrq6nDNGGqthoR8O0FYpfNl6Teb4994xsitgGTE8iMbcahEfgTdcMB0lDkBHHg90DTyh47gZD";
+   FacebookClient fbClient=new DefaultFacebookClient(accessToken);
+   FileInputStream fis=new FileInputStream(new File(immg));
+   FacebookType response=fbClient.publish("me/photos",FacebookType.class, BinaryAttachment.with(immmg,fis),Parameter.with("message","Titre :"+tit+"\n"+des),Parameter.with("link","http://localhost/jardin1/web/app_dev.php/index"));
+   System.out.println(response);
+}
+
+
+    @FXML
+    private void Avance(ActionEvent event) throws IOException {
+         Parent root = FXMLLoader.load(getClass().getResource("/GUI/Back/gererCantine/Avance.fxml"));
+        Stage stage1=new Stage();
+        Scene scene = new Scene(root);
+        
+        stage1.setScene(scene);
+        stage1.show();
+    
+    }
 
 }

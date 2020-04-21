@@ -111,7 +111,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button layoutX="775.0" layoutY="613.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="41.0" prefWidth="168.0" styleClass="mod" text="   Supprimer">
+      <Button layoutX="651.0" layoutY="617.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="41.0" prefWidth="168.0" styleClass="mod" text="   Supprimer">
          <graphic>
             <ImageView fitHeight="27.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -132,5 +132,14 @@
             <Font name="Century Schoolbook Bold" size="26.0" />
          </font>
       </Label>
+      <Button layoutX="880.0" layoutY="613.0" mnemonicParsing="false" onAction="#Avance" prefHeight="41.0" prefWidth="168.0" styleClass="mod" text="Avance">
+         <graphic>
+            <ImageView fitHeight="27.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Front/gererCantine/abonnement/plus-logo-png-10.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

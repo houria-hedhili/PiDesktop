@@ -25,6 +25,24 @@ public class Plat {
     private String type;
     private int nbrVue;
     private int nbrAime;
+    private String idPost;
+    private String img;
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getIdPost() {
+        return idPost;
+    }
+
+    public void setIdPost(String idPost) {
+        this.idPost = idPost;
+    }
  private ImageView photo= new ImageView();
 
     public ImageView getPhoto() {
@@ -35,10 +53,37 @@ public class Plat {
         this.photo = photo;
     }
 
+    public Plat(int id, String image, String idPost,String desc) {
+        this.id = id;
+        this.image = image;
+        this.idPost = idPost;
+        this.description=desc;
+    }
+
    
 
   
     public Plat() {
+    }
+
+    public Plat(String nom, String description, String image, String type, int nbrVue, int nbrAime, String idPost) {
+        this.nom = nom;
+        this.description = description;
+        this.image = image;
+        this.type = type;
+        this.nbrVue = nbrVue;
+        this.nbrAime = nbrAime;
+        this.idPost = idPost;
+    }
+       public Plat(String nom, String description, String image, String type, int nbrVue, int nbrAime, String idPost,String img) {
+        this.nom = nom;
+        this.description = description;
+        this.image = image;
+        this.type = type;
+        this.nbrVue = nbrVue;
+        this.nbrAime = nbrAime;
+        this.idPost = idPost;
+        this.img=img;
     }
 
     public Plat(String nom, String description, String image, String type, int nbrVue, int nbrAime) {

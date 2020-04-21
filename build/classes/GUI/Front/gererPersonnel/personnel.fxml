@@ -31,7 +31,6 @@
                                     <Button fx:id="retour1" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour1" styleClass="retour" stylesheets="@../gererCantine/abonnement/aboncantine.css" text="Retour" />
                                  </children>
                               </Pane>
-                              <TableView fx:id="tabb" layoutX="29.0" layoutY="122.0" prefHeight="434.0" prefWidth="610.0">
                               <TableView fx:id="tabb" layoutX="69.0" layoutY="129.0" prefHeight="434.0" prefWidth="610.0">
                                 <columns>
                                   <TableColumn fx:id="nom" prefWidth="133.0" text="Nom" />
