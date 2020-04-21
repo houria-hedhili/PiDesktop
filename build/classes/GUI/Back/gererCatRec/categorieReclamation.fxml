@@ -37,11 +37,6 @@
       <Button fx:id="AjouterBt" layoutX="99.0" layoutY="354.0" mnemonicParsing="false" onAction="#handleButtonActionAjouter" styleClass="mod" stylesheets="@categoriereclamation.css" text="Ajouter" />
       <Button fx:id="ModifierBt" layoutX="236.0" layoutY="352.0" mnemonicParsing="false" onAction="#handleButtonActionModifier" styleClass="mod" stylesheets="@categoriereclamation.css" text="Modifier" />
       <Button fx:id="SupprimerBt" layoutX="1002.0" layoutY="629.0" mnemonicParsing="false" onAction="#suppcat" styleClass="mod" stylesheets="@categoriereclamation.css" text="Supprimer" />
-      <TextField fx:id="recherche" layoutX="227.0" layoutY="230.0" onKeyReleased="#rechercheCat" onKeyTyped="#recherche" promptText="rechercher.." />
-      <Label layoutX="50.0" layoutY="219.0" text="Recherhcer" textFill="#5d0f25">
-         <font>
-            <Font size="31.0" />
-         </font></Label>
-      <TextField fx:id="recherche" layoutX="460.0" layoutY="94.0" onKeyReleased="#rechercheCat" onKeyTyped="#recherche" prefHeight="25.0" prefWidth="648.0
+      <TextField fx:id="recherche" layoutX="460.0" layoutY="94.0" onKeyReleased="#rechercheCat" onKeyTyped="#recherche" prefHeight="25.0" prefWidth="648.0" promptText="rechercher.." />
    </children>
 </AnchorPane>
