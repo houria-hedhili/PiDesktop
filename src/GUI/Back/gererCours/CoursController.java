@@ -8,8 +8,14 @@ package GUI.Back.gererCours;
 
 import ConnexionBd.connexionBd;
 import Entity.houria.Cours;
+import Entity.houria.Evenement;
 import Entity.houria.Matiere;
 import com.jfoenix.controls.JFXTimePicker;
+import com.nexmo.client.NexmoClient;
+import com.nexmo.client.NexmoClientException;
+import com.nexmo.client.sms.MessageStatus;
+import com.nexmo.client.sms.SmsSubmissionResponse;
+import com.nexmo.client.sms.messages.TextMessage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -19,6 +25,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +35,7 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -41,6 +49,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javax.swing.JOptionPane;
 import service.houria.CoursCRUD;
@@ -90,6 +99,8 @@ public class CoursController implements Initializable {
     
             String img="";
     List<String> type;
+        Cours hou=new Cours();
+
         connexionBd connection = null;
         private Connection cnx;
                         Matiere p = new Matiere();
@@ -108,7 +119,8 @@ public class CoursController implements Initializable {
     @FXML
     private TextField search;
 
-   
+           private Cours evenn=null;
+
     /**
      * Initializes the controller class.
      */
@@ -120,7 +132,36 @@ public class CoursController implements Initializable {
         type =new ArrayList();
         type.add("*.jpg");
          type.add("*.png");
-
+  table_cours.setOnMouseClicked(new EventHandler<MouseEvent>(){
+           @Override
+           public void handle(MouseEvent event) {
+                evenn = (Cours)table_cours.getSelectionModel().getSelectedItem();
+  //kenet tekhdem wala awel mara taa3melha? kont nesyetha aslnn ma5demthech emaa f event amlaa keka w te5demm mafhmtch lena chbeha 
+//  System.out.println(evenn.getImage());//yekhou feha null 
+                imageview.setImage(new Image("file:/C:/xampp/htdocs/integration/jardin/web/images/courses/"+evenn.getImage()));
+           //chouf maach mesa hh 
+           LocalTime d1 = evenn.getDuree().toLocalTime();
+           
+                    matiereCRUD oui = new matiereCRUD();
+        Matiere b=new Matiere();
+          
+               try {
+                   Cmatiere.setValue(oui.getnomat(evenn.getId_mat()));//bech nhot fiha nom de la matiere eliii id mta3ha =evenn.getidmat
+               } catch (SQLException ex) {
+                   Logger.getLogger(CoursController.class.getName()).log(Level.SEVERE, null, ex);
+               }
+                Cduree.setValue(d1);
+                
+                int place=evenn.getSeats();
+                String nb_PPP=String.valueOf(place);
+                Cnbplace.setText(nb_PPP);
+                int ag=evenn.getAge();
+                String age=String.valueOf(ag);
+                Cage.setText(age);
+                Cdescr.setText(evenn.getDescription());
+           }
+             
+         });
         ObservableList<String> availableChoices = FXCollections.observableArrayList("Selectionner matiere");
         matiereCRUD a=new matiereCRUD();
         ObservableList<Matiere> b=a.displayALLMatiere() ;
@@ -144,10 +185,11 @@ public class CoursController implements Initializable {
             Logger.getLogger(CoursController.class.getName()).log(Level.SEVERE, null, ex);
         }
           
+          
     }    
 
     @FXML
-    private void ajouter(ActionEvent event) throws IOException, SQLException {
+    private void ajouter(ActionEvent event) throws IOException, SQLException, NexmoClientException {
 
        labelmatiere.setText("");
        labeldescription.setText("");
@@ -216,6 +258,20 @@ public class CoursController implements Initializable {
         b=oui.getMatiere(Cmatiere.getValue());
         Cours e = new Cours(b.getId(),descC,dureeC,seats,age,img);
         sp.addCours(e); 
+                NexmoClient client = new NexmoClient.Builder()
+                        .apiKey("0a05460e")
+                        .apiSecret("sFEhja9oAyNZlyJE")
+                        .build();
+              TextMessage message = new TextMessage("COCCINELLE"," 21698565782",
+                "Bonjour Mr/mdme , nous avons ajouter un cours dans la matiere : "+b.getNom()+" pour plus de details consulter notre site  ");
+
+               SmsSubmissionResponse response = client.getSmsClient().submitMessage(message);
+
+            if (response.getMessages().get(0).getStatus() == MessageStatus.OK) {
+               System.out.println("Message sent successfully.");
+           } else {
+                System.out.println("Message failed with error: " + response.getMessages().get(0).getErrorText());
+           }
          JOptionPane.showMessageDialog(null, "ajout avec succes");
          Cdescr.clear();
          imageview.setImage(null);
@@ -233,8 +289,8 @@ public class CoursController implements Initializable {
         if(f!= null)
         {
             System.out.println(fc.getName());
-            img=fc.getAbsoluteFile().toURI().toString();
-            Image i = new Image(img);
+            img=fc.getName();
+            Image i = new Image("file:/C:/xampp/htdocs/integration/jardin/web/images/courses/"+img);
            imageview.setImage(i);
         }
     }
@@ -265,7 +321,41 @@ public class CoursController implements Initializable {
     }
 
     @FXML
-    private void modifier(ActionEvent event) {
+    private void modifier(ActionEvent event) throws IOException, SQLException {
+                         //  hou = (Cours)table_cours.getSelectionModel().getSelectedItem();
+
+        CoursCRUD cs = new CoursCRUD();
+        if(hou== null){
+            JOptionPane.showMessageDialog(null, "choisir Cours");
+                   
+        }else{
+         matiereCRUD oui = new matiereCRUD();
+        Matiere b=new Matiere();
+        b=oui.getMatiere(Cmatiere.getValue());
+        System.out.println("hetha id etranger"+b.getId());
+                LocalTime dur =Cduree.getValue();
+        Time dureeC = java.sql.Time.valueOf(dur);//chnnia mochkletha eh n
+        if(img==""){
+        Cours a=new Cours(b.getId(),Cdescr.getText(),dureeC,Integer.parseInt(Cnbplace.getText()),Integer.parseInt(Cage.getText()),evenn.getImage());
+                   cs.updateCours(a,evenn.getId());
+
+        }else{
+                    Cours a=new Cours(b.getId(),Cdescr.getText(),dureeC,Integer.parseInt(Cnbplace.getText()),Integer.parseInt(Cage.getText()),img);
+           cs.updateCours(a,evenn.getId());
+
+        }
+//hekkifi ihot fiha null 5atera mdeclarya null fhemtikk
+           afficher();
+        JOptionPane.showMessageDialog(null, "cours modifier");
+         imageview.setImage(null);
+            Cdescr.clear();
+         imageview.setImage(null);
+            Cduree.setValue(null);
+          Cnbplace.clear();
+        Cage.clear();
+        hou=null;
+        
+        }
     }
          private void afficher() {
     

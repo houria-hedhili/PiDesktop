@@ -29,9 +29,9 @@
                                     <Button fx:id="retour1" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour1" styleClass="retour" stylesheets="@../gererCantine/abonnement/aboncantine.css" text="Retour" />
                                  </children>
                               </Pane>
-                              <ScrollPane fx:id="scroll" layoutX="68.0" layoutY="67.0" prefHeight="507.0" prefWidth="713.0">
+                              <ScrollPane fx:id="scroll" layoutX="38.0" layoutY="10.0" prefHeight="609.0" prefWidth="743.0">
                                  <content>
-                                    <VBox fx:id="courscontainer" prefHeight="489.0" prefWidth="707.0" />
+                                    <VBox fx:id="courscontainer" prefHeight="607.0" prefWidth="743.0" style="-fx-background-color: #A7D5F3;" />
                                  </content>
                               </ScrollPane>
                            </children>
@@ -39,46 +39,6 @@
                      </content>
                      <graphic>
                         <Label prefHeight="16.0" prefWidth="132.0" text="liste des cours " textFill="#f2f2f2">
-                           <font>
-                              <Font name="Cooper Black" size="14.0" />
-                           </font>
-                        </Label>
-                     </graphic>
-                  </Tab>
-                  <Tab>
-                     <content>
-                        <AnchorPane prefHeight="690.0" prefWidth="1020.0">
-                           <children>
-                              <Pane layoutX="602.0" layoutY="623.0" prefHeight="54.0" prefWidth="200.0">
-                                 <children>
-                                    <Button fx:id="retour2" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour2" styleClass="retour" stylesheets="@../gererCantine/abonnement/aboncantine.css" text="Retour" />
-                                 </children>
-                              </Pane>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                     <graphic>
-                        <Label text="Inscription" textFill="#f2f2f2">
-                           <font>
-                              <Font name="Cooper Black" size="14.0" />
-                           </font>
-                        </Label>
-                     </graphic>
-                  </Tab>
-                  <Tab>
-                     <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <Pane layoutX="602.0" layoutY="623.0" prefHeight="54.0" prefWidth="200.0">
-                                 <children>
-                                    <Button fx:id="retour3" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour3" styleClass="retour" stylesheets="@../gererCantine/abonnement/aboncantine.css" text="Retour" />
-                                 </children>
-                              </Pane>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                     <graphic>
-                        <Label text="Plats de jour" textFill="#f2f2f2">
                            <font>
                               <Font name="Cooper Black" size="14.0" />
                            </font>

@@ -30,20 +30,13 @@
                                  <content>
                                     <AnchorPane prefHeight="138.0" prefWidth="803.0">
                                        <children>
-                                          <Pane layoutX="575.0" layoutY="609.0" prefHeight="54.0" prefWidth="200.0">
-                                             <children>
-                                                <Button fx:id="retour2" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour2" styleClass="retour" stylesheets="@../gererCantine/abonnement/aboncantine.css" text="Retour" />
-                                             </children>
-                                          </Pane>
-                                          <ScrollPane fx:id="scrollpass" prefHeight="607.0" prefWidth="800.0" style="-fx-background-color: #A7D5F3;">
-                                            <content>
-                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
-                                                   <children>
-                                                      <VBox fx:id="eventcontainerpass" prefHeight="600.0" prefWidth="798.0" style="-fx-background-color: #A7D5F3;" />
-                                                   </children>
-                                                </AnchorPane>
-                                            </content>
+                                          <Pane layoutX="575.0" layoutY="609.0" prefHeight="54.0" prefWidth="200.0" />
+                                          <ScrollPane fx:id="scrollpass" prefHeight="591.0" prefWidth="803.0" style="-fx-background-color: #A7D5F3;">
+                                             <content>
+                                                <VBox fx:id="eventcontainerpass" prefHeight="590.0" prefWidth="788.0" style="-fx-background-color: #A7D5F3;" />
+                                             </content>
                                           </ScrollPane>
+                                          <Button fx:id="retour2" layoutX="668.0" layoutY="652.0" mnemonicParsing="false" onAction="#retour2" styleClass="retour" stylesheets="@../gererCantine/abonnement/aboncantine.css" text="Retour" />
                                        </children>
                                     </AnchorPane>
                                  </content>

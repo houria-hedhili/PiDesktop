@@ -6,30 +6,18 @@
 package toolsHouria;
 
 import Entity.houria.Evenement;
-import Entity.houria.Participation;
 import com.itextpdf.text.BadElementException;
-import com.itextpdf.text.BaseColor;
-import static com.itextpdf.text.BaseColor.PINK;
-import com.itextpdf.text.Chunk;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
-import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
-import com.itextpdf.text.pdf.BaseFont;
-import static com.itextpdf.text.pdf.BaseFont.CP1250;
 import com.itextpdf.text.pdf.PdfWriter;
-import static java.awt.Color.green;
-import java.awt.Font;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -53,7 +41,7 @@ public class PDF {
             int randomNum = ThreadLocalRandom.current().nextInt(1, 100 + 1);
 
             com.itextpdf.text.Document document = new com.itextpdf.text.Document();
-            PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\LENOVO\\Desktop\\ticket/ticket" + randomNum + ".pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\LENOVO\\Desktop\\ticket/"+randomNum+".pdf"));
             document.open();
              Image img=Image.getInstance(p.getImage());
              img.setWidthPercentage(50);
@@ -62,7 +50,7 @@ public class PDF {
              par.setAlignment(Element.ALIGN_CENTER);
             document.add(par);
               document.add(new Paragraph("Veuillez IMPRIMER et présenter ce billet à l'entrée de l'événement\n" , FontFactory.getFont(FontFactory.TIMES)));
- 
+
              document.add(img);
 
              document.add(adrr);
@@ -74,9 +62,7 @@ public class PDF {
             TrayNotification tray = new TrayNotification("Ticket", "Ticket de participation créée avec succés", NotificationType.SUCCESS);
             tray.setAnimationType(AnimationType.POPUP);
             tray.showAndDismiss(Duration.seconds(3));
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(PDF.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (DocumentException ex) {
+        } catch (FileNotFoundException | DocumentException ex) {
             Logger.getLogger(PDF.class.getName()).log(Level.SEVERE, null, ex);
         }
 

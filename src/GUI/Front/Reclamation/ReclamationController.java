@@ -5,14 +5,22 @@
  */
 package GUI.Front.Reclamation;
 
+import Entity.ameni.chat;
 import Entity.ameni.reclamation;
+import GUI.Back.Reclamation.ReclamationBackController;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,14 +43,25 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 import org.controlsfx.control.Notifications;
+import service.ameni.chatService;
 import service.ameni.reclamationService;
+
+import service.authentification.UserCRUD;
 
 /**
  * FXML Controller class
@@ -70,8 +89,6 @@ public class ReclamationController implements Initializable {
     private TableColumn<reclamation, String> colDescription;
     @FXML
     private TableColumn<reclamation, String> colCategorieReclamation;
-    @FXML
-    private TableColumn<reclamation, String> colIdParent;
     
     reclamationService rec=new reclamationService();
     @FXML
@@ -119,6 +136,29 @@ reclamationService rc=new reclamationService();
     private Button detaille;
     @FXML
     private WebView viewweb;
+    @FXML
+    private Button bte;
+    @FXML
+    private TextField num;
+    @FXML
+    private TextField ak;
+    @FXML
+    private TextField se;
+    @FXML
+    private TableView<?> tabChat;
+    @FXML
+    private TableColumn<?, ?> colQuest;
+    @FXML
+    private TableColumn<?, ?> colRep;
+    @FXML
+    private TextArea question;
+    @FXML
+    private Button ajouBt;
+    @FXML
+    private TextField reponse;
+    @FXML
+    private TextField recherche;
+
 
     /**
      * Initializes the controller class.
@@ -135,15 +175,30 @@ reclamationService rc=new reclamationService();
         afficherReclamation1();
         afficherReclamation2();
         afficherReclamation3();
+        afficherChat();
        // afficher();   
         //afficherRecherche();
         
         // TODO
         
+        //web
         final WebEngine web = viewweb.getEngine();
-        String urlweb = "http://google.com";
-        //String urlweb = "https://www.google.com/maps/d/embed?mid=1vtsotPGfHrmxVaTGy_F_KOI6HxoiX7Rb&hl=fr";
+       // String urlweb = "http://google.com";
+        String urlweb = "https://www.instagram.com/coccinellejardinenfant/";
         web.load(urlweb);
+        //https://www.instagram.com/coccinellejardinenfant/
+
+        
+        ak.setText("6c2mtiUJInLE-ma65m5RlmrIPUBuffaOwLenvFJSuwr");
+        ak.setEditable(false); 
+        ak.setVisible(false);
+        se.setText("Coccinelle");
+        se.setEditable(false); 
+        
+        
+        reponse.setText("on va vous répndre bientôt");
+        reponse.setVisible(false);
+
     }    
 
 @FXML
@@ -221,7 +276,7 @@ reclamationService rc=new reclamationService();
         colEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));   
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));   
         colCategorieReclamation.setCellValueFactory(new PropertyValueFactory<>("categorieReclamation")); 
-        colIdParent.setCellValueFactory(new PropertyValueFactory<>("idParent"));          
+        //colIdParent.setCellValueFactory(new PropertyValueFactory<>("idParent"));          
         }
          
                 private void afficheRec(ActionEvent event) {   
@@ -237,7 +292,7 @@ reclamationService rc=new reclamationService();
         colEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         colCategorieReclamation.setCellValueFactory(new PropertyValueFactory<>("categorieReclamation"));
-        colIdParent.setCellValueFactory(new PropertyValueFactory<>("idParent")); 
+        //colIdParent.setCellValueFactory(new PropertyValueFactory<>("idParent")); 
 
     }
                 
@@ -277,6 +332,7 @@ reclamationService rc=new reclamationService();
     reclamation r=new reclamation(desc.getText(),b.getIdCategorie(categorieReclamationCombo.getValue()) ,comboEtat.getValue());
     b.ajouterReclamation(r);
     afficherReclamation1();
+   // mail();
     
    /* if( etatText.getText().isEmpty() || descriptionText.getText().isEmpty()){
     Alert alertt=new Alert(Alert.AlertType.ERROR);
@@ -349,7 +405,7 @@ reclamationService rc=new reclamationService();
         colEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         colCategorieReclamation.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        colIdParent.setCellValueFactory(new PropertyValueFactory<>("idParent"));
+       // colIdParent.setCellValueFactory(new PropertyValueFactory<>("idParent"));
          }
     
            public void afficherReclamation2()
@@ -401,4 +457,206 @@ reclamationService rc=new reclamationService();
         window.show();
     }
     
+    /*public void mail()
+    {
+  String host="smtp.gmail.com";  
+  final String user="amenimerh@gmail.com";//change accordingly  
+  final String password="ameni101098";//change accordingly  
+    
+  String to="ameni.merhben@esprit.tn";//change accordingly  
+  
+   //Get the session object  
+   Properties props = new Properties();  
+   props.put("mail.smtp.host",host);  
+   props.put("mail.smtp.auth", "true");  
+     
+   Session session = Session.getDefaultInstance(props,  
+    new javax.mail.Authenticator() {  
+    protected PasswordAuthentication getPasswordAuthentication() {  
+    return new PasswordAuthentication(user,password);  
+      }  
+    });  
+  
+   //Compose the message  
+    try {  
+     MimeMessage message = new MimeMessage(session);  
+     message.setFrom(new InternetAddress("amenimerh@gmail.com"));  
+     message.addRecipient(Message.RecipientType.TO,new InternetAddress("ameni.merhben@esprit.tn"));  
+     message.setSubject("javatpoint");  
+     message.setText("This is simple program of sending email using JavaMail API");  
+       
+    //send the message  
+     Transport.send(message);  
+  
+     System.out.println("message sent successfully...");  
+   
+     } catch (MessagingException e) 
+     {
+         throw new RuntimeException(e);
+     }
+ }   */
+
+    @FXML
+    private void envoyer(ActionEvent event) {
+               String apik = "apikey=" + ak.getText();
+			String mess = "&message=" + desc.getText();
+			String send = "&sender=" + se.getText();
+			String numb = "&numbers=" + num.getText();
+        
+        		try {
+			// Construct data
+			String apiKey = "apikey=" + ak.getText();
+			String message = "&message=" + desc.getText();
+			String sender = "&sender=" + se.getText();
+			String numbers = "&numbers=" + num.getText();
+                            System.out.println(apiKey);
+                            System.out.println(message);
+                            System.out.println(sender);
+                            System.out.println(numbers);
+			
+			// Send data
+			HttpURLConnection conn = (HttpURLConnection) new URL("https://api.txtlocal.com/send/?").openConnection();
+			String data = apiKey + numbers + message + sender;
+			conn.setDoOutput(true);
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Content-Length", Integer.toString(data.length()));
+			conn.getOutputStream().write(data.getBytes("UTF-8"));
+			final BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			final StringBuffer stringBuffer = new StringBuffer();
+			String line;
+			while ((line = rd.readLine()) != null) {
+				/*stringBuffer.append(line);*/
+                                JOptionPane.showMessageDialog(null, "reclamation Envoyé avec succès");
+			}
+			rd.close();
+			
+			/*return stringBuffer.toString();*/
+		} catch (Exception e) {
+                       JOptionPane.showMessageDialog(null, e);
+			System.out.println("Error SMS "+e);
+                        
+                         System.out.println(apik);
+                            System.out.println(mess);
+                            System.out.println(send);
+                            System.out.println(numb);
+			/*return "Error "+e;*/
+		}
+        
+    }
+
+    
+          private void afficherChat() {
+      chatService sp = new chatService();
+        List categ=sp.affChat();
+        ObservableList et=FXCollections.observableArrayList(categ);
+        tabChat.setItems(et);
+        ObservableList observableList = FXCollections.observableArrayList(categ);
+       // colRef.setCellValueFactory(new PropertyValueFactory<>("ref"));
+        colQuest.setCellValueFactory(new PropertyValueFactory<>("question"));
+        colRep.setCellValueFactory(new PropertyValueFactory<>("reponse"));  
+        
+        }
+          
+         private void afficheChatt(ActionEvent event) {
+        
+      chatService sp = new chatService();
+      List categ=sp.affChat();
+       ObservableList et=FXCollections.observableArrayList(categ);
+       tabChat.setItems(et);
+        ObservableList observableList = FXCollections.observableArrayList(categ);
+     //en vert hekom mil interface tu les recuperes m tableau eli samitou tab
+     //en oranger hekom les entités mte3ek
+     //   colRef.setCellValueFactory(new PropertyValueFactory<>("ref"));
+        colQuest.setCellValueFactory(new PropertyValueFactory<>("question"));
+        colRep.setCellValueFactory(new PropertyValueFactory<>("reponse"));
+      
+
+    }
+         
+           private void clearTabb() {
+            question.clear();    }
+        
+        private void refreshBb() throws SQLException{
+        List<chat> listB=new ArrayList<>();
+        chatService   cr = new chatService();
+        listB = cr.affChat();
+        ObservableList <chat> data = FXCollections.observableArrayList(listB);
+       // tabChat.setItems(data);
+    }
+    
+    @FXML
+    private void handleButtonActionAjou(ActionEvent event) {
+chatService b= new chatService();
+    if( question.getText().isEmpty()){
+    Alert alertt=new Alert(Alert.AlertType.ERROR);
+    alertt.setTitle("WARNING!");
+    alertt.setHeaderText(null);
+    alertt.setContentText("Merci de vérifier que vous avez remplit tout les champs");
+    alertt.showAndWait();
+    }
+    else if(!question.getText().matches("^[a-zA-Z\\s]*$"))
+         {
+              Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setTitle("Valider votre champs"); 
+            alert1.setHeaderText(null);
+            alert1.setContentText("Le champ nom accepte que les lettres ");
+            alert1.showAndWait();
+         }
+    else{ chat categorieRec=new chat(question.getText(),
+            reponse.getText()
+    );   
+    b.ajouterChatQuest(categorieRec);
+        //hedhi fiha controle de saisie w notificcatiobs akeli tji
+    Notifications notif=Notifications.create()
+            .title("Question enregistrée")
+            .text("Une nouvelle question vient d'être enregistrée !")
+            .darkStyle().graphic(null).hideAfter(Duration.seconds(5))
+            .position(Pos.CENTER)
+            .onAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        System.out.println("Clicked ont notif");
+                    }
+                });
+    notif.showConfirm();
+    }
+   // refreshB(event);  
+   afficherChat();
+    }
+
+    @FXML
+    private void rechercheCat(KeyEvent event) {
+    }
+
+    @FXML
+    private void recherche(KeyEvent event) {
+       reclamationService reclamationService = new reclamationService();
+        recherche.setOnKeyReleased(e
+                -> {
+            if (recherche.getText().equals("") ) {
+                try {
+                    refreshBb();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+                }                
+            } else {
+                try {
+        colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        colEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
+        colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+        colCategorieReclamation.setCellValueFactory(new PropertyValueFactory<>("nom"));
+                    tab.getItems().clear();
+                    tab.setItems(reclamationService.recherche(recherche.getText()));
+                } catch (SQLException ex) {
+                Logger.getLogger(ReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        );
+    }
+    
+    
+
+
+
 }

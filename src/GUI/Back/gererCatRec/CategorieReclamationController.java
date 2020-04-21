@@ -82,9 +82,9 @@ public class CategorieReclamationController implements Initializable {
     
     
     @FXML
-    private Pagination pagination;
-    @FXML
     private TextField recherche;
+    
+    
     
 
     
@@ -95,7 +95,7 @@ public class CategorieReclamationController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-              afficher();   
+              afficher(); 
 
         // TODO
     }    
@@ -110,7 +110,7 @@ public class CategorieReclamationController implements Initializable {
        // colRef.setCellValueFactory(new PropertyValueFactory<>("ref"));
         colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));  
-
+        
         }
       
         private void affichecatrec(ActionEvent event) {
@@ -125,6 +125,8 @@ public class CategorieReclamationController implements Initializable {
      //   colRef.setCellValueFactory(new PropertyValueFactory<>("ref"));
         colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+      
+
     }
        
      private void clearTab() {
@@ -175,7 +177,7 @@ public class CategorieReclamationController implements Initializable {
                 });
     notif.showConfirm();
     }
-   // refreshB(event);
+   // refreshB(event);  
    affichecatrec(event);
     }
     
@@ -186,6 +188,7 @@ public class CategorieReclamationController implements Initializable {
       categorieReclamation b=tab.getSelectionModel().getSelectedItem();
       cs.modifierCategorieReclamation(nomText.getText(),descriptionText.getText(), b.getRef());
       affichecatrec(event);
+      
       clearTab();//tfasa5 les cases ken m3ebyin
       //refreshB(event);
     }
@@ -206,6 +209,7 @@ public class CategorieReclamationController implements Initializable {
          nomText.clear();
          descriptionText.clear();
         cc=null;
+
     }
     }
 
@@ -271,6 +275,8 @@ public class CategorieReclamationController implements Initializable {
         );
 
     }
+    
+    
     }
        
 

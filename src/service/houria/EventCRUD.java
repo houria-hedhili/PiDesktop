@@ -110,7 +110,7 @@ public class EventCRUD {
                 p.setDescription(rs.getString("description"));
                  p.setImage(rs.getString("image"));
                  ImageView v=new ImageView();
-                   v.setImage(new Image(rs.getString(8)));
+                   v.setImage(new Image("file:/C:/xampp/htdocs/integration/jardin/web/images/event-list/"+rs.getString(8)));
                    v.setFitHeight(100);
                    v.setFitWidth(100);
                 p.setPhoto(v);
@@ -128,7 +128,7 @@ public class EventCRUD {
         try {
                 String requete
                       
-                    =" select * from event where idEvent in (select idEvent from participation where idUser = '"+a+"') ";
+                    =" select * from event where idEvent in (select idEvent from participation where idUser = '"+a+"') ORDER BY date DESC ";
 
                         PreparedStatement st = cnx.prepareStatement(requete);
                  // st.setInt(1, a);
@@ -148,7 +148,7 @@ public class EventCRUD {
                 p.setDescription(rs.getString("description"));
                 p.setImage(rs.getString("image"));
                 ImageView v=new ImageView();
-                v.setImage(new Image(rs.getString(8)));
+                v.setImage(new Image("file:/C:/xampp/htdocs/integration/jardin/web/images/event-list/"+rs.getString(8)));
                 v.setFitHeight(100);
                 v.setFitWidth(100);
                 p.setPhoto(v);
@@ -179,7 +179,7 @@ public class EventCRUD {
                 p.setDate_fin(rs.getTimestamp("date_fin"));
                 p.setDescription(rs.getString("description"));
                 ImageView v=new ImageView();
-                v.setImage(new Image(rs.getString(8)));
+                v.setImage(new Image("file:/C:/xampp/htdocs/integration/jardin/web/images/event-list/"+rs.getString(8)));
                 v.setFitHeight(100);
                 v.setFitWidth(100);
                 p.setPhoto(v);
@@ -228,7 +228,7 @@ public class EventCRUD {
                 p.setDate_fin(rs.getTimestamp("date_fin"));
                 p.setDescription(rs.getString("description"));
                 ImageView v=new ImageView();
-                v.setImage(new Image(rs.getString(8)));
+                v.setImage(new Image("file:/C:/xampp/htdocs/integration/jardin/web/images/event-list/"+rs.getString(8)));
                 v.setFitHeight(100);
                 v.setFitWidth(100);
                 p.setPhoto(v);

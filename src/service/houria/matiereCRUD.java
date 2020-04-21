@@ -6,6 +6,7 @@
 package service.houria;
 
 import ConnexionBd.connexionBd;
+import Entity.houria.Cours;
 import Entity.houria.Matiere;
 import java.io.IOException;
 import java.sql.Connection;
@@ -133,6 +134,25 @@ public class matiereCRUD {
         }
         return an;
      }
-    
+    //bara ofter wmbaad ija hel mokhek tawnriglouha  
+     public String getnomat(int a) throws SQLException {
+          String an="" ;
+        PreparedStatement pre = cnx.prepareStatement("SELECT nom FROM matiere WHERE id = ?  ;");
 
+        pre.setInt(1, a);
+        ResultSet rs = pre.executeQuery();
+        while (rs.next()) {
+
+            an=rs.getString(1);
+
+
+           
+        }
+        return an;
+     }
+
+    public void modifierRating(Cours e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }
