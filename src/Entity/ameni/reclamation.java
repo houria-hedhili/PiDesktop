@@ -31,9 +31,7 @@ public class reclamation {
         this.nom = nom;
         this.idCategorie=idCategorie;
     }
-
   
-    
     public reclamation(String description,int idCategorie,String etat) {
         this.description = description;
         this.idParent = 1;
@@ -129,10 +127,14 @@ public class reclamation {
         this.idParent = idParent;
     }
 
+
+    
+    
     @Override
     public String toString() {
         return "reclamation{" + "id=" + id + ", date=" + date + ", etat=" + etat + ", description=" + description + ", categorieReclamation=" + categorieReclamation + ", idParent=" + idParent + '}';
     }
+
     
     
     
