@@ -24,6 +24,8 @@ public class Cours {
     private int age ;
     private ImageView photo;
 
+    
+
     public String getMat() {
         return mat;
     }

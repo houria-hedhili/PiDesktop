@@ -93,6 +93,9 @@ CategorieDao buss=new CategorieDao();
     );   
     b.insert(cat);
     afficher();
+    
+      type.clear();
+    description.clear();
       
     
     Notifications notif=Notifications.create()

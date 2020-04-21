@@ -6,6 +6,7 @@
 package service.houria;
 
 import ConnexionBd.connexionBd;
+import Entity.houria.Cours;
 import Entity.houria.Matiere;
 import java.io.IOException;
 import java.sql.Connection;
@@ -149,5 +150,9 @@ public class matiereCRUD {
         }
         return an;
      }
+
+    public void modifierRating(Cours e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

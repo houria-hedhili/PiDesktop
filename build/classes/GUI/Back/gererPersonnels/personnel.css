@@ -1,31 +1,9 @@
+
 /*
  * Empty Stylesheet file.
  */
 
-/*.mainFxmlClass {
 
-}
- #Eimage
-    {
-     -fx-background-color:#B2ADAD;
-    -fx-background-radius:20%;   
-    }
-    
-#btnsupp
-    {
-     -fx-background-color:#B2ADAD;
-    -fx-background-radius:30%;   
-    }
-#btnmod
-    {
-     -fx-background-color:#B2ADAD;
-    -fx-background-radius:30%;   
-    }
-    #btn
-    {
-     -fx-background-color:#B2ADAD;
-    -fx-background-radius:30%;   
-    }*/
 .mainFxmlClass {
 .table-view {
     -fx-background-color:#5969DA;
@@ -70,6 +48,29 @@
 #btnmod
 {
      -fx-background-color:#7582DD;
+           
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 30,2,2,2;
+    -fx-padding: 12 30 12 30;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight:bold; 
+    
+}
+#btnmod
+{
+     -fx-background-color:#7582DD;
+           
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 30,2,2,2;
+    -fx-padding: 12 30 12 30;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight:bold; 
+    
+}
+#btns{
+      -fx-background-color:#7582DD;
            
     -fx-background-insets: 0,1,2,3;
     -fx-background-radius: 30,2,2,2;

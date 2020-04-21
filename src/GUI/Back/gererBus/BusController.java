@@ -5,9 +5,12 @@
  */
 package GUI.Back.gererBus;
 
+import ConnexionBd.connexionBd;
 import Entity.wifek.Bus;
 import java.net.URL;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +26,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -33,10 +37,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import javax.swing.JOptionPane;
 import org.controlsfx.control.Notifications;
 import service.wifek.CrudBusService;
+import javafx.scene.control.Pagination;
 
 /**
  * FXML Controller class
@@ -58,8 +64,6 @@ public class BusController implements Initializable {
     @FXML
     private TableView<Bus> tabAffiche;
     @FXML
-    private TableColumn<Bus, Integer> colid;
-    @FXML
     private TableColumn<Bus, String> colmat;
     @FXML
     private TableColumn<Bus, Integer> colnb;
@@ -73,7 +77,12 @@ public class BusController implements Initializable {
     
     @FXML
     private TextField recherche;
+    @FXML
+    private Pagination Pagination;
 
+    int from = 0, to = 0;
+    int itemPerPage = 10;
+    
     /**
      * Initializes the controller class.
      */
@@ -81,6 +90,29 @@ public class BusController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         afficher();
+        int count = 0;
+        String req = "Select count(*) from bus ";
+        try {
+
+            try (Statement pst1 = connexionBd.getInstance().getCnx().createStatement()) {
+                ResultSet rs1 = pst1.executeQuery(req);
+                rs1.first();
+                count = rs1.getInt(1);
+                rs1.close();
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    colmat.setCellValueFactory(new PropertyValueFactory<>("matricule"));
+        colnb.setCellValueFactory(new PropertyValueFactory<>("nbPlaces"));
+        coltraj.setCellValueFactory(new PropertyValueFactory<>("ligne")); 
+
+        int pageCount = (count / itemPerPage) + 1;
+        Pagination.setPageCount(pageCount);
+        Pagination.setPageFactory(this::createPage);
+        
+        
     }    
     private void afficher() {
     CrudBusService sp = new CrudBusService();
@@ -92,7 +124,8 @@ public class BusController implements Initializable {
         colmat.setCellValueFactory(new PropertyValueFactory<>("matricule"));
         colnb.setCellValueFactory(new PropertyValueFactory<>("nbPlaces"));
         coltraj.setCellValueFactory(new PropertyValueFactory<>("ligne")); 
-
+        tabAffiche.setItems(observableList);
+        
 }
         private void refreshB() throws SQLException{
         List<Bus> listB=new ArrayList<>();
@@ -152,8 +185,31 @@ public class BusController implements Initializable {
                 });
     notif.showConfirm();
     }
-    refreshB();
-   clearBus();
+   //refreshB();
+int count = 0;
+        String req = "Select count(*) from bus ";
+        try {
+
+            try (Statement pst1 = connexionBd.getInstance().getCnx().createStatement()) {
+                ResultSet rs1 = pst1.executeQuery(req);
+                rs1.first();
+                count = rs1.getInt(1);
+                rs1.close();
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    colmat.setCellValueFactory(new PropertyValueFactory<>("matricule"));
+        colnb.setCellValueFactory(new PropertyValueFactory<>("nbPlaces"));
+        coltraj.setCellValueFactory(new PropertyValueFactory<>("ligne")); 
+
+        int pageCount = (count / itemPerPage) + 1;
+        Pagination.setPageCount(pageCount);
+        Pagination.setPageFactory(this::createPage);
+        
+    
+    clearBus();
     }
 
     @FXML
@@ -162,7 +218,28 @@ public class BusController implements Initializable {
     CrudBusService cs = new CrudBusService();
       Bus b=tabAffiche.getSelectionModel().getSelectedItem();
       cs.modifierBus(matricule.getText(),Integer.parseInt(nbplace.getText()),ligne.getText(), b.getId());
-      refreshB();
+     // refreshB();
+      int count = 0;
+        String req = "Select count(*) from bus ";
+        try {
+
+            try (Statement pst1 = connexionBd.getInstance().getCnx().createStatement()) {
+                ResultSet rs1 = pst1.executeQuery(req);
+                rs1.first();
+                count = rs1.getInt(1);
+                rs1.close();
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    colmat.setCellValueFactory(new PropertyValueFactory<>("matricule"));
+        colnb.setCellValueFactory(new PropertyValueFactory<>("nbPlaces"));
+        coltraj.setCellValueFactory(new PropertyValueFactory<>("ligne")); 
+
+        int pageCount = (count / itemPerPage) + 1;
+        Pagination.setPageCount(pageCount);
+        Pagination.setPageFactory(this::createPage);
     }
 
     @FXML
@@ -245,6 +322,38 @@ public class BusController implements Initializable {
         );
 
     }
+    
+    
+    public ObservableList<Bus> getTableData() {
+        ObservableList<Bus> data = FXCollections.observableArrayList();
+        try {
+            String req = "Select * from bus limit "+ from + "," + to;
+            try (Statement pst = connexionBd.getInstance().getCnx().createStatement()) {
+             ResultSet rs = pst.executeQuery(req);
+                while (rs.next()) {
+                  Bus r = new Bus(rs.getInt(1),
+                          rs.getString(2),
+                          rs.getInt(3),
+                          rs.getString(4));// o4zooor 
+                  data.add(r);
+                    
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return data;
+    }
+    
+    private Node createPage(int pageIndex) {
+        from = pageIndex * itemPerPage;
+        to = itemPerPage;
+        tabAffiche.setItems(FXCollections.observableArrayList(getTableData()));
+        return tabAffiche;
+    }
+    
+    
+    
 }
     
 

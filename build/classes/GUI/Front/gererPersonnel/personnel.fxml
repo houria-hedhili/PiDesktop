@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
@@ -7,11 +7,12 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import org.controlsfx.control.Rating?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Front.gererPersonnel.PersonnelController">
     <stylesheets>
@@ -24,13 +25,14 @@
                <tabs>
                   <Tab>
                      <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane fx:id="SCROLL" prefHeight="200.0" prefWidth="200.0">
                            <children>
                               <Pane layoutX="602.0" layoutY="623.0" prefHeight="54.0" prefWidth="200.0">
                                  <children>
                                     <Button fx:id="retour1" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour1" styleClass="retour" stylesheets="@../gererCantine/abonnement/aboncantine.css" text="Retour" />
                                  </children>
                               </Pane>
+
                               <TableView fx:id="tabb" layoutX="69.0" layoutY="129.0" prefHeight="434.0" prefWidth="610.0">
                                 <columns>
                                   <TableColumn fx:id="nom" prefWidth="133.0" text="Nom" />
@@ -40,17 +42,38 @@
                                 </columns>
                               </TableView>
                               <Rating fx:id="rating" layoutX="345.0" layoutY="616.0" prefHeight="34.0" prefWidth="208.0" />
+
                               <Label fx:id="msg" layoutX="270.0" layoutY="633.0" prefHeight="17.0" prefWidth="128.0" />
                               <Text fill="#4a9067" layoutX="225.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nos Personnels">
                                  <font>
                                     <Font name="Forte" size="48.0" />
                                  </font>
                               </Text>
-                              <Text fill="#2277b9" fontSmoothingType="LCD" layoutX="281.0" layoutY="599.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vous pouvez noter notre service" wrappingWidth="440.068359375">
+                              <Text fill="#2277b9" fontSmoothingType="LCD" layoutX="31.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Trier selon:" wrappingWidth="111.81640625">
                                  <font>
                                     <Font name="Courier New Bold" size="14.0" />
                                  </font>
                               </Text>
+                              <Button fx:id="nombtn" layoutX="158.0" layoutY="111.0" mnemonicParsing="false" onAction="#TrierNom" prefHeight="41.0" prefWidth="91.0" styleClass="mod" stylesheets="@personnel.css" text="Nom" />
+                              <Button fx:id="cate" layoutX="253.0" layoutY="110.0" mnemonicParsing="false" onAction="#TrierCatégorie" prefHeight="43.0" prefWidth="97.0" styleClass="mod" stylesheets="@personnel.css" text="Age" />
+                              <Button fx:id="detail" layoutX="192.0" layoutY="170.0" mnemonicParsing="false" onAction="#Detailsfront" prefHeight="43.0" prefWidth="101.0" styleClass="mod" stylesheets="@personnel.css" text="Details" />
+                              <Text fill="#2277b9" layoutX="31.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Details personnel:">
+                                 <font>
+                                    <Font name="Courier New Bold" size="14.0" />
+                                 </font>
+                              </Text>
+                              <TableView fx:id="tabb" layoutX="75.0" layoutY="280.0" prefHeight="297.0" prefWidth="518.0">
+                                <columns>
+                                  <TableColumn fx:id="nom" prefWidth="139.0" text="Nom" />
+                                  <TableColumn fx:id="pre" prefWidth="188.0" text="Prénom" />
+                                    <TableColumn fx:id="image" prefWidth="188.0" text="Image" />
+                                </columns>
+                              </TableView>
+                              <ImageView fitHeight="200.0" fitWidth="160.0" layoutX="584.0" layoutY="70.0">
+                                 <image>
+                                    <Image url="@ZFqe.gif" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </AnchorPane>
                      </content>

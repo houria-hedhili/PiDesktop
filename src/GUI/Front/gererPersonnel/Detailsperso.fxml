@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="427.0" prefWidth="723.0" style="-fx-background-color: #A7D5F3;" styleClass="tabpane" stylesheets="@../gererCantine/abonnement/aboncantine.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="GUI.Front.gererPersonnel.DetailspersoController">
+   <children>
+      <Text fill="#4a9067" fontSmoothingType="LCD" layoutX="180.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Details Personnels" textAlignment="CENTER">
+         <font>
+            <Font name="Forte" size="39.0" />
+         </font>
+      </Text>
+      <Text fill="#3074a1" fontSmoothingType="LCD" layoutX="92.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" wrappingWidth="92.91211143136024">
+         <font>
+            <Font name="Candara Bold Italic" size="22.0" />
+         </font>
+      </Text>
+      <Text fill="#3074a1" fontSmoothingType="LCD" layoutX="94.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prénom">
+         <font>
+            <Font name="Candara Bold Italic" size="22.0" />
+         </font>
+      </Text>
+      <Text fill="#3074a1" fontSmoothingType="LCD" layoutX="94.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catégorie">
+         <font>
+            <Font name="Candara Bold Italic" size="22.0" />
+         </font>
+      </Text>
+      <Label fx:id="nom" layoutX="229.0" layoutY="177.0" prefHeight="22.0" prefWidth="46.0" text="Label" textFill="#e4086e">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="prenom" layoutX="229.0" layoutY="221.0" text="Label" textFill="#e4086e">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Categorie" layoutX="228.0" layoutY="267.0" text="Label" textFill="#e4086e">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="img" fitHeight="160.0" fitWidth="203.0" layoutX="374.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="retour" layoutX="546.0" layoutY="350.0" mnemonicParsing="false" onAction="#rtourner" prefHeight="45.0" prefWidth="102.0" styleClass="retour" text="Retour" textFill="#171717">
+         <stylesheets>
+            <URL value="@personnel.css" />
+            <URL value="@detailsperso.css" />
+         </stylesheets>
+      </Button>
+      <ImageView fitHeight="427.0" fitWidth="144.0" layoutX="-63.0" nodeOrientation="RIGHT_TO_LEFT" opacity="0.4">
+         <image>
+            <Image url="@thumb2-material-design-green-and-gray-lines-geometric-shapes-lollipop.jpg" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="SE_RESIZE" />
+         </cursor>
+         <effect>
+            <Glow level="0.61">
+               <input>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow color="#179733" />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </input>
+            </Glow>
+         </effect>
+      </ImageView>
+      <ImageView fitHeight="427.0" fitWidth="72.0" layoutX="651.0" layoutY="-1.0" opacity="0.43">
+         <image>
+            <Image url="@thumb2-material-design-green-and-gray-lines-geometric-shapes-lollipop.jpg" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="MOVE" />
+         </cursor>
+      </ImageView>
+   </children>
+</AnchorPane>

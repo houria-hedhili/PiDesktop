@@ -8,6 +8,7 @@ package GUI.Front.gererEvent;
 import ConnexionBd.connexionBd;
 import Entity.houria.Evenement;
 import Entity.houria.Participation;
+import Entity.houria.aimeevent;
 import Entity.user.Utilisateur;
 import Entity.user.user;
 import GUI.login.LoginController;
@@ -56,7 +57,9 @@ import javafx.scene.layout.Border;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javax.swing.Icon;
 import javax.swing.JOptionPane;
+import service.houria.AimeeventCRUD;
 import service.houria.EventCRUD;
 import service.houria.participationCRUD;
 import toolsHouria.PDF;
@@ -111,6 +114,7 @@ public class EventController implements Initializable {
     private ScrollPane scrollpass;
     @FXML
     private VBox eventcontainerpass;
+    
     public EventController() {
         cnx= connexionBd.getInstance().getCnx();
     }
@@ -188,7 +192,7 @@ public class EventController implements Initializable {
          // participationService pa = new participationService();
          
           System.out.println("hedha l id eli connecté pour verifier : "+ id);
-          String req="select * from event where date > NOW()";
+          String req="select * from event where date > NOW() ORDER BY date ASC";
           List<VBox> list = new ArrayList<>();
           ste=cnx.createStatement();
           ResultSet rs = ste.executeQuery(req);
@@ -203,12 +207,11 @@ public class EventController implements Initializable {
                 e.setDate_fin(rs.getTimestamp("date_fin"));
                 e.setDescription(rs.getString("description"));
                 e.setImage(rs.getString("image"));
-              ImageView va=new ImageView(new Image(rs.getString(8)));
+              ImageView va=new ImageView(new Image("file:/C:/xampp/htdocs/integration/jardin/web/images/event-list/"+rs.getString(8)));
                va.setFitHeight(200);
                 va.setFitWidth(743);
                 e.setPhoto(va);
               Button bt1=new Button("participer");
-              Button bt222=new Button("hou");
               Label complet = null;
           System.out.println("9bal creation de participation fer8a"+id);
 
@@ -234,13 +237,13 @@ public class EventController implements Initializable {
                           
               h.setSpacing(10);
               h.setAlignment(Pos.CENTER);
-              h.getChildren().addAll(bt222);
+              //h.getChildren().add();
               }else{
                    complet=new Label("");
                                 
               h.setSpacing(10);
               h.setAlignment(Pos.CENTER);
-              h.getChildren().addAll(bt1,bt222);
+              h.getChildren().addAll(bt1);
 
               bt1.setOnAction(new EventHandler<ActionEvent>() {
                  @Override
@@ -343,15 +346,15 @@ public class EventController implements Initializable {
         cc=null;
     }
     }
-    public void display_passevents()throws SQLException{
+    public void display_passevents()throws SQLException, IOException{
              System.out.println("hedha l id eli connecté pour verifier : "+ id);
-          String req="select * from event where date < NOW()";
+          String req="select * from event where date < NOW() ORDER BY date DESC";
           List<VBox> list = new ArrayList<>();
           ste=cnx.createStatement();
           ResultSet rs = ste.executeQuery(req);
           while(rs.next()){
              Evenement e= new Evenement(rs.getInt(1), rs.getString(2),rs.getInt(5),rs.getString(6),rs.getString(7));
-              ImageView va=new ImageView(new Image(rs.getString(8)));
+              ImageView va=new ImageView(new Image("file:/C:/xampp/htdocs/integration/jardin/web/images/event-list/"+rs.getString(8)));
                va.setFitHeight(200);
                 va.setFitWidth(743);
 
@@ -360,10 +363,80 @@ public class EventController implements Initializable {
               Label inscrit=new Label("");
    
 
+             aimeevent aim=new aimeevent();
+             AimeeventCRUD aimecr=new AimeeventCRUD();
 
              Label nomm=new Label(" evenement : "+e.getNom()+"");
              Label local=new Label( " l adress : "+e.getLocal());
-             Button bt2=new Button("plus de details" ) ;
+               Button bt2=new Button("j aime") ;
+
+              if(aimecr.exist(e.getIdEvent(), id)==-1){//mouch mawjoud j aime
+               bt2.setText("j aime");
+              }else{
+                      if(aimecr.getAime(e, id)==0){
+                             bt2.setText("j aime");
+                      }else{
+                 bt2.setText("j aime plus");
+
+                      }
+                     }
+             bt2.setOnAction(new EventHandler<ActionEvent>(){
+                 @Override
+                 public void handle(ActionEvent event) {
+                     try {
+                         if(aimecr.exist(e.getIdEvent(), id)==-1){//mouch mawjoud j aime
+                             bt2.setText("j aime");
+                             
+                             try {
+                                 aimecr.addAime(e, id);
+                                 bt2.setText("j aime plus");
+                                 
+                             } catch (IOException ex) {
+                                 Logger.getLogger(EventController.class.getName()).log(Level.SEVERE, null, ex);
+                             }
+                             
+                             
+                         }else{     
+                             try {
+                                 //mawjoud
+                                 if(aimecr.getAime(e, id)==0){
+                                     bt2.setText("j aime");
+                                     aimecr.updateaime( e,id,1);
+                                     System.out.println("welet j aime pas tw ");
+                                     bt2.setText("j aime plus");
+                                     
+                                     // bt2.setGraphic(); }
+                                     
+                                 }else{
+                                     bt2.setText("j aime plus ");
+                                     
+                                     aimecr.updateaime( e,id,0);
+                                     System.out.println("rja3t j aime tw ");
+                                     bt2.setText("j aime");
+                                     
+                                 }     } catch (IOException ex) {
+                                     Logger.getLogger(EventController.class.getName()).log(Level.SEVERE, null, ex);
+                                 } catch (SQLException ex) {
+                                     Logger.getLogger(EventController.class.getName()).log(Level.SEVERE, null, ex);
+                                 }
+                             
+                             
+                         }      
+                     } catch (SQLException ex) {
+                         Logger.getLogger(EventController.class.getName()).log(Level.SEVERE, null, ex);
+                     }
+                     }
+                       }
+                 
+             );
+             
+             
+             
+             
+             
+             
+             
+             
               HBox No= new HBox();
               No.setSpacing(10);
               No.setAlignment(Pos.CENTER);
@@ -376,12 +449,15 @@ public class EventController implements Initializable {
               adres.setSpacing(10);
               adres.setAlignment(Pos.CENTER);
                adres.getChildren().addAll(local);
-               
+                            HBox aime= new HBox();
+              aime.setSpacing(10);
+              aime.setAlignment(Pos.CENTER);
+               aime.getChildren().addAll(bt2); 
                VBox v1=new VBox();
                v1.setAlignment(Pos.CENTER);
                v1.setSpacing(10);
 
-               v1.getChildren().addAll(va,No,adres,ins,h);
+               v1.getChildren().addAll(va,No,adres,ins,h,aime);
                list.add(v1);
                
               
@@ -402,7 +478,7 @@ public class EventController implements Initializable {
     }
 
     @FXML
-    private void affpassee(Event event) throws SQLException {
+    private void affpassee(Event event) throws SQLException, IOException {
              display_passevents();
 
     }

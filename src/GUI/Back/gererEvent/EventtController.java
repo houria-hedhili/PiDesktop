@@ -8,7 +8,6 @@ package GUI.Back.gererEvent;
 import Entity.houria.Evenement;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTimePicker;
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.dateTime;
 import service.houria.EventCRUD;
 
 import java.io.File;
@@ -34,6 +33,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -137,7 +137,7 @@ public class EventtController implements Initializable {
                  System.out.println("wsol lena");
 
                 Enom.setText(evenn.getNom());
-                imageview.setImage(new Image(evenn.getImage()));
+                imageview.setImage(new Image("file:/C:/xampp/htdocs/integration/jardin/web/images/event-list/"+evenn.getImage()));
                     System.out.println("hedhiiii");
                     //Getting the default zone i
 	 System.out.println("wish");	
@@ -425,7 +425,6 @@ public class EventtController implements Initializable {
         System.out.println(evenn);
         if(evenn== null){
             JOptionPane.showMessageDialog(null, "choisir event");
-                   
         }else{
        if(img!=""){
            Evenement e = new Evenement(Edescription.getText(),date_debutE,date_finE,Integer.parseInt(Enbpart.getText()),Enom.getText(),Eadresse.getText(),img);
@@ -506,9 +505,9 @@ public class EventtController implements Initializable {
         File fc=f.showOpenDialog(null);
         if(f!= null)
         {
-            System.out.println(fc.getName());
-            img=fc.getAbsoluteFile().toURI().toString();
-            Image i = new Image(img);
+            //System.out.println(fc.getName());
+            img=fc.getName();
+            Image i = new Image("file:/C:/xampp/htdocs/integration/jardin/web/images/event-list/"+img);
            imageview.setImage(i);
         }
     }

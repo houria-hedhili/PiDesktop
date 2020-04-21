@@ -1,3 +1,4 @@
+﻿
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
@@ -23,6 +24,49 @@
       <Text fill="#3a25bab5" layoutX="189.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion Catégorie Personnels" wrappingWidth="549.00341796875">
          <font>
             <Font name="Century Schoolbook" size="36.0" />
+         </font>
+      </Text>
+      <Text fontSmoothingType="LCD" layoutX="106.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <Text fontSmoothingType="LCD" layoutX="87.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <TextArea fx:id="type" layoutX="205.0" layoutY="185.0" prefHeight="37.0" prefWidth="201.0" />
+      <TextArea fx:id="description" layoutX="205.0" layoutY="242.0" prefHeight="123.0" prefWidth="201.0" />
+      <Button fx:id="btn" alignment="CENTER" contentDisplay="CENTER" layoutX="145.0" layoutY="572.0" mnemonicParsing="false" onAction="#Ajoutcat" prefHeight="52.0" prefWidth="127.0" text="Ajouter" textOverrun="CENTER_ELLIPSIS" wrapText="true" />
+      <Button fx:id="btn_supp" layoutX="310.0" layoutY="572.0" mnemonicParsing="false" onAction="#Suppcat" prefHeight="52.0" prefWidth="127.0" text="Supprimer" textAlignment="CENTER" textFill="#220101" textOverrun="CENTER_ELLIPSIS" wrapText="true" />
+   </children>
+</AnchorPane>
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="691.0" prefWidth="1140.0" style="-fx-background-color: #AEB6F2;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Back.gererCategoriePersonnels.Categorie1Controller">
+    <stylesheets>
+        <URL value="@categorie1.css" />
+    </stylesheets>
+   <children>
+      <TableView fx:id="tab" layoutX="513.0" layoutY="97.0" prefHeight="512.0" prefWidth="451.0">
+        <columns>
+          <TableColumn fx:id="TypeColonne" prefWidth="226.0" text="Type" />
+          <TableColumn fx:id="DescriptionColonne" prefWidth="224.0" text="Description" />
+        </columns>
+      </TableView>
+      <Text fill="#3a25bab5" layoutX="190.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion Catégorie Personnels" wrappingWidth="575.00341796875">
+         <font>
+            <Font name="Century Schoolbook Bold" size="36.0" />
          </font>
       </Text>
       <Text fontSmoothingType="LCD" layoutX="106.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type">

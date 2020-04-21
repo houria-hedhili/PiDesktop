@@ -218,6 +218,24 @@ e.setPhoto(i);
       return x;
       
       }
+      
+    public Categorie getCategorieId(int a) throws SQLException {
+          Categorie an = new Categorie();
+        PreparedStatement pre = cnx.prepareStatement("SELECT * FROM categorie WHERE id = ?  ;");
+
+        pre.setInt(1, a);
+        ResultSet rs = pre.executeQuery();
+        while (rs.next()) {
+
+            an.setId(a);
+           an.setType(rs.getString("type"));
+           an.setDescription(rs.getString("description"));
+
+
+           
+        }
+        return an;
+     }
               
 
 }

@@ -18,17 +18,17 @@
          <font>
             <Font name="Century Schoolbook Bold" size="36.0" />
          </font></Label>
-      <Label fx:id="nomLabel" layoutX="52.0" layoutY="87.0" text="Nom" textFill="#5d0f25">
+      <Label fx:id="nomLabel" layoutX="67.0" layoutY="204.0" text="Nom" textFill="#5d0f25">
          <font>
             <Font name="Cambria" size="31.0" />
          </font></Label>
-      <Label fx:id="descriptionLabel" layoutX="49.0" layoutY="151.0" text="Description" textFill="#5d0f25">
+      <Label fx:id="descriptionLabel" layoutX="39.0" layoutY="270.0" text="Description" textFill="#5d0f25">
          <font>
             <Font name="Cambria" size="31.0" />
          </font></Label>
-      <TextField fx:id="nomText" layoutX="227.0" layoutY="94.0" promptText="nom.." />
-      <TextField fx:id="descriptionText" layoutX="227.0" layoutY="158.0" promptText="description.." />
-      <TableView fx:id="tab" layoutX="461.0" layoutY="54.0" onMouseClicked="#modifCat" prefHeight="462.0" prefWidth="648.0">
+      <TextField fx:id="nomText" layoutX="236.0" layoutY="211.0" promptText="nom.." />
+      <TextField fx:id="descriptionText" layoutX="236.0" layoutY="277.0" promptText="description.." />
+      <TableView fx:id="tab" layoutX="461.0" layoutY="125.0" onMouseClicked="#modifCat" prefHeight="462.0" prefWidth="648.0" stylesheets="@categoriereclamation.css">
         <columns>
           <TableColumn fx:id="colNom" prefWidth="235.0" text="Nom" />
             <TableColumn fx:id="colDescription" prefWidth="420.0" text="Description" />
@@ -42,5 +42,8 @@
          <font>
             <Font size="31.0" />
          </font></Label>
+
+      <TextField fx:id="recherche" layoutX="460.0" layoutY="94.0" onKeyReleased="#rechercheCat" onKeyTyped="#recherche" prefHeight="25.0" prefWidth="648.0
+
    </children>
 </AnchorPane>

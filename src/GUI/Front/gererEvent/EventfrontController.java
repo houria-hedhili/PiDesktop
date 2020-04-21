@@ -32,6 +32,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import org.controlsfx.control.Rating;
 import service.houria.EventCRUD;
 import service.houria.participationCRUD;
 

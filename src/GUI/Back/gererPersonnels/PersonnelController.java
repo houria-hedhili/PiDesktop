@@ -7,6 +7,7 @@ package GUI.Back.gererPersonnels;
 
 import ConnexionBd.connexionBd;
 import Entity.aziza.Personnel;
+import GUI.Front.Reclamation.DetailleController;
 
 import javafx.concurrent.Task;
 import java.io.File;
@@ -31,9 +32,12 @@ import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -49,8 +53,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import javax.swing.JOptionPane;
+
+
 import org.controlsfx.control.Notifications;
 import service.aziza.CategorieDao;
 import service.aziza.PersonnelDao;
@@ -118,6 +125,9 @@ public class PersonnelController implements Initializable {
     private Connection cnx;
     int from = 0, to = 0;
     int itemPerPage = 5;
+    @FXML
+    private Button btns;
+    
 
     /**
      * Initializes the controller class.
@@ -125,9 +135,8 @@ public class PersonnelController implements Initializable {
      * @param url
      * @param rb
      */
-    
     public void initialize(URL url, ResourceBundle rb) {
- CategorieDao c = new CategorieDao();
+        CategorieDao c = new CategorieDao();
         List<String> l = c.getNomCategorie();
         ObservableList<String> listCat = FXCollections.observableArrayList(l);
         cat.setValue("categorie");
@@ -137,21 +146,18 @@ public class PersonnelController implements Initializable {
         type.add("*.png");
 
         //afficherPer();
-
         int count = 0;
         String req = "SELECT count(*) FROM personnel";
         try {
-            
+
             try (Statement pst1 = connexionBd.getInstance().getCnx().createStatement()) {
                 ResultSet rs1 = pst1.executeQuery(req);
                 rs1.first();
                 count = rs1.getInt(1);
                 rs1.close();
-            
-            
-        } }
-       
-            catch (SQLException e) {
+
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         NomColonne.setCellValueFactory(new PropertyValueFactory<>("nom"));
@@ -161,13 +167,11 @@ public class PersonnelController implements Initializable {
         Nb.setCellValueFactory(new PropertyValueFactory<>("nb_h"));
         Prix.setCellValueFactory(new PropertyValueFactory<>("prix_h"));
         CategorieColonne.setCellValueFactory(new PropertyValueFactory<>("categorie"));
-       
+
         int pageCount = (count / itemPerPage) + 1;
         pagination.setPageCount(pageCount);
         pagination.setPageFactory(this::createPage);
-        
 
-       
     }
 
     @FXML
@@ -247,21 +251,19 @@ public class PersonnelController implements Initializable {
             notif.showConfirm();
         }
 
-       // afficherPer();
-         int count = 0;
+        // afficherPer();
+        int count = 0;
         String req = "SELECT count(*) FROM personnel";
         try {
-            
+
             try (Statement pst1 = connexionBd.getInstance().getCnx().createStatement()) {
                 ResultSet rs1 = pst1.executeQuery(req);
                 rs1.first();
                 count = rs1.getInt(1);
                 rs1.close();
-            
-            
-        } }
-       
-            catch (SQLException e) {
+
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         NomColonne.setCellValueFactory(new PropertyValueFactory<>("nom"));
@@ -271,7 +273,7 @@ public class PersonnelController implements Initializable {
         Nb.setCellValueFactory(new PropertyValueFactory<>("nb_h"));
         Prix.setCellValueFactory(new PropertyValueFactory<>("prix_h"));
         CategorieColonne.setCellValueFactory(new PropertyValueFactory<>("categorie"));
-       
+
         int pageCount = (count / itemPerPage) + 1;
         pagination.setPageCount(pageCount);
         pagination.setPageFactory(this::createPage);
@@ -305,34 +307,32 @@ public class PersonnelController implements Initializable {
                 cs.updatePersonnel(new Personnel(nom.getText(), prenom.getText(), Integer.parseInt(aagee.getText()), Float.parseFloat(prixheure.getText()), Float.parseFloat(nombreheure.getText()), b1.getIdCategorie(cat.getValue()), imen.getImage()), imen.getId());
             }
             System.out.println(imen.getId());
-           // afficherPer();
-             int count = 0;
-        String req = "SELECT count(*) FROM personnel";
-        try {
-            
-            try (Statement pst1 = connexionBd.getInstance().getCnx().createStatement()) {
-                ResultSet rs1 = pst1.executeQuery(req);
-                rs1.first();
-                count = rs1.getInt(1);
-                rs1.close();
-            
-            
-        } }
-       
-            catch (SQLException e) {
-            e.printStackTrace();
-        }
-        NomColonne.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        ImageColonne.setCellValueFactory(new PropertyValueFactory<>("photo"));
-        PrenomColonne.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-        AgeColonne.setCellValueFactory(new PropertyValueFactory<>("age"));
-        Nb.setCellValueFactory(new PropertyValueFactory<>("nb_h"));
-        Prix.setCellValueFactory(new PropertyValueFactory<>("prix_h"));
-        CategorieColonne.setCellValueFactory(new PropertyValueFactory<>("categorie"));
-       
-        int pageCount = (count / itemPerPage) + 1;
-        pagination.setPageCount(pageCount);
-        pagination.setPageFactory(this::createPage);
+            // afficherPer();
+            int count = 0;
+            String req = "SELECT count(*) FROM personnel";
+            try {
+
+                try (Statement pst1 = connexionBd.getInstance().getCnx().createStatement()) {
+                    ResultSet rs1 = pst1.executeQuery(req);
+                    rs1.first();
+                    count = rs1.getInt(1);
+                    rs1.close();
+
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            NomColonne.setCellValueFactory(new PropertyValueFactory<>("nom"));
+            ImageColonne.setCellValueFactory(new PropertyValueFactory<>("photo"));
+            PrenomColonne.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+            AgeColonne.setCellValueFactory(new PropertyValueFactory<>("age"));
+            Nb.setCellValueFactory(new PropertyValueFactory<>("nb_h"));
+            Prix.setCellValueFactory(new PropertyValueFactory<>("prix_h"));
+            CategorieColonne.setCellValueFactory(new PropertyValueFactory<>("categorie"));
+
+            int pageCount = (count / itemPerPage) + 1;
+            pagination.setPageCount(pageCount);
+            pagination.setPageFactory(this::createPage);
             JOptionPane.showMessageDialog(null, "personnel modifier");
             imageview.setImage(null);
             prenom.clear();
@@ -358,33 +358,31 @@ public class PersonnelController implements Initializable {
             cs.deletePersonnel(cc.getId());
 
             //afficherPer();
-              int count = 0;
-        String req = "SELECT count(*) FROM personnel";
-        try {
-            
-            try (Statement pst1 = connexionBd.getInstance().getCnx().createStatement()) {
-                ResultSet rs1 = pst1.executeQuery(req);
-                rs1.first();
-                count = rs1.getInt(1);
-                rs1.close();
-            
-            
-        } }
-       
-            catch (SQLException e) {
-            e.printStackTrace();
-        }
-        NomColonne.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        ImageColonne.setCellValueFactory(new PropertyValueFactory<>("photo"));
-        PrenomColonne.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-        AgeColonne.setCellValueFactory(new PropertyValueFactory<>("age"));
-        Nb.setCellValueFactory(new PropertyValueFactory<>("nb_h"));
-        Prix.setCellValueFactory(new PropertyValueFactory<>("prix_h"));
-        CategorieColonne.setCellValueFactory(new PropertyValueFactory<>("categorie"));
-       
-        int pageCount = (count / itemPerPage) + 1;
-        pagination.setPageCount(pageCount);
-        pagination.setPageFactory(this::createPage);
+            int count = 0;
+            String req = "SELECT count(*) FROM personnel";
+            try {
+
+                try (Statement pst1 = connexionBd.getInstance().getCnx().createStatement()) {
+                    ResultSet rs1 = pst1.executeQuery(req);
+                    rs1.first();
+                    count = rs1.getInt(1);
+                    rs1.close();
+
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            NomColonne.setCellValueFactory(new PropertyValueFactory<>("nom"));
+            ImageColonne.setCellValueFactory(new PropertyValueFactory<>("photo"));
+            PrenomColonne.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+            AgeColonne.setCellValueFactory(new PropertyValueFactory<>("age"));
+            Nb.setCellValueFactory(new PropertyValueFactory<>("nb_h"));
+            Prix.setCellValueFactory(new PropertyValueFactory<>("prix_h"));
+            CategorieColonne.setCellValueFactory(new PropertyValueFactory<>("categorie"));
+
+            int pageCount = (count / itemPerPage) + 1;
+            pagination.setPageCount(pageCount);
+            pagination.setPageFactory(this::createPage);
 
             JOptionPane.showMessageDialog(null, "personnel supprimer avec succes");
             nom.clear();
@@ -535,21 +533,21 @@ public class PersonnelController implements Initializable {
     }
 
     public ObservableList<Personnel> getTableData() {
-       ObservableList<Personnel> data = FXCollections.observableArrayList();
+        ObservableList<Personnel> data = FXCollections.observableArrayList();
         try {
             String req = "Select s.id,s.nom,s.prenom, s.age,s.prix_h,s.nb_h,b.type ,s.image,s.categorie from categorie b INNER JOIN personnel s on b.id=s.categorie limit " + from + "," + to;
-             try (Statement pst = connexionBd.getInstance().getCnx().createStatement() ){
-            ResultSet rs = pst.executeQuery(req);
-            while (rs.next()) {
-  Personnel t= new Personnel (rs.getInt(1),rs.getString(2), rs.getString(3),rs.getInt(4), rs.getFloat(5), rs.getFloat(6), rs.getString(7), rs.getString(8));
-ImageView i=new ImageView();
-i.setImage(new Image(rs.getString(8)));
-i.setFitHeight(100);
-i.setFitWidth(100);
-t.setPhoto(i);
-  data.add(t);
+            try (Statement pst = connexionBd.getInstance().getCnx().createStatement()) {
+                ResultSet rs = pst.executeQuery(req);
+                while (rs.next()) {
+                    Personnel t = new Personnel(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getFloat(5), rs.getFloat(6), rs.getString(7), rs.getString(8));
+                    ImageView i = new ImageView();
+                    i.setImage(new Image(rs.getString(8)));
+                    i.setFitHeight(100);
+                    i.setFitWidth(100);
+                    t.setPhoto(i);
+                    data.add(t);
+                }
             }
-           }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -559,9 +557,31 @@ t.setPhoto(i);
     private Node createPage(int pageIndex) {
         from = pageIndex * itemPerPage;
         to = itemPerPage;
-        
+
         tab.setItems(FXCollections.observableArrayList(getTableData()));
         return tab;
+    }
+
+    @FXML
+    private void Datails(ActionEvent event) throws IOException {
+                FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("DetailsSal.fxml"));
+        Parent tableViewParent = loader.load();
+        
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //access the controller and call a method
+        DetailsSalController controller = loader.getController();
+        controller.initData(tab.getSelectionModel().getSelectedItem());
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    
+        
+        
     }
 
 }
