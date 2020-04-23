@@ -41,7 +41,7 @@ public class PDF {
             int randomNum = ThreadLocalRandom.current().nextInt(1, 100 + 1);
 
             com.itextpdf.text.Document document = new com.itextpdf.text.Document();
-            PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\LENOVO\\Desktop\\ticket/"+randomNum+".pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\HP\\Desktop\\ticket/"+randomNum+".pdf"));
             document.open();
              Image img=Image.getInstance(p.getImage());
              img.setWidthPercentage(50);

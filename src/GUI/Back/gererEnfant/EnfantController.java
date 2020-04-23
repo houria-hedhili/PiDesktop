@@ -13,6 +13,7 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -35,9 +36,12 @@ import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import service.wifek.CrudEnfantService;
-
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 /**
  * FXML Controller class
  *
@@ -67,13 +71,23 @@ public class EnfantController implements Initializable {
     private Pagination Pagination;
     int from = 0, to = 0;
     int itemPerPage = 5;
-
+    @FXML
+    private Button onn;
+    @FXML
+    private ImageView on;
+    @FXML
+    private Button off;
+         String path ="C:\\tiamo.mp3";
+        Media media = new Media(new File(path).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
     /**
      * Initializes the controller class.
      */
     @Override
+    
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+  
         afficher1();
         int count = 0;
         String req = "Select count(*) from enfant ";
@@ -203,6 +217,22 @@ public class EnfantController implements Initializable {
         to = itemPerPage;
         tabAffiche1.setItems(FXCollections.observableArrayList(getTableData()));
         return tabAffiche1;
+    }
+
+    @FXML
+    private void onn(ActionEvent event) {
+          //music
+        
+        mediaPlayer.play();
+        mediaPlayer.getOnPlaying();
+       // mediaPlayer.
+    }
+
+    
+
+    @FXML
+    private void off(ActionEvent event) {
+         mediaPlayer.pause();
     }
     
     

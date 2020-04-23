@@ -174,7 +174,7 @@ public  class CategorieDao implements Idao<Categorie> {
 Personnel e= new  Personnel(rs.getInt(1),rs.getString(2), rs.getString(3),rs.getInt(4), rs.getFloat(5), rs.getFloat(6), rs.getString(7), rs.getString(8),rs.getInt(9));
                   //  Personnel e= new Personnel(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getInt(4), rs.getFloat(5), rs.getFloat(6),rs.getString(7)); 
 ImageView i=new ImageView();
-i.setImage(new Image(rs.getString(8)));
+i.setImage(new Image("file:/C:/wamp/www/jardin1/web/images/team/"+rs.getString(8)));
 i.setFitHeight(100);
 i.setFitWidth(100);
 e.setPhoto(i);

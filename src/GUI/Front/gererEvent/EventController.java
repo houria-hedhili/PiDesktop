@@ -207,7 +207,7 @@ public class EventController implements Initializable {
                 e.setDate_fin(rs.getTimestamp("date_fin"));
                 e.setDescription(rs.getString("description"));
                 e.setImage(rs.getString("image"));
-              ImageView va=new ImageView(new Image("file:/C:/xampp/htdocs/integration/jardin/web/images/event-list/"+rs.getString(8)));
+              ImageView va=new ImageView(new Image("file:/C:/wamp/www/jardin1/web/images/event-list/"+rs.getString(8)));
                va.setFitHeight(200);
                 va.setFitWidth(743);
                 e.setPhoto(va);
@@ -354,7 +354,7 @@ public class EventController implements Initializable {
           ResultSet rs = ste.executeQuery(req);
           while(rs.next()){
              Evenement e= new Evenement(rs.getInt(1), rs.getString(2),rs.getInt(5),rs.getString(6),rs.getString(7));
-              ImageView va=new ImageView(new Image("file:/C:/xampp/htdocs/integration/jardin/web/images/event-list/"+rs.getString(8)));
+              ImageView va=new ImageView(new Image("file:/C:/wamp/www/jardin1/web/images/event-list/"+rs.getString(8)));
                va.setFitHeight(200);
                 va.setFitWidth(743);
 
@@ -482,7 +482,7 @@ public class EventController implements Initializable {
              display_passevents();
 
     }
-
+//zedt table lahdha nabaathhelkk table wala colonne ?
    
      
 }

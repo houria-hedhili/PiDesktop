@@ -71,6 +71,8 @@ public class CoursController implements Initializable {
         
         CoursCRUD crud=new CoursCRUD();
         RatingCRUD rr=new RatingCRUD();
+    @FXML
+    private Button retour4;
         
     public CoursController() {
         cnx= connexionBd.getInstance().getCnx();
@@ -129,6 +131,7 @@ public class CoursController implements Initializable {
        stage.close();
     }
 
+    @FXML
     private void retour4(ActionEvent event) throws IOException {
    Stage stage = (Stage) retour1.getScene().getWindow();
     Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front/Acceuilfront/acceuilFront.fxml"));
@@ -151,7 +154,7 @@ public class CoursController implements Initializable {
               
              Cours e= new Cours(rs.getInt(1), rs.getString(2),rs.getTime(3),rs.getInt(4),rs.getInt(5));
              e.setId(rs.getInt(6));
-              ImageView va=new ImageView(new Image("file:/C:/xampp/htdocs/integration/jardin/web/images/courses/"+rs.getString(7)));
+              ImageView va=new ImageView(new Image("file:/C:/wamp/www/jardin1/web/images/courses/"+rs.getString(7)));
                va.setFitHeight(200);
                 va.setFitWidth(200);
           

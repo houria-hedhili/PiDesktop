@@ -51,7 +51,7 @@ public class DetailspersoController implements Initializable {
         nom.setText(Personnel.getNom());
         prenom.setText(Personnel.getPrenom());
         Categorie.setText(Personnel.getCategorie());
-        img.setImage(new Image(Personnel.getImage()));
+        img.setImage(new Image("file:/C:/wamp/www/jardin1/web/images/team/"+Personnel.getImage()));
 img.setFitHeight(150);
 img.setFitWidth(150);
 //e.setPhoto(i);

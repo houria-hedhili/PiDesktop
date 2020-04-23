@@ -79,7 +79,7 @@ public class AvanceController implements Initializable {
     @FXML
     private VBox comment;
 PlatService ps =new PlatService();
-  String accessToken ="EAAkiGpblq8kBAPGRmhprYw9NUZC6Dvp6SU1eM4JhooTFiuxgOymlDIUvOaPUoGJK3xUhLfGXTrOMmPh0hhxCwqF1byuyJeZAlzj3j7kntbktcmoyeO9Hn0cTDh6m8ypKSZAIXwyMk052ag0bZAt9KH3JQmZAqKZAJ9jEMgt2hqogFchu2S3y2zdhMEmmYsubSJAWImE7l8WQZDZD";
+  String accessToken ="EAAHZCsGQJeY4BAIMcnqpufryoZC2dO9ZA0uLwF8Wm73P3TxPhWy3XMLTKDLOGex37CNpYhqa4ZAlIAccKkdtiP9VFKUM0wSYrxrcpeStC6VH2oW1ie1xeWk5MKx3YNsMs7icKHnIrmGp7Wa9ZBeAZCWaOgX7iNk16sr7ylR5tjZCKiZC4qC1s0656Y2NnUPpYAenfVbZA8Oel7gZDZD";
   FacebookClient fbClient= new DefaultFacebookClient(accessToken,Version.LATEST);
     @FXML
     private HBox stat;

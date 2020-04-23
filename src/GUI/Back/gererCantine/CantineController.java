@@ -122,7 +122,7 @@ PlatService ps = new PlatService();
     
         Plat x=table.getSelectionModel().getSelectedItem();
       // imgg.setImage(x.getImage());
-                        imgg.setImage(new Image(x.getImage()));
+                        imgg.setImage(new Image("file:/C:/wamp/www/jardin1/web/"+x.getImage()));
 
        description.setText(x.getDescription());
        titre.setText(x.getNom());
@@ -164,14 +164,14 @@ String tit="";
  else
     {   tit=titre.getText();
          des=description.getText();
-   /*   String accessToken="EAAkiGpblq8kBAPGRmhprYw9NUZC6Dvp6SU1eM4JhooTFiuxgOymlDIUvOaPUoGJK3xUhLfGXTrOMmPh0hhxCwqF1byuyJeZAlzj3j7kntbktcmoyeO9Hn0cTDh6m8ypKSZAIXwyMk052ag0bZAt9KH3JQmZAqKZAJ9jEMgt2hqogFchu2S3y2zdhMEmmYsubSJAWImE7l8WQZDZD";
+    String accessToken="EAAHZCsGQJeY4BAIMcnqpufryoZC2dO9ZA0uLwF8Wm73P3TxPhWy3XMLTKDLOGex37CNpYhqa4ZAlIAccKkdtiP9VFKUM0wSYrxrcpeStC6VH2oW1ie1xeWk5MKx3YNsMs7icKHnIrmGp7Wa9ZBeAZCWaOgX7iNk16sr7ylR5tjZCKiZC4qC1s0656Y2NnUPpYAenfVbZA8Oel7gZDZD";
    FacebookClient fbClient=new DefaultFacebookClient(accessToken);
    FileInputStream fis=new FileInputStream(new File(immg));
    FacebookType response=fbClient.publish("me/photos",FacebookType.class, BinaryAttachment.with(immmg,fis),Parameter.with("message","Titre :"+tit+"\n"+des),Parameter.with("link","http://localhost/jardin1/web/app_dev.php/index"));
-   System.out.println(response);*/
+   System.out.println(response);
         
-        //Plat plat=new Plat(titre.getText(), description.getText(),img, type.getValue().toString(),0,0,"100174535001126_"+response.getId());
-                 Plat plat=new Plat(titre.getText(), description.getText(),"file:/C:/wamp/www/jardin1/web/"+immmg, type.getValue().toString(),0,0,"0",immmg);
+        Plat plat=new Plat(titre.getText(), description.getText(),immmg, type.getValue().toString(),0,0,"100174535001126_"+response.getId(),immmg);
+                // Plat plat=new Plat(titre.getText(), description.getText(),"file:/C:/wamp/www/jardin1/web/"+immmg, type.getValue().toString(),0,0,"0",immmg);
 
 if(img=="")
 {img="plat.png";
@@ -190,7 +190,7 @@ plat.setImage(img);
      type.setValue("plat");
    //  partageFb();
        Notifications notif=Notifications.create()
-            .title("Facebook ")
+            .title("notification ")
             .text("Le plat a été publié !")
             .darkStyle().graphic(null).hideAfter(Duration.seconds(5))
             .position(Pos.TOP_LEFT)
@@ -240,10 +240,10 @@ affichAllPlat();
   // System.out.println(platUnique.get(0).getId());
 if(img == "")
 {  
-    ps.modifierPlat(titre.getText(),type.getValue(),description.getText(),x.getImage(),x.getId(),x.getIdPost());
+    ps.modifierPlat(titre.getText(),type.getValue(),description.getText(),x.getImage(),x.getId(),x.getIdPost(),x.getImg());
 
 }
-else { ps.modifierPlat(titre.getText(),type.getValue(),description.getText(),img,x.getId(),x.getIdPost());
+else { ps.modifierPlat(titre.getText(),type.getValue(),description.getText(),img,x.getId(),x.getIdPost(),immmg);
 
 }
 affichAllPlat();
@@ -337,7 +337,7 @@ else  {ErreurDesc.setText("champs saisi invalide ");
 
 public void partageFb() throws FileNotFoundException
 {
-   String accessToken="EAAkiGpblq8kBAP92Wf1PGqrQktdZA2rZB8aSOFBwWPRWgazFym064FDm9Ncsca1vCd7cq3UqJSZAXqArfRNIMB8SobOXmexmWAlRmSjq2m86f32ioAT0XNEOrq6nDNGGqthoR8O0FYpfNl6Teb4994xsitgGTE8iMbcahEfgTdcMB0lDkBHHg90DTyh47gZD";
+   String accessToken="EAAHZCsGQJeY4BAIMcnqpufryoZC2dO9ZA0uLwF8Wm73P3TxPhWy3XMLTKDLOGex37CNpYhqa4ZAlIAccKkdtiP9VFKUM0wSYrxrcpeStC6VH2oW1ie1xeWk5MKx3YNsMs7icKHnIrmGp7Wa9ZBeAZCWaOgX7iNk16sr7ylR5tjZCKiZC4qC1s0656Y2NnUPpYAenfVbZA8Oel7gZDZD";
    FacebookClient fbClient=new DefaultFacebookClient(accessToken);
    FileInputStream fis=new FileInputStream(new File(immg));
    FacebookType response=fbClient.publish("me/photos",FacebookType.class, BinaryAttachment.with(immmg,fis),Parameter.with("message","Titre :"+tit+"\n"+des),Parameter.with("link","http://localhost/jardin1/web/app_dev.php/index"));

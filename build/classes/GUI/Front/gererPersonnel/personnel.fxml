@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
@@ -32,17 +32,6 @@
                                     <Button fx:id="retour1" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour1" styleClass="retour" stylesheets="@../gererCantine/abonnement/aboncantine.css" text="Retour" />
                                  </children>
                               </Pane>
-
-                              <TableView fx:id="tabb" layoutX="69.0" layoutY="129.0" prefHeight="434.0" prefWidth="610.0">
-                                <columns>
-                                  <TableColumn fx:id="nom" prefWidth="133.0" text="Nom" />
-                                  <TableColumn fx:id="pre" prefWidth="150.0" text="Prenom" />
-                                    <TableColumn fx:id="catt" minWidth="0.0" prefWidth="140.0" text="Categorie" />
-                                    <TableColumn fx:id="image" prefWidth="186.0" text="Image" />
-                                </columns>
-                              </TableView>
-                              <Rating fx:id="rating" layoutX="345.0" layoutY="616.0" prefHeight="34.0" prefWidth="208.0" />
-
                               <Label fx:id="msg" layoutX="270.0" layoutY="633.0" prefHeight="17.0" prefWidth="128.0" />
                               <Text fill="#4a9067" layoutX="225.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nos Personnels">
                                  <font>

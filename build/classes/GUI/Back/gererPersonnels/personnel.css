@@ -1,9 +1,31 @@
-
 /*
  * Empty Stylesheet file.
  */
 
+/*.mainFxmlClass {
 
+}
+ #Eimage
+    {
+     -fx-background-color:#B2ADAD;
+    -fx-background-radius:20%;   
+    }
+    
+#btnsupp
+    {
+     -fx-background-color:#B2ADAD;
+    -fx-background-radius:30%;   
+    }
+#btnmod
+    {
+     -fx-background-color:#B2ADAD;
+    -fx-background-radius:30%;   
+    }
+    #btn
+    {
+     -fx-background-color:#B2ADAD;
+    -fx-background-radius:30%;   
+    }*/
 .mainFxmlClass {
 .table-view {
     -fx-background-color:#5969DA;

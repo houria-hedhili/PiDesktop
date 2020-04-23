@@ -181,8 +181,9 @@ public class PersonnelController implements Initializable {
         File fc = f.showOpenDialog(null);
         if (f != null) {
             System.out.println(fc.getName());
-            img = fc.getAbsoluteFile().toURI().toString();
-            Image i = new Image(img);
+            img = fc.getName();
+            
+            Image i = new Image("file:/C:/wamp/www/jardin1/web/images/team/"+img);
             imageview.setImage(i);
         }
     }
@@ -233,7 +234,7 @@ public class PersonnelController implements Initializable {
             Personnel categorie = new Personnel(nom.getText(),
                     prenom.getText(),
                     Integer.parseInt(aagee.getText()), Float.parseFloat(prixheure.getText()), Float.parseFloat(nombreheure.getText()),
-                    b1.getIdCategorie(cat.getValue()), img);
+                    b1.getIdCategorie(cat.getValue()),img);
             b.addPersonnel(categorie);
 
             System.out.println(b1.getIdCategorie(cat.getValue()));
@@ -304,7 +305,7 @@ public class PersonnelController implements Initializable {
                 cs.updatePersonnel(e, imen.getId());
 
             } else {
-                cs.updatePersonnel(new Personnel(nom.getText(), prenom.getText(), Integer.parseInt(aagee.getText()), Float.parseFloat(prixheure.getText()), Float.parseFloat(nombreheure.getText()), b1.getIdCategorie(cat.getValue()), imen.getImage()), imen.getId());
+                cs.updatePersonnel(new Personnel(nom.getText(), prenom.getText(), Integer.parseInt(aagee.getText()), Float.parseFloat(prixheure.getText()), Float.parseFloat(nombreheure.getText()), b1.getIdCategorie(cat.getValue()),imen.getImage()), imen.getId());
             }
             System.out.println(imen.getId());
             // afficherPer();
@@ -429,7 +430,7 @@ public class PersonnelController implements Initializable {
     private void refModif(MouseEvent event) {
         Personnel evennt = tab.getSelectionModel().getSelectedItem();
         nom.setText(evennt.getNom());
-        imageview.setImage(new Image(evennt.getImage()));
+        imageview.setImage(new Image("file:/C:/wamp/www/jardin1/web/images/team/"+evennt.getImage()));
         int age = evennt.getAge();
         String nb_PPP = String.valueOf(age);
         aagee.setText(nb_PPP);
@@ -541,7 +542,7 @@ public class PersonnelController implements Initializable {
                 while (rs.next()) {
                     Personnel t = new Personnel(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getFloat(5), rs.getFloat(6), rs.getString(7), rs.getString(8));
                     ImageView i = new ImageView();
-                    i.setImage(new Image(rs.getString(8)));
+                    i.setImage(new Image("file:/C:/wamp/www/jardin1/web/images/team/"+rs.getString(8)));
                     i.setFitHeight(100);
                     i.setFitWidth(100);
                     t.setPhoto(i);

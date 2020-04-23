@@ -8,15 +8,25 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-
     <jar href="lib\TrayNotification.jar" size="41019" download="eager" />
     <jar href="lib\activation-1.1.jar" size="62983" download="eager" />
+    <jar href="lib\client-4.0.1.jar" size="305386" download="eager" />
+    <jar href="lib\client-5.2.1.jar" size="332373" download="eager" />
+    <jar href="lib\commons-codec-1.9.jar" size="263965" download="eager" />
+    <jar href="lib\commons-io-2.5.jar" size="208700" download="eager" />
+    <jar href="lib\commons-lang3-3.5.jar" size="479881" download="eager" />
+    <jar href="lib\commons-logging-1.2.jar" size="61829" download="eager" />
     <jar href="lib\controlsfx-8.40.11.jar" size="985420" download="eager" />
     <jar href="lib\dsn.jar" size="18478" download="eager" />
+    <jar href="lib\httpclient-4.5.8.jar" size="772386" download="eager" />
+    <jar href="lib\httpclient-4.5.jar" size="727567" download="eager" />
+    <jar href="lib\httpcore-4.4.1.jar" size="322234" download="eager" />
+    <jar href="lib\httpcore-4.4.11.jar" size="326874" download="eager" />
     <jar href="lib\imap.jar" size="178013" download="eager" />
     <jar href="lib\itextpdf-5.1.0.jar" size="1614453" download="eager" />
     <jar href="lib\itextpdf-5.4.1-sources.jar" size="1934883" download="eager" />
     <jar href="lib\jBCrypt-0.4.1.jar" size="17570" download="eager" />
+    <jar href="lib\javax.servlet-api-3.0.1.jar" size="85353" download="eager" />
     <jar href="lib\jfoenix-8.0.8.jar" size="2708772" download="eager" />
     <jar href="lib\mail-1.4.1.jar" size="447676" download="eager" />
     <jar href="lib\mail-1.4.jar" size="388864" download="eager" />
@@ -28,10 +38,7 @@
     <jar href="lib\simple-java-mail-1.8.jar" size="18844" download="eager" />
     <jar href="lib\slf4j-api-1.6.1.jar" size="25496" download="eager" />
     <jar href="lib\smtp.jar" size="52787" download="eager" />
-    <jar href="piFinal.jar" size="5614414" download="eager" />
-
-    <jar href="piFinal.jar" size="2055178" download="eager" />
-
+    <jar href="piFinal.jar" size="7168510" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="piFinal" >
     <param name="requiredFXVersion" value="8.0+"/>

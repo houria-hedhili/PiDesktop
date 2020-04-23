@@ -204,20 +204,20 @@ public class PlatService {
         return listP;
     
     }
-    public void  modifierPlat(String nom,String type,String desc, String img,int id,String idPost){
+    public void  modifierPlat(String nom,String type,String desc, String img,int id,String idPost,String imag){
         
           try {
-            String req = "update plat set nom=?, description=?, image=?,date=NOW(),type=?,id_post=? where id = ?";
+            String req = "update plat set nom=?, description=?, image=?,date=NOW(),type=?,id_post=?,img=? where id = ?";
 
             pre = cnx.prepareStatement(req);
 
             pre.setString(1,nom);
             pre.setString(2,desc);
             pre.setString(3,img);
-            pre.setInt(6,id);
+            pre.setInt(7,id);
               pre.setString(4,type);
               pre.setString(5,idPost);
-
+ pre.setString(6,imag);
             pre.executeUpdate();
 
             System.out.println("Update 2 Reussie!");
@@ -445,7 +445,7 @@ return x;
 
         try {
 
-            String req = "SELECT id,id_post,description,image FROM plat where date = CAST(NOW() AS DATE) ";
+            String req = "SELECT id,id_post,description,image,img FROM plat where date = CAST(NOW() AS DATE) ";
 
             st = cnx.createStatement();
             ResultSet res = st.executeQuery(req);
@@ -456,9 +456,9 @@ return x;
                 p.setIdPost(res.getString(2));
                 p.setDescription(res.getString("description"));
  p.setImage(res.getString("image"));
-
+p.setImg("file:/C:/wamp/www/jardin1/web/"+res.getString("img"));
    ImageView v=new ImageView();
-                   v.setImage(new Image(res.getString("image")));
+                   v.setImage(new Image("file:/C:/wamp/www/jardin1/web/"+res.getString("img")));
                    v.setFitHeight(100);
                    v.setFitWidth(100);
                 p.setPhoto(v);

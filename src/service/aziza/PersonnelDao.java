@@ -137,7 +137,7 @@ public class PersonnelDao {
                 p.setPrenom(rs.getString("prenom"));
                 p.getNb_h(rs.getFloat("nb_h"));
                 p.setPrix_h(rs.getFloat("prix_h"));
-                p.setImage(rs.getString("image"));
+                p.setImage("file:/C:/wamp/www/jardin1/web/images/team/"+rs.getString("image"));
                 
 
             }
@@ -191,7 +191,7 @@ p.setPhoto(i);
 Personnel e= new  Personnel(rs.getInt(1),rs.getString(2), rs.getString(3),rs.getInt(4), rs.getFloat(5), rs.getFloat(6), rs.getString(7), rs.getString(8),rs.getInt(9));
                   //  Personnel e= new Personnel(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getInt(4), rs.getFloat(5), rs.getFloat(6),rs.getString(7)); 
 ImageView i=new ImageView();
-i.setImage(new Image(rs.getString(8)));
+i.setImage(new Image("file:/C:/wamp/www/jardin1/web/images/team/"+rs.getString(8)));
 i.setFitHeight(100);
 i.setFitWidth(100);
 e.setPhoto(i);
@@ -214,7 +214,7 @@ e.setPhoto(i);
 Personnel e= new  Personnel(rs.getInt(1),rs.getString(2), rs.getString(3),rs.getInt(4), rs.getFloat(5), rs.getFloat(6), rs.getString(7), rs.getString(8),rs.getInt(9));
                   //  Personnel e= new Personnel(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getInt(4), rs.getFloat(5), rs.getFloat(6),rs.getString(7)); 
 ImageView i=new ImageView();
-i.setImage(new Image(rs.getString(8)));
+i.setImage(new Image("file:/C:/wamp/www/jardin1/web/images/team/"+rs.getString(8)));
 i.setFitHeight(100);
 i.setFitWidth(100);
 e.setPhoto(i);

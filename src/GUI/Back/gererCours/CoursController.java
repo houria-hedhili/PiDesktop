@@ -138,7 +138,7 @@ public class CoursController implements Initializable {
                 evenn = (Cours)table_cours.getSelectionModel().getSelectedItem();
   //kenet tekhdem wala awel mara taa3melha? kont nesyetha aslnn ma5demthech emaa f event amlaa keka w te5demm mafhmtch lena chbeha 
 //  System.out.println(evenn.getImage());//yekhou feha null 
-                imageview.setImage(new Image("file:/C:/xampp/htdocs/integration/jardin/web/images/courses/"+evenn.getImage()));
+                imageview.setImage(new Image("file:/C:/wamp/www/jardin1/web/images/courses/"+evenn.getImage()));//het path !! 
            //chouf maach mesa hh 
            LocalTime d1 = evenn.getDuree().toLocalTime();
            
@@ -193,7 +193,7 @@ public class CoursController implements Initializable {
 
        labelmatiere.setText("");
        labeldescription.setText("");
-       labelseats.setText("");
+       labelseats.setText("");//saybb lahdha
         labelduree.setText(""); ;
         labelage.setText(""); 
         labelimage.setText(""); 
@@ -278,8 +278,10 @@ public class CoursController implements Initializable {
             Cduree.setValue(null);
           Cnbplace.clear();
         Cage.clear();
-        afficher();
-    }}}
+       
+     afficher();
+           }}
+    }
 
     @FXML
     private void importer(ActionEvent event) {
@@ -290,7 +292,7 @@ public class CoursController implements Initializable {
         {
             System.out.println(fc.getName());
             img=fc.getName();
-            Image i = new Image("file:/C:/xampp/htdocs/integration/jardin/web/images/courses/"+img);
+            Image i = new Image("file:/C:/wamp/www/jardin1/web/images/courses/"+img);
            imageview.setImage(i);
         }
     }

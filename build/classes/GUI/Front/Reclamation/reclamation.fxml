@@ -55,11 +55,6 @@
                                  <font>
                                     <Font name="Courier New Bold" size="16.0" />
                                  </font></Label>
-                              <ComboBox fx:id="categorieReclamationCombo" layoutX="12.0" layoutY="99.0" prefWidth="171.0" styleClass="combo" stylesheets="@../../Back/gererReclamation/reclamation.css" />
-                              <Button fx:id="ModifierBt" layoutX="454.0" layoutY="548.0" mnemonicParsing="false" onAction="#handleButtonActionModifier" styleClass="mod" text="Modifier" />
-                              <Button fx:id="AjouterBt" layoutX="13.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleButtonActionAjouter" styleClass="mod" stylesheets="@reclamation.css" text="Ajouter" />
-                              <TextArea fx:id="desc" layoutX="10.0" layoutY="218.0" prefHeight="84.0" prefWidth="178.0" />
-                              <ComboBox fx:id="comboEtat" layoutX="13.0" layoutY="166.0" prefHeight="25.0" prefWidth="170.0" styleClass="combo" stylesheets="@../../Back/gererReclamation/reclamation.css" />
                               <ComboBox fx:id="categorieReclamationCombo" layoutX="12.0" layoutY="156.0" prefWidth="171.0" styleClass="combo" stylesheets="@../../Back/gererReclamation/reclamation.css" />
                               <Button fx:id="ModifierBt" layoutX="453.0" layoutY="580.0" mnemonicParsing="false" onAction="#handleButtonActionModifier" styleClass="mod" text="Modifier" />
                               <Button fx:id="AjouterBt" layoutX="36.0" layoutY="354.0" mnemonicParsing="false" onAction="#handleButtonActionAjouter" styleClass="mod" stylesheets="@reclamation.css" text="Ajouter" />
@@ -70,7 +65,6 @@
                                     <Font name="Forte" size="43.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="detaille" layoutX="226.0" layoutY="548.0" mnemonicParsing="false" onAction="#detaille" styleClass="mod" text="Detaille" />
                               <Button fx:id="detaille" layoutX="222.0" layoutY="580.0" mnemonicParsing="false" onAction="#detaille" styleClass="mod" text="Detaille" />
                               <Button fx:id="bte" layoutX="33.0" layoutY="577.0" mnemonicParsing="false" onAction="#envoyer" styleClass="mod" text="envoyer" />
                               <TextField fx:id="num" layoutX="17.0" layoutY="537.0" promptText="numéro.." />
@@ -168,15 +162,6 @@
                                     <Button fx:id="retour3" layoutX="52.0" layoutY="7.0" mnemonicParsing="false" onAction="#retour3" styleClass="retour" stylesheets="@../gererCantine/abonnement/aboncantine.css" text="Retour" />
                                  </children>
                               </Pane>
-                              <TableView fx:id="tab2" layoutX="13.0" layoutY="78.0" prefHeight="535.0" prefWidth="792.0">
-                                <columns>
-                                  <TableColumn fx:id="colDate2" prefWidth="75.0" text="Date" />
-                                    <TableColumn fx:id="colEtat2" prefWidth="208.0" text="Etat" />
-                                    <TableColumn fx:id="colDescription2" prefWidth="208.0" text="Description" />
-                                    <TableColumn fx:id="colCategorieReclamation2" prefWidth="300.0" text="CategorieReclamation" />
-                                </columns>
-                              </TableView>
-                              <Label layoutX="60.0" layoutY="14.0" text="Reclamation à Urgence non vitale" textFill="#464196">
                               <Label layoutX="60.0" layoutY="14.0" text="Bienvenue au ChatRoom" textFill="#464196">
                                  <font>
                                     <Font name="Forte" size="43.0" />
@@ -224,7 +209,6 @@
                         </AnchorPane>
                      </content>
                      <graphic>
-                        <Label text="Brows" textFill="#f2f2f2">
                         <Label text="Instagram" textFill="#f2f2f2">
                            <font>
                               <Font name="Cooper Black" size="14.0" />

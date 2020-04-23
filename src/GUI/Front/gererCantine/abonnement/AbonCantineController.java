@@ -461,7 +461,7 @@ static Plat plat=new Plat();
 
              Label nomm=new Label("nom plat : "+listPlat.get(x).getNom()+"");
           nomm.setStyle("-fx-font-family :Cooper Black;-fx-font-size:15;-fx-font-weight: bold;");
-             Label local=new Label( " Type : "+listPlat.get(x).getType());
+             Label local=new Label( " ");
                           local.setStyle("-fx-font-family :Cooper Black;-fx-font-size:15;-fx-font-weight: bold;");
 
              Button bt2=new Button("Detail" ) ;
