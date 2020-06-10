@@ -111,7 +111,7 @@ public class CoursCRUD {
                 p.setSeats(rs.getInt("seats"));
                 p.setAge(rs.getInt("age"));
                  ImageView v=new ImageView();
-                   v.setImage(new Image("file:/C:/xampp/htdocs/integration/jardin/web/images/courses/"+rs.getString("image")));
+                   v.setImage(new Image("file:/C:/wamp/www/jardin1/web/images/courses/"+rs.getString("image")));
                    v.setFitHeight(100);
                    v.setFitWidth(100);
                 p.setPhoto(v); 
@@ -142,7 +142,7 @@ public class CoursCRUD {
                 p.setSeats(rs.getInt("seats"));
                 p.setAge(rs.getInt("age"));
                  ImageView v=new ImageView();
-                   v.setImage(new Image("file:/C:/xampp/htdocs/integration/jardin/web/images/courses/"+rs.getString(7)));
+                   v.setImage(new Image("file:/C:/wamp/www/jardin1/web/images/courses/"+rs.getString(7)));
                    v.setFitHeight(100);
                    v.setFitWidth(100);
                 p.setPhoto(v);

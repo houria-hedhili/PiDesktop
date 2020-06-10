@@ -131,7 +131,8 @@ public class CoursController implements Initializable {
        stage.close();
     }
 
-   private void retour4(ActionEvent event) throws IOException {
+    @FXML
+    private void retour4(ActionEvent event) throws IOException {
    Stage stage = (Stage) retour1.getScene().getWindow();
     Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front/Acceuilfront/acceuilFront.fxml"));
         Stage stage1=new Stage();
@@ -153,7 +154,7 @@ public class CoursController implements Initializable {
               
              Cours e= new Cours(rs.getInt(1), rs.getString(2),rs.getTime(3),rs.getInt(4),rs.getInt(5));
              e.setId(rs.getInt(6));
-              ImageView va=new ImageView(new Image("file:/C:/xampp/htdocs/integration/jardin/web/images/courses/"+rs.getString(7)));
+              ImageView va=new ImageView(new Image("file:/C:/wamp/www/jardin1/web/images/courses/"+rs.getString(7)));
                va.setFitHeight(200);
                 va.setFitWidth(200);
           

@@ -137,7 +137,7 @@ public class EventtController implements Initializable {
                  System.out.println("wsol lena");
 
                 Enom.setText(evenn.getNom());
-                imageview.setImage(new Image("file:/C:/xampp/htdocs/integration/jardin/web/images/event-list/"+evenn.getImage()));
+                imageview.setImage(new Image("file:/C:/wamp/www/jardin1/web/images/event-list/"+evenn.getImage()));
                     System.out.println("hedhiiii");
                     //Getting the default zone i
 	 System.out.println("wish");	
@@ -507,7 +507,7 @@ public class EventtController implements Initializable {
         {
             //System.out.println(fc.getName());
             img=fc.getName();
-            Image i = new Image("file:/C:/xampp/htdocs/integration/jardin/web/images/event-list/"+img);
+            Image i = new Image("file:/C:/wamp/www/jardin1/web/images/event-list/"+img);
            imageview.setImage(i);
         }
     }

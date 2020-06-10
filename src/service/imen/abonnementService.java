@@ -94,13 +94,13 @@ public class abonnementService {
 
         
     }
-      public List<abonnement> afficherAll() {
+      public List<abonnement> afficherAll(int idParent) {
 
         List<abonnement> listP = new ArrayList<>();
 
         try {
 
-            String req = "SELECT e.nom,e.prenom,a.* FROM abonnec a inner join enfant e on e.id=a.idEnfant";
+            String req = "SELECT e.nom,e.prenom,a.* FROM abonnec a inner join enfant e on e.id=a.idEnfant where a.idParent ="+idParent;
 
             st = cnx.createStatement();
             ResultSet res = st.executeQuery(req);
@@ -287,10 +287,119 @@ boolean test=false;
             System.out.println(ex);
         }
         return  test;
+}
 
+public List<abonnement> afficherAbonSelonparent(int idParent)
+{List<abonnement> liste=new ArrayList<>();
+     try{ 
 
+            String req = "SELECT e.nom,e.prenom , a.* FROM abonnec a inner join enfant e on e.id=a.idEnfant where a.idParent ='"+idParent+"'";
 
+            st = cnx.createStatement();
+            ResultSet res = st.executeQuery(req);
+
+            while (res.next()) {
+             
+             abonnement p = new abonnement();
+p.setNom(res.getString(1));
+p.setPrenom(res.getString(2));
+p.setIdEnfant(res.getInt("idEnfant"));
+                p.setId(res.getInt("id"));
+                p.setDated(res.getDate("dated"));
+                                p.setDatef(res.getDate("datef"));
+
+                p.setEtat(res.getString("etat"));
+p.setTarif(res.getDouble("tarif"));
+p.setNbEnfant(res.getInt("nbr_enfant"));
+                liste.add(p);
+     
+            }
+       
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+     return liste;
 }
 
 
+public int haveMenu(int idParent,int idenfant)
+{boolean test=false;
+int x=0;
+     try{
+
+            String req = "SELECT idenfant FROM menu where  idenfant ='"+idenfant+"'";
+
+            st = cnx.createStatement();
+            ResultSet res = st.executeQuery(req);
+
+            while (res.next()) {
+                x=res.getInt(1);
+                System.out.print("valeur ahay ="+res.getInt(1));
+             if(x==0)
+             { test=true;}
+             else {test=false;}
+                    
+            
+     
+            }
+       
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+     return x;
+}
+
+public int haveAbon(int idParent)
+{boolean test=false;
+int x=0;
+     try{
+
+            String req = "SELECT idParent FROM menu where  idenfant ='"+idParent+"'";
+
+            st = cnx.createStatement();
+            ResultSet res = st.executeQuery(req);
+
+            while (res.next()) {
+                x=res.getInt(1);
+                System.out.print("valeur ahay ="+res.getInt(1));
+             if(x==0)
+             { test=false;}
+             else {test=true;}
+                    
+            
+     
+            }
+       
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+     return x;
+}
+
+public String NohaveMenu(int id)
+{String ch="";
+
+     try{
+
+            String req = "SELECT e.prenom FROM enfant e inner join abonnec a on e.idenfant=a.idEnfant where a.idEnfant ='"+id+"'";
+
+            st = cnx.createStatement();
+            ResultSet res = st.executeQuery(req);
+
+            while (res.next()) {
+             ch=res.getString(1);
+                    
+             
+     
+            }
+       
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+     return ch;
+}
 }

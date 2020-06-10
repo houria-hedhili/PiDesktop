@@ -20,9 +20,9 @@
           <TableColumn fx:id="DescriptionColonne" prefWidth="224.0" text="Description" />
         </columns>
       </TableView>
-      <Text fill="#3a25bab5" layoutX="189.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion Catégorie Personnels" wrappingWidth="549.00341796875">
+      <Text fill="#3a25bab5" layoutX="190.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion Catégorie Personnels" wrappingWidth="575.00341796875">
          <font>
-            <Font name="Century Schoolbook" size="36.0" />
+            <Font name="Century Schoolbook Bold" size="36.0" />
          </font>
       </Text>
       <Text fontSmoothingType="LCD" layoutX="106.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type">
