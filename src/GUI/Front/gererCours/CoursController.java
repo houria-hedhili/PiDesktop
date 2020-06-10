@@ -71,6 +71,8 @@ public class CoursController implements Initializable {
         
         CoursCRUD crud=new CoursCRUD();
         RatingCRUD rr=new RatingCRUD();
+    @FXML
+    private Button retour4;
         
     public CoursController() {
         cnx= connexionBd.getInstance().getCnx();
@@ -129,7 +131,7 @@ public class CoursController implements Initializable {
        stage.close();
     }
 
-    private void retour4(ActionEvent event) throws IOException {
+   private void retour4(ActionEvent event) throws IOException {
    Stage stage = (Stage) retour1.getScene().getWindow();
     Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front/Acceuilfront/acceuilFront.fxml"));
         Stage stage1=new Stage();

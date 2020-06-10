@@ -26,10 +26,9 @@ public class connexionBd {
        private connexionBd() {
        
       
-//ahh mahatotch el cnn eyliyyb rary eyy chouf
     
 try {
-            cnx = DriverManager.getConnection(url,USERNAME,PASSWORD);                        // driver qui va traduit la cnnx entre java et base de donnee
+            cnx = DriverManager.getConnection(url,USERNAME,PASSWORD); // driver qui va traduit la cnnx entre java et base de donnee
             System.out.println("connection etablie");
             // lezem tzid librerie add librairie add mysqljdbc driver
        

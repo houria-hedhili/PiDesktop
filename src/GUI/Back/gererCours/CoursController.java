@@ -132,21 +132,19 @@ public class CoursController implements Initializable {
         type =new ArrayList();
         type.add("*.jpg");
          type.add("*.png");
-  table_cours.setOnMouseClicked(new EventHandler<MouseEvent>(){
+          table_cours.setOnMouseClicked(new EventHandler<MouseEvent>(){
            @Override
            public void handle(MouseEvent event) {
                 evenn = (Cours)table_cours.getSelectionModel().getSelectedItem();
-  //kenet tekhdem wala awel mara taa3melha? kont nesyetha aslnn ma5demthech emaa f event amlaa keka w te5demm mafhmtch lena chbeha 
-//  System.out.println(evenn.getImage());//yekhou feha null 
+
                 imageview.setImage(new Image("file:/C:/xampp/htdocs/integration/jardin/web/images/courses/"+evenn.getImage()));
-           //chouf maach mesa hh 
            LocalTime d1 = evenn.getDuree().toLocalTime();
            
                     matiereCRUD oui = new matiereCRUD();
         Matiere b=new Matiere();
           
                try {
-                   Cmatiere.setValue(oui.getnomat(evenn.getId_mat()));//bech nhot fiha nom de la matiere eliii id mta3ha =evenn.getidmat
+                   Cmatiere.setValue(oui.getnomat(evenn.getId_mat()));
                } catch (SQLException ex) {
                    Logger.getLogger(CoursController.class.getName()).log(Level.SEVERE, null, ex);
                }
@@ -334,7 +332,7 @@ public class CoursController implements Initializable {
         b=oui.getMatiere(Cmatiere.getValue());
         System.out.println("hetha id etranger"+b.getId());
                 LocalTime dur =Cduree.getValue();
-        Time dureeC = java.sql.Time.valueOf(dur);//chnnia mochkletha eh n
+        Time dureeC = java.sql.Time.valueOf(dur);
         if(img==""){
         Cours a=new Cours(b.getId(),Cdescr.getText(),dureeC,Integer.parseInt(Cnbplace.getText()),Integer.parseInt(Cage.getText()),evenn.getImage());
                    cs.updateCours(a,evenn.getId());
@@ -344,7 +342,6 @@ public class CoursController implements Initializable {
            cs.updateCours(a,evenn.getId());
 
         }
-//hekkifi ihot fiha null 5atera mdeclarya null fhemtikk
            afficher();
         JOptionPane.showMessageDialog(null, "cours modifier");
          imageview.setImage(null);
